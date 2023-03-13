@@ -14,9 +14,14 @@ import StoreIndex from './components/store/StoreIndex'
 import Store from './components/store/Store'
 import StoreMenuList from './components/store/StoreMenuList'
 import Map from './components/map/Map'
-import { MemberAuthContextProvider } from './contexts/MemberAuthContext'
+import { MemberAuthContextProvider } from './components/member/MemberAuthContext'
 import MemberAccountProfile from './components/member/MemberAccountProfile'
 import MemberMenuList from './components/member/MemberMenuList'
+import OrderReserve from './components/order/OrderReserve'
+import OrderProcess from './components/order/OrderProcess'
+import { ThemeContextProvider } from './components/commentpages/ThemeContext'
+import CommentMain from './components/commentpages/CommentMain'
+import CommentinnerPage from './components/commentpages/CommentinnerPage'
 
 function App() {
   return (
@@ -33,6 +38,10 @@ function App() {
             <Route path="/member" element={<MemberAuthContextProvider />}>
               <Route index element={<MemberAccountProfile />}></Route>
               <Route path=":action" element={<MemberMenuList />}></Route>
+            </Route>
+            <Route path="/order" element={<OrderProcess />} />
+            <Route path="/comment" element={<ThemeContextProvider />}>
+              <Route index element={<CommentMain />}></Route>
             </Route>
             <Route path="/map" element={<Map />} />
           </Routes>

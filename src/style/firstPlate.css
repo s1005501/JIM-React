@@ -43,6 +43,7 @@
 } */
 
 .mainContainer {
+  /* margin-top: 120px; */
   width: 88%;
   z-index: 10;
 }

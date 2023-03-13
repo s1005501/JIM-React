@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import MemberAuthContext from '../../contexts/MemberAuthContext'
+import MemberAuthContext from './MemberAuthContext'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { FaTrashAlt } from 'react-icons/fa'
 import { FaRegBookmark } from 'react-icons/fa'

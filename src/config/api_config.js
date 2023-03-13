@@ -9,3 +9,12 @@ export const ACCOUNTREGISTER = `${HOST}/member/register`
 
 // member的node路徑
 export const ACCOUNT = `${HOST}/member`
+
+// GET:
+export const ORDER_DATA = `${HOST}/order/gamesinfo/`
+
+// DELETE /:id
+export const ORDER = `${HOST}/order`
+
+// 登入, POST
+export const LOGIN = `${HOST}/login`

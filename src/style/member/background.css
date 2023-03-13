@@ -17,3 +17,19 @@
   height: 120%;
   opacity: 1;
 }
+
+.m-bearBgs {
+  position: relative;
+}
+
+.m-bearBgs::before {
+  content: '';
+  background: url('./../../../public/Images/熊熊背景.jpg') center center;
+  background-size: cover;
+  opacity: 15%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}

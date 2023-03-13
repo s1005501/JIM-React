@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
-import MemberAuthContext from '../../contexts/MemberAuthContext'
+import MemberAuthContext from './MemberAuthContext'
 import { useNavigate } from 'react-router-dom'
 
 function MemberAccountLevel() {

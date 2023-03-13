@@ -7,6 +7,7 @@ const StoreIndex = () => {
   return (
     <>
       {/* <LogoHorizontal /> */}
+      <p className="m-mainLogo">JOINME</p>
       <div className="d-flex flex-column flex-xxl-row justify-content-center  justify-content-xxl-start align-items-xxl-start align-items-center">
         <MenuStoreVertical />
         <div className="store d-flex flex-column align-items-center">

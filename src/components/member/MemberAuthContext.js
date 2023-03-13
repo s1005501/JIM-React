@@ -1,8 +1,7 @@
 import { useState, useContext, createContext } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import Background from '../components/common/Background'
-import Footer from '../components/common/Footer'
+import Background from '../common/Background'
 
 const MemberAuthContext = createContext({})
 export default MemberAuthContext
@@ -183,15 +182,11 @@ export const MemberAuthContextProvider = ({ children }) => {
         a,
       }}
     >
-      {/* {children} */}
-      <div>
+      <div className="">
         <Background>
           <p className="m-mainLogo">JOINME</p>
           <Outlet />
         </Background>
-        {/* <div style={{ paddingTop: '50px' }}>
-          <Footer />
-        </div> */}
       </div>
     </MemberAuthContext.Provider>
   )

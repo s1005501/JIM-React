@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { FaRegCommentDots } from 'react-icons/fa'
-import MemberAuthContext from '../../contexts/MemberAuthContext'
+import MemberAuthContext from './MemberAuthContext'
 import { ACCOUNT } from '../../config/api_config'
 
 function MemberAccountComment() {
