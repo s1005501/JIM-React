@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/* header {
+  margin-bottom: 120px !important;
+} */
+.m-memberAccountMain {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto !important;
+  z-index: 11;
+  border-radius: 15px;
+}
+.memberAside {
+  width: 15%;
+  height: 270px;
+  margin-right: 70px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 15px;
+}
+.memberAside {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.m-asideItem {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+.memberAside p {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.memberAside .m-rightArrowIcon {
+  display: none !important;
+  margin-right: 5px !important;
+  font-size: 24px;
+  color: #ef403f !important;
+}
+.memberAside p:hover {
+  color: #ef403f !important;
+}
+.memberAside p:hover + .m-rightArrowIcon {
+  display: block !important;
+}
+
+.container {
+  width: 100% !important;
+  height: 100%;
+}
+
+.m-memberAccountDiv {
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 80px;
+  justify-content: center;
+  padding: 10px !important;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.m-memberAccountDiv h1,
+.m-likeMainContext h1 {
+  font-weight: 900 !important;
+  font-size: 32px;
+}
+
+.m-likeMainContext {
+  margin: 0 auto !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 50px !important;
+  border-radius: 15px;
+  margin-bottom: 100px !important;
+}
+.m-likeMainContext h1 {
+  color: #fff;
+  margin-bottom: 20px !important;
+}
+.m-likeMainContext table {
+  margin: 0 auto !important;
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 10px 0px !important;
+}
+.m-likeMainContext thead,
+.m-likeMainContext tbody,
+.m-likeMainContext tr {
+  width: 100% !important;
+}
+.m-likeMainContext td,
+.m-likeMainContext th {
+  padding: 5px !important;
+}
+
+.m-likeMainContext th {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px 10px 0 0 !important;
+}
+.m-likeMainContext td {
+  background-color: #dbdbdb;
+  font-weight: 900;
+}
+.m-likeMainContext tr:last-child td {
+  border-radius: 0 0 10px 10px !important;
+}
+.m-likeMainContext tr:hover td {
+  background-color: #ef403f !important;
+  color: #fff;
+}
+.m-bookingIcon,
+.m-dislikeIcon {
+  font-size: 20px;
+  color: #000;
+}
+.m-likeMainContext tr:hover .m-bookingIcon,
+.m-likeMainContext tr:hover .m-dislikeIcon {
+  color: #fff;
+}

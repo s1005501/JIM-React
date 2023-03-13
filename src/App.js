@@ -14,6 +14,9 @@ import StoreIndex from './components/store/StoreIndex'
 import Store from './components/store/Store'
 import StoreMenuList from './components/store/StoreMenuList'
 import Map from './components/map/Map'
+import { MemberAuthContextProvider } from './contexts/MemberAuthContext'
+import MemberAccountProfile from './components/member/MemberAccountProfile'
+import MemberMenuList from './components/member/MemberMenuList'
 
 function App() {
   return (
@@ -22,17 +25,20 @@ function App() {
         <Header />
         <Firstplate>
           <Routes>
-            <Route path="/gamesMainPage" element={<GamesMainPage />} />
-            <Route path="/gamesFilters" element={<GamesFilters />} />
+            <Route path="/games" element={<GamesMainPage />} />
             <Route path="/store" element={<StoreIndex />}>
               <Route index element={<Store />}></Route>
               <Route path=":action" element={<StoreMenuList />}></Route>
             </Route>
+            <Route path="/member" element={<MemberAuthContextProvider />}>
+              <Route index element={<MemberAccountProfile />}></Route>
+              <Route path=":action" element={<MemberMenuList />}></Route>
+            </Route>
             <Route path="/map" element={<Map />} />
           </Routes>
         </Firstplate>
+        <Footer />
       </ContextDashbard>
-      <Footer />
     </BrowserRouter>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   AiFillEnvironment,
@@ -34,7 +34,7 @@ function Header() {
             <ul className={memberClick ? 'member_click' : 'member_none'}>
               <div className={memberClick ? 'memberOnon' : 'memberOffoff'}>
                 <li className="memberLi">
-                  <NavLink to="/">
+                  <NavLink to="/member">
                     <AiOutlineUser /> 會員
                   </NavLink>
                 </li>
@@ -45,16 +45,16 @@ function Header() {
                 </li>
               </div>
             </ul>
-            <NavLink to="/" className="memberBtn" onClick={handleToggleMenu}>
+            <span className="memberBtn" onClick={handleToggleMenu}>
               <img className="memberImg" src="/Images/member.png" alt="" />
-            </NavLink>
+            </span>
           </div>
 
           <div className="menuMain">
             <ul className={menuClick ? 'menu_click' : 'menu_none'}>
               <div className={menuClick ? 'menuOnon' : 'menuOffoff'}>
                 <li className="menu_link">
-                  <NavLink to="/">
+                  <NavLink to="/games">
                     <AiOutlineShoppingCart /> 遊戲
                   </NavLink>
                 </li>

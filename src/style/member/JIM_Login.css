@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* header {
+  margin-bottom: 100px;
+} */
+.m-memberLoginMain {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  width: 40%;
+  margin: 0 auto !important;
+  z-index: 5;
+  border-radius: 15px;
+  margin-bottom: 100px !important;
+}
+
+.m-loginBorderRadius {
+  border-radius: 15px 0 0 0 !important;
+}
+.m-loginOrSignUp {
+  background-color: #7f7f7f !important;
+}
+.m-firstSection {
+  width: 100%;
+  margin-bottom: 50px !important;
+  z-index: 10;
+}
+
+.m-loginChange,
+.m-signInChange {
+  width: 50%;
+  height: 55px;
+  font-weight: bold !important;
+  font-size: 24px !important;
+  color: #fff !important;
+}
+
+.m-mainText {
+  margin-bottom: 38px !important;
+}
+
+.m-mainText > h1 {
+  font-weight: bold;
+  font-size: 28px !important;
+  color: #fff !important;
+}
+.m-mainText > h4 {
+  font-weight: bold;
+  font-size: 20px !important;
+  color: #fff !important;
+}
+
+.m-loginSecondSection form {
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: center !important;
+}
+
+.m-accountInput,
+.m-passwordInput {
+  width: 70%;
+  height: 50px;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #fff;
+}
+.m-accountInput::placeholder,
+.m-passwordInput::placeholder,
+.m-captcha::placeholder,
+.m-verifyCode > h5,
+.m-verifyCode > P,
+.m-signInP {
+  color: rgba(255, 255, 255, 0.5);
+}
+.m-accountInput,
+.m-passwordInput,
+.m-captcha {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 3px solid rgba(255, 255, 255, 0.8) !important;
+}
+.m-formSecondSection {
+  width: 70%;
+  margin: 0 auto !important;
+}
+.m-captcha {
+  height: 50px;
+  width: 275px;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 0 30px 38px 0;
+  font-size: 18px;
+}
+.m-verifyCode > h5 {
+  font-size: 32px;
+}
+.m-verifyCode > P {
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 75%;
+}
+.m-signIn {
+  margin-bottom: 14px;
+}
+.m-signIn:hover,
+.m-googleSignIn:hover {
+  color: #fff !important;
+  background-color: #ef403f !important;
+}
+.m-signInP {
+  font-size: 12px;
+  opacity: 75%;
+}
+.m-signInP:hover {
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 100%;
+  color: #ef403f !important;
+  margin-top: -6px;
+}
+.m-googleSignIn {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  align-items: center;
+}
+.m-googleSignIn img {
+  margin-right: 8px;
+}
+.m-signIn,
+.m-googleSignIn {
+  width: 400px;
+  height: 50px;
+  font-weight: bold !important;
+  font-size: 20px !important;
+  border-radius: 15px !important;
+  background-color: #fff !important;
+  color: #7f7f7f !important;
+}

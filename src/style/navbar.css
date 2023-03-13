@@ -22,6 +22,16 @@ nav ul a {
 }
 
 /* navbar>member */
+.m-mainLogo {
+  color: #fff;
+  font-size: 100px;
+  letter-spacing: 40px;
+  margin: 0 auto;
+  font-family: 'Jost-Regular';
+  text-align: center;
+  z-index: 11;
+}
+
 .memberMain {
   position: fixed;
   top: 86px;
