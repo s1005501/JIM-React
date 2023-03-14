@@ -22,12 +22,9 @@ import OrderProcess from './components/order/OrderProcess'
 import { ThemeContextProvider } from './components/commentpages/ThemeContext'
 import CommentMain from './components/commentpages/CommentMain'
 import CommentinnerPage from './components/commentpages/CommentinnerPage'
-<<<<<<< HEAD
 import SigninIndex from './components/Signin/SigninIndex'
 import Signin from './components/Signin/Signin'
 import SigninTarget from './components/Signin/SigninTarget'
-=======
->>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
 import Index from './components/firstPage/Index'
 
 function App() {
