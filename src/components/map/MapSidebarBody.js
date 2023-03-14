@@ -37,7 +37,7 @@ const MapSidebarBody = ({ mapData }) => {
                 <img
                   src={`${
                     v.storeLogo.length < 20
-                      ? `/storeimages/${v.storeLogo}`
+                      ? `Images/storeimages/${v.storeLogo}`
                       : `${v.storeLogo}`
                   }`}
                   alt=""
@@ -83,7 +83,10 @@ const MapSidebarBody = ({ mapData }) => {
                   return (
                     <div className="accordion-body d-flex game-body" key={i}>
                       <div className="left me-3">
-                        <img src={`/gamesImages/${k.gamesImages}`} alt="" />
+                        <img
+                          src={`Images/gamesImages/${k.gamesImages}`}
+                          alt=""
+                        />
                       </div>
                       <div className="right">
                         <p>
@@ -101,7 +104,10 @@ const MapSidebarBody = ({ mapData }) => {
                             className="map-icon"
                             style={{ marginLeft: '10px' }}
                           />
-                          5(565)
+                          {k?.commentAvg
+                            ? `${parseInt(k.commentAvg * 10) / 10}`
+                            : '暫無評價'}
+                          {k?.commentSum ? `(${k.commentSum})` : ''}
                         </p>
                         <Link
                           to={`/game/${k.gamesSid}`}

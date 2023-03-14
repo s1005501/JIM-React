@@ -1,10 +1,8 @@
 import { useContext, useState } from 'react'
-import '../../style/JIM_Login.css'
-import googleIcon from '../../Images/google-login.png'
 import { ACCOUNTLOGIN } from '../../config/api_config'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import MemberAuthContext from '../../contexts/MemberAuthContext'
+import MemberAuthContext from './MemberAuthContext'
 
 function MemberLogin() {
   const [memberLoginInput, setMemberLoginInput] = useState({
@@ -15,10 +13,8 @@ function MemberLogin() {
   const navigate = useNavigate()
 
   const { setMemberAuthState } = useContext(MemberAuthContext)
-
   const sendMemberLoginData = async () => {
     axios.defaults.withCredentials = true
-
     await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
       if (response.data.success) {
         const { memAccount, membersid, memberToken } = response.data
@@ -41,7 +37,9 @@ function MemberLogin() {
 
         alert('登入成功')
 
-        navigate('/memberAccount/profile')
+        navigate('/')
+      } else {
+        alert('帳號或密碼錯誤')
       }
     })
   }
@@ -104,7 +102,7 @@ function MemberLogin() {
               <p className="m-signInP">忘記密碼? FORGET PASSWORD</p>
             </div>
             <button className="btn m-googleSignIn d-flex justify-content-center">
-              <img src={googleIcon} alt="" />
+              <img src={'/Images/google-login.png'} alt="" />
               GOOGLE 登入
             </button>
           </form>

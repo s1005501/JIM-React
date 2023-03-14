@@ -7,8 +7,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useContextValue, checkToken } from '../../ContextDashbard'
 import { Select, Input } from './StoreComponent'
 const StoreInformation = ({ name }) => {
-  // const { sid } = checkToken()
-  // const { getBackData, setRender, render } = useContextValue()
+  const { sid } = checkToken()
+  const { getBackData, setRender, render } = useContextValue()
   const {
     register,
     handleSubmit,
@@ -30,41 +30,41 @@ const StoreInformation = ({ name }) => {
   //   console.log('errors', errors)
   // }, [watchForm])
   const submit = async (data) => {
-    // if (errors !== []) {
-    //   const r = await axios.post(
-    //     `http://localhost:3005/store/editStoreInfo/${sid}`,
-    //     data
-    //   )
-    //   if (r.data.affectedRows) {
-    //     setRender(!render)
-    //     alert('更新成功')
-    //     navigate('/store')
-    //   }
-    // }
+    if (errors !== []) {
+      const r = await axios.post(
+        `http://localhost:3005/store/editStoreInfo/${sid}`,
+        data
+      )
+      if (r.data.affectedRows) {
+        setRender(!render)
+        alert('更新成功')
+        navigate('/store')
+      }
+    }
   }
 
   const [imgUrl, setImgUrl] = useState()
-  // const [storeInfo, setStoreInfo] = useState([])
-  // useEffect(() => {
-  //   getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
-  // }, [])
-  // useEffect(() => {
-  //   setImgUrl(storeInfo[0]?.storeLogo)
-  //   setValue('Logo', storeInfo[0]?.storeLogo)
-  //   setValue('account', storeInfo[0]?.storeAccount)
-  //   setValue('password', storeInfo[0]?.storePassword)
-  //   setValue('store', storeInfo[0]?.storeName)
-  //   setValue('mobile', storeInfo[0]?.storeMobile)
-  //   setValue('leader', storeInfo[0]?.storeLeader)
-  //   setValue('phone', storeInfo[0]?.storeMobile)
-  //   setValue('identity', storeInfo[0]?.storeLeaderId)
-  //   setValue('county', storeInfo[0]?.storeCity)
-  //   setValue('address', storeInfo[0]?.storeAddress)
-  //   setValue('email', storeInfo[0]?.storeEmail)
-  //   setValue('time', storeInfo[0]?.storeTime)
-  //   setValue('website', storeInfo[0]?.storeWebsite)
-  //   setValue('remark', storeInfo[0]?.storeNews)
-  // }, [storeInfo])
+  const [storeInfo, setStoreInfo] = useState([])
+  useEffect(() => {
+    getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
+  }, [])
+  useEffect(() => {
+    setImgUrl(storeInfo[0]?.storeLogo)
+    setValue('Logo', storeInfo[0]?.storeLogo)
+    setValue('account', storeInfo[0]?.storeAccount)
+    setValue('password', storeInfo[0]?.storePassword)
+    setValue('store', storeInfo[0]?.storeName)
+    setValue('mobile', storeInfo[0]?.storeMobile)
+    setValue('leader', storeInfo[0]?.storeLeader)
+    setValue('phone', storeInfo[0]?.storeMobile)
+    setValue('identity', storeInfo[0]?.storeLeaderId)
+    setValue('county', storeInfo[0]?.storeCity)
+    setValue('address', storeInfo[0]?.storeAddress)
+    setValue('email', storeInfo[0]?.storeEmail)
+    setValue('time', storeInfo[0]?.storeTime)
+    setValue('website', storeInfo[0]?.storeWebsite)
+    setValue('remark', storeInfo[0]?.storeNews)
+  }, [storeInfo])
   const [eyeIcon, setEyeIcon] = useState(true)
   const [countyList, setCountyList] = useState([
     '基隆市',
@@ -102,11 +102,11 @@ const StoreInformation = ({ name }) => {
           <div className="mb-3 mt-sm-0 store-add-img">
             <img
               className="store-add-img"
-              // src={
-              //   imgUrl?.length > 20
-              //     ? imgUrl
-              //     : `/storeimages/${storeInfo[0]?.storeLogo}`
-              // }
+              src={
+                imgUrl?.length > 20
+                  ? imgUrl
+                  : `/Images/storeimages/${storeInfo[0]?.storeLogo}`
+              }
               alt=""
             />
           </div>

@@ -22,6 +22,10 @@ import OrderProcess from './components/order/OrderProcess'
 import { ThemeContextProvider } from './components/commentpages/ThemeContext'
 import CommentMain from './components/commentpages/CommentMain'
 import CommentinnerPage from './components/commentpages/CommentinnerPage'
+import SigninIndex from './components/Signin/SigninIndex'
+import Signin from './components/Signin/Signin'
+import SigninTarget from './components/Signin/SigninTarget'
+import Index from './components/firstPage/Index'
 
 function App() {
   return (
@@ -30,10 +34,15 @@ function App() {
         <Header />
         <Firstplate>
           <Routes>
+            <Route path="/" element={<Index />} />
             <Route path="/games" element={<GamesMainPage />} />
             <Route path="/store" element={<StoreIndex />}>
               <Route index element={<Store />}></Route>
               <Route path=":action" element={<StoreMenuList />}></Route>
+            </Route>
+            <Route path="/signin" element={<SigninIndex />}>
+              <Route index element={<Signin />}></Route>
+              <Route path=":target" element={<SigninTarget />}></Route>
             </Route>
             <Route path="/member" element={<MemberAuthContextProvider />}>
               <Route index element={<MemberAccountProfile />}></Route>

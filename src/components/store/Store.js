@@ -3,25 +3,26 @@ import axios from 'axios'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import { checkToken, useContextValue } from '../../ContextDashbard'
-// import StoreOrder from './StoreOrder'
+import StoreOrder from './StoreOrder'
 const Store = () => {
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
-  // useEffect(() => {
-  //   getBackData(
-  //     `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
-  //     setStoreOrderList
-  //   )
-  // }, [render])
+  console.log(checkToken()?.sid)
+  useEffect(() => {
+    getBackData(
+      `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
+      setStoreOrderList
+    )
+  }, [render])
   const storeSwitch = async (orderSid, state) => {
-    // let str = !!state ? 0 : 1
-    // try {
-    //   const r = await axios.put(
-    //     `http://localhost:3005/store/storeOredrSwitch/${orderSid}?state=${str}`
-    //   )
-    //   setRender(!render)
-    // } catch (error) {}
+    let str = !!state ? 0 : 1
+    try {
+      const r = await axios.put(
+        `http://localhost:3005/store/storeOredrSwitch/${orderSid}?state=${str}`
+      )
+      setRender(!render)
+    } catch (error) {}
   }
   const [state, setState] = useState(2)
   const [keyWord, setKeyWord] = useState('')
@@ -121,28 +122,6 @@ const Store = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>2022-10-15</td>
-              <td className="phonehidden">123456789</td>
-              <td className="phonehidden">測試</td>
-              <td>
-                <div className="form-check form-switch pb-1 d-flex justify-content-center">
-                  <input
-                    style={{ cursor: 'pointer' }}
-                    className="form-check-input "
-                    type="checkbox"
-                    role="switch"
-                    id="flexSwitchCheckChecked"
-                    // onChange={() => {
-                    //   storeSwitch(v.orderSid, v.orderState)
-                    // }}
-                    // checked={v.orderState == 1 ? true : false}
-                  />
-                </div>
-              </td>
-              <td className="phonehidden">一個人</td>
-              <td>{/* <StoreOrder orderSid={v.orderSid} /> */}</td>
-            </tr>
             {filterStateData.map((v, i) => {
               return (
                 <tr key={v.orderSid}>
@@ -166,11 +145,7 @@ const Store = () => {
                   </td>
                   <td className="phonehidden">{v.orderUsername}</td>
                   <td>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eveniet ab cumque totam nisi dolor veniam, dignissimos
-                    labore magni libero porro dolorem minima. Ut eius recusandae
-                    iste temporibus quo quod? Odit.
-                    {/* <StoreOrder orderSid={v.orderSid} /> */}
+                    <StoreOrder orderSid={v.orderSid} />
                   </td>
                 </tr>
               )

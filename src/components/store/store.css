@@ -13,7 +13,7 @@
 .store-list-body {
   background: rgba(255, 255, 255, 0.15);
   width: 60vw;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 .store-subtitle {
   font-size: 32px;
@@ -80,7 +80,7 @@
 }
 
 .store-add-img {
-  width: 100%;
+  width: 70%;
   aspect-ratio: 2/1;
 }
 

@@ -88,7 +88,7 @@ const StoreAdd = () => {
             <label htmlFor={'Logo'} className="form-label">
               {'Logo'}
             </label>
-            <div className="my-3 mt-sm-0 store-add-img">
+            <div className="my-3 mt-sm-0 ">
               <img className="store-add-img" src={imgUrl} alt="" />
             </div>
             <div className="d-flex flex-column align-items-center">

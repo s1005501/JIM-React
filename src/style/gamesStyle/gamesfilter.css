@@ -1,9 +1,13 @@
 .buttonFilterMore {
-  position: fixed;
+  position: sticky;
   top: 40px;
   left: 820px;
   z-index: 999;
   width: 100px;
+}
+
+.buttonFilterMoreoff {
+  display: none;
 }
 
 .buttonFilterMore:hover {
@@ -16,18 +20,14 @@
 }
 
 /* ---start--- */
-.gamesFilterMain {
-  position: relative;
-}
-
 .filterBlock {
   display: flex;
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0px;
   left: 0px;
   z-index: 10;
-  padding: 100px 0px 0px 120px;
+  padding: 20px 0px 0px 0px;
   background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -36,6 +36,10 @@
   flex-direction: column;
   width: 100%;
   padding: 10px 0px 20px;
+}
+
+.filterBlockSecondoff {
+  display: none;
 }
 
 .filterBlockSecond ul {
@@ -81,12 +85,17 @@
 
 /* 返回遊戲主頁按鈕 */
 .rolBack {
-  position: fixed;
-  top: 40px;
-  left: 150px;
+  display: inline-block;
+  position: sticky;
+  top: 20px;
+  left: 950px;
   z-index: 999;
   width: 60px;
   padding: 0;
+}
+
+.rolBackoff {
+  display: none;
 }
 
 .rolBack div {
@@ -103,7 +112,7 @@
 
   display: flex;
   flex-wrap: wrap;
-  justify-content:left;
+  justify-content: left;
 
   border: 1px solid red;
 }
@@ -116,7 +125,7 @@
   border: 1px solid orange;
 }
 
-.gamesFilterSection figure{
+.gamesFilterSection figure {
   width: 100%;
   height: 145px;
   margin: 0;
@@ -126,12 +135,15 @@
   object-fit: cover;
   object-position: center center;
   /* background-size:auto over; */
-} 
+}
 
-@media (max-width: 1480px){
-  .gamesFilterSection{
-    justify-content:center ;
+@media (max-width: 1480px) {
+  .gamesFilterSection {
+    justify-content: center;
     padding: 10px 0px 0px 10px;
-  }  
+  }
 
+  .filterBlock {
+    padding: 20px 0px 0px 120px;
+  }
 }

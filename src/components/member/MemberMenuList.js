@@ -5,6 +5,7 @@ import MemberAccountLevel from './MemberAccountLevel'
 import MemberAccountOrder from './MemberAccountOrder'
 import MemberAccountComment from './MemberAccountComment'
 import MemberAccountLike from './MemberAccountLike'
+import MemberLogin from './MemberLogin'
 // import { StoreAdd, StoreGameList, StoreInformation } from './StoreComponent'
 
 const MemberMenuList = () => {
@@ -26,6 +27,10 @@ const MemberMenuList = () => {
     }
     case 'like': {
       currentPage = <MemberAccountLike />
+      break
+    }
+    case 'in': {
+      currentPage = <MemberLogin />
       break
     }
     default: {

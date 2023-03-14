@@ -1,5 +1,5 @@
 .headerId {
-  height: 96px;
+  /* height: 96px; */
   display: flex;
   position: relative;
   background-color: black;
@@ -32,6 +32,12 @@ nav ul a {
   z-index: 11;
 }
 
+@media (max-width: 600px) {
+  .m-mainLogo {
+    letter-spacing: 0;
+  }
+}
+
 .memberMain {
   position: fixed;
   top: 86px;
@@ -40,7 +46,7 @@ nav ul a {
 }
 
 .member_click {
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   border-radius: 20px;
   z-index: 2;
   position: fixed;
@@ -83,7 +89,7 @@ nav ul a {
 }
 
 .memberLi a {
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   color: black;
 }
 
@@ -127,7 +133,7 @@ link {
   padding-right: 20px;
   padding-top: 3px;
   border: 1px white solid;
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   border-radius: 10px;
   text-align: center;
   margin: 30px;
@@ -189,7 +195,7 @@ link {
   margin-right: 90px;
   height: 30px;
   position: fixed;
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   z-index: 3;
   list-style-type: none;
   text-decoration: none;
@@ -207,7 +213,7 @@ link {
   transition: 0.3s;
   z-index: 2;
   opacity: 0.8;
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
 }
 
 .menuOnon {
@@ -235,7 +241,7 @@ link {
 
 .menu_link {
   font-size: 20px;
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   margin: 10px;
   text-align: center;
   width: 150px;
@@ -244,7 +250,7 @@ link {
 .menu_link a {
   color: black;
   font-size: 20px;
-  font-family: "Jost-Regular";
+  font-family: 'Jost-Regular';
   margin: 10px;
   text-align: center;
   width: 150px;

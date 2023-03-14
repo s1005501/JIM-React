@@ -92,7 +92,7 @@ const MapPhone = ({ mapData }) => {
                       style={{ background: '#FFFFFF' }}
                     >
                       <div className="left me-3">
-                        <img src={`/gamesImages/${k.gamesImages}`} alt="" />
+                        <img src={`Images/orders/${k.gamesImages}`} alt="" />
                       </div>
                       <div className="right">
                         <p>

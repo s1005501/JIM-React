@@ -6,52 +6,52 @@ import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import { checkToken, useContextValue } from './../../ContextDashbard'
-// import StroeEdit from './StroeEdit'
+import StroeEdit from './StroeEdit'
 const StoreGameList = () => {
   const navigate = useNavigate()
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [gamelist, setGameList] = useState([])
   useEffect(() => {
-    // getBackData(
-    //   `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
-    //   setGameList
-    // )
+    getBackData(
+      `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
+      setGameList
+    )
   }, [render])
   const delData = async (gameSid, gamesName) => {
-    // confirmAlert({
-    //   title: `遊戲編號：${gameSid}`,
-    //   message: `是否刪除遊戲名稱：${gamesName}`,
-    //   buttons: [
-    //     {
-    //       label: '是',
-    //       onClick: async () => {
-    //         try {
-    //           const r = await axios.delete(
-    //             `http://localhost:3005/store/delstoredata/${gameSid}`
-    //           )
-    //           if (!!r.data.affectedRows) {
-    //             alert('刪除成功')
-    //             navigate('/store')
-    //           }
-    //         } catch (error) {}
-    //       },
-    //     },
-    //     {
-    //       label: '否',
-    //       onClick: () => alert('已取消刪除'),
-    //     },
-    //   ],
-    // })
+    confirmAlert({
+      title: `遊戲編號：${gameSid}`,
+      message: `是否刪除遊戲名稱：${gamesName}`,
+      buttons: [
+        {
+          label: '是',
+          onClick: async () => {
+            try {
+              const r = await axios.delete(
+                `http://localhost:3005/store/delstoredata/${gameSid}`
+              )
+              if (!!r.data.affectedRows) {
+                alert('刪除成功')
+                navigate('/store')
+              }
+            } catch (error) {}
+          },
+        },
+        {
+          label: '否',
+          onClick: () => alert('已取消刪除'),
+        },
+      ],
+    })
   }
   const storeSwitch = async (gameSid, close) => {
-    // let str = !!close ? 0 : 1
-    // try {
-    //   const r = await axios.put(
-    //     `http://localhost:3005/store/gameswitch/${gameSid}?close=${str}`
-    //   )
-    //   setRender(!render)
-    // } catch (error) {}
+    let str = !!close ? 0 : 1
+    try {
+      const r = await axios.put(
+        `http://localhost:3005/store/gameswitch/${gameSid}?close=${str}`
+      )
+      setRender(!render)
+    } catch (error) {}
   }
 
   return (
@@ -71,26 +71,6 @@ const StoreGameList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <RiDeleteBin6Fill style={{ cursor: 'pointer' }} />
-            </td>
-            <td className="phonehidden">123</td>
-            <td>名子</td>
-            <td className="phonehidden">$123</td>
-            <td>書的icon</td>
-            <td>
-              <div className="form-check form-switch pb-1 d-flex justify-content-center">
-                <input
-                  style={{ cursor: 'pointer' }}
-                  className="form-check-input "
-                  type="checkbox"
-                  role="switch"
-                  id="flexSwitchCheckChecked"
-                />
-              </div>
-            </td>
-          </tr>
           {gamelist.map((v, i) => {
             return (
               <React.Fragment key={v.gamesSid}>
@@ -106,7 +86,9 @@ const StoreGameList = () => {
                   <td className="phonehidden">{v.gamesSid}</td>
                   <td>{v.gamesName}</td>
                   <td className="phonehidden">{v.gamesPrice}</td>
-                  <td>{/* <StroeEdit sid={v.gamesSid} /> */}</td>
+                  <td>
+                    <StroeEdit sid={v.gamesSid} />
+                  </td>
                   <td>
                     <div className="form-check form-switch pb-1 d-flex justify-content-center">
                       <input

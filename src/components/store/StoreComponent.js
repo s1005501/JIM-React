@@ -1,3 +1,6 @@
+import StoreAdd from './StoreAdd'
+import StoreGameList from './StoreGameList'
+import StoreInformation from './StoreInformation'
 const Select = ({
   register,
   errors,
@@ -59,4 +62,4 @@ const Input = ({
   )
 }
 
-export { Select, Input }
+export { StoreAdd, StoreGameList, StoreInformation, Select, Input }

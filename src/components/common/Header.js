@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   AiFillEnvironment,
@@ -9,8 +9,10 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from 'react-icons/ai'
+import { checkToken } from '../../ContextDashbard'
 
 function Header() {
+  const navigate = useNavigate()
   const [memberClick, setMemberClick] = useState(false)
 
   const [menuClick, setMenuClick] = useState(false)
@@ -24,7 +26,6 @@ function Header() {
     setMenuBtn(!menuBtn)
     setMenuClick(!menuClick)
   }
-
   return (
     <>
       <header className="headerId">
@@ -39,9 +40,20 @@ function Header() {
                   </NavLink>
                 </li>
                 <li className="memberLi">
-                  <NavLink to="/">
-                    <AiOutlinePoweroff /> 登出
+                  <NavLink to="/signin">
+                    <AiOutlinePoweroff /> 登入
                   </NavLink>
+                </li>
+                <li
+                  className="memberLi"
+                  onClick={() => {
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('memberAuth')
+                    alert('登出成功')
+                    navigate('/')
+                  }}
+                >
+                  <AiOutlinePoweroff /> 登出
                 </li>
               </div>
             </ul>
@@ -69,7 +81,7 @@ function Header() {
                   </NavLink>
                 </li>
                 <li className="menu_link">
-                  <NavLink to="/">
+                  <NavLink to="/comment">
                     <AiOutlineComment /> 討論
                   </NavLink>
                 </li>

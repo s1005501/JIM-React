@@ -167,7 +167,6 @@ export const MemberAuthContextProvider = ({ children }) => {
     alert('會員已登出，感謝您的使用')
     navigate('/memberLogin')
   }
-  const a = 50
   return (
     <MemberAuthContext.Provider
       value={{
@@ -179,7 +178,6 @@ export const MemberAuthContextProvider = ({ children }) => {
         memberLogout,
         memberAuthState,
         setMemberAuthState,
-        a,
       }}
     >
       <div className="">
