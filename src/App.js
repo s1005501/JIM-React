@@ -22,6 +22,7 @@ import OrderProcess from './components/order/OrderProcess'
 import { ThemeContextProvider } from './components/commentpages/ThemeContext'
 import CommentMain from './components/commentpages/CommentMain'
 import CommentinnerPage from './components/commentpages/CommentinnerPage'
+import Index from './components/firstPage/Index'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Header />
         <Firstplate>
           <Routes>
+            <Route path="/" element={<Index />} />
             <Route path="/games" element={<GamesMainPage />} />
             <Route path="/store" element={<StoreIndex />}>
               <Route index element={<Store />}></Route>

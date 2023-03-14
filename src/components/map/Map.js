@@ -19,7 +19,7 @@ const Map = () => {
 
   return (
     <>
-      <p className="m-mainLogo">JOINME</p>
+      {/* <p className="m-mainLogo">JOINME</p> */}
       <MapDashbard>
         <MapSidebar mapData={mapData} />
         <MapContent mapData={mapData} />

@@ -69,7 +69,7 @@ function Header() {
                   </NavLink>
                 </li>
                 <li className="menu_link">
-                  <NavLink to="/">
+                  <NavLink to="/comment">
                     <AiOutlineComment /> 討論
                   </NavLink>
                 </li>
