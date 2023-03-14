@@ -1,5 +1,8 @@
 import React from 'react'
+<<<<<<< HEAD
 import '../../style/FisrtPage/firstPage.css'
+=======
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
 import { IoIosArrowDropleft } from 'react-icons/io'
 import { IoIosArrowDropright } from 'react-icons/io'
 import gameData from './game.json'

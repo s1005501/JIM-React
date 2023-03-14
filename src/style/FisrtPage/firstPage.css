@@ -1,6 +1,11 @@
 @font-face {
+<<<<<<< HEAD
   font-family: 'Jost';
   src: local('Jost'), url('../../fontstyle/Jost-Regular.ttf') format('truetype');
+=======
+  font-family: "Jost";
+  src: local("Jost"), url("../../fontstyle/Jost-Regular.ttf") format("truetype");
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
 }
 
 * {
@@ -9,7 +14,11 @@
 }
 
 #background {
+<<<<<<< HEAD
   background: url('../../../public/Images/first_page/JOINME_background.png');
+=======
+  background: url("../../../public/Images/first_page/JOINME_background.png");
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
   position: absolute;
   /* background-color: rgb(0, 0, 0); */
   background-size: cover;
@@ -27,7 +36,11 @@
 
 .body {
   color: rgb(0, 0, 0);
+<<<<<<< HEAD
   font-family: 'Jost';
+=======
+  font-family: "Jost";
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
   height: 100vh;
   z-index: 1;
   /* margin-left: 18%; */
@@ -40,7 +53,11 @@
 
 .P2_body {
   color: rgb(0, 0, 0);
+<<<<<<< HEAD
   font-family: 'Jost';
+=======
+  font-family: "Jost";
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
   /* margin-left: 18%; */
   height: 100vh;
   width: 1613px;
@@ -121,7 +138,11 @@
 }
 
 .mask {
+<<<<<<< HEAD
   mask: url('../../../public/Images/first_page/ink.png') 0 0/ 900px 900px;
+=======
+  mask: url("../../../public/Images/first_page/ink.png") 0 0/ 900px 900px;
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
   mask-repeat: no-repeat;
 }
 
@@ -200,11 +221,19 @@
 
   .body {
     color: rgb(0, 0, 0);
+<<<<<<< HEAD
     font-family: 'Jost';
     margin-left: 10%;
     height: 70vh;
     z-index: 2;
     margin-left: 15%;
+=======
+    font-family: "Jost";
+    /* margin-left: 10%; */
+    height: 70vh;
+    z-index: 2;
+    /* margin-left: 15%; */
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
     flex-direction: column;
     padding-top: 10%;
 
@@ -243,7 +272,11 @@
 
   .P2_body {
     color: rgb(0, 0, 0);
+<<<<<<< HEAD
     font-family: 'Jost';
+=======
+    font-family: "Jost";
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
     margin-left: 20%;
     margin-top: -80px;
     /* height: ; */
@@ -333,7 +366,11 @@
   }
 
   .mask {
+<<<<<<< HEAD
     mask: url('../../../public/Images/first_page/ink_small.png');
+=======
+    mask: url("../../../public/Images/first_page/ink_small.png");
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
     mask-repeat: no-repeat;
   }
   #btn-book {
@@ -461,7 +498,11 @@
 .menu_link {
   color: black;
   font-size: 20px;
+<<<<<<< HEAD
   font-family: 'Jost';
+=======
+  font-family: "Jost";
+>>>>>>> 6b955a10a0a6e84fe1d16954688beb26830951bd
   margin: 10px;
   text-align: center;
   /* border: 1px solid green; */
