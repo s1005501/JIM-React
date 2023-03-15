@@ -9,7 +9,7 @@
   box-sizing: content-box;
 }
 
-body{
+body {
   /* background-color: #000000 !important; */
 }
 
@@ -21,7 +21,7 @@ body{
 }
 
 .leftContainer {
-  min-height: 80vh;
+  /* min-height: 80vh; */
   width: 12%;
   display: flex;
   position: relative;

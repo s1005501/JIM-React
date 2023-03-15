@@ -2,6 +2,7 @@ import { useState, useContext, createContext } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Background from '../common/Background'
+import Swal from 'sweetalert2'
 
 const MemberAuthContext = createContext({})
 export default MemberAuthContext
@@ -21,6 +22,7 @@ export const MemberAuthContextProvider = ({ children }) => {
     membersid: '',
     memAccount: '',
     memberToken: '',
+    memberVerified: false,
   }
   let initAuth = { ...unAuth }
   const str = localStorage.getItem('memberAuth')
@@ -32,11 +34,13 @@ export const MemberAuthContextProvider = ({ children }) => {
         memberLocalStorage.memAccount &&
         memberLocalStorage.membersid
       ) {
+        console.log('in,9')
         initAuth = {
           authorized: true,
           membersid: memberLocalStorage.membersid,
           memAccount: memberLocalStorage.memAccount,
           memberToken: memberLocalStorage.memberToken,
+          memberVerified: true,
         }
       }
     }
@@ -48,12 +52,6 @@ export const MemberAuthContextProvider = ({ children }) => {
 
   // 傳給profile render的func
   const getProfileData = async (url, setState) => {
-    // 加這兩行是因為跳頁時，瀏覽器不知道localStorage已經改變了，所以我們強制讓他重新去抓資料
-    // let mAuth = memberAuth
-    // if (!mAuth) {
-    //   mAuth = JSON.parse(localStorage.getItem('memberAuth'))
-    // }
-
     if (memberAuthState.authorized) {
       axios.defaults.withCredentials = true
       const response = await axios.get(
@@ -64,18 +62,13 @@ export const MemberAuthContextProvider = ({ children }) => {
           },
         }
       )
-      // console.log('19', response.data.row)
+
       setState(response.data.row)
     }
   }
 
   // 傳給order render的func
   const getOrderData = async (url, setState) => {
-    // let mAuth = memberAuth
-    // if (!mAuth) {
-    //   mAuth = JSON.parse(localStorage.getItem('memberAuth'))
-    // }
-
     if (memberAuthState.authorized) {
       axios.defaults.withCredentials = true
 
@@ -94,11 +87,6 @@ export const MemberAuthContextProvider = ({ children }) => {
 
   // 傳給like render的func
   const getLikeData = async (url, setState) => {
-    // let mAuth = memberAuth
-    // if (!mAuth) {
-    //   mAuth = JSON.parse(localStorage.getItem('memberAuth'))
-    // }
-
     if (memberAuthState.authorized) {
       axios.defaults.withCredentials = true
 
@@ -117,11 +105,6 @@ export const MemberAuthContextProvider = ({ children }) => {
 
   // 傳給comment render的func
   const getCommentData = async (url, setState) => {
-    // let mAuth = memberAuth
-    // if (!mAuth) {
-    //   mAuth = JSON.parse(localStorage.getItem('memberAuth'))
-    // }
-
     if (memberAuthState.authorized) {
       axios.defaults.withCredentials = true
 
@@ -140,11 +123,6 @@ export const MemberAuthContextProvider = ({ children }) => {
 
   // 傳給level render的func
   const getLevelData = async (url, setState) => {
-    // let mAuth = memberAuth
-    // if (!mAuth) {
-    //   mAuth = JSON.parse(localStorage.getItem('memberAuth'))
-    // }
-
     if (memberAuthState.authorized) {
       axios.defaults.withCredentials = true
 
@@ -164,7 +142,14 @@ export const MemberAuthContextProvider = ({ children }) => {
   // 會員登出
   const memberLogout = () => {
     localStorage.removeItem('memberAuth')
-    alert('會員已登出，感謝您的使用')
+
+    Swal.fire({
+      title: '會員已登出!',
+      text: `會員已登出，感謝您的使用`,
+      icon: 'info',
+      confirmButtonText: '確認',
+    })
+
     navigate('/memberLogin')
   }
   return (

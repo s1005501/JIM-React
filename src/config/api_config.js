@@ -18,3 +18,6 @@ export const ORDER = `${HOST}/order`
 
 // 登入, POST
 export const LOGIN = `${HOST}/login`
+
+// google登入
+export const ACCOUNTGOOGLELOGIN = `${HOST}/member/googlelogin`

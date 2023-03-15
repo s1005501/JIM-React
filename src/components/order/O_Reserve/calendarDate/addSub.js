@@ -1,26 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 // import { BsDashCircle } from "react-icons/bs";
 
 const Product = () => {
-  const [quantity, setQuantity] = useState(2);
+  const [quantity, setQuantity] = useState(2)
 
   const product = {
-    peoplemin:2,
-    peoplemax:7,
+    peoplemin: 2,
+    peoplemax: 7,
     price: 600, // 價格
-  };
+  }
 
   const increment = () => {
-    if(quantity < product.peoplemax)
-    setQuantity(quantity + 1); // 可以想成 quantity = quantity + 1
-    
-  };
+    if (quantity < product.peoplemax) setQuantity(quantity + 1) // 可以想成 quantity = quantity + 1
+  }
   const decrement = () => {
     if (quantity > product.peoplemin) {
-      setQuantity(quantity - 1); // quantity = quantity - 1
+      setQuantity(quantity - 1) // quantity = quantity - 1
     }
-  };
-
+  }
 
   return (
     <div className="O_Calendar_addSub_calculate">
@@ -32,16 +29,15 @@ const Product = () => {
           <p>${product.price}/每人</p>
 
           <button onClick={decrement} className="O_Calendar_addSub_sub">
-              -
-            </button>
+            -
+          </button>
 
           {/* 總金額 */}
           <p>{quantity}</p>
 
-            <button onClick={increment} className="O_Calendar_addSub_add">
-              +
-            </button>
-
+          <button onClick={increment} className="O_Calendar_addSub_add">
+            +
+          </button>
         </div>
       </div>
 
@@ -52,7 +48,7 @@ const Product = () => {
         <p>TWD {product.price * quantity}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product

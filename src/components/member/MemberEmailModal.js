@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { ACCOUNT } from './../../config/api_config'
-
+import Swal from 'sweetalert2'
 function MemberEmailModal({
   profileUpdate,
   setProfileUpdate,
@@ -53,7 +53,12 @@ function MemberEmailModal({
     )
     if (response.data.success) {
       console.log(response.data)
-      alert('信箱修改成功')
+      Swal.fire({
+        title: '信箱修改成功!',
+        text: `信箱修改成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
       getProfileData(ACCOUNT, setProfileData)
       handleClose()
     }

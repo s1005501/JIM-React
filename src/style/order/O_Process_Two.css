@@ -1,0 +1,40 @@
+.O_Process_Two_Sort {
+  /* margin-top: 90px; */
+  padding: 50px 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.O_Process_Two_line {
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+  color: white;
+  text-align: center;
+}
+
+.O_Process_Two_Sort .d-flex {
+  margin-top: 10px;
+}
+
+.O_Process_Two_Sort h6 {
+  margin: auto 0;
+  color: white;
+  text-align: left;
+}
+
+.O_Process_Two_Sort input {
+  width: 40%;
+  background-color: gray;
+}
+
+
+/* ---------------------- */
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: transparent;
+  color: white;
+}
+
+.ant-select .ant-select-arrow{
+  color: white;
+}

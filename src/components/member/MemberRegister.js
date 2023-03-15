@@ -3,8 +3,34 @@ import axios from 'axios'
 import { ACCOUNTREGISTER } from '../../config/api_config'
 import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
+import { googleAuth, googleProvider } from './../../config/firebase'
+import { sendEmailVerification, updateProfile } from 'firebase/auth'
+import emailjs from '@emailjs/browser'
+import Swal from 'sweetalert2'
 
 function MemberRegister({ setLoginOrRegister }) {
+  // ! EmailJS寄信 暫時先留著 看要不要加
+  // const sendMemberRegister = async (data) => {
+  //   const { mAccount } = data
+  //   console.log(mAccount)
+  //   ;(function () {
+  //     emailjs.init('c9JApo5Xiid4Ipkgo')
+  //   })()
+  //   var templateParams = {
+  //     name: 'James',
+  //     notes: 'Check this out!',
+  //     message: `http://localhost:3000/memberLogin/${mAccount}`,
+  //   }
+  //   emailjs.send('service_rjy5svh', 'template_ixq4hab', templateParams).then(
+  //     function (response) {
+  //       console.log('SUCCESS!', response.status, response.text)
+  //     },
+  //     function (error) {
+  //       console.log('FAILED...', error)
+  //     }
+  //   )
+  // }
+
   const navigate = useNavigate()
 
   const {
@@ -16,7 +42,6 @@ function MemberRegister({ setLoginOrRegister }) {
     clearError,
   } = useForm({
     // 預設值帶入要透過defaultValues:{}
-    //   // 立即檢測
   })
 
   const watchForm = useWatch({
@@ -24,15 +49,42 @@ function MemberRegister({ setLoginOrRegister }) {
   })
   useEffect(() => {
     console.log(watchForm)
+    // console.log(getValues('mAccount'))
   }, [watchForm])
 
   const sendMemberRegisterData = async (data) => {
     axios.defaults.withCredentials = true
     await axios.put(ACCOUNTREGISTER, data).then((response) => {
       if (response.data.success) {
-        alert('註冊成功')
-        // todo 頁面刷新不會跑到最上面
-        setLoginOrRegister('會員登入')
+        Swal.fire({
+          title: 'Success!',
+          text: `註冊成功`,
+          icon: 'success',
+          confirmButtonText: '確認',
+        })
+
+        // ! 更改發信的使用者名稱。但好像會不同步
+        updateProfile(googleAuth.currentUser, {
+          displayName: response.data.postData.mAccount,
+        })
+          .then(() => {})
+          .catch((error) => {})
+
+        // todo 怎麼去判斷有沒有做過驗證?
+        // ! 第一次進去直接按註冊發ajax會失敗，要先按一次login去連動gmail帳號才可以成功，不然googleAuth.currentUser會是null，好像也是非同步問題
+        // ! 好像解決了
+        sendEmailVerification(googleAuth.currentUser).then(() => {
+          setTimeout(() => {
+            Swal.fire({
+              title: '請查收驗證信',
+              text: `驗證信已發送到您的信箱，請查收。`,
+              icon: 'info',
+              confirmButtonText: '確認',
+            })
+          }, 1500)
+        })
+
+        // setLoginOrRegister('會員登入')
         // navigate('/memberLogin')
       }
     })

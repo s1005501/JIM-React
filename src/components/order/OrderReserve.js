@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ORDER_DATA } from './../../config/api_config.js'
+import { ORDER } from '../../components/config/api_config'
 import { Link } from 'react-router-dom'
 import { Tabs } from 'antd'
 import GameInfo from './O_Reserve/O_Reserve_GameInfo_'
@@ -14,16 +14,16 @@ function OrderReserve() {
   // 抓kevin資料庫
   const gameGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER_DATA + '53')
+    const response = await axios.get(ORDER + '/gamesinfo/53')
 
     // console.log(response);
     console.log('response:', response.data)
     setGameData(response.data)
   }
 
-  // useEffect(() => {
-  //   gameGetData();
-  // }, []);
+  useEffect(() => {
+    gameGetData()
+  }, [])
 
   const items = [
     {

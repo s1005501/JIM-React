@@ -36,14 +36,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/games" element={<GamesMainPage />} />
-            <Route path="/store" element={<StoreIndex />}>
-              <Route index element={<Store />}></Route>
-              <Route path=":action" element={<StoreMenuList />}></Route>
-            </Route>
             <Route path="/signin" element={<SigninIndex />}>
               <Route index element={<Signin />}></Route>
               <Route path=":target" element={<SigninTarget />}></Route>
             </Route>
+            <Route path="/store" element={<StoreIndex />}>
+              <Route index element={<Store />}></Route>
+              <Route path=":action" element={<StoreMenuList />}></Route>
+            </Route>
+            <Route path="/map" element={<Map />} />
             <Route path="/member" element={<MemberAuthContextProvider />}>
               <Route index element={<MemberAccountProfile />}></Route>
               <Route path=":action" element={<MemberMenuList />}></Route>
@@ -52,7 +53,6 @@ function App() {
             <Route path="/comment" element={<ThemeContextProvider />}>
               <Route index element={<CommentMain />}></Route>
             </Route>
-            <Route path="/map" element={<Map />} />
           </Routes>
         </Firstplate>
         <Footer />

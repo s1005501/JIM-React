@@ -390,7 +390,12 @@ const StoreInformation = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 btn btn-danger">修改資料</button>
+        <button
+          className="w-75 btn m-registerSubmit"
+          style={{ color: '#FFFFFF' }}
+        >
+          修改資料
+        </button>
       </form>
     </div>
   )

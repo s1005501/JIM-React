@@ -6,6 +6,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { FaRegBookmark } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 function MemberAccountLike() {
   const navigate = useNavigate()

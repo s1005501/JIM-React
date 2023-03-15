@@ -1,10 +1,13 @@
 import { useContext, useState } from 'react'
-import { ACCOUNTLOGIN } from '../../config/api_config'
+import { ACCOUNTLOGIN, ACCOUNTGOOGLELOGIN } from '../../config/api_config'
+import googleIcon from '../../svg/google-login.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import MemberAuthContext from './MemberAuthContext'
-
-function MemberLogin() {
+import Swal from 'sweetalert2'
+import { googleAuth, googleProvider } from './../../config/firebase'
+import { signInWithPopup } from 'firebase/auth'
+function MemberLogin({ memberLoginOrNot }) {
   const [memberLoginInput, setMemberLoginInput] = useState({
     account: '',
     password: '',
@@ -12,10 +15,80 @@ function MemberLogin() {
 
   const navigate = useNavigate()
 
-  const { setMemberAuthState } = useContext(MemberAuthContext)
+  const { setMemberAuthState, memberAuthState } = useContext(MemberAuthContext)
+  // 一般登入
   const sendMemberLoginData = async () => {
-    axios.defaults.withCredentials = true
-    await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
+    if (memberLoginOrNot.get('mode') || memberAuthState.memberVerified) {
+      axios.defaults.withCredentials = true
+
+      await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
+        if (response.data.success) {
+          const { memAccount, membersid, memberToken } = response.data
+
+          localStorage.setItem(
+            'memberAuth',
+            JSON.stringify({
+              memAccount,
+              membersid,
+              memberToken,
+            })
+          )
+
+          setMemberAuthState({
+            authorized: true,
+            membersid: membersid,
+            memAccount: memAccount,
+            memberToken: memberToken,
+            memberVerified: true,
+          })
+
+          Swal.fire({
+            title: 'Success!',
+            text: `登入成功`,
+            icon: 'success',
+            confirmButtonText: '確認',
+          })
+
+          navigate('/memberAccount/profile')
+        }
+
+        // 登入失敗跳警示
+        if (!response.data.success) {
+          Swal.fire({
+            title: 'Error!',
+            text: `${response.data.error}`,
+            icon: 'error',
+            confirmButtonText: '確認',
+          })
+        }
+      })
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: '煩請您先前往信箱進行驗證',
+        icon: 'error',
+        confirmButtonText: '確認',
+      })
+    }
+  }
+  // google登入測試func
+  const memberGoogleLogin = async () => {
+    if (memberLoginOrNot.get('mode') || memberAuthState.memberVerified) {
+      // 帶入兩個參數第一個是auth、第二個是provider
+      const googleResult = await signInWithPopup(googleAuth, googleProvider)
+
+      const googleForm = new FormData()
+
+      // 把資料塞進剛建立的new FormData
+      googleForm.append('googleEmail', `${googleResult.user.email}`)
+
+      const response = await axios.post(ACCOUNTGOOGLELOGIN, googleForm, {
+        headers: {
+          // Content-Type要用application/json
+          'Content-Type': 'application/json',
+        },
+      })
+      console.log(response.data)
       if (response.data.success) {
         const { memAccount, membersid, memberToken } = response.data
 
@@ -33,17 +106,35 @@ function MemberLogin() {
           membersid: membersid,
           memAccount: memAccount,
           memberToken: memberToken,
+          memberVerified: true,
+        })
+        Swal.fire({
+          title: 'Success!',
+          text: `登入成功`,
+          icon: 'success',
+          confirmButtonText: '確認',
         })
 
-        alert('登入成功')
-
-        navigate('/')
-      } else {
-        alert('帳號或密碼錯誤')
+        // navigate('/memberAccount/profile')
       }
-    })
+      // 登入失敗跳警示
+      if (!response.data.success) {
+        Swal.fire({
+          title: 'Error!',
+          text: `${response.data.error}`,
+          icon: 'error',
+          confirmButtonText: '確認',
+        })
+      }
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: '煩請您先前往信箱進行驗證',
+        icon: 'error',
+        confirmButtonText: '確認',
+      })
+    }
   }
-
   return (
     <>
       <div className="m-loginSecondSection">
@@ -101,8 +192,14 @@ function MemberLogin() {
               <button className="btn m-signIn">登入 SIGN IN</button>
               <p className="m-signInP">忘記密碼? FORGET PASSWORD</p>
             </div>
-            <button className="btn m-googleSignIn d-flex justify-content-center">
-              <img src={'/Images/google-login.png'} alt="" />
+            <button
+              className="btn m-googleSignIn d-flex justify-content-center"
+              onClick={(e) => {
+                e.preventDefault()
+                memberGoogleLogin()
+              }}
+            >
+              <img src={googleIcon} alt="" />
               GOOGLE 登入
             </button>
           </form>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Rate } from 'antd'
-import { ORDER_DATA } from './../../../config/api_config'
+import { ORDER } from './../../config/api_config'
 import axios from 'axios'
 import {
   FaTint,
@@ -29,11 +29,12 @@ const gameData = {
 
 const GameInfo = () => {
   const [gameDataTest, setGameData] = useState([])
+  const [collectData, setCollectData] = useState(false)
 
   // 抓kevin資料庫
   const gameGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER_DATA + '25')
+    const response = await axios.get(ORDER + '/gamesinfo/25')
 
     // console.log(response);
     console.log('response:', response.data)
@@ -43,7 +44,6 @@ const GameInfo = () => {
   useEffect(() => {
     gameGetData()
   }, [])
-
   // --------------------------------------------------
 
   // 難度水滴數量顯示
@@ -56,8 +56,8 @@ const GameInfo = () => {
   //   />
   // );
 
-  // 書籤狀態
-  const [bookmarkstate, setBookmarkState] = useState(false)
+  // 書籤狀態-原本書籤
+  // const [bookmarkstate, setBookmarkState] = useState(false);
 
   return (
     <div className="O_Reserve_GameInfo_Info">
@@ -119,13 +119,13 @@ const GameInfo = () => {
               <div
                 className="O_Reserve_GameInfo_Bookmark"
                 onClick={() => {
-                  setBookmarkState(!bookmarkstate)
+                  setCollectData(!collectData)
                   console.log(gameData.bookmark)
                 }}
               >
                 <h6>收藏</h6>
 
-                {bookmarkstate ? (
+                {collectData ? (
                   <div>
                     {/* <h6>取消收藏</h6> */}
                     <div

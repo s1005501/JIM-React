@@ -10,7 +10,7 @@ import {
   AiOutlineUser,
 } from 'react-icons/ai'
 import { checkToken } from '../../ContextDashbard'
-
+import Swal from 'sweetalert2'
 function Header() {
   const navigate = useNavigate()
   const [memberClick, setMemberClick] = useState(false)
@@ -39,6 +39,15 @@ function Header() {
                     <AiOutlineUser /> 會員
                   </NavLink>
                 </li>
+                {checkToken()?.target == 'store' ? (
+                  <li className="memberLi">
+                    <NavLink to="/store">
+                      <AiOutlineUser /> 工作室
+                    </NavLink>
+                  </li>
+                ) : (
+                  ''
+                )}
                 <li className="memberLi">
                   <NavLink to="/signin">
                     <AiOutlinePoweroff /> 登入
@@ -49,7 +58,12 @@ function Header() {
                   onClick={() => {
                     localStorage.removeItem('token')
                     localStorage.removeItem('memberAuth')
-                    alert('登出成功')
+                    Swal.fire({
+                      title: '成功登出!',
+                      text: `成功登出`,
+                      icon: 'success',
+                      confirmButtonText: '確認',
+                    })
                     navigate('/')
                   }}
                 >
@@ -83,6 +97,11 @@ function Header() {
                 <li className="menu_link">
                   <NavLink to="/comment">
                     <AiOutlineComment /> 討論
+                  </NavLink>
+                </li>
+                <li className="menu_link">
+                  <NavLink to="/order">
+                    <AiOutlineComment /> 訂單(暫)
                   </NavLink>
                 </li>
               </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import MemberRegister from './MemberRegister'
 import MemberLogin from './MemberLogin'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 function MemberLoginRegister() {
+  const [memberLoginOrNot, setmemberLoginOrNot] = useSearchParams()
   const [loginOrRegister, setLoginOrRegister] = useState('會員登入')
 
   return (
@@ -37,7 +39,7 @@ function MemberLoginRegister() {
           </button>
         </div>
         {loginOrRegister === '會員登入' ? (
-          <MemberLogin />
+          <MemberLogin memberLoginOrNot={memberLoginOrNot} />
         ) : (
           <MemberRegister setLoginOrRegister={setLoginOrRegister} />
         )}

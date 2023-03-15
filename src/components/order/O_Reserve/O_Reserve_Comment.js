@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Space, Rate } from 'antd'
-import { ORDER } from './../../../config/api_config'
+import { ORDER } from '../../../components/config/api_config'
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import moment from 'moment'

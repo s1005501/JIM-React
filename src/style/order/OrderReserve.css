@@ -1,0 +1,104 @@
+.O_Reserve_Tabs_Date {
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.171);
+  text-align: center;
+}
+
+.O_Reserve_Cont{
+  margin-right: 200px;
+}
+
+.O_Reserve_Container {
+  min-height: 650px;
+  display: flex;
+}
+
+
+.O_Reserve_GameImg {
+  float: right;
+  width: 75%;
+}
+
+.O_Reserve_Info {
+  list-style-type: none;
+  display: flex;
+}
+
+.O_Reserve_Info li {
+  text-align: center;
+}
+
+.O_Reserve_Info a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+}
+
+.O_Reserve_Info a:hover {
+  color: #D01B1B;
+  font-weight: bolder;
+}
+
+/* ---------下列都是套件預設裡修改-------- */
+.ant-tabs {
+  width: 90%;
+  margin: 0 10px;
+}
+
+.ant-tabs-tab-btn {
+  color: white;
+  font-size: 30px;
+}
+
+.ant-tabs-nav {
+  border-bottom: 1px solid #D01B1B;
+}
+
+.ant-tabs-tabpane {
+  color: white;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #D01B1B;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  background-color: #D01B1B;
+}
+
+/* --------------RWD-------------- */
+@media (max-width: 1550px) {
+  /* .mainContainer {
+    margin-right: 0;
+  } */
+
+  .O_Reserve_Cont{
+    margin-right: 0;
+  }
+
+  .O_Reserve_Container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .O_Reserve_GameImg {
+    float: none;
+    width: 75%;
+  }
+
+  .O_Reserve_ColImg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .O_Reserve_ColGame {
+    width: 80%;
+  }
+
+  /* ---------下列都是套件預設裡修改-------- */
+  .ant-tabs {
+    width: 100%;
+    margin: 0;
+  }
+}

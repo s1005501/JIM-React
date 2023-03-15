@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { ACCOUNT } from './../../config/api_config'
-
+import Swal from 'sweetalert2'
 function MemberPasswordModal({
   profileUpdate,
   setProfileUpdate,
@@ -53,7 +53,13 @@ function MemberPasswordModal({
     )
     if (response.data.success) {
       console.log(response.data)
-      alert('密碼修改成功')
+
+      Swal.fire({
+        title: '密碼修改成功!',
+        text: `密碼修改成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
       getProfileData(ACCOUNT, setProfileData)
       handleClose()
     }
@@ -144,5 +150,4 @@ function MemberPasswordModal({
     </>
   )
 }
-
 export default MemberPasswordModal

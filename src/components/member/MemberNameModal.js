@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { ACCOUNT } from './../../config/api_config'
-
+import Swal from 'sweetalert2'
 function MemberNameModal({
   profileUpdate,
   setProfileUpdate,
@@ -53,7 +53,13 @@ function MemberNameModal({
     )
     if (response.data.success) {
       console.log(response.data)
-      alert('姓名修改成功')
+
+      Swal.fire({
+        title: '姓名修改成功!',
+        text: `姓名修改成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
       getProfileData(ACCOUNT, setProfileData)
       handleClose()
     }

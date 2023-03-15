@@ -1,0 +1,107 @@
+.O_Process_Cont {
+  min-height: 650px;
+  margin-right: 200px;
+}
+
+.O_Process_frame {
+  width: 70%;
+  margin-left: 100px;
+  margin: 0 auto;
+}
+
+.O_Process_button {
+  margin-Top: 24px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ------------------ */
+.ant-steps-icon {
+  color: white !important;
+}
+
+.ant-steps-item-icon {
+  background-color: #EF403F !important;
+
+}
+
+.ant-steps-item-title {
+  /* background-color: white; */
+  color: white !important;
+}
+
+/* -------------------- */
+/* -------------------- orderThree.css*/
+.O_Process_Three_Sort {
+  /* margin-top: 90px; */
+  padding: 50px 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.O_Process_Three_Sort h5 {
+  color: white;
+}
+
+.O_Process_Three_Sort>button {
+  width: 150px;
+  background-color: #16AD2E;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 30px;
+}
+
+
+/* -------------------- orderFour.css*/
+.orderFour_Sort {
+  /* margin-top: 90px; */
+  padding: 50px 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderFour_Sort h5 {
+  text-align: left;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.orderFour_HomeBtn {
+  background-color: transparent;
+  border-color: white;
+  margin-right: 100px;
+  font-size: 16px;
+}
+
+/* ---------RWD------------ */
+@media (max-width: 1480px) {
+  .O_Process_Cont {
+    margin-right: 0px;
+  }
+
+  .O_Process_button {
+    margin-bottom: 50px;
+  }
+
+  .orderFour_HomeBtn {
+    margin: 30px 100px 30px 0;
+  }
+}
+
+/* -----------max-width: 580px------------- */
+@media (max-width: 580px) {
+  .orderFour_HomeBtn {
+    margin: 20px auto;
+  }
+}

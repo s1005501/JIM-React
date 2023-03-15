@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { ACCOUNT } from './../../config/api_config'
+import Swal from 'sweetalert2'
 
 function MemberMobileModal({
   profileUpdate,
@@ -53,7 +54,13 @@ function MemberMobileModal({
     )
     if (response.data.success) {
       console.log(response.data)
-      alert('手機號碼修改成功')
+
+      Swal.fire({
+        title: '手機號碼修改成功!',
+        text: `手機號碼修改成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
       getProfileData(ACCOUNT, setProfileData)
       handleClose()
     }

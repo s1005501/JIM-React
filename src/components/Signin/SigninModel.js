@@ -3,8 +3,17 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import Swal from 'sweetalert2'
 
 import { checkToken, useContextValue } from '../../ContextDashbard'
+const swalAlert = (title, text, icon, button) => {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: button,
+  })
+}
 const Input = ({
   register,
   errors,
@@ -126,7 +135,10 @@ const SigninChange = ({ name, chceked, setChceked }) => {
     <div className="d-flex text-center justify-content-center signin-router">
       <div
         className="w-100"
-        style={{ background: chceked ? 'red' : '', borderRadius: '20px 0 0 0' }}
+        style={{
+          background: chceked ? '#7f7f7f' : '',
+          borderRadius: '20px 0 0 0',
+        }}
       >
         <div
           className="signin-router-right"
@@ -139,7 +151,10 @@ const SigninChange = ({ name, chceked, setChceked }) => {
       </div>
       <div
         className="w-100"
-        style={{ background: chceked ? '' : 'red', borderRadius: '0 20px 0 0' }}
+        style={{
+          background: chceked ? '' : '#7f7f7f',
+          borderRadius: '0 20px 0 0',
+        }}
       >
         <div
           className="signin-router-left"
@@ -180,12 +195,19 @@ const SigninStortIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/store', data)
       if (!!r.data.error) {
-        alert(r.data.error)
+        swalAlert(r.data.error, r.data.error, 'error', '確認')
       }
       if (r.data.code === 200) {
+        swalAlert('成功登入', '成功登入', 'success', '確認')
+
+        // Swal.fire({
+        //   title: '成功登入',
+        //   text: `成功登入`,
+        //   icon: 'success',
+        //   confirmButtonText: '確認',
+        // })
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        alert('登入成功')
         navigate('/')
       }
     }
@@ -256,7 +278,7 @@ const SigninStortIn = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 signin-botton">SIGN IN</button>
+        <button className="w-75 m-registerSubmit mt-3">SIGN IN</button>
       </form>
     </div>
   )
@@ -782,7 +804,7 @@ const SigninStoreRegister = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 signin-botton">SIGN UP</button>
+        <button className="w-75 m-registerSubmit">SIGN UP</button>
       </form>
     </div>
   )
