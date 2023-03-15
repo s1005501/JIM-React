@@ -6,17 +6,21 @@ import Footer from '../common/Footer'
 import ThemeContext from './ThemeContext'
 // import "./CommentinnerPage.css";
 import './../../style/commentstyle/CommentinnerPage.css'
-
 import { BsArrowReturnLeft } from 'react-icons/bs'
 import {
   AiTwotoneStar,
   AiOutlineStar,
   AiFillLike,
+  AiOutlineLike,
+  AiFillDislike,
   AiOutlineDislike,
 } from 'react-icons/ai'
 import { ImUsers } from 'react-icons/im'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
+
+const usersid = localStorage.getItem('usersid')
+console.log(usersid)
 
 function CommentinnerPage() {
   const { gameName, setGameName } = useContext(ThemeContext)
@@ -26,10 +30,12 @@ function CommentinnerPage() {
   const [commentuser, setCommentuser] = useState([])
   const [replycomment, setReplycomment] = useState([])
   const [randomgame, setRandomgame] = useState([])
-  const [liked, setLiked] = useState(0)
+  const [myliked, setMyliked] = useState([])
+  const [btnstate, setBtnstate] = useState(false)
+  const [textareavalue, setTextareavalue] = useState('')
+
   let { mygamesName } = useParams()
   const navigate = useNavigate()
-  console.log(mygamesName)
 
   const getgamedetail = async () => {
     const r = await axios.get(
@@ -54,7 +60,7 @@ function CommentinnerPage() {
 
     const result = r.data
     const newresult = result.map((v, i) => {
-      return { ...v, toggle: false }
+      return { ...v, toggle: false, toggleliked: false, toggledisliked: false }
     })
 
     setCommentuser(newresult)
@@ -68,18 +74,23 @@ function CommentinnerPage() {
     const r = await axios.get('http://localhost:3005/api_random')
     setRandomgame(r.data)
   }
-  // useEffect(() => {
-  //   getreplydata()
-  //   getrandomdata()
-  // }, [])
-  // useEffect(() => {
-  //   getgamedetail()
-  //   getavrage()
-  //   getcommentuser()
-  // }, [])
-  {
-    console.log(commentuser)
+
+  const getlikedata = async () => {
+    const r = await axios.get('http://localhost:3005/api_liked')
+    setMyliked(r.data)
   }
+
+  useEffect(() => {
+    getreplydata()
+    getrandomdata()
+    getgamedetail()
+    getavrage()
+    getcommentuser()
+    getlikedata()
+  }, [mygamesName])
+
+  //   {const likedtotal=myliked.reduce((acc,v)=>{return acc+v.liked})
+  // console.log(likedtotal)}
 
   return (
     <>
@@ -111,113 +122,155 @@ function CommentinnerPage() {
               <>
                 {gamedetail.map((v, i) => {
                   return (
-                    <div className="gamedetail" key={i}>
-                      <div className="img2">
-                        <img
-                          className="image"
-                          src={
-                            '../Images/commentImages/gamesImages/' + v.gamesLogo
-                          }
-                          alt=""
-                        />
-                      </div>
-                      <div className="gameinfo">
-                        <div className="gametitle">
-                          <p>{v.gamesName}</p>
-                          <div className="averagerate">
-                            {[...Array(5)].map((value, index) => {
-                              if (index + 1 <= avrage) {
-                                return (
-                                  <div>
-                                    <AiTwotoneStar />
-                                  </div>
-                                )
-                              } else {
-                                return (
-                                  <div>
-                                    <AiOutlineStar />
-                                  </div>
-                                )
-                              }
-                            })}
+                    <>
+                      <div className="gamedetail" key={i}>
+                        <div className="img2">
+                          <img
+                            className="image"
+                            src={
+                              '../Images/commentImages/gamesImages/' +
+                              v.gamesLogo
+                            }
+                            alt=""
+                          />
+                        </div>
+                        <div className="gameinfo">
+                          <div className="gametitle">
+                            <p>{v.gamesName}</p>
+                            <div className="averagerate">
+                              {[...Array(5)].map((value, index) => {
+                                if (index + 1 <= avrage) {
+                                  return (
+                                    <div>
+                                      <AiTwotoneStar />
+                                    </div>
+                                  )
+                                } else {
+                                  return (
+                                    <div>
+                                      <AiOutlineStar />
+                                    </div>
+                                  )
+                                }
+                              })}
 
-                            <div className="ratescore">遊戲分數</div>
-                          </div>
-                        </div>
-                        <div className="tips">
-                          <div className="person">
-                            <div>遊玩人數</div>
-                            <div className="info">
-                              <p>
-                                <ImUsers />
-                                {v.gamesPeopleMin}-{v.gamesPeopleMax}人
-                              </p>
+                              <div className="ratescore">遊戲分數</div>
                             </div>
                           </div>
-                          <div className="time">
-                            <div>時間</div>
-                            <div className="info">
-                              <p>
-                                <BiTimeFive />
-                                {v.Time}分
-                              </p>
+                          <div className="tips">
+                            <div className="person">
+                              <div>遊玩人數</div>
+                              <div className="info">
+                                <p>
+                                  <ImUsers />
+                                  {v.gamesPeopleMin}-{v.gamesPeopleMax}人
+                                </p>
+                              </div>
+                            </div>
+                            <div className="time">
+                              <div>時間</div>
+                              <div className="info">
+                                <p>
+                                  <BiTimeFive />
+                                  {v.Time}分
+                                </p>
+                              </div>
+                            </div>
+                            <div className="address">
+                              <div>地址</div>
+                              <div className="info">
+                                <p className="addressp">
+                                  <FiMapPin /> {v.storeAddress}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                          <div className="address">
-                            <div>地址</div>
-                            <div className="info">
-                              <p className="addressp">
-                                <FiMapPin /> {v.storeAddress}
-                              </p>
-                            </div>
+                          <div className="gameintro">
+                            <p>{v.gamesContent}</p>
                           </div>
-                        </div>
-                        <div className="gameintro">
-                          <p>{v.gamesContent}</p>
                         </div>
                       </div>
-                    </div>
+                      <div className="rate">
+                        {[...Array(5)].map((v, i) => {
+                          if (i + 1 <= ratescore) {
+                            return (
+                              <div
+                                onClick={() => {
+                                  setRatescore(i + 1)
+                                }}
+                              >
+                                <AiTwotoneStar />
+                              </div>
+                            )
+                          } else {
+                            return (
+                              <div
+                                onClick={() => {
+                                  setRatescore(i + 1)
+                                }}
+                              >
+                                <AiOutlineStar />
+                              </div>
+                            )
+                          }
+                        })}
+
+                        <div>遊戲評分</div>
+                      </div>
+                      <div className="input2">
+                        <textarea
+                          className="commentinput"
+                          defaultValue={textareavalue}
+                          onChange={(e) => {
+                            setTextareavalue(e.target.value)
+                          }}
+                        ></textarea>
+                      </div>
+                      <div className="inputbtns">
+                        <div className="pics">
+                          <button className="picbtn">
+                            圖片
+                            <input
+                              type="file"
+                              className="hiddenpicbtn"
+                              onChange={(e) => {
+                                console.log(e.target.files[0].name)
+
+                                console.log(e.target)
+                              }}
+                            />
+                          </button>
+                        </div>
+
+                        <div>
+                          <button
+                            type="submit"
+                            className="submit"
+                            onClick={(e) => {
+                              e.preventDefault()
+
+                              axios.post(
+                                'http://localhost:3005/insertcomment',
+                                {
+                                  usersid: usersid,
+                                  gamessid: v.gamesSid,
+                                  rate: ratescore,
+
+                                  comment: textareavalue,
+                                }
+                              )
+
+                              setTextareavalue('')
+                            }}
+                          >
+                            提交
+                          </button>
+                        </div>
+                      </div>{' '}
+                    </>
                   )
                 })}
               </>
-
-              <div className="rate">
-                {[...Array(5)].map((v, i) => {
-                  if (i + 1 <= ratescore) {
-                    return (
-                      <div
-                        onClick={() => {
-                          setRatescore(i + 1)
-                        }}
-                      >
-                        <AiTwotoneStar />
-                      </div>
-                    )
-                  } else {
-                    return (
-                      <div
-                        onClick={() => {
-                          setRatescore(i + 1)
-                        }}
-                      >
-                        <AiOutlineStar />
-                      </div>
-                    )
-                  }
-                })}
-
-                <div>遊戲評分</div>
-              </div>
-              <div className="input2">
-                <textarea
-                  className="commentinput"
-                  defaultValue="請寫下你想說的話..."
-                ></textarea>
-              </div>
-              <div className="inputbtns">
-                <div className="pics">圖片</div>
-                <div>提交</div>
-              </div>
 
               <div className="commentandgames">
                 <div className="commentandreplyfiled">
@@ -278,12 +331,56 @@ function CommentinnerPage() {
                             >
                               回覆
                             </button>
-                            <div className="liked">
-                              <AiFillLike />
+                            <div
+                              className="liked"
+                              onClick={() => {
+                                const likecommentuser = commentuser.map(
+                                  (v4, i4) => {
+                                    if (v4.sid === v.sid) {
+                                      return {
+                                        ...v4,
+                                        toggleliked: !v4.toggleliked,
+                                        toggledisliked: 0,
+                                      }
+                                    } else {
+                                      return { ...v4 }
+                                    }
+                                  }
+                                )
+                                setCommentuser(likecommentuser)
+                              }}
+                            >
+                              {v.toggleliked ? (
+                                <AiFillLike />
+                              ) : (
+                                <AiOutlineLike />
+                              )}
                               123
                             </div>
-                            <div className="disliked">
-                              <AiOutlineDislike />
+                            <div
+                              className="disliked"
+                              onClick={() => {
+                                const dislikecommentuser = commentuser.map(
+                                  (v5, i5) => {
+                                    if (v5.sid === v.sid) {
+                                      return {
+                                        ...v5,
+                                        toggledisliked: !v5.toggledisliked,
+                                        toggleliked: 0,
+                                      }
+                                    } else {
+                                      return { ...v5 }
+                                    }
+                                  }
+                                )
+                                setCommentuser(dislikecommentuser)
+                              }}
+                            >
+                              {v.toggledisliked ? (
+                                <AiFillDislike />
+                              ) : (
+                                <AiOutlineDislike />
+                              )}
                               12
                             </div>
                             <p className="apartline">
@@ -300,8 +397,21 @@ function CommentinnerPage() {
                                 />
                               </div>
                               <div className="inputbtns">
-                                <div className="pics">圖片</div>
-                                <div>提交</div>
+                                <div className="pics">
+                                  <button className="picbtn">
+                                    圖片
+                                    <input
+                                      type="file"
+                                      className="hiddenpicbtn"
+                                    />
+                                  </button>
+                                </div>
+
+                                <div>
+                                  <button type="submit" className="submit">
+                                    提交
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           ) : null}
@@ -341,24 +451,26 @@ function CommentinnerPage() {
                   {randomgame.map((v, i) => {
                     return (
                       <>
-                        {' '}
                         <div className="recommandtitle" key={i}>
-                          其他熱門討論推介
+                          其他遊戲推介
                         </div>
                         <div className="gamesdetail">
-                          {/* <Link to={'/comment-detail/'+gameName} > */}
-                          <div className="images">
-                            <img
-                              src={
-                                '../Images/commentImages/gamesImages/' +
-                                v.gamesLogo
-                              }
-                              alt=""
-                            />
-                          </div>
+                          <Link
+                            to={'/comment-detail/' + v.gamesSid}
+                            className="commentmain_link"
+                          >
+                            <div className="images">
+                              <img
+                                src={
+                                  '../Images/commentImages/gamesImages/' +
+                                  v.gamesLogo
+                                }
+                                alt=""
+                              />
+                            </div>
 
-                          <p className="recommandgamename">{v.gamesName}</p>
-                          {/* </Link> */}
+                            <p className="recommandgamename">{v.gamesName}</p>
+                          </Link>
                         </div>
                       </>
                     )

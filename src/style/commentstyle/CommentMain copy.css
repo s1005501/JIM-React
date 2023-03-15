@@ -189,11 +189,6 @@ img {
     display: flex;
     align-items: center;
     text-align: center;
-    position: relative;
-  }
-  .searchicon2 {
-    position: absolute;
-    display: none;
   }
   .hotspotgamestitle {
     font-size: 24px;

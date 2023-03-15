@@ -9,6 +9,10 @@
   box-sizing: content-box;
 }
 
+body{
+  /* background-color: #000000 !important; */
+}
+
 .bodyContainer {
   display: flex;
   align-items: center;
@@ -17,7 +21,7 @@
 }
 
 .leftContainer {
-  /* height: 100%; */
+  min-height: 80vh;
   width: 12%;
   display: flex;
   position: relative;

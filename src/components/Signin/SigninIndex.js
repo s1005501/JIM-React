@@ -6,6 +6,8 @@ const SigninIndex = () => {
   return (
     <div>
       {/* <LogoHorizontal /> */}
+      {/* <p className="m-mainLogo">JOINME</p> */}
+      {/* <p className="m-mainLogo">JOINME</p> */}
       <Outlet />
     </div>
   )

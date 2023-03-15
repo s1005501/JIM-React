@@ -39,7 +39,12 @@ const MapDashbard = ({ children }) => {
         moveClient,
       }}
     >
-      <div className="d-flex position-relative index-map">{children}</div>
+      <div
+        className="d-flex position-relative index-map"
+        style={{ marginTop: '120px' }}
+      >
+        {children}
+      </div>
     </Context.Provider>
   )
 }

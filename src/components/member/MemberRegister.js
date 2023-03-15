@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import '../../style/JIM_Register.css'
 import { ACCOUNTREGISTER } from '../../config/api_config'
 import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'

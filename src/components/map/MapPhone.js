@@ -44,7 +44,7 @@ const MapPhone = ({ mapData }) => {
                 id={`flush-heading${v.storeSid}`}
                 style={{ background: '#FFFFFFFF' }}
               >
-                <img src={`/storeimages/${v.storeLogo}`} alt="" />
+                <img src={`/Images/storeimages/${v.storeLogo}`} alt="" />
                 <button
                   className="map-basic-style accordion-button collapsed d-block"
                   type="button"
@@ -92,7 +92,10 @@ const MapPhone = ({ mapData }) => {
                       style={{ background: '#FFFFFF' }}
                     >
                       <div className="left me-3">
-                        <img src={`Images/orders/${k.gamesImages}`} alt="" />
+                        <img
+                          src={`Images/gamesImages/${k.gamesImages}`}
+                          alt=""
+                        />
                       </div>
                       <div className="right">
                         <p>

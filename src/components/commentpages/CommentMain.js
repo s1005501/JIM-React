@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 // import "./CommentMain.css";
 import Header from '../common/Header'
 import Footer from '../common/Footer'
@@ -7,31 +7,54 @@ import { BiSearch } from 'react-icons/bi'
 import ThemeContext from './ThemeContext'
 import axios from 'axios'
 import './../../style/commentstyle/CommentMain.css'
+localStorage.setItem('usersid', '5')
 
 function CommentMain() {
   const navigate = useNavigate()
   const [inputvalue, setInputvalue] = useState('')
-  const { gameName, setGameName } = useContext(ThemeContext)
+  const { gameSid, setGameSid } = useContext(ThemeContext)
   const [displaygames, setDisplaygames] = useState([])
   const [news, setNews] = useState([])
+  // const [searchkey,setSearchkey]=useState()
 
-  // const getgamesdata = async () => {
-  //   const r = await axios.get('http://localhost:3005/api_displaygames')
-  //   // console.log(r.data)
-  //   setDisplaygames(r.data)
-  // }
-  // const getnewsdata = async () => {
-  //   const r = await axios.get('http://localhost:3005/api_news')
-  //   // console.log(r.data)
-  //   setNews(r.data)
-  // }
-  // useEffect(() => {
-  //   getgamesdata()
-  //   getnewsdata()
-  // }, [])
-  // useEffect(() => {
-  //   setGameName(inputvalue)
-  // }, [inputvalue])
+  //  useEffect(()=>{
+  //   (async()=>{
+  //     const r = await axios.get(`http://localhost:3005/try?${param.toString()}`)
+  //     console.log(r.data)
+  //   })()
+  //  },[param])
+
+  const getgamesdata = async () => {
+    const r = await axios.get('http://localhost:3005/api_displaygames')
+    // console.log(r.data)
+    setDisplaygames(r.data)
+  }
+
+  const getnewsdata = async () => {
+    const r = await axios.get('http://localhost:3005/api_news')
+    // console.log(r.data)
+    setNews(r.data)
+  }
+  const searchkeyword = async () => {
+    console.log(inputvalue)
+    const r = await axios.get(`http://localhost:3005/try/${inputvalue}`)
+    console.log(r.data)
+    // // console.log(r.data)
+    // if(!r.data.length) return
+    // // if(!r.data.length){return }
+
+    navigate(`/comment-detail/${r.data[0].gamesSid}`)
+  }
+  useEffect(() => {
+    getgamesdata()
+    getnewsdata()
+  }, [])
+  useEffect(() => {
+    ;(async () => {
+      const r = await axios.get(`http://localhost:3005/try/等一個人盜墓`)
+      console.log(r.data, 555)
+    })()
+  }, [inputvalue])
 
   return (
     <>
@@ -57,10 +80,14 @@ function CommentMain() {
                     setInputvalue(e.target.value)
                   }}
                 />
-                <div className="searchicon">
-                  <Link to={'/comment-detail/' + gameName}>
-                    <BiSearch />
-                  </Link>
+
+                <div
+                  className="searchicon"
+                  onClick={() => {
+                    searchkeyword()
+                  }}
+                >
+                  <BiSearch />
                 </div>
               </div>
             </div>
@@ -75,7 +102,7 @@ function CommentMain() {
                   return (
                     <div className="gameskeywords">
                       <Link
-                        to={'/comment-detail/' + v.gamesName}
+                        to={'/comment-detail/' + v.gamesSid}
                         className="keywords_p"
                         key={i}
                       >
@@ -93,7 +120,7 @@ function CommentMain() {
                     return (
                       <div className="gamesdetail" key={i}>
                         <Link
-                          to={'/comment-detail/' + v.gamesName}
+                          to={'/comment-detail/' + v.gamesSid}
                           className="commentmain_link"
                         >
                           <div className="images">
@@ -116,8 +143,6 @@ function CommentMain() {
                       </div>
                     )
                   }
-                  console.log(displaygames)
-                  console.log(v.gameName)
                 })}
               </div>
               <div className="hotspotgamesqure">
@@ -126,7 +151,7 @@ function CommentMain() {
                     return (
                       <div className="gamesdetail" key={i}>
                         <Link
-                          to={'/comment-detail/' + v.gamesName}
+                          to={'/comment-detail/' + v.gamesSid}
                           className="commentmain_link"
                         >
                           <div className="images">
@@ -149,8 +174,6 @@ function CommentMain() {
                       </div>
                     )
                   }
-                  console.log(displaygames)
-                  console.log(v.gameName)
                 })}
               </div>
               <div className="news">

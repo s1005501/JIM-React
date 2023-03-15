@@ -1,10 +1,11 @@
-.accordion.accordion-flush p {
+.accordion.accordion-flush p,.map-basic-style p {
   color: #ffffff;
   padding: 5px 0;
 }
-.accordion.accordion-flush button {
-  background-color: black;
+.accordion.accordion-flush button,.map-basic-style {
+  background-color: black !important;
 }
+
 
 .accordion-body.d-flex.game-body p {
   color: red;

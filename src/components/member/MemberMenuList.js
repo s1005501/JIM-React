@@ -6,6 +6,7 @@ import MemberAccountOrder from './MemberAccountOrder'
 import MemberAccountComment from './MemberAccountComment'
 import MemberAccountLike from './MemberAccountLike'
 import MemberLogin from './MemberLogin'
+import MemberLoginRegister from './MemberLoginRegister'
 // import { StoreAdd, StoreGameList, StoreInformation } from './StoreComponent'
 
 const MemberMenuList = () => {
@@ -30,7 +31,7 @@ const MemberMenuList = () => {
       break
     }
     case 'in': {
-      currentPage = <MemberLogin />
+      currentPage = <MemberLoginRegister />
       break
     }
     default: {

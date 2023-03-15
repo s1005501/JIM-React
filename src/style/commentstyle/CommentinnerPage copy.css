@@ -327,21 +327,6 @@ p {
   text-decoration: none;
   color: white;
 }
-.rec_img {
-}
-.picbtn {
-  width: 40px;
-  position: relative;
-}
-.hiddenpicbtn {
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.submit {
-  width: 40px;
-}
 @media only screen and (max-width: 768px) {
   .fullpage {
     background-size: contain;

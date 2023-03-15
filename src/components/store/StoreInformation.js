@@ -390,7 +390,7 @@ const StoreInformation = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 btn btn-danger">新增遊戲</button>
+        <button className="w-75 btn btn-danger">修改資料</button>
       </form>
     </div>
   )
