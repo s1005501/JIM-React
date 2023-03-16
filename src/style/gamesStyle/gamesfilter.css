@@ -1,3 +1,104 @@
+/* ---this start--- */
+.gamesFilterMain {
+  display: flex;
+}
+
+/* ---遊戲清單--- */
+.gamesFilterSection {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  padding: 10px 70px 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+
+}
+
+.game-item {  
+  display: flex;
+  width: 315px;
+  height: 250px;
+  margin: 0px 26px 26px 0px;
+  opacity: 0.8;
+}
+
+
+.gamesFilterSection figure {
+  display: block;
+  width: 100%;
+  height: 145px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.games-imgs {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: auto;
+}
+
+.games-description {
+  position: absolute;
+  top: 102px;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.games-article {
+  width: 100%;
+  height: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  font-size: 16px;
+}
+
+.games-article-tagtop {
+  margin-top: 5px;
+  width: 250px;
+  height: 53px;
+  border-bottom: 1px solid #ccc ;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.cardgamesname{
+  font-weight: bold;
+}
+
+.gamestaricon {
+  color: rgb(230, 182, 37);
+  font-size: 18px;
+}
+
+.games-article-tagbottom {
+  width: 250px;
+  height: 45px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+
+
+
+.gamesFilterSection article {
+  width: 100%;
+}
+
+/* ---顯示在篩選頁 主程式在MainPage--- */
 .buttonFilterMore {
   position: sticky;
   top: 40px;
@@ -19,14 +120,13 @@
   display: none;
 }
 
-/* ---start--- */
 .filterBlock {
   display: flex;
   width: 100%;
   position: sticky;
   top: 0px;
   left: 0px;
-  z-index: 10;
+  z-index: 11;
   padding: 20px 0px 0px 0px;
   background-color: rgba(0, 0, 0, 0.9);
 }
@@ -50,8 +150,8 @@
 }
 
 .filterBlockSecond ul li {
-  color: gray;
-  border: 1px solid gray;
+  /* color: gray; */
+  /* border: 1px solid gray; */
   margin: 0px 10px 20px 0px;
   padding: 5px;
 }
@@ -65,9 +165,18 @@
   display: flex;
 }
 
+.filterBtnClock {
+  cursor: pointer;
+  list-style-type: none;
+  border: 1px solid rgba(208, 27, 27, 0.6);
+  color:  rgba(208, 27, 27, 0.6);
+}
+
 .filterBtn {
   cursor: pointer;
   list-style-type: none;
+    color: gray;
+  border: 1px solid gray;
 }
 
 .filterBtnFirst {
@@ -87,7 +196,7 @@
 .rolBack {
   display: inline-block;
   position: sticky;
-  top: 20px;
+  top: 40px;
   left: 950px;
   z-index: 999;
   width: 60px;
@@ -101,40 +210,6 @@
 .rolBack div {
   font-size: 18px;
   padding-bottom: 3px;
-}
-
-/* ---遊戲清單--- */
-.gamesFilterSection {
-  width: 100%;
-  height: auto;
-  background-color: black;
-  padding: 10px 70px 10px 0px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-
-  border: 1px solid red;
-}
-
-.gamesFilterSection > div {
-  width: 315px;
-  height: 250px;
-  margin: 0px 26px 26px 0px;
-
-  border: 1px solid orange;
-}
-
-.gamesFilterSection figure {
-  width: 100%;
-  height: 145px;
-  margin: 0;
-}
-
-.gamesFilterSection img {
-  object-fit: cover;
-  object-position: center center;
-  /* background-size:auto over; */
 }
 
 @media (max-width: 1480px) {

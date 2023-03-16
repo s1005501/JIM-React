@@ -1,148 +1,126 @@
-import { useState } from "react";
-import { AiOutlineRollback } from "react-icons/ai";
+// import { useState } from "react";
+import { AiFillStar, AiFillEnvironment, AiOutlineUserAdd } from 'react-icons/ai'
 
 function GamesFilters(props) {
-  const { handleRolBack, datas } = props;
+  const { datas, keyword, gamesDifficulty } = props
 
-  const [isActiveFilterBlock, setActiveFilterBlock] = useState("false");
-  
-  
-  // 進階篩選按鈕功能
-  const handleToggleFilterBlock = () => {
-    setActiveFilterBlock(!isActiveFilterBlock);
-  };
+  //  console.log(datas);
+  //  console.log(keyword);
+  console.log(gamesDifficulty)
 
-  console.log(datas);
+  // Card srar data
+  const starlevel = [
+    '4.7',
+    '4.9',
+    '4.3',
+    '4.5',
+    '3.9',
+    '4.1',
+    '3.5',
+    '3.7',
+    '3.1',
+    '3.3',
+    '3.2',
+    '3.0',
+    '3.6',
+    '3.4',
+    '4.0',
+    '3.8',
+    '4.4',
+    '4.2',
+    '4.8',
+    '4.6',
+  ]
+
+  // 純函式-傳入資料陣列，以keyword進行過濾
+  const filterByKeyword = (datas, keyword) => {
+    return datas.filter((v, i) => {
+      return v.gamesName.includes(keyword)
+    })
+  }
+
+  // ---篩選列表篩選功能區塊---
+  const filterByDifficulty = (datas, gamesDifficulty) => {
+    switch (gamesDifficulty) {
+      case '新手入門':
+        return datas.filter((v, i) => {
+          return v.difficulty.includes(gamesDifficulty)
+        })
+      case '中度玩家':
+        return datas.filter((v, i) => {
+          return v.difficulty.includes(gamesDifficulty)
+        })
+      case '重度解謎':
+        return datas.filter((v, i) => {
+          return v.difficulty.includes(gamesDifficulty)
+        })
+      case '全部難度':
+      default:
+        return datas
+    }
+  }
 
   return (
     <>
-      <div className="gamesFilterMain" type="button">
-        {/* 進階篩選按鈕 */}
-        <button
-          className="buttonFilterMore gamesInputStyle"
-          onClick={handleToggleFilterBlock}
-        >
-          進階篩選
-        </button>
-
-        {/* 返回遊戲主頁按鈕 */}
-        <button
-          className="rolBack gamesInputStyle"
-          type="button"
-          onClick={handleRolBack}
-        >
-          <div>
-            <AiOutlineRollback />
-          </div>
-        </button>
-
-        {/* 進階篩選區塊 */}
-        <section
-          className={isActiveFilterBlock ? "filterBlockoff" : "filterBlock"}
-        >
-          <div className="filterBlockSecond">
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>難度</p>
-              </div>
-              <ul>
-                <li className="filterBtn">全部難度</li>
-                <li className="filterBtn">簡單</li>
-                <li className="filterBtn">普通</li>
-                <li className="filterBtn">困難</li>
-              </ul>
-            </div>
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>類型</p>
-              </div>
-              <ul>
-                <li className="filterBtn">全部類型</li>
-                <li className="filterBtn">偵探推理</li>
-                <li className="filterBtn">機關重重</li>
-                <li className="filterBtn">劇情厲害</li>
-                <li className="filterBtn">場景逼真</li>
-                <li className="filterBtn">互動操作</li>
-                <li className="filterBtn">謎題邏輯</li>
-                <li className="filterBtn">輕鬆歡樂</li>
-                <li className="filterBtn">恐怖驚悚</li>
-                <li className="filterBtn">緊張刺激</li>
-                <li className="filterBtn">勾心鬥角</li>
-                <li className="filterBtn">團隊合作</li>
-                <li className="filterBtn">親子同遊</li>
-                <li className="filterBtn">玩法特別</li>
-                <li className="filterBtn">角色扮演</li>
-              </ul>
-            </div>
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>金額</p>
-              </div>
-              <ul>
-                <li className="filterBtn">300↓</li>
-                <li className="filterBtn">400↓</li>
-                <li className="filterBtn">500↓</li>
-                <li className="filterBtn">600↓</li>
-                <li className="filterBtn">700↓</li>
-                <li className="filterBtn">800↓</li>
-              </ul>
-            </div>
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>時間</p>
-              </div>
-              <ul>
-                <li className="filterBtn">全部時間</li>
-                <li className="filterBtn">30分</li>
-                <li className="filterBtn">60分</li>
-                <li className="filterBtn">90分</li>
-                <li className="filterBtn">120分</li>
-              </ul>
-            </div>
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>其他</p>
-              </div>
-              <ul>
-                <li className="filterBtn">全部玩法</li>
-                <li className="filterBtn">密室逃脫</li>
-                <li className="filterBtn">劇本殺</li>
-                <li className="filterBtn">時境解謎</li>
-              </ul>
-            </div>
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>排序</p>
-              </div>
-              <ul>
-                <li className="filterBtn">評價數量</li>
-                <li className="filterBtn">平價分數</li>
-                <li className="filterBtn">開幕日期</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
+      <div className="gamesFilterMain">
         <div className="gamesFilterSection">
-          {datas.map((v, i) => {
+          {filterByDifficulty(
+            filterByKeyword(datas, keyword),
+            gamesDifficulty
+          ).map((v, i) => {
             return (
-              <div key={v.gamesSid}>
+              <div key={v.gamesSid} className="game-item">
                 <section>
                   <figure>
-                    {/* <img
+                    <img
+                      className="games-imgs"
                       src={`/Images/gamesImages/${v.gamesLogo}`}
-                      alt="JoinMe"
-                    /> */}
+                      alt={v.gamesName}
+                    />
+                    <div className="games-description">
+                      <span>{v.difficulty}</span>
+                      <span>{v.feature01}</span>
+                      <span>{v.feature02}</span>
+                    </div>
                   </figure>
-                  <article></article>
+                  <article className="games-article">
+                    <div className="games-article-tagtop">
+                      <span className="cardgamesname">{v.gamesName}</span>
+                      <span>
+                        <span className="gamestaricon">
+                          <AiFillStar />
+                        </span>
+                        <span>
+                          {
+                            starlevel[
+                              Math.floor(((Math.random() * i) % 20) + 1)
+                            ]
+                          }
+                        </span>
+                        <span>({Math.floor(Math.random() * i * 10) + 1})</span>
+                      </span>
+                    </div>
+                    <div className="games-article-tagbottom">
+                      <span>
+                        <AiFillEnvironment /> <span>{v.storeCity}</span>
+                      </span>
+                      <span>
+                        <AiOutlineUserAdd />
+                        <span>
+                          {v.gamesPeopleMin}-{v.gamesPeopleMax}
+                        </span>
+                      </span>
+                      <span>${v.gamesPrice}起</span>
+                    </div>
+                  </article>
                 </section>
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default GamesFilters;
+export default GamesFilters

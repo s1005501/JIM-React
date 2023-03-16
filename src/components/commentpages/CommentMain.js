@@ -6,7 +6,6 @@ import Footer from '../common/Footer'
 import { BiSearch } from 'react-icons/bi'
 import ThemeContext from './ThemeContext'
 import axios from 'axios'
-import './../../style/commentstyle/CommentMain.css'
 localStorage.setItem('usersid', '5')
 
 function CommentMain() {
@@ -15,6 +14,7 @@ function CommentMain() {
   const { gameSid, setGameSid } = useContext(ThemeContext)
   const [displaygames, setDisplaygames] = useState([])
   const [news, setNews] = useState([])
+  const [keyname, setKeyname] = useState([])
   // const [searchkey,setSearchkey]=useState()
 
   //  useEffect(()=>{
@@ -26,15 +26,21 @@ function CommentMain() {
 
   const getgamesdata = async () => {
     const r = await axios.get('http://localhost:3005/api_displaygames')
-    // console.log(r.data)
     setDisplaygames(r.data)
   }
 
   const getnewsdata = async () => {
     const r = await axios.get('http://localhost:3005/api_news')
-    // console.log(r.data)
+    // console.log(r.data, 99999999999999)
     setNews(r.data)
   }
+
+  const getkeyname = async () => {
+    const r = await axios.get('http://localhost:3005/api_random')
+    console.log(r.data, 5555)
+    setKeyname(r.data)
+  }
+
   const searchkeyword = async () => {
     console.log(inputvalue)
     const r = await axios.get(`http://localhost:3005/try/${inputvalue}`)
@@ -43,11 +49,12 @@ function CommentMain() {
     // if(!r.data.length) return
     // // if(!r.data.length){return }
 
-    navigate(`/comment-detail/${r.data[0].gamesSid}`)
+    navigate(`/comment/${r.data[0].gamesSid}`)
   }
   useEffect(() => {
     getgamesdata()
     getnewsdata()
+    getkeyname()
   }, [])
   useEffect(() => {
     ;(async () => {
@@ -58,8 +65,7 @@ function CommentMain() {
 
   return (
     <>
-      <Header />
-      <div className="bodyContainer">
+      <div className="" style={{ minHeight: '85vh' }}>
         <div className="leftContainer">
           <Link to="/">
             <div className="leftContainer02">
@@ -97,12 +103,12 @@ function CommentMain() {
           <div className="hotspotgames">
             <div className="hotspotgamestitle">熱門遊戲討論</div>
             <div className="keywordssqure">
-              {news.map((v, i) => {
+              {keyname.map((v, i) => {
                 if (i < 5) {
                   return (
                     <div className="gameskeywords">
                       <Link
-                        to={'/comment-detail/' + v.gamesSid}
+                        to={'/comment/' + v.gamesSid}
                         className="keywords_p"
                         key={i}
                       >
@@ -120,15 +126,12 @@ function CommentMain() {
                     return (
                       <div className="gamesdetail" key={i}>
                         <Link
-                          to={'/comment-detail/' + v.gamesSid}
+                          to={'/comment/' + v.gamesSid}
                           className="commentmain_link"
                         >
                           <div className="images">
                             <img
-                              src={
-                                '../Images/commentImages/gamesImages/' +
-                                v.gamesLogo
-                              }
+                              src={'../Images/gamesImages/' + v.gamesImages}
                               alt=""
                             />
                           </div>
@@ -151,15 +154,12 @@ function CommentMain() {
                     return (
                       <div className="gamesdetail" key={i}>
                         <Link
-                          to={'/comment-detail/' + v.gamesSid}
+                          to={'/comment/' + v.gamesSid}
                           className="commentmain_link"
                         >
                           <div className="images">
                             <img
-                              src={
-                                '../Images/commentImages/gamesImages/' +
-                                v.gamesLogo
-                              }
+                              src={'../Images/gamesImages/' + v.gamesImages}
                               alt=""
                             />
                           </div>

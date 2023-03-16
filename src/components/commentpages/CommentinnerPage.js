@@ -5,7 +5,6 @@ import Header from '../common/Header'
 import Footer from '../common/Footer'
 import ThemeContext from './ThemeContext'
 // import "./CommentinnerPage.css";
-import './../../style/commentstyle/CommentinnerPage.css'
 import { BsArrowReturnLeft } from 'react-icons/bs'
 import {
   AiTwotoneStar,
@@ -94,8 +93,7 @@ function CommentinnerPage() {
 
   return (
     <>
-      <Header />
-      <div className="bodyContainer">
+      <div className="">
         <div className="leftContainer">
           <Link to="/">
             <div className="leftContainer02">
@@ -108,7 +106,7 @@ function CommentinnerPage() {
           <div className="fullpage">
             <div className="pagecontent2">
               <div className="btns2">
-                <Link to="/">
+                <Link to="/comment">
                   <div
                     className="return"
                     style={{ color: 'white', textDecoration: 'none' }}
@@ -127,10 +125,7 @@ function CommentinnerPage() {
                         <div className="img2">
                           <img
                             className="image"
-                            src={
-                              '../Images/commentImages/gamesImages/' +
-                              v.gamesLogo
-                            }
+                            src={'../Images/gamesImages/' + v.gamesImages}
                             alt=""
                           />
                         </div>
@@ -461,10 +456,7 @@ function CommentinnerPage() {
                           >
                             <div className="images">
                               <img
-                                src={
-                                  '../Images/commentImages/gamesImages/' +
-                                  v.gamesLogo
-                                }
+                                src={'../Images/gamesImages/' + v.gamesImages}
                                 alt=""
                               />
                             </div>

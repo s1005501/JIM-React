@@ -8,7 +8,6 @@ const Store = () => {
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
-  console.log(checkToken()?.sid)
   useEffect(() => {
     getBackData(
       `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,

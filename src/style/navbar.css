@@ -299,6 +299,7 @@ link {
     height: 140px;
     background-color: black;
     padding-top: 20px;
+    z-index: 9999;
   }
 
   .footerNavbar {

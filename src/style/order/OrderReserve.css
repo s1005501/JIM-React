@@ -5,11 +5,14 @@
 }
 
 .O_Reserve_Cont{
-  margin-right: 200px;
+  margin-top: 18px;
+  /* margin-right: 300px; */
+  min-height: 80vh;
 }
 
 .O_Reserve_Container {
-  min-height: 650px;
+  /* min-height: 650px; */
+  min-height: 80vh;
   display: flex;
 }
 

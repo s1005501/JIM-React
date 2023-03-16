@@ -2,6 +2,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 90px;
+  margin-bottom: 20px;
 }
 .searchbar_p {
   color: white;
@@ -21,6 +23,7 @@
   border-bottom-left-radius: 20px;
   color: white;
   outline: 1px;
+  padding: 1rem;
 }
 .searchicon {
   width: 40px;
@@ -58,15 +61,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 10px;
-  border: 3px solid #d01b1b;
+  /* border: 3px solid #d01b1b; */
 }
 .images {
   width: 100%;
   height: 80%;
+  border-radius: 20px;
 
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .commentmain_link {
   width: 100%;
@@ -77,6 +81,8 @@
 img {
   width: 100%;
   height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   /* border: 3px solid rgb(235, 138, 29); */
   object-fit: cover;
 }
@@ -101,9 +107,10 @@ img {
 }
 .newscomment {
   width: 100%;
-  height: 92%;
-  border: 3px solid #d01b1b;
-  border-radius: 10px;
+  height: 97%;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 10px;
 }
 .newscommenttitle {
   text-align: center;
@@ -131,14 +138,20 @@ img {
 }
 .gameskeywords {
   width: 20%;
+  /* height: 50px; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 
-  /* border:1px solid red; */
+  /* border: 1px solid red; */
 }
 .gameskeywords_p {
   font-size: 18px;
+  border: 1px solid white;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 15px;
 }
 .keywords_p {
   width: 100%;
@@ -147,13 +160,14 @@ img {
   justify-content: space-around;
   margin-top: 20px;
   text-decoration: none !important;
-  color: #d01b1b;
+  color: white;
 }
 .keywords_p:hover {
-  color: white;
+  color: #d01b1b;
 }
 @media only screen and (max-width: 768px) {
   .searchbar {
+    margin-top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -229,8 +243,8 @@ img {
   .newscomment {
     width: 100%;
     height: 90%;
-    border: 3px solid #d01b1b;
-    border-radius: 10px;
+    border: 1px solid white;
+    border-radius: 15px;
   }
   .keywordssqure {
     display: none;

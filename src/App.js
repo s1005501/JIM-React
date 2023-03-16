@@ -26,6 +26,7 @@ import SigninIndex from './components/Signin/SigninIndex'
 import Signin from './components/Signin/Signin'
 import SigninTarget from './components/Signin/SigninTarget'
 import Index from './components/firstPage/Index'
+import OrderIndex from './components/order/OrderIndex'
 
 function App() {
   return (
@@ -50,8 +51,11 @@ function App() {
               <Route path=":action" element={<MemberMenuList />}></Route>
             </Route>
             <Route path="/order" element={<OrderProcess />} />
+            <Route path="/orders" element={<OrderReserve />} />
+
             <Route path="/comment" element={<ThemeContextProvider />}>
               <Route index element={<CommentMain />}></Route>
+              <Route path=":mygamesName" element={<CommentinnerPage />}></Route>
             </Route>
           </Routes>
         </Firstplate>

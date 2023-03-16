@@ -34,13 +34,9 @@ function GamesHome() {
           pariatur ducimus vel doloremque, tempora labore blanditiis saepe,
           aperiam consectetur quo molestiae?
         </p>
-
-
-
-
       </div>
     </>
-  );
+  )
 }
 
 export default GamesHome

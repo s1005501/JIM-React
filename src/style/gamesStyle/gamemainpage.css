@@ -10,6 +10,7 @@
   height: 40px;
   padding: 6px 16px;
   border: none;
+  margin:20px 0px 10px;
 }
 
 .gamesInputStyle:focus {
@@ -36,11 +37,12 @@
 }
 
 .gamesNavbar {
-  height: 56px;
+  height: 96px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 
 .gamesSearch {

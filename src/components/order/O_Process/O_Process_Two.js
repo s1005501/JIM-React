@@ -1,24 +1,44 @@
-import React from "react";
-import { Select, Space } from "antd";
+import React, { useState, useEffect } from 'react'
+import { Select, Space } from 'antd'
+import { ORDER } from '../../../components/config/api_config'
+import axios from 'axios'
 // import "./O_Process_Two.css";
 
-const Discount = {
-  sid: 1,
-  name: "30折價券",
-  discount: 30,
-};
-
-const Count = {
-  sid: 1,
-  amount: 1800,
+const Discount = [
+  {
+    discountSid: 1,
+    discountName: '30折價券',
+    discountPrice: 30,
+  },
+]
+const Order = {
+  orderSid: 1,
+  checkPrice: 1800,
   totalCount: null,
-};
+}
 
 const OrderTwo = () => {
+  const [discountData, setDiscountData] = useState([])
+
+  // 配合普通版的下拉式
+  // const [discountValue, setDiscountValue] = useState(0);
+
+  // 抓kevin資料庫
+  const discountGetData = async () => {
+    axios.defaults.withCredentials = true
+    const response = await axios.get(ORDER + '/discount/1')
+
+    console.log('response:', response.data)
+    setDiscountData(response.data)
+  }
+
+  useEffect(() => {
+    discountGetData()
+  }, [])
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+    // console.log(value);
+  }
 
   return (
     <div>
@@ -49,70 +69,78 @@ const OrderTwo = () => {
           <Space wrap>
             <Select
               defaultValue="---請選擇---"
-              style={{ width: 170}}
-              size={"large"}
+              style={{ width: 170 }}
+              size={'large'}
               onChange={handleChange}
-              options={[
-                { value: "Line Pay", label: "Line Pay" },
-              ]}
+              options={[{ value: 'Line Pay', label: 'Line Pay' }]}
             />
           </Space>
-
-          {/* <div className="dropdown ">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              ---請選擇---
-            </button>
-
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <div className="text-center">
-                Line Pay
-              </div>
-            </ul>
-          </div> */}
         </div>
 
         {/* 總金額 */}
         <div className="mt-3">
-          <h5 className="text-center text-white text-decoration-line-through">
-            總金額 : ${Count.amount}
-          </h5>
+          {discountData.map((v, i) => {
+            return (
+              <span key={i}>
+                <h5 className="text-center text-white text-decoration-line-through">
+                  總金額 : ${v.checkPrice}
+                </h5>
+                <h5 className="text-center text-white">
+                  總金額 : ${v.checkPrice}
+                </h5>
+              </span>
+            )
+          })}
         </div>
 
         {/* 優惠券 */}
         <div className="d-flex justify-content-center">
           <div className="text-white col-2 my-auto text-center">優惠券</div>
 
-          <div className="dropdown ">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton2"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              ---請選擇---
-            </button>
+          {discountData.map((v, i) => {
+            return (
+              <Space key={i}>
+                <Select
+                  defaultValue="---請選擇---"
+                  style={{ width: 170 }}
+                  size={'large'}
+                  onChange={handleChange}
+                  options={[{ value: v.discountName, label: v.discountName }]}
+                />
+              </Space>
+            )
+          })}
 
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-              <div className="text-center">{Discount.name}</div>
-            </ul>
-          </div>
+          {/* 普通下拉式選單 */}
+          {/* <select
+            value={discountValue}
+            onChange={(e) => {
+              setDiscountValue(e.target.value);
+            }}
+          >
+            <option value="">---請選擇優惠券---</option>
+            {Discount.map((v, i) => {
+              return (
+                <option key={i} value={v.discountSid}>
+                  {v.discountName}
+                </option>
+              );
+            })}
+          </select> */}
         </div>
 
         {/* 總金額 */}
         <div className="mt-3">
-          <h5 className="text-danger text-center">
-            最後金額 : ${Count.amount - Discount.discount}
-          </h5>
+          {discountData.map((v, i) => {
+            return (
+              <h5 key={i} className="text-danger text-center">
+                最後金額 : ${v.checkPrice - v.discountPrice}
+              </h5>
+            )
+          })}
         </div>
       </div>
     </div>
-  );
-};
-export default OrderTwo;
+  )
+}
+export default OrderTwo

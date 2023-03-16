@@ -1,3 +1,11 @@
+.minh{
+  min-height: 85vh;
+}
+
+.storeAndMap{
+  margin-top: 120px;
+}
+
 .store-title {
   background: rgba(255, 255, 255, 0.6);
 }
@@ -107,6 +115,12 @@
 @media (max-width: 1400px) {
   .store {
     margin-top: 10px;
+  }
+  .storeAndMap{
+    margin-top: 60px;
+  }
+  .Menu-horizontal{
+    margin-top: 60px;
   }
   .store-title {
     width: 85vw;

@@ -78,7 +78,7 @@ function OrderReserve() {
 
   return (
     <>
-      <div className="bodyContainer">
+      <div className="">
         <div className="leftContainer">
           <Link to="/">
             <div className="leftContainer02">
@@ -94,7 +94,7 @@ function OrderReserve() {
               <div key={v.gamesSid} className="O_Reserve_Container">
                 <div className="col-xl-6 O_Reserve_ColImg">
                   <img
-                    src={`Images/orders/${v.gamesLogo}`}
+                    src={`Images/orders/${v.gamesImages}`}
                     alt=""
                     className="O_Reserve_GameImg"
                   />

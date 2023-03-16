@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   /* margin-top: 90px; */
-  padding: 30px;
+  padding: 70px;
   background-color: rgba(255, 255, 255, 0.2);
   align-items: center;
 }
@@ -14,11 +14,12 @@
 
 .O_Process_One_Margin h5 {
   font-weight: bolder;
+  text-align: start;
 }
 
-.O_Process_One_Margin h5,
 .O_Process_One_Margin p {
   text-align: start;
+  margin-top: 10px;
 }
 
 .O_Process_One_Sum {
