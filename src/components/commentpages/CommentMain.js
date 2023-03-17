@@ -131,6 +131,7 @@ function CommentMain() {
                         >
                           <div className="images">
                             <img
+                              className="commentimg"
                               src={'../Images/gamesImages/' + v.gamesImages}
                               alt=""
                             />
@@ -159,6 +160,7 @@ function CommentMain() {
                         >
                           <div className="images">
                             <img
+                              className="commentimg"
                               src={'../Images/gamesImages/' + v.gamesImages}
                               alt=""
                             />

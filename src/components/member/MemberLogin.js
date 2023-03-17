@@ -1,5 +1,9 @@
-import { useContext, useState } from 'react'
-import { ACCOUNTLOGIN, ACCOUNTGOOGLELOGIN } from '../../config/api_config'
+import { useContext, useState, useEffect } from 'react'
+import {
+  ACCOUNTLOGIN,
+  ACCOUNTGOOGLELOGIN,
+  ACCOUNT,
+} from '../../config/api_config'
 import googleIcon from '../../svg/google-login.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -7,10 +11,13 @@ import MemberAuthContext from './MemberAuthContext'
 import Swal from 'sweetalert2'
 import { googleAuth, googleProvider } from './../../config/firebase'
 import { signInWithPopup } from 'firebase/auth'
+import { async } from '@firebase/util'
+
 function MemberLogin({ memberLoginOrNot }) {
   const [memberLoginInput, setMemberLoginInput] = useState({
     account: '',
     password: '',
+    memCaptcha: '',
   })
 
   const navigate = useNavigate()
@@ -18,13 +25,17 @@ function MemberLogin({ memberLoginOrNot }) {
   const { setMemberAuthState, memberAuthState } = useContext(MemberAuthContext)
   // 一般登入
   const sendMemberLoginData = async () => {
-    if (memberLoginOrNot.get('mode') || memberAuthState.memberVerified) {
-      axios.defaults.withCredentials = true
+    axios.defaults.withCredentials = true
 
-      await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
-        if (response.data.success) {
-          const { memAccount, membersid, memberToken } = response.data
+    await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
+      // 登入成功
+      if (response.data.success) {
+        console.log(response.data)
+        const { memAccount, membersid, memberToken, memVerified } =
+          response.data
 
+        // 驗證信成功
+        if (memVerified === '1') {
           localStorage.setItem(
             'memberAuth',
             JSON.stringify({
@@ -49,49 +60,50 @@ function MemberLogin({ memberLoginOrNot }) {
             confirmButtonText: '確認',
           })
 
-          navigate('/memberAccount/profile')
-        }
-
-        // 登入失敗跳警示
-        if (!response.data.success) {
+          navigate('/member/profile')
+        } else {
           Swal.fire({
             title: 'Error!',
-            text: `${response.data.error}`,
+            text: '煩請您先前往信箱進行驗證',
             icon: 'error',
             confirmButtonText: '確認',
           })
         }
-      })
-    } else {
-      Swal.fire({
-        title: 'Error!',
-        text: '煩請您先前往信箱進行驗證',
-        icon: 'error',
-        confirmButtonText: '確認',
-      })
-    }
+      }
+
+      // 登入失敗跳警示
+      if (!response.data.success) {
+        Swal.fire({
+          title: 'Error!',
+          text: `${response.data.error}`,
+          icon: 'error',
+          confirmButtonText: '確認',
+        })
+      }
+    })
   }
   // google登入測試func
   const memberGoogleLogin = async () => {
-    if (memberLoginOrNot.get('mode') || memberAuthState.memberVerified) {
-      // 帶入兩個參數第一個是auth、第二個是provider
-      const googleResult = await signInWithPopup(googleAuth, googleProvider)
+    // 帶入兩個參數第一個是auth、第二個是provider
+    const googleResult = await signInWithPopup(googleAuth, googleProvider)
 
-      const googleForm = new FormData()
+    const googleForm = new FormData()
 
-      // 把資料塞進剛建立的new FormData
-      googleForm.append('googleEmail', `${googleResult.user.email}`)
+    // 把資料塞進剛建立的new FormData
+    googleForm.append('googleEmail', `${googleResult.user.email}`)
 
-      const response = await axios.post(ACCOUNTGOOGLELOGIN, googleForm, {
-        headers: {
-          // Content-Type要用application/json
-          'Content-Type': 'application/json',
-        },
-      })
-      console.log(response.data)
-      if (response.data.success) {
-        const { memAccount, membersid, memberToken } = response.data
+    const response = await axios.post(ACCOUNTGOOGLELOGIN, googleForm, {
+      headers: {
+        // Content-Type要用application/json
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log(response.data)
+    if (response.data.success) {
+      const { memAccount, membersid, memberToken, memVerified } = response.data
 
+      // 驗證成功
+      if (memVerified === '1') {
         localStorage.setItem(
           'memberAuth',
           JSON.stringify({
@@ -116,25 +128,44 @@ function MemberLogin({ memberLoginOrNot }) {
         })
 
         // navigate('/memberAccount/profile')
-      }
-      // 登入失敗跳警示
-      if (!response.data.success) {
+      } else {
         Swal.fire({
           title: 'Error!',
-          text: `${response.data.error}`,
+          text: '煩請您先前往信箱進行驗證',
           icon: 'error',
           confirmButtonText: '確認',
         })
       }
-    } else {
+    }
+    // 登入失敗跳警示
+    if (!response.data.success) {
       Swal.fire({
         title: 'Error!',
-        text: '煩請您先前往信箱進行驗證',
+        text: `${response.data.error}`,
         icon: 'error',
         confirmButtonText: '確認',
       })
     }
   }
+  // 驗證碼Captcha
+  const [captcha, setCaptcha] = useState('')
+  const memberCaptcha = async (setCaptcha) => {
+    const response = await axios.get(ACCOUNT + '/captcha')
+    setCaptcha(response.data)
+  }
+
+  useEffect(() => {
+    memberCaptcha(setCaptcha)
+  }, [])
+
+  function createMarkup(captcha) {
+    return { __html: `${captcha}` }
+  }
+
+  function MyComponent(captcha) {
+    return <svg dangerouslySetInnerHTML={createMarkup(captcha)} />
+  }
+
   return (
     <>
       <div className="m-loginSecondSection">
@@ -156,6 +187,7 @@ function MemberLogin({ memberLoginOrNot }) {
                 placeholder="帳號 ACCOUNT"
                 name="account"
                 className="m-accountInput"
+                value={memberLoginInput.account}
                 onChange={(e) => {
                   setMemberLoginInput((prev) => ({
                     ...memberLoginInput,
@@ -169,6 +201,7 @@ function MemberLogin({ memberLoginOrNot }) {
                 placeholder="密碼 PASSWORD"
                 name="password"
                 className="m-passwordInput"
+                value={memberLoginInput.password}
                 onChange={(e) => {
                   setMemberLoginInput((prev) => ({
                     ...memberLoginInput,
@@ -182,10 +215,23 @@ function MemberLogin({ memberLoginOrNot }) {
                 type="text"
                 placeholder="驗證碼 CAPTCHA"
                 className="m-captcha"
+                value={memberLoginInput.memCaptcha}
+                onChange={(e) => {
+                  setMemberLoginInput((prev) => ({
+                    ...memberLoginInput,
+                    memCaptcha: e.target.value,
+                  }))
+                }}
               />
               <div className="m-verifyCode">
-                <h5>4694</h5>
-                <p>不區分大小寫</p>
+                {MyComponent(captcha)}
+                <p
+                  onClick={() => {
+                    memberCaptcha(setCaptcha)
+                  }}
+                >
+                  刷新驗證碼
+                </p>
               </div>
             </div>
             <div>

@@ -39,7 +39,7 @@ const MapDashbard = ({ children }) => {
         moveClient,
       }}
     >
-      <div className="d-flex position-relative minh storeAndMap">
+      <div className="d-flex position-relative minh storeAndMap index-map">
         {children}
       </div>
     </Context.Provider>

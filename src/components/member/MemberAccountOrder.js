@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import MemberAuthContext from './MemberAuthContext'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
+import moment from 'moment'
 
 function MemberAccountOrder() {
   const { getOrderData } = useContext(MemberAuthContext)
@@ -86,7 +87,7 @@ function MemberAccountOrder() {
                   {orderData.map((v, i) => {
                     return (
                       <tr key={v.orderSid}>
-                        <td>{v.create_at}</td>
+                        <td>{moment(v.create_at).format('YYYY-MM-DD')}</td>
                         <td>{v.orderNumber}</td>
                         <td>{v.orderState}</td>
                         <td>{v.orderDate}</td>

@@ -5,14 +5,14 @@
 }
 
 .O_Reserve_Cont{
-  margin-top: 18px;
+  margin-top: 20px;
   /* margin-right: 300px; */
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 .O_Reserve_Container {
   /* min-height: 650px; */
-  min-height: 80vh;
+  min-height: 85vh;
   display: flex;
 }
 
@@ -20,6 +20,8 @@
 .O_Reserve_GameImg {
   float: right;
   width: 75%;
+  object-fit: contain;
+  object-position:top;
 }
 
 .O_Reserve_Info {

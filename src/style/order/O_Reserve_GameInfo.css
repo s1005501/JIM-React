@@ -1,5 +1,9 @@
 .O_Reserve_GameInfo_Info {
-  font-size: 16px;
+  font-size: 18px;
+}
+
+.O_Reserve_GameInfo_Info h6 {
+  font-size: 18px;
 }
 
 .O_Reserve_GameInfo_GameName {
@@ -19,6 +23,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.O_Reserve_GameInfo_difficultyRate {
+  color: red;
+  font-size: 24px;
 }
 
 .O_Reserve_GameInfo_Gamesort {
@@ -42,7 +51,7 @@
   width: 12%;
 }
 
-.O_Reserve_GameInfo_Address{
+.O_Reserve_GameInfo_Address {
   width: 52%;
 }
 
@@ -64,11 +73,34 @@
 
 .O_Reserve_GameInfo_gameData {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* ---------------------------- */
 
 .ant-rate .ant-rate-star-second {
   color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------------------------- */
+@media (max-width: 1550px) {
+  .O_Reserve_GameInfo_Info {
+    font-size: 14px;
+  }
+
+  .O_Reserve_GameInfo_Info h3 {
+    font-size: 26px;
+  }
+
+  .O_Reserve_GameInfo_Info h6 {
+    font-size: 14px;
+  }
+
+  .O_Reserve_GameInfo_difficultyRate {
+    font-size: 18px;
+  }
+
+  .O_Reserve_GameInfo_gameData {
+    font-size: 14px;
+  }
 }

@@ -34,8 +34,12 @@ const MemberMenuList = () => {
       currentPage = <MemberLoginRegister />
       break
     }
-    default: {
+    case 'profile': {
       currentPage = <MemberAccountProfile />
+      break
+    }
+    default: {
+      currentPage = <MemberLoginRegister />
     }
   }
   return <>{currentPage}</>

@@ -451,17 +451,23 @@ function CommentinnerPage() {
                         </div>
                         <div className="gamesdetail">
                           <Link
-                            to={'/comment-detail/' + v.gamesSid}
+                            to={'/comment/' + v.gamesSid}
                             className="commentmain_link"
                           >
                             <div className="images">
                               <img
+                                className="commentimg"
                                 src={'../Images/gamesImages/' + v.gamesImages}
                                 alt=""
                               />
                             </div>
 
-                            <p className="recommandgamename">{v.gamesName}</p>
+                            <p
+                              className="recommandgamename"
+                              style={{ color: 'black' }}
+                            >
+                              {v.gamesName}
+                            </p>
                           </Link>
                         </div>
                       </>

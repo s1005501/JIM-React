@@ -8,7 +8,6 @@ import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import 'react-calendar/dist/Calendar.css'
 import axios from 'axios'
 import { now } from 'moment'
-
 const CalendarDate = () => {
   // const [quantity, setQuantity] = useState(0);
 
@@ -20,7 +19,7 @@ const CalendarDate = () => {
 
   const OrderGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/orderProcess/1')
+    const response = await axios.get(ORDER + '/order/5')
 
     console.log('response:', response.data)
     setReserveOrder(response.data)

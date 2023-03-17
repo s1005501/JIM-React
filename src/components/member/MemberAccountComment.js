@@ -4,6 +4,7 @@ import { FaArrowCircleRight } from 'react-icons/fa'
 import { FaRegCommentDots } from 'react-icons/fa'
 import MemberAuthContext from './MemberAuthContext'
 import { ACCOUNT } from '../../config/api_config'
+import moment from 'moment'
 
 function MemberAccountComment() {
   const navigate = useNavigate()
@@ -86,7 +87,7 @@ function MemberAccountComment() {
                   {commentData.map((v, i) => {
                     return (
                       <tr key={v.sid}>
-                        <td>{v.create_at}</td>
+                        <td>{moment(v.create_at).format('YYYY-MM-DD')}</td>
                         <td>{v.gamesName}</td>
                         <td>{v.comment} </td>
                         <td>

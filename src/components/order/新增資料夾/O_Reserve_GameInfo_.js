@@ -21,6 +21,7 @@ const gameData = {
   Time: 60,
   storeAddress: '台北市中山區明水路581巷15號B1',
   gamesImages: './images/Game1.png',
+  // bookmark: true,
   collectSid: 1,
   gamesContent:
     '我們生錯了時代  不是我們的錯   是這世界的錯！  不求同日生   但求同日死⋯  若有來生  希望能再次成為彼此的摯友….',
@@ -46,18 +47,14 @@ const GameInfo = () => {
   // --------------------------------------------------
 
   // 難度水滴數量顯示
-  const GameDifficulty = () =>
-    gameDataTest.map((v, i) => {
-      return (
-        <Rate
-          key={i}
-          character={<FaTint />}
-          style={{ color: 'red', fontSize: '24px' }}
-          disabled
-          defaultValue={v.gamesDifficulty}
-        />
-      )
-    })
+  // const GameDifficulty = () => (
+  //   <Rate
+  //     character={<FaTint />}
+  //     style={{ color: "red" ,fontSize:"24px"}}
+  //     disabled
+  //     defaultValue={gameDataTest.gamesDifficulty}
+  //   />
+  // );
 
   // 書籤狀態-原本書籤
   // const [bookmarkstate, setBookmarkState] = useState(false);
@@ -77,8 +74,13 @@ const GameInfo = () => {
               <div className="O_Reserve_GameInfo_difficulty col-6">
                 <h6>難度</h6>
                 <div style={{ fontSize: '20px' }}>
-                  {/* 難度 : 如要修改去上面找GameDifficulty */}
-                  <GameDifficulty />
+                  {/* 難度水滴數量 */}
+                  <Rate
+                    character={<FaTint />}
+                    style={{ color: 'red', fontSize: '24px' }}
+                    disabled
+                    defaultValue={v.gamesDifficulty}
+                  />
                 </div>
               </div>
             </div>
@@ -118,12 +120,14 @@ const GameInfo = () => {
                 className="O_Reserve_GameInfo_Bookmark"
                 onClick={() => {
                   setCollectData(!collectData)
+                  console.log(gameData.bookmark)
                 }}
               >
                 <h6>收藏</h6>
 
                 {collectData ? (
                   <div>
+                    {/* <h6>取消收藏</h6> */}
                     <div
                       className="O_Reserve_GameInfo_Details "
                       style={{ justifyContent: 'center' }}
@@ -133,6 +137,7 @@ const GameInfo = () => {
                   </div>
                 ) : (
                   <div>
+                    {/* <h6>加入收藏</h6> */}
                     <div
                       className="O_Reserve_GameInfo_Details"
                       style={{ justifyContent: 'center' }}

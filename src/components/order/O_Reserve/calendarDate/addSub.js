@@ -1,20 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { ORDER } from '../../../config/api_config'
+import axios from 'axios'
 // import { BsDashCircle } from "react-icons/bs";
 
 const Product = () => {
   const [quantity, setQuantity] = useState(2)
 
   const product = {
-    peoplemin: 2,
-    peoplemax: 7,
-    price: 600, // 價格
+    gamesPeopleMin: 2,
+    gamesPeopleMax: 7,
+    gamesPrice: 600, // 價格
   }
 
+  // 抓kevin資料庫  資料還沒弄好  待處理
+  const [gameSumData, setGameSumData] = useState([])
+
+  const GameSumGetData = async () => {
+    axios.defaults.withCredentials = true
+    const response = await axios.get(ORDER + '/gamesinfo/1')
+
+    console.log('response:', response.data)
+    setGameSumData(response.data)
+  }
+
+  useEffect(() => {
+    GameSumGetData()
+  }, [])
+  // -------------------------------------
+
   const increment = () => {
-    if (quantity < product.peoplemax) setQuantity(quantity + 1) // 可以想成 quantity = quantity + 1
+    if (quantity < gameSumData[0].gamesPeopleMax) setQuantity(quantity + 1) // 可以想成 quantity = quantity + 1
+    console.log(gameSumData.gamesPeopleMax)
   }
   const decrement = () => {
-    if (quantity > product.peoplemin) {
+    if (quantity > gameSumData[0].gamesPeopleMin) {
       setQuantity(quantity - 1) // quantity = quantity - 1
     }
   }
@@ -26,8 +45,9 @@ const Product = () => {
       <div className="d-flex justify-content-between O_Calendar_addSub_TextP">
         <p>人數</p>
         <div className="d-flex">
-          <p>${product.price}/每人</p>
-
+          {gameSumData.map((v, i) => {
+            return <p key={i}>${v.gamesPrice}/每人</p>
+          })}
           <button onClick={decrement} className="O_Calendar_addSub_sub">
             -
           </button>
@@ -43,10 +63,14 @@ const Product = () => {
 
       <hr />
 
-      <div className="d-flex justify-content-between">
-        <p>總金額</p>
-        <p>TWD {product.price * quantity}</p>
-      </div>
+      {gameSumData.map((v, i) => {
+        return (
+          <div key={i} className="d-flex justify-content-between">
+            <p>總金額</p>
+            <p>TWD {v.gamesPrice * quantity}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

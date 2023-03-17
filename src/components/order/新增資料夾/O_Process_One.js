@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { ORDER } from './../../config/api_config'
+import { ORDER } from '../../../components/config/api_config'
 import axios from 'axios'
 // import "./O_Process_One.css";
 
-const OrderInfo = {
-  sid: 1,
-  gamesName: '同學會',
-  storeName: '智慧獵人工作室',
-  storeAddress: '台北市中山區明水路581巷15號B1',
-  orderDate: '2023-02-02',
-  Time: '60',
-  checkQuantity: 3,
-  checkPrice: 1800,
-  gamesImages: '1.jpg',
-}
+const OrderInfo = [
+  {
+    sid: 1,
+    gamesName: '同學會',
+    storeName: '智慧獵人工作室',
+    storeAddress: '台北市中山區明水路581巷15號B1',
+    orderDate: '2023-02-02',
+    Time: '60',
+    checkQuantity: 3,
+    checkPrice: 1800,
+    gamesImages: '1.jpg',
+  },
+]
 
 const OrderOne = () => {
   const [orderData, setOrderData] = useState([])
@@ -21,9 +23,9 @@ const OrderOne = () => {
   // 抓kevin資料庫
   const orderGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/orderProcess/4')
+    const response = await axios.get(ORDER + '/order/5')
 
-    console.log('response:', response.data)
+    console.log('response:', response.data, 999999999)
     setOrderData(response.data)
   }
 
@@ -32,7 +34,7 @@ const OrderOne = () => {
   }, [])
   return (
     <div>
-      {orderData.map((v, i) => {
+      {OrderInfo.map((v, i) => {
         return (
           <div key={i} className="O_Process_One_Sort">
             <div className="O_Process_One_Margin">

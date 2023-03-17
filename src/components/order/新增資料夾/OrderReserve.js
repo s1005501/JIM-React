@@ -14,7 +14,7 @@ function OrderReserve() {
   // 抓kevin資料庫
   const gameGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/gamesinfo/3')
+    const response = await axios.get(ORDER + '/gamesinfo/53')
 
     // console.log(response);
     console.log('response:', response.data)
@@ -25,7 +25,6 @@ function OrderReserve() {
     gameGetData()
   }, [])
 
-  // ----------------------------------
   const items = [
     {
       key: '1',
@@ -77,7 +76,6 @@ function OrderReserve() {
     />
   )
 
-  // -------------------------------------
   return (
     <>
       <div className="">

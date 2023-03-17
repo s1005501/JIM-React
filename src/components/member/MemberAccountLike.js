@@ -33,7 +33,13 @@ function MemberAccountLike() {
         }
       )
       console.log(response.data)
-      alert('評論刪除成功')
+      Swal.fire({
+        title: '評論刪除成功!',
+        text: `評論刪除成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
+
       getLikeData(ACCOUNT, setLikeData)
     }
   }

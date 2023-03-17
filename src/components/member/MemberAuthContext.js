@@ -165,7 +165,7 @@ export const MemberAuthContextProvider = ({ children }) => {
         setMemberAuthState,
       }}
     >
-      <div className="">
+      <div className="minh">
         <Background>
           <p className="m-mainLogo">JOINME</p>
           <Outlet />

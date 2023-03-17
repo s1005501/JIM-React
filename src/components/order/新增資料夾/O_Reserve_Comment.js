@@ -21,7 +21,7 @@ const Comment = () => {
 
   const commentGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/orderComment/1')
+    const response = await axios.get(ORDER + '/orderComment/50')
 
     console.log('response:', response.data)
     setReserveComment(response.data)
@@ -37,7 +37,7 @@ const Comment = () => {
 
       {reserveComment.map((v, i) => {
         return (
-          <div className="mt-3" key={i}>
+          <div className="mt-3" key={v.gamesSid}>
             <div className="d-flex border-bottom">
               <div>
                 {/* 大頭照 */}

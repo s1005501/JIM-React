@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   AiFillEnvironment,
   AiOutlineComment,
@@ -8,8 +8,8 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiFillFacebook,
-} from "react-icons/ai";
-import { BsLine } from "react-icons/bs";
+} from 'react-icons/ai'
+import { BsLine } from 'react-icons/bs'
 
 function Footer() {
   return (
@@ -81,7 +81,7 @@ function Footer() {
             </div>
 
             <div className="col">
-              <h5 >聯絡我們</h5>
+              <h5>聯絡我們</h5>
               <span>
                 <Link className="iconFooter" to="/">
                   <AiFillFacebook />
@@ -95,11 +95,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="copyright">
-
-              Copyright@2023JIM All Rights Reserve
-
-          </div>
+          <div className="copyright">Copyright@2023JIM All Rights Reserve</div>
           <div className="blankDiv"></div>
         </div>
       </footer>
@@ -109,31 +105,31 @@ function Footer() {
         <div className="footerNavbar">
           <ul className="footerNavbarUl">
             <li>
-              <NavLink to="/">
+              <NavLink to="/game">
                 <AiOutlineShoppingCart />
                 <p>遊戲</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/member">
                 <AiOutlineUser />
                 <p>會員</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/store">
                 <AiOutlineShop />
                 <p>店家</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/map">
                 <AiFillEnvironment />
                 <p>地圖</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/comment">
                 <AiOutlineComment />
                 <p>討論</p>
               </NavLink>
@@ -142,7 +138,7 @@ function Footer() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default Footer

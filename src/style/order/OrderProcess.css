@@ -82,15 +82,9 @@
 
 .O_Process_Cont {
   /* min-height: 650px; */
-  min-height: 77vh;
+  min-height: 85vh;
   margin-top: 50px;
   margin-right: 370px;
-}
-
-.O_Process_frame {
-  /* width: 100%; */
-  margin-left: 100px;
-  margin: 0 auto;
 }
 
 .O_Process_button {

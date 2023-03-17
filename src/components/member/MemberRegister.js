@@ -9,28 +9,6 @@ import emailjs from '@emailjs/browser'
 import Swal from 'sweetalert2'
 
 function MemberRegister({ setLoginOrRegister }) {
-  // ! EmailJS寄信 暫時先留著 看要不要加
-  // const sendMemberRegister = async (data) => {
-  //   const { mAccount } = data
-  //   console.log(mAccount)
-  //   ;(function () {
-  //     emailjs.init('c9JApo5Xiid4Ipkgo')
-  //   })()
-  //   var templateParams = {
-  //     name: 'James',
-  //     notes: 'Check this out!',
-  //     message: `http://localhost:3000/memberLogin/${mAccount}`,
-  //   }
-  //   emailjs.send('service_rjy5svh', 'template_ixq4hab', templateParams).then(
-  //     function (response) {
-  //       console.log('SUCCESS!', response.status, response.text)
-  //     },
-  //     function (error) {
-  //       console.log('FAILED...', error)
-  //     }
-  //   )
-  // }
-
   const navigate = useNavigate()
 
   const {
@@ -52,6 +30,40 @@ function MemberRegister({ setLoginOrRegister }) {
     // console.log(getValues('mAccount'))
   }, [watchForm])
 
+  // ! EmailJS寄信 暫時先留著 看要不要加
+  const sendMemberVerifiedEmail = async (data) => {
+    const { mAccount } = data
+    console.log(data)
+    console.log(mAccount)
+    ;(function () {
+      emailjs.init('c9JApo5Xiid4Ipkgo')
+    })()
+    var templateParams = {
+      to_name: `${mAccount}`,
+      message: `
+        請點擊以下連結來驗證來完成註冊程序\n
+        http://localhost:3000/member/${mAccount}
+        `,
+    }
+
+    emailjs.send('service_rjy5svh', 'template_ixq4hab', templateParams).then(
+      function (response) {
+        console.log('SUCCESS!', response.status, response.text)
+        setTimeout(() => {
+          Swal.fire({
+            title: '請查收驗證信',
+            text: `驗證信已發送到您的信箱，請查收。`,
+            icon: 'info',
+            confirmButtonText: '確認',
+          })
+        }, 1000)
+      },
+      function (error) {
+        console.log('FAILED...', error)
+      }
+    )
+  }
+
   const sendMemberRegisterData = async (data) => {
     axios.defaults.withCredentials = true
     await axios.put(ACCOUNTREGISTER, data).then((response) => {
@@ -62,28 +74,7 @@ function MemberRegister({ setLoginOrRegister }) {
           icon: 'success',
           confirmButtonText: '確認',
         })
-
-        // ! 更改發信的使用者名稱。但好像會不同步
-        updateProfile(googleAuth.currentUser, {
-          displayName: response.data.postData.mAccount,
-        })
-          .then(() => {})
-          .catch((error) => {})
-
-        // todo 怎麼去判斷有沒有做過驗證?
-        // ! 第一次進去直接按註冊發ajax會失敗，要先按一次login去連動gmail帳號才可以成功，不然googleAuth.currentUser會是null，好像也是非同步問題
-        // ! 好像解決了
-        sendEmailVerification(googleAuth.currentUser).then(() => {
-          setTimeout(() => {
-            Swal.fire({
-              title: '請查收驗證信',
-              text: `驗證信已發送到您的信箱，請查收。`,
-              icon: 'info',
-              confirmButtonText: '確認',
-            })
-          }, 1500)
-        })
-
+        sendMemberVerifiedEmail(data)
         // setLoginOrRegister('會員登入')
         // navigate('/memberLogin')
       }

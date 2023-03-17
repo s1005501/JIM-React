@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import './signin.css'
 const SigninIndex = () => {
   return (
-    <div>
+    <div className="singinAndMap">
       {/* <LogoHorizontal /> */}
       <p className="m-mainLogo">JOINME</p>
       <Outlet />

@@ -12,9 +12,10 @@ import MemberNameModal from './MemberNameModal'
 import MemberEmailModal from './MemberEmailModal'
 import MemberMobileModal from './MemberMobileModal'
 import MemberNickNameModal from './MemberNickNameModal'
+import moment from 'moment/moment'
 
 function MemberAccountProfile() {
-  const { getProfileData, memberAuthState, a } = useContext(MemberAuthContext)
+  const { getProfileData, memberAuthState } = useContext(MemberAuthContext)
   const navigate = useNavigate()
   const [profileData, setProfileData] = useState({
     memAccount: '',
@@ -51,9 +52,9 @@ function MemberAccountProfile() {
   }
 
   // // 第一次讀取刷新頁面
-  // useEffect(() => {
-  //   getProfileData(ACCOUNT, setProfileData)
-  // }, [])
+  useEffect(() => {
+    getProfileData(ACCOUNT, setProfileData)
+  }, [])
 
   const [profileUpdate, setProfileUpdate] = useState({
     memberPassword: false,
@@ -110,10 +111,16 @@ function MemberAccountProfile() {
             }}
           >
             <p>會員等級</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
+            <FaArrowCircleRight
+              className="m-rightArrowIcon"
+              onClick={() => {
+                navigate('/member/level')
+              }}
+            />
           </div>
         </aside>
         <div className="container">
+          {console.log(profileData)}
           <div className="row">
             <div className="m-memberAccountDiv">
               <h1>會員中心</h1>
@@ -299,7 +306,9 @@ function MemberAccountProfile() {
                     </div>
                     <div className="m-profileBirth">
                       <p>會員生日 :</p>
-                      <div>{profileData.memBirth}</div>
+                      <div>
+                        {moment(profileData.memBirth).format('YYYY-MM-DD')}
+                      </div>
                     </div>
                     <div className="m-profileIdentity">
                       <p>會員身分證字號 :</p>
@@ -314,7 +323,7 @@ function MemberAccountProfile() {
               </div>
             </div>
           </div>
-        </div>{' '}
+        </div>
       </main>
     </>
   )
