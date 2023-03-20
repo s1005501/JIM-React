@@ -110,7 +110,7 @@ const MapSidebarBody = ({ mapData }) => {
                           {k?.commentSum ? `(${k.commentSum})` : ''}
                         </p>
                         <Link
-                          to={`/game/${k.gamesSid}`}
+                          to={`/order/${k.gamesSid}`}
                           className="btn btn-outline-secondary"
                         >
                           立刻前往

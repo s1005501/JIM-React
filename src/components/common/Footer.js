@@ -116,12 +116,12 @@ function Footer() {
                 <p>會員</p>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/store">
                 <AiOutlineShop />
                 <p>店家</p>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/map">
                 <AiFillEnvironment />

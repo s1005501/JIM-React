@@ -13,8 +13,10 @@ import MemberEmailModal from './MemberEmailModal'
 import MemberMobileModal from './MemberMobileModal'
 import MemberNickNameModal from './MemberNickNameModal'
 import moment from 'moment/moment'
+import { useContextValue } from '../../ContextDashbard'
 
 function MemberAccountProfile() {
+  const { render, setRender } = useContextValue()
   const { getProfileData, memberAuthState } = useContext(MemberAuthContext)
   const navigate = useNavigate()
   const [profileData, setProfileData] = useState({
@@ -48,6 +50,7 @@ function MemberAccountProfile() {
         }
       )
       console.log(response.data)
+      setRender(!render)
       getProfileData(ACCOUNT, setProfileData)
     } catch (ex) {}
   }

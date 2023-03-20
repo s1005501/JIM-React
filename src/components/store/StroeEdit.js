@@ -133,15 +133,19 @@ const StroeEdit = ({ sid }) => {
                     {'Logo'}
                   </label>
                   <div className="my-3 mt-sm-0">
-                    <img
-                      className="store-edit-img"
-                      src={
-                        imgUrl?.length > 20
-                          ? imgUrl
-                          : `/Images/gamesImages/${editData[0]?.gamesImages}`
-                      }
-                      alt=""
-                    />
+                    {!!imgUrl?.length ? (
+                      <img
+                        className="store-edit-img"
+                        src={
+                          imgUrl?.length > 20
+                            ? `/Images/uploads/${imgUrl}`
+                            : `/Images/storeimages/${imgUrl}`
+                        }
+                        alt=""
+                      />
+                    ) : (
+                      <div className="store-add-img" alt="" />
+                    )}
                   </div>
                   <div className="d-flex flex-column align-items-center">
                     <div className="w-50 store-add-button">
@@ -167,13 +171,14 @@ const StroeEdit = ({ sid }) => {
                                   formData
                                 )
                                 if (!!r.data.length) {
-                                  const fileLoad = (e) => {
-                                    setImgUrl(e.target.result)
-                                  }
-                                  const file = v[0]
-                                  const fileReader = new FileReader()
-                                  fileReader.addEventListener('load', fileLoad)
-                                  fileReader.readAsDataURL(file)
+                                  // const fileLoad = (e) => {
+                                  //   setImgUrl(e.target.result)
+                                  // }
+                                  // const file = v[0]
+                                  // const fileReader = new FileReader()
+                                  // fileReader.addEventListener('load', fileLoad)
+                                  // fileReader.readAsDataURL(file)
+                                  setImgUrl(r.data[0].filename)
                                   setValue('LogoImg', r.data[0].filename)
                                 }
                               }

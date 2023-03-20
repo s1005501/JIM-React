@@ -204,7 +204,13 @@ const StoreOrder = ({ orderSid }) => {
                       className={`form-control`}
                       name={'orderState'}
                       disabled={true}
-                      value={!!v.orderState ? '已完成' : '未完成'}
+                      value={
+                        !!v.orderState
+                          ? v.orderState == 1
+                            ? '已完成'
+                            : '訂單取消'
+                          : '未完成'
+                      }
                     />
                   </div>
                 </div>

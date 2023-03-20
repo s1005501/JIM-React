@@ -8,15 +8,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import { checkToken, useContextValue } from './../../ContextDashbard'
 import StroeEdit from './StroeEdit'
 const StoreGameList = () => {
+  const { sid } = checkToken('token')
+
   const navigate = useNavigate()
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [gamelist, setGameList] = useState([])
   useEffect(() => {
-    getBackData(
-      `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
-      setGameList
-    )
+    getBackData(`http://localhost:3005/store/getstoredata/${sid}`, setGameList)
   }, [render])
   const delData = async (gameSid, gamesName) => {
     confirmAlert({

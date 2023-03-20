@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ORDER } from '../../components/config/api_config'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext, useParams } from 'react-router-dom'
 import { Tabs } from 'antd'
 import GameInfo from './O_Reserve/O_Reserve_GameInfo_'
 import CalendarDate from './O_Reserve/O_Reserve_Calendar'
@@ -9,12 +9,14 @@ import axios from 'axios'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function OrderReserve() {
+  const { sid } = useParams()
   const [gameData, setGameData] = useState([])
+  console.log(useParams(), 9999999999999)
 
   // 抓kevin資料庫
   const gameGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/gamesinfo/3')
+    const response = await axios.get(ORDER + `/gamesinfo/${sid}`)
 
     // console.log(response);
     console.log('response:', response.data)
@@ -33,7 +35,7 @@ function OrderReserve() {
       children: (
         <div>
           <div className="O_Reserve_Tabs_Date">
-            <GameInfo />
+            <GameInfo sid={sid} />
           </div>
         </div>
       ),
@@ -92,11 +94,12 @@ function OrderReserve() {
         <div className="mainContainer O_Reserve_Cont">
           {/* 遊戲宣傳圖 */}
           {gameData.map((v, i) => {
+            console.log(v)
             return (
               <div key={v.gamesSid} className="O_Reserve_Container">
                 <div className="col-xl-6 O_Reserve_ColImg">
                   <img
-                    src={`Images/orders/${v.gamesImages}`}
+                    src={`/Images/orders/${v.gamesImages}`}
                     // src={`Images/orders/${v.gamesLogo}`}
                     alt=""
                     className="O_Reserve_GameImg"

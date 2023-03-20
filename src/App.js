@@ -50,7 +50,9 @@ function App() {
               <Route index element={<MemberAccountProfile />}></Route>
               <Route path=":action" element={<MemberMenuList />}></Route>
             </Route>
-            <Route path="/order" element={<OrderReserve />} />
+            <Route path="/order" element={<OrderIndex />}>
+              <Route path=":sid" element={<OrderReserve />}></Route>
+            </Route>
             <Route path="/orderp" element={<OrderProcess />} />
 
             <Route path="/comment" element={<ThemeContextProvider />}>
