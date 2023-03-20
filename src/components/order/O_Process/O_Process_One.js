@@ -36,7 +36,7 @@ const OrderOne = () => {
         return (
           <div key={i} className="O_Process_One_Sort">
             <div className="O_Process_One_Margin">
-              <h5>{v.gamesName}</h5>
+              <h4>{v.gamesName}</h4>
               <p>工作室:{v.storeName}</p>
               <p>地址:{v.storeAddress}</p>
               <p>預約日期:{v.orderDate}</p>
@@ -46,7 +46,8 @@ const OrderOne = () => {
             </div>
             <div style={{ width: '300px' }}>
               <img
-                src={`/Images/orders/${v.gamesImages}`}
+                // src={`/Images/orders/${v.gamesImages}`}
+                src={`/Images/orders/${v.gamesLogo}`}
                 alt=""
                 className="O_Process_One_GameImg"
               />

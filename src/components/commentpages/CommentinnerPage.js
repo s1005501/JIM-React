@@ -4,6 +4,7 @@ import axios from 'axios'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
 import ThemeContext from './ThemeContext'
+import moment from 'moment/moment'
 // import "./CommentinnerPage.css";
 import { BsArrowReturnLeft } from 'react-icons/bs'
 import {
@@ -18,7 +19,7 @@ import { ImUsers } from 'react-icons/im'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 
-const usersid = localStorage.getItem('usersid')
+const usersid = localStorage.getItem('usersid2')
 console.log(usersid)
 
 function CommentinnerPage() {
@@ -32,7 +33,11 @@ function CommentinnerPage() {
   const [myliked, setMyliked] = useState([])
   const [btnstate, setBtnstate] = useState(false)
   const [textareavalue, setTextareavalue] = useState('')
-
+  const [replyinputvalue, setReplyinputvalue] = useState('')
+  const [picname, setPicname] = useState('')
+  const [belowcomment, setBelowcomment] = useState([])
+  const [reader, setRender] = useState(false)
+  const [totalliked, setTotalliked] = useState([])
   let { mygamesName } = useParams()
   const navigate = useNavigate()
 
@@ -59,7 +64,7 @@ function CommentinnerPage() {
 
     const result = r.data
     const newresult = result.map((v, i) => {
-      return { ...v, toggle: false, toggleliked: false, toggledisliked: false }
+      return { ...v, toggle: false }
     })
 
     setCommentuser(newresult)
@@ -75,18 +80,42 @@ function CommentinnerPage() {
   }
 
   const getlikedata = async () => {
-    const r = await axios.get('http://localhost:3005/api_liked')
+    const r = await axios.get(
+      `http://localhost:3005/api_liked/${usersid}/${mygamesName}`
+    )
     setMyliked(r.data)
   }
+  const getbelowcomment = async () => {
+    const r = await axios.get(
+      `http://localhost:3005/api_comment/${usersid}/${mygamesName}`
+    )
+    const result = r.data
+    const newresult = result.map((v, i) => {
+      return { ...v, toggle: false }
+    })
+
+    setBelowcomment(newresult)
+  }
+
+  // const gettotalliked = async () => {
+  //   const r = await axios.get(`http://localhost:3005/totalliked`);
+
+  //   setTotalliked(r.data);
+  // };
 
   useEffect(() => {
-    getreplydata()
     getrandomdata()
     getgamedetail()
     getavrage()
     getcommentuser()
     getlikedata()
+    getbelowcomment()
   }, [mygamesName])
+  useEffect(() => {
+    getreplydata()
+    getbelowcomment()
+    // gettotalliked();
+  }, [reader])
 
   //   {const likedtotal=myliked.reduce((acc,v)=>{return acc+v.liked})
   // console.log(likedtotal)}
@@ -215,13 +244,20 @@ function CommentinnerPage() {
                       <div className="input2">
                         <textarea
                           className="commentinput"
-                          defaultValue={textareavalue}
+                          value={textareavalue}
                           onChange={(e) => {
                             setTextareavalue(e.target.value)
                           }}
                         ></textarea>
                       </div>
                       <div className="inputbtns">
+                        {picname ? (
+                          <img
+                            className="replypics"
+                            src={'../images/commentlocalImages/' + picname}
+                            alt=""
+                          />
+                        ) : null}
                         <div className="pics">
                           <button className="picbtn">
                             圖片
@@ -229,39 +265,41 @@ function CommentinnerPage() {
                               type="file"
                               className="hiddenpicbtn"
                               onChange={(e) => {
-                                console.log(e.target.files[0].name)
-
-                                console.log(e.target)
+                                setPicname(e.target.files[0].name)
                               }}
                             />
                           </button>
                         </div>
-
                         <div>
                           <button
                             type="submit"
                             className="submit"
-                            onClick={(e) => {
+                            onClick={async (e) => {
                               e.preventDefault()
 
-                              axios.post(
+                              const a = await axios.post(
                                 'http://localhost:3005/insertcomment',
                                 {
                                   usersid: usersid,
                                   gamessid: v.gamesSid,
                                   rate: ratescore,
-
+                                  pics: picname || 'null',
                                   comment: textareavalue,
                                 }
                               )
-
+                              console.log(a)
+                              setRatescore(0)
                               setTextareavalue('')
+                              setPicname('')
+                              console.log(123)
+                              setRender(!reader)
+                              // window.location.reload();
                             }}
                           >
                             提交
                           </button>
                         </div>
-                      </div>{' '}
+                      </div>
                     </>
                   )
                 })}
@@ -270,25 +308,28 @@ function CommentinnerPage() {
               <div className="commentandgames">
                 <div className="commentandreplyfiled">
                   <div className="commentandreply">
-                    {commentuser.map((v, i) => {
+                    {belowcomment.map((v, i) => {
                       return (
                         <>
                           <div className="userinfo">
                             <div className="usericon">
                               <img
                                 className="usericonimg"
-                                src="../Images/3-FunLock 放樂工作室.jpg"
+                                src={
+                                  '../Images/commentlocalImages/' +
+                                  v.memHeadshot
+                                }
                                 alt=""
                               />
                             </div>
                             <div className="usercommentdetail">
                               <p style={{ margin: '0' }}>{v.memNickName}</p>
                               <p className="datetime" style={{ margin: '0' }}>
-                                2023-1-18
+                                {moment(v.create_at).format('YYYY-MM-DD')}
                               </p>
                               <div className="ratestar">
                                 {[...Array(5)].map((value, index) => {
-                                  if (index + 1 <= avrage) {
+                                  if (index + 1 <= v.rate) {
                                     return (
                                       <div>
                                         <AiTwotoneStar />
@@ -305,7 +346,16 @@ function CommentinnerPage() {
                               </div>
                             </div>
                           </div>
-                          <div className="commenttext">{v.comment}</div>
+                          <div className="commenttext">
+                            {v.comment}
+                            {v.pics === 'null' ? null : (
+                              <img
+                                className="replypics"
+                                src={'../images/commentlocalImages/' + v.pics}
+                                alt=""
+                              />
+                            )}
+                          </div>
                           <div className="reply">
                             <p className="apartline">
                               ---------------------------
@@ -314,70 +364,130 @@ function CommentinnerPage() {
                             <button
                               className="css1"
                               onClick={() => {
-                                const newcommentuser = commentuser.map((v2) => {
-                                  if (v2.sid === v.sid) {
-                                    return { ...v2, toggle: !v.toggle }
-                                  } else {
-                                    return { ...v2 }
+                                const newcommentuser = belowcomment.map(
+                                  (v2) => {
+                                    if (v2.sid === v.sid) {
+                                      return { ...v2, toggle: !v.toggle }
+                                    } else {
+                                      return { ...v2 }
+                                    }
                                   }
-                                })
-                                setCommentuser(newcommentuser)
+                                )
+                                setBelowcomment(newcommentuser)
                               }}
                             >
                               回覆
                             </button>
-                            <div
-                              className="liked"
-                              onClick={() => {
-                                const likecommentuser = commentuser.map(
-                                  (v4, i4) => {
-                                    if (v4.sid === v.sid) {
-                                      return {
-                                        ...v4,
-                                        toggleliked: !v4.toggleliked,
-                                        toggledisliked: 0,
-                                      }
-                                    } else {
-                                      return { ...v4 }
-                                    }
-                                  }
-                                )
-                                setCommentuser(likecommentuser)
-                              }}
-                            >
-                              {v.toggleliked ? (
-                                <AiFillLike />
+                            {v.filter ? (
+                              v.filter.liked ? (
+                                <>
+                                  <div
+                                    className="liked"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+
+                                      axios.delete(
+                                        `http://localhost:3005/insertdelete/${v.sid}/${usersid}`
+                                      )
+
+                                      setRender(!reader)
+                                    }}
+                                  >
+                                    <AiFillLike />
+                                    {v.total ? v.total.totallike : 0}
+                                    {/* {console.log(totalliked)} */}
+                                    {/* {console.log(totalliked)} */}
+                                    {/* {totalliked===null?(null):(<p>{totalliked[0].totallike}</p>)} */}
+                                  </div>
+                                  <div
+                                    className="disliked"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+
+                                      axios.put(
+                                        `http://localhost:3005/update/${v.sid}/${usersid}`
+                                      )
+                                      setRender(!reader)
+                                    }}
+                                  >
+                                    <AiOutlineDislike />
+                                  </div>
+                                </>
                               ) : (
-                                <AiOutlineLike />
-                              )}
-                              123
-                            </div>
-                            <div
-                              className="disliked"
-                              onClick={() => {
-                                const dislikecommentuser = commentuser.map(
-                                  (v5, i5) => {
-                                    if (v5.sid === v.sid) {
-                                      return {
-                                        ...v5,
-                                        toggledisliked: !v5.toggledisliked,
-                                        toggleliked: 0,
+                                <>
+                                  <div
+                                    className="liked"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+
+                                      axios.put(
+                                        `http://localhost:3005/update2/${v.sid}/${usersid}`
+                                      )
+                                      setRender(!reader)
+                                    }}
+                                  >
+                                    <AiOutlineLike />
+                                    {v.total ? v.total.totallike : 0}
+                                  </div>
+
+                                  <div
+                                    className="disliked"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+
+                                      axios.delete(
+                                        `http://localhost:3005/insertdelete/${v.sid}/${usersid}`
+                                      )
+                                      setRender(!reader)
+                                    }}
+                                  >
+                                    <AiFillDislike />
+                                  </div>
+                                </>
+                              )
+                            ) : (
+                              <>
+                                <div
+                                  className="liked"
+                                  onClick={(e) => {
+                                    e.preventDefault()
+
+                                    axios.post(
+                                      'http://localhost:3005/insertliked',
+                                      {
+                                        usersid: usersid,
+                                        commentsid: v.sid,
+                                        likedgamesid: v.games_id,
+                                        liked: 1,
                                       }
-                                    } else {
-                                      return { ...v5 }
-                                    }
-                                  }
-                                )
-                                setCommentuser(dislikecommentuser)
-                              }}
-                            >
-                              {v.toggledisliked ? (
-                                <AiFillDislike />
-                              ) : (
-                                <AiOutlineDislike />
-                              )}
-                              12
-                            </div>
+                                    )
+                                    setRender(!reader)
+                                  }}
+                                >
+                                  <AiOutlineLike />
+                                  {v.total ? v.total.totallike : 0}
+                                </div>
+                                <div
+                                  className="disliked"
+                                  onClick={(e) => {
+                                    e.preventDefault()
+
+                                    axios.post(
+                                      'http://localhost:3005/insertliked',
+                                      {
+                                        usersid: usersid,
+                                        commentsid: v.sid,
+                                        likedgamesid: v.games_id,
+                                        liked: 0,
+                                      }
+                                    )
+                                    setRender(!reader)
+                                  }}
+                                >
+                                  <AiOutlineDislike />
+                                </div>
+                              </>
+                            )}
                             <p className="apartline">
                               ---------------------------
                             </p>
@@ -388,22 +498,54 @@ function CommentinnerPage() {
                               <div className="input2">
                                 <input
                                   className="callinput"
-                                  placeholder="寫下你想說的話..."
+                                  value={replyinputvalue}
+                                  onChange={(e) => {
+                                    setReplyinputvalue(e.target.value)
+                                  }}
                                 />
                               </div>
                               <div className="inputbtns">
+                                {picname ? (
+                                  <img
+                                    className="replypics"
+                                    src={'../images/' + picname}
+                                    alt=""
+                                  />
+                                ) : null}
                                 <div className="pics">
                                   <button className="picbtn">
                                     圖片
                                     <input
                                       type="file"
+                                      onChange={(e) => {
+                                        setPicname(e.target.files[0].name)
+                                      }}
                                       className="hiddenpicbtn"
                                     />
                                   </button>
                                 </div>
 
                                 <div>
-                                  <button type="submit" className="submit">
+                                  <button
+                                    type="submit"
+                                    className="submit"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+
+                                      axios.post(
+                                        'http://localhost:3005/insertreplycomment',
+                                        {
+                                          usersid: usersid,
+                                          commentsid: v.sid,
+                                          repliedpics: picname || 'null',
+                                          repliedcomment: replyinputvalue,
+                                        }
+                                      )
+                                      setReplyinputvalue('')
+                                      setPicname('')
+                                      setRender(!reader)
+                                    }}
+                                  >
                                     提交
                                   </button>
                                 </div>
@@ -432,6 +574,17 @@ function CommentinnerPage() {
                                   </div>
                                   <div className="replytext">
                                     {v3.replied_comment}
+                                    {v3.replied_pics === 'null' ||
+                                    null ? null : (
+                                      <img
+                                        className="replypics"
+                                        src={
+                                          '../images/commentlocalImages/' +
+                                          v3.replied_pics
+                                        }
+                                        alt=""
+                                      />
+                                    )}
                                   </div>
                                 </>
                               )

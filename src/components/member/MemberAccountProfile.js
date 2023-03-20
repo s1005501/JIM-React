@@ -33,25 +33,26 @@ function MemberAccountProfile() {
 
   // profile照片上傳的func
   const memberProfileUpload = async () => {
-    axios.defaults.withCredentials = true
+    try {
+      axios.defaults.withCredentials = true
+      const fd = new FormData(document.imgUpload)
 
-    const fd = new FormData(document.imgUpload)
-
-    const response = await axios.post(
-      ACCOUNT + '/upload/' + memberAuthState.membersid,
-      fd,
-      {
-        headers: {
-          Authorization: 'Bearer ' + memberAuthState.memberToken,
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    )
-    console.log(response.data)
-    getProfileData(ACCOUNT, setProfileData)
+      const response = await axios.post(
+        ACCOUNT + '/upload/' + memberAuthState.membersid,
+        fd,
+        {
+          headers: {
+            Authorization: 'Bearer ' + memberAuthState.memberToken,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      console.log(response.data)
+      getProfileData(ACCOUNT, setProfileData)
+    } catch (ex) {}
   }
 
-  // // 第一次讀取刷新頁面
+  // 第一次讀取刷新頁面
   useEffect(() => {
     getProfileData(ACCOUNT, setProfileData)
   }, [])
@@ -63,7 +64,11 @@ function MemberAccountProfile() {
     memberMobile: false,
     memberNickName: false,
   })
-  // todo modal變不見的時候沒有fade的效果(出現有是套件預設的)
+  const [imgFiles, setImgFiles] = useState('')
+  // useEffect(() => {
+  //   // document.forms['imgUpload'].submit()
+  // }, [imgFiles])
+  // TODO modal變不見的時候沒有fade的效果(出現有是套件預設的)
   return (
     <>
       <main className="m-memberAccountMain">
@@ -120,7 +125,6 @@ function MemberAccountProfile() {
           </div>
         </aside>
         <div className="container">
-          {console.log(profileData)}
           <div className="row">
             <div className="m-memberAccountDiv">
               <h1>會員中心</h1>
@@ -134,22 +138,29 @@ function MemberAccountProfile() {
                     alt=""
                     className="m-profileImg"
                   />
-                  <form
-                    id="imgUpload"
-                    name="imgUpload"
-                    onSubmit={(e) => {
-                      e.preventDefault()
-                      memberProfileUpload()
-                    }}
-                  >
-                    <label htmlFor="profileUpload">選擇大頭貼</label>
+                  <form id="imgUpload" name="imgUpload">
                     <input
                       type="file"
                       name="profileUpload"
                       id="profileUpload"
                       hidden
+                      onChange={(e) => {
+                        if (e.target.files.length) {
+                          memberProfileUpload()
+                        }
+                      }}
                     />
-                    <button className="btn">上傳大頭貼</button>
+                    <button
+                      className="btn"
+                      onClick={async (e) => {
+                        e.preventDefault()
+                        const profileUpload =
+                          document.querySelector('#profileUpload')
+                        await profileUpload.click()
+                      }}
+                    >
+                      選擇/上傳大頭貼
+                    </button>
                   </form>
                 </div>
                 <div className="m-profileInfo">

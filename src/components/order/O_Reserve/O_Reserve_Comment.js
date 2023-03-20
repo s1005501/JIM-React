@@ -71,7 +71,7 @@ const Comment = () => {
                 </div>
 
                 {/* 內容 */}
-                <p>{v.comment}</p>
+                <p className=" text-start">{v.comment}</p>
               </div>
             </div>
           </div>

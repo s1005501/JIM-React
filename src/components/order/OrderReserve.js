@@ -97,6 +97,7 @@ function OrderReserve() {
                 <div className="col-xl-6 O_Reserve_ColImg">
                   <img
                     src={`Images/orders/${v.gamesImages}`}
+                    // src={`Images/orders/${v.gamesLogo}`}
                     alt=""
                     className="O_Reserve_GameImg"
                   />

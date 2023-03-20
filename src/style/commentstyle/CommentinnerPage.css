@@ -347,6 +347,12 @@ p {
 .submit {
   width: 40px;
 }
+.replypics{
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 @media only screen and (max-width: 768px) {
   .fullpage {
     width:100%;

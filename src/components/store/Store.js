@@ -8,12 +8,12 @@ const Store = () => {
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
-  useEffect(() => {
-    getBackData(
-      `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
-      setStoreOrderList
-    )
-  }, [render])
+  // useEffect(() => {
+  //   getBackData(
+  //     `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
+  //     setStoreOrderList
+  //   )
+  // }, [render])
   const storeSwitch = async (orderSid, state) => {
     let str = !!state ? 0 : 1
     try {

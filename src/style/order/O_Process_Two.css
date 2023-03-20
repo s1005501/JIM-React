@@ -18,7 +18,7 @@
 }
 
 /* 如果沒有下列label就改回這個 */
-.O_Process_Two_Sort h6 {
+.O_Process_Two_Sort h5 {
   margin: auto 0;
   color: white;
   text-align: center;
@@ -28,6 +28,7 @@
   margin: auto 0;
   color: white;
   text-align: center;
+  font-size: 20px;
 }
 
 .O_Process_Two_Sort input {
@@ -35,27 +36,32 @@
   background-color: gray;
 }
 
-.O_Process_Two_NameInput{
+.O_Process_Two_NameInput {
   width: 65%;
-   height: 40px;
-   border-radius: 15px;
-   padding: 15px;
-   font-size: 18px;
-   color: #fff;
-   background-color: rgba(255, 255, 255, 0.2) !important;
-   border: 2px solid rgba(255, 255, 255, 0.8) !important;
-   outline: 0 !important;
- }
+  height: 40px;
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 18px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  outline: 0 !important;
+}
 
- /* ----------------如沒使用驗證就步用下列css------- */
- .O_Process_Two_NameInput::placeholder{
-   color: rgba(255, 255, 255, 0.5);
-   font-size: 16px;
- }
- 
- .O_Process_Two_inputInvalid {
-   border: 3px solid #ef403f !important;
- }
+.O_Process_Two_text {
+  font-size: 18px;
+}
+
+/* ----------------如沒使用驗證就步用下列css------- */
+/* .O_Process_Two_NameInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+}
+
+.O_Process_Two_inputInvalid {
+  border: 3px solid #ef403f !important;
+} */
+
 /* ------------------------------ */
 
 /* ---------------------- */
@@ -64,6 +70,6 @@
   color: white;
 }
 
-.ant-select .ant-select-arrow{
+.ant-select .ant-select-arrow {
   color: white;
 }

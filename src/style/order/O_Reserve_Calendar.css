@@ -4,6 +4,8 @@
   background-color: transparent;
   color: white;
   font-size: 16px;
+  height: auto;
+  text-align: center;
 }
 
 .O_Reserve_Calendar_ReserveBtn {
@@ -80,37 +82,38 @@
 }
 
 /* 當天前限制日期都反灰 */
-.react-calendar__tile:disabled{
+.react-calendar__tile:disabled {
   background-color: rgba(128, 128, 128, 0.397) !important;
   color: #757575;
 }
 
 /* 當天前限制日期的btn都反灰 */
-.react-calendar__navigation button:disabled{
+.react-calendar__navigation button:disabled {
   background-color: gray !important;
 }
 
 /* 年月欄位btn選取色 */
-.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
   background-color: #D01B1B !important;
 }
 
 
 /* 測試用 */
 
-.O_Reserve_Calendar_DateBtn:hover{
+.O_Reserve_Calendar_DateBtn:hover {
   background-color: #D01B1B;
 }
 
-.O_Reserve_Calendar_BtnActive{
-  background-color: #D01B1B ;
+.O_Reserve_Calendar_BtnActive {
+  background-color: #D01B1B;
 }
 
-.O_Reserve_Calendar_BtnDisabled{
+.O_Reserve_Calendar_BtnDisabled {
   background-color: rgba(128, 128, 128, 0.397) !important;
   color: #757575 !important;
 }
 
-.ant-btn-default:disabled{
+.ant-btn-default:disabled {
   color: white;
 }

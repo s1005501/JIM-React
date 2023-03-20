@@ -70,12 +70,13 @@
   font-size: 18px;
   color: #fff;
 }
+.m-captcha {
+  color: #fff;
+}
 .m-accountInput::placeholder,
 .m-passwordInput::placeholder,
 .m-captcha::placeholder,
-.m-verifyCode > h5,
-.m-verifyCode > P,
-.m-signInP {
+.m-verifyCode > P {
   color: rgba(255, 255, 255, 0.5);
 }
 .m-accountInput,
@@ -96,33 +97,29 @@
   margin: 0 30px 38px 0;
   font-size: 18px;
 }
-.m-verifyCode > h5 {
-  font-size: 32px;
-}
 .m-verifyCode > P {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   opacity: 75%;
 }
+.m-verifyCode > P:hover {
+  color: #ef403f !important;
+  opacity: 1;
+}
+.m-verifyCode svg {
+  width: 150px;
+  height: 50px;
+  margin-bottom: 8px;
+}
 .m-signIn {
-  margin-bottom: 14px;
+  margin-bottom: 32px;
 }
 .m-signIn:hover,
 .m-googleSignIn:hover {
   color: #fff !important;
   background-color: #ef403f !important;
 }
-.m-signInP {
-  font-size: 12px;
-  opacity: 75%;
-}
-.m-signInP:hover {
-  font-size: 16px;
-  font-weight: bold;
-  opacity: 100%;
-  color: #ef403f !important;
-  margin-top: -6px;
-}
+
 .m-googleSignIn {
   margin: 0 auto;
   margin-bottom: 50px;
@@ -133,7 +130,7 @@
 }
 .m-signIn,
 .m-googleSignIn {
-  width: 400px;
+  width: 70%;
   height: 50px;
   font-weight: bold !important;
   font-size: 20px !important;

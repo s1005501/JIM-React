@@ -3,8 +3,6 @@ import axios from 'axios'
 import { ACCOUNTREGISTER } from '../../config/api_config'
 import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
-import { googleAuth, googleProvider } from './../../config/firebase'
-import { sendEmailVerification, updateProfile } from 'firebase/auth'
 import emailjs from '@emailjs/browser'
 import Swal from 'sweetalert2'
 
@@ -18,6 +16,7 @@ function MemberRegister({ setLoginOrRegister }) {
     watch, // 監聽表單內容，是func
     control, // 給usewatch用的，讓他能夠知道要監聽哪一個表單
     clearError,
+    setValue,
   } = useForm({
     // 預設值帶入要透過defaultValues:{}
   })
@@ -25,12 +24,13 @@ function MemberRegister({ setLoginOrRegister }) {
   const watchForm = useWatch({
     control,
   })
+
   useEffect(() => {
     console.log(watchForm)
     // console.log(getValues('mAccount'))
   }, [watchForm])
 
-  // ! EmailJS寄信 暫時先留著 看要不要加
+  // ! EmailJS寄信
   const sendMemberVerifiedEmail = async (data) => {
     const { mAccount } = data
     console.log(data)
@@ -65,61 +65,49 @@ function MemberRegister({ setLoginOrRegister }) {
   }
 
   const sendMemberRegisterData = async (data) => {
-    axios.defaults.withCredentials = true
-    await axios.put(ACCOUNTREGISTER, data).then((response) => {
-      if (response.data.success) {
-        Swal.fire({
-          title: 'Success!',
-          text: `註冊成功`,
-          icon: 'success',
-          confirmButtonText: '確認',
-        })
-        sendMemberVerifiedEmail(data)
-        // setLoginOrRegister('會員登入')
-        // navigate('/memberLogin')
-      }
-    })
+    try {
+      axios.defaults.withCredentials = true
+      await axios.put(ACCOUNTREGISTER, data).then((response) => {
+        if (response.data.success) {
+          Swal.fire({
+            title: 'Success!',
+            text: `註冊成功`,
+            icon: 'success',
+            confirmButtonText: '確認',
+          })
+          sendMemberVerifiedEmail(data)
+          setLoginOrRegister('會員登入')
+          navigate('/member/in')
+        }
+      })
+    } catch (ex) {}
   }
-
-  // setFocus('mAccount', { shouldSelect: true })
 
   // 錯誤樣式   formState: { errors }
   // console.log(' errors ', errors)
 
-  // todo 表單自動填入無法手動輸入且無法判定有填入資料
-  // const [fastInputValue, setFastInputValue] = useState({
-  //   mAccountValue: '',
-  //   mPasswordValue: '',
-  //   mPasswordVerifyValue: '',
-  //   mNameValue: '',
-  //   mEmailValue: '',
-  //   mMobileValue: '',
-  //   mNicknameValue: '',
-  //   mBirthValue: '',
-  //   mIdentityValue: '',
-  // })
-  // const fastInput = () => {
-  //   setFastInputValue({
-  //     mAccountValue: 'kevin123',
-  //     mPasswordValue: 'kevin123',
-  //     mPasswordVerifyValue: 'kevin123',
-  //     mNameValue: '甘先生',
-  //     mEmailValue: 'kevin123@gmail.com',
-  //     mMobileValue: '0987654321',
-  //     mNicknameValue: 'kevin123',
-  //     mBirthValue: '1993-04-15',
-  //     mIdentityValue: 'F123456789',
-  //   })
-  // }
+  // ! 測試useForm的setValue
+  const fastInput = () => {
+    setValue('mAccount', 'kevin321', { shouldValidate: true })
+    setValue('mPassword', 'kevin321', { shouldValidate: true })
+    setValue('mPasswordVerify', 'kevin321', { shouldValidate: true })
+    setValue('mName', 'Kevin', { shouldValidate: true })
+    setValue('mEmail', 'kevintestlogin1@gmail.com', { shouldValidate: true })
+    setValue('mMobile', '0987654321', { shouldValidate: true })
+    setValue('mNickname', 'Kevin', { shouldValidate: true })
+    setValue('mBirth', '1993-04-15', { shouldValidate: true })
+    setValue('mIdentity', 'F123456789', { shouldValidate: true })
+    setValue('mGender', '男', { shouldValidate: true })
+  }
   return (
     <>
       <div className="m-registerSecondSection">
         <div className="m-mainText">
           <h1>會員註冊</h1>
           <h4
-          // onClick={() => {
-          //   fastInput()
-          // }}
+            onClick={() => {
+              fastInput()
+            }}
           >
             SIGN UP
           </h4>
@@ -130,13 +118,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerAccount">
                 <label htmlFor="mAccount">帳號：</label>
                 <input
-                  // value={fastInputValue.mAccountValue}
-                  // onChange={(e) => {
-                  //   setFastInputValue((old) => ({
-                  //     ...old,
-                  //     mAccountValue: e.target.value,
-                  //   }))
-                  // }}
                   type="text"
                   placeholder="請填寫帳號"
                   className={`m-registerAccountInput ${
@@ -164,7 +145,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerPassword">
                 <label htmlFor="mPassword">設定密碼：</label>
                 <input
-                  // value={fastInputValue.mPasswordValue}
                   type="text"
                   placeholder="請設定6-10位數英數字混和密碼"
                   className={`m-registerPasswordInput ${
@@ -196,7 +176,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerPasswordVerify">
                 <label htmlFor="mPasswordVerify">密碼確認：</label>
                 <input
-                  // value={fastInputValue.mPasswordVerifyValue}
                   type="text"
                   placeholder="請再輸入一次密碼"
                   className={`m-registerPasswordVerifyInput  ${
@@ -227,7 +206,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerRealName">
                 <label htmlFor="mName">姓名：</label>
                 <input
-                  // value={fastInputValue.mNameValue}
                   type="text"
                   placeholder="請填寫真實姓名"
                   className={`m-registerRealNameInput ${
@@ -255,7 +233,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerEmail">
                 <label htmlFor="mEmail">信箱：</label>
                 <input
-                  // value={fastInputValue.mEmailValue}
                   type="text"
                   placeholder="請填寫Email"
                   className={`m-registerEmailInput ${
@@ -280,7 +257,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerMobile">
                 <label htmlFor="mMobile">手機：</label>
                 <input
-                  // value={fastInputValue.mMobileValue}
                   type="text"
                   placeholder="請填寫手機號碼"
                   className={`m-registerMobileInput ${
@@ -304,7 +280,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerNickName">
                 <label htmlFor="mNickname">暱稱：</label>
                 <input
-                  // value={fastInputValue.mNicknameValue}
                   type="text"
                   placeholder="請填寫暱稱"
                   className={`m-registerNickNameInput ${
@@ -369,7 +344,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerBirth">
                 <label htmlFor="mBirth">生日：</label>
                 <input
-                  // value={fastInputValue.mBirthValue}
                   type="date"
                   className={`m-registerBirthInput  ${
                     errors.mBirth && 'm-inputInvalid'
@@ -388,7 +362,6 @@ function MemberRegister({ setLoginOrRegister }) {
               <div className="m-registerIdentity">
                 <label htmlFor="mIdentity">身分證字號：</label>
                 <input
-                  // value={fastInputValue.mIdentityValue}
                   type="text"
                   placeholder="請填寫身分證字號"
                   className={`m-registerIdentityInput ${

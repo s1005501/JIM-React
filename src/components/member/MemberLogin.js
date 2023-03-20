@@ -127,7 +127,7 @@ function MemberLogin({ memberLoginOrNot }) {
           confirmButtonText: '確認',
         })
 
-        // navigate('/memberAccount/profile')
+        navigate('/member')
       } else {
         Swal.fire({
           title: 'Error!',
@@ -236,7 +236,6 @@ function MemberLogin({ memberLoginOrNot }) {
             </div>
             <div>
               <button className="btn m-signIn">登入 SIGN IN</button>
-              <p className="m-signInP">忘記密碼? FORGET PASSWORD</p>
             </div>
             <button
               className="btn m-googleSignIn d-flex justify-content-center"
