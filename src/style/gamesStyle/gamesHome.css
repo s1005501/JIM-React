@@ -1,0 +1,97 @@
+.gameshome {
+  position: relative;
+  height: 74vh;
+  width: 100%;
+  right: 180px;
+  top: 0;
+  
+}
+
+.gameshometitle {
+  font-size: 46px;
+  color: #d01b1b;
+  font-family: Jost-Regular;
+  margin: 80px 0px 96px;
+  position: sticky;
+  top: -46px;
+  left: 0;
+}
+
+
+.container01 {
+  width: 100%; /* container 寬度 */
+  overflow: hidden; /*隱藏容器外部部分的圖片 */
+  position: relative; /* 相對位置，用於給子元素絕對定位 */
+  right: 150px;
+  top: 0;
+}
+
+.gameshomecontent {
+  display: flex; /* 將圖片包含在 flex 容器中 */
+  position: absolute; /* 絕對位置，用於實現圖片切換 */
+  transition: transform 0.5s ease-in-out; /* 轉換動畫效果 */
+}
+
+.gameshomecontent img {
+  width: 500px; /* 圖片寬度 */
+  height: auto; /* 根據寬度自適應高度 */
+  position: relative; /* 相對位置，用於實現圖片切換 */
+  opacity: 1; /* 圖片初始不透明度 */
+  transition: opacity 0.5s ease-in-out; /* 轉換動畫效果 */
+  object-fit: cover;
+  margin: 0px 80px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px  rgba(17,17,26,0.1), 0 16px 56px  rgba(17,17,26,0.1), 54px 64px 80px  rgba(17,17,26,0.1);
+}
+
+.gameshomecontent img:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.gameshomecontent img:last-child {
+  position: absolute; /* 最後一張圖片絕對定位 */
+  top: 0;
+  right: 0;
+  opacity: 1; /* 最後一張圖片初始不透明度 */
+}
+
+/* 圖片切換效果 */
+.container.show-last .gameshomecontent {
+  transform: translateX(
+    -400px
+  ); /* 絕對定位後的容器向左移動，實現圖片切換效果 */
+}
+
+.container.show-last .content img:first-child {
+  position: absolute; /* 第一張圖片絕對定位 */
+  top: 0;
+  left: 0;
+  opacity: 0; /* 第一張圖片初始透明度為0，實現由左端淡入的效果 */
+}
+
+.container.show-last .content img:last-child {
+  opacity: 0; /* 最後一張圖片初始透明度為0，實現由右端淡出的效果 */
+}
+
+
+@media (max-width: 1880px) {
+.gameshometitle {
+  font-size: 42px;
+  margin: 50px 120px 96px;
+  position: sticky;
+  top: -32px;
+  left: 0;
+}
+
+.gameshomecontent img{
+  margin: 0px 0px 0 140px ;
+}
+}
+
+
+
+
+

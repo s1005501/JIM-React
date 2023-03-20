@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, message, Steps, theme, Modal } from 'antd'
 import { ORDER } from '../../components/config/api_config'
 import axios from 'axios'
@@ -7,20 +7,18 @@ import OrderProcessOne from './O_Process/O_Process_One'
 import OrderProcessTwo from './O_Process/O_Process_Two'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-const Order = {
-  orderSid: 1,
-  orderNumber: 1677779977,
-  orderDate: '2023-3-15',
-  orderTime: '11:00',
-  checkQuantity: 3,
-  checkPrice: 1800,
-}
+// const Order = {
+//   orderSid: 1,
+//   orderNumber: 1677779977,
+//   orderDate: '2023-3-15',
+//   orderTime: '11:00',
+//   checkQuantity: 3,
+//   checkPrice: 1800,
+// }
 
 function OrderProcess() {
+  const navigate = useNavigate() //回預約頁
   const [orderData, setOrderData] = useState([])
-
-  // 配合普通版的下拉式
-  // const [discountValue, setDiscountValue] = useState(0);
 
   // 抓kevin資料庫
   const orderGetData = async () => {
@@ -35,8 +33,6 @@ function OrderProcess() {
   useEffect(() => {
     orderGetData()
   }, [])
-
-  // -------------------------------------------步驟條steps
 
   const steps = [
     {
@@ -60,7 +56,7 @@ function OrderProcess() {
       content: (
         <div>
           <div className="O_Process_Three_Sort">
-            <h5 className="text-center">總金額 : 1,650 尚未付款</h5>
+            <h3 className="text-center">總金額 : 1,650 尚未付款</h3>
             <Button type="light" onClick={() => next()}>
               Line Pay 付款
             </Button>
@@ -76,7 +72,7 @@ function OrderProcess() {
             {orderData.map((v, i) => {
               return (
                 <div key={i}>
-                  <h5>預約編號 :{v.orderNumber}</h5>
+                  <h3>預約編號 :{v.orderNumber}</h3>
                   <p>付款方式 : Line Pay</p>
                   <p>預約日期 : {v.orderDate}</p>
                   <p>預約時間 : {v.orderTime}</p>
@@ -87,12 +83,19 @@ function OrderProcess() {
             })}
 
             <div>
-              <Button className="O_Process_Four_HomeBtn" onClick={() => prev()}>
+              <Button
+                className="O_Process_Four_HomeBtn"
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
                 回首頁
               </Button>
               <Button
                 className="O_Process_Four_MemberBtn"
-                onClick={() => message.success('Processing complete!')}
+                onClick={() => {
+                  navigate('/member/order')
+                }}
               >
                 查看我的預約訂單
               </Button>
@@ -160,7 +163,18 @@ function OrderProcess() {
 
             {/* button部分，下一步及上一步按鈕，步驟4因為要把btn放在內容裡，所以下列只有1~3的， */}
             <div className="O_Process_button">
-              {current >= 0 && current < 3 && (
+              {current === 0 && (
+                <Button
+                  className="O_Process_PrevBtn"
+                  onClick={() => {
+                    navigate('/order')
+                  }}
+                >
+                  回預約
+                </Button>
+              )}
+
+              {current >= 1 && current < 3 && (
                 <Button
                   className="O_Process_PrevBtn"
                   onClick={() => {
@@ -173,7 +187,11 @@ function OrderProcess() {
               )}
 
               {current === steps.length - 4 && (
-                <Button className="O_Process_NextBtn" onClick={() => next()}>
+                <Button
+                  className="O_Process_NextBtn"
+                  onClick={() => next()}
+                  // onClick={() => next(setNewLocalS())} //下一頁並傳資料至Local
+                >
                   填寫資料
                 </Button>
               )}

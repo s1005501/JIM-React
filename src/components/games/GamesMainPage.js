@@ -6,50 +6,237 @@ import { AiOutlineSearch, AiOutlineRollback } from 'react-icons/ai'
 import axios from 'axios'
 
 function GamesMainPage() {
+  //  -----------------生成參考資料--------------------
+  const [starlevel, setStarLevel] = useState([])
+  const [starquantity, setStarQuantity] = useState([])
+  useEffect(() => {
+    const generateData = () => {
+      const newStarLevel = []
+      const newStarQuantity = []
+      for (let i = 0; i < 200; i++) {
+        const randNum = Math.random() * (4.9 - 3.1) + 3.1
+        newStarLevel.push(Number(randNum.toFixed(1)))
+        newStarQuantity.push(Number(cardStarQuantity(i)))
+      }
+      setStarLevel(newStarLevel)
+      setStarQuantity(newStarQuantity)
+    }
+
+    const cardStarQuantity = (i) => {
+      return Math.floor(Math.random() * i * 10) + 1
+    }
+
+    generateData()
+  }, [])
+
+  // 從伺服器得到資料記錄用
+  const [datas, setDatas] = useState([])
+
+  // 呈現用
+  const [usersDisplay, setUsersDisplay] = useState([])
+
   // 元件控制區塊
   const [showGamesHome, setShowGamesHome] = useState(true)
   const [showGamesFilter, setShowGamesFilter] = useState(false)
 
-  //---功能區塊---
-  // 搜尋欄文字
+  //---功能狀態區塊---
+  // 搜尋欄文字狀態
   const [inputText, setInputText] = useState('')
-  // 搜尋欄按鈕 用於過濾
+  // 搜尋欄確認狀態 用於過濾
   const [keyword, setKeyword] = useState('')
-  // 下拉式城市
-  const [selectedCityValue, setSlectedCityValue] = useState('請選擇城市')
-  // 下拉式人數
+  // 搜尋欄狀態確認狀態
+  const [buttonFilter, setButtonFilter] = useState('false')
+  // 下拉式城市狀態
+  const [selectedCityValue, setSlectedCityValue] = useState('')
+  // 下拉式人數狀態
   const [selectedPeopleValue, setSlectedPeopleValue] = useState(0)
-  // 進階按鈕
+  // 進階按鈕狀態
   const [isActiveFilterBlock, setActiveFilterBlock] = useState('false')
 
-  //---篩選列表區塊---
+  //---篩選列表狀態區塊---
   const [gamesDifficulty, setGamesDifficultye] = useState('全部難度')
   const [gamesFeature, setGamesFeature] = useState('全部類型')
-  const [gamesPrice, setGamesPrice] = useState('800↓')
+  const [gamesPrice, setGamesPrice] = useState(800)
   const [gamesTime, setGamesTime] = useState('全部時間')
   const [gamesSort, setGamesSort] = useState('密室逃脫')
   const [gamesOrder, setGamesOrder] = useState('評價分數')
+  const [gamesOrderStata, setGamesOrderStata] = useState(1)
+  // ---載入中---
+  const [isLoading, setIsLoading] = useState(true)
 
-  // const [gamesDifficultyFilter, setGamesDifficultyeFilter] = useState("全部難度");
-  // const [gamesFeatureFilter, setGamesFeatureFilter] = useState("全部類型");
-  // const [gamesPriceFilter, setGamesPriceFilter] = useState("800↓");
-  // const [gamesTimeFilter, setGamesTimeFilter] = useState("全部時間");
-  // const [gamesSortFilter, setGamesSortFilter] = useState("密室逃脫");
-  // const [gamesOrderFilter, setGamesOrderFilter] = useState("評價分數");
-
-  //---資料傳遞區塊---
-  const [datas, setDatas] = useState([])
-
-  // 讀取JSON檔值
+  //向伺服器用get獲取資料
   const getDatas = async () => {
     const res = await axios.get('/data/games.json')
+    console.log(res.data)
     setDatas(res.data)
   }
 
-  // didMount
+  // ----篩選列表功能區塊---
+
+  // 排序篩選功能
+  const filterByKeyword = (newDatas, keyword) => {
+    if (!!keyword) {
+      return newDatas.filter((v, i) => {
+        return v.gamesName.includes(keyword)
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const filterByCity = (newDatas, selectedCityValue) => {
+    if (selectedCityValue !== '請選擇城市') {
+      return newDatas.filter((v, i) => {
+        return v.storeCity.includes(selectedCityValue)
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const gamesPeople = Number(selectedPeopleValue)
+  const filterByPeople = (newDatas, gamesPeople) => {
+    if (gamesPeople !== 0) {
+      return newDatas.filter((v, i) => {
+        return (
+          v.gamesPeopleMin <= gamesPeople && v.gamesPeopleMax >= gamesPeople
+        )
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const sortByType = (datas, type) => {
+    switch (type) {
+      case 0:
+        return [...datas].sort((a, b) => b.ratequantity - a.ratequantity)
+
+      // 由大至小 => type=1 (預設)
+      case 1:
+        return [...datas].sort((a, b) => b.ratelevel - a.ratelevel)
+
+      case 2:
+        return [...datas].sort((a, b) => a.gamesPrice - b.gamesPrice)
+
+      default:
+        return [...datas].sort((a, b) => b.ratelevel - a.ratelevel)
+    }
+  }
+
+  const filterByDifficulty = (newDatas, gamesDifficulty) => {
+    if (gamesDifficulty !== '全部難度') {
+      return newDatas.filter((v, i) => {
+        return v.difficulty.includes(gamesDifficulty)
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const filterByFeature = (newDatas, gamesFeature) => {
+    if (gamesFeature !== '全部類型') {
+      return newDatas.filter((v, i) => {
+        return (
+          v.feature01.includes(gamesFeature) ||
+          v.feature02.includes(gamesFeature)
+        )
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const filterByPrice = (newDatas, gamesPrice) => {
+    if (gamesPrice !== 800) {
+      return newDatas.filter((v, i) => {
+        return v.gamesPrice <= gamesPrice
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const filterByTime = (newDatas, gamesTime) => {
+    if (gamesTime !== '全部時間') {
+      return newDatas.filter((v, i) => {
+        return v.Time.includes(gamesTime)
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  const filterBySort = (newDatas, gamesSort) => {
+    if (gamesSort !== '全部玩法') {
+      return newDatas.filter((v, i) => {
+        return v.Sort.includes(gamesSort)
+      })
+    } else {
+      return newDatas
+    }
+  }
+
+  // didMount (After first render，初次render之後執行一次)
   useEffect(() => {
     getDatas()
   }, [])
+
+  // ---新增兩筆屬性資料---
+  datas.forEach((v, i) => {
+    v.ratelevel = starlevel[i]
+    v.ratequantity = starquantity[i]
+  })
+
+  // 呈現用狀態管理
+  useEffect(() => {
+    let newdatas = sortByType(datas, gamesOrderStata)
+    newdatas = filterByKeyword(newdatas, keyword)
+    newdatas = filterByCity(newdatas, selectedCityValue)
+    newdatas = filterByPeople(newdatas, gamesPeople)
+    newdatas = filterByDifficulty(newdatas, gamesDifficulty)
+    newdatas = filterByFeature(newdatas, gamesFeature)
+    newdatas = filterByPrice(newdatas, gamesPrice)
+    newdatas = filterByTime(newdatas, gamesTime)
+    newdatas = filterBySort(newdatas, gamesSort)
+    setUsersDisplay(newdatas)
+  }, [
+    datas,
+    gamesOrderStata,
+    keyword,
+    selectedCityValue,
+    gamesPeople,
+    gamesDifficulty,
+    gamesFeature,
+    gamesPrice,
+    gamesTime,
+    gamesSort,
+  ])
+
+  // 載入動畫設定持續時間
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 350)
+    }
+  }, [isLoading])
+
+  // 載入動畫狀態管理
+  useEffect(() => {
+    setIsLoading(true)
+  }, [
+    keyword,
+    buttonFilter,
+    selectedCityValue,
+    selectedPeopleValue,
+    gamesDifficulty,
+    gamesFeature,
+    gamesPrice,
+    gamesTime,
+    gamesSort,
+    gamesOrder,
+  ])
 
   // 搜尋bar 文字資料
   const handleinputText = (e) => {
@@ -74,6 +261,8 @@ function GamesMainPage() {
     setShowGamesHome(false)
     setShowGamesFilter(true)
     setKeyword(inputText)
+    // 搜尋欄按鈕狀態
+    setButtonFilter(!buttonFilter)
   }
 
   // 下拉式city功能
@@ -121,28 +310,6 @@ function GamesMainPage() {
     setGamesOrder(value)
   }
 
-  // ---篩選列表篩選功能區塊---
-  // const filterByDifficulty = (datas, gamesDifficulty) => {
-  //   switch (gamesDifficulty) {
-  //     case "簡單":
-  //       return datas.filter((v, i) => {
-  //         return v.difficulty.includes(gamesDifficulty);
-  //       });
-  //     case "普通":
-  //       return datas.filter((v, i) => {
-  //         return v.difficulty.includes(gamesDifficulty);
-  //       });
-  //     case "困難":
-  //       return datas.filter((v, i) => {
-  //         return v.difficulty.includes(gamesDifficulty);
-  //       });
-  //     case "全部難度":
-  //         default:
-  //           return datas;
-  //       }
-  //   }
-  // };
-
   // Database資料庫
   const cities = [
     { label: '台北市', value: '台北市' },
@@ -154,7 +321,6 @@ function GamesMainPage() {
   ]
 
   const people = [
-    { label: '1人', value: 1 },
     { label: '2人', value: 2 },
     { label: '3人', value: 3 },
     { label: '4人', value: 4 },
@@ -184,10 +350,10 @@ function GamesMainPage() {
     '玩法特別',
     '角色扮演',
   ]
-  const price = ['800↓', '700↓', '600↓', '500↓', '400↓', '300↓']
-  const time = ['全部時間', '30分', '60分', '90分', '120分']
-  const sort = ['密室逃脫', '劇本殺', '時境解謎']
-  const order = ['評價數量', '評價分數', '開幕日期']
+  const price = [800, 700, 600, 500, 400, 300]
+  const time = ['全部時間', '30', '60', '90', '120']
+  const sort = ['全部玩法', '密室逃脫', '劇本殺', '時境解謎']
+  const order = ['評價數量', '評價分數', '遊戲金額']
 
   return (
     <div className="gamesMain">
@@ -218,7 +384,7 @@ function GamesMainPage() {
           value={selectedCityValue}
           onChange={handleSelectedCity}
         >
-          <option value="請選擇城市">請選擇城市</option>
+          <option>請選擇城市</option>
           {cities.map((v, i) => {
             return (
               <option key={i} value={v.value}>
@@ -234,7 +400,7 @@ function GamesMainPage() {
           value={selectedPeopleValue}
           onChange={handleSelectedPeople}
         >
-          <option value="0">不限</option>
+          <option value={0}>不限</option>
           {people.map((v, i) => {
             return (
               <option key={i} value={v.value}>
@@ -343,7 +509,7 @@ function GamesMainPage() {
                         myGamesPrice(v)
                       }}
                     >
-                      {v}
+                      {v}↓
                     </li>
                   )
                 })}
@@ -398,30 +564,7 @@ function GamesMainPage() {
 
             <div className="filterBtnMain">
               <div className="filterBtnFirst">
-                <p>排序</p>
-              </div>
-              <ul>
-                {time.map((v, i) => {
-                  return (
-                    <li
-                      key={i}
-                      className={
-                        gamesTime === time[i] ? 'filterBtnClock' : 'filterBtn'
-                      }
-                      onClick={() => {
-                        myGamesTime(v)
-                      }}
-                    >
-                      {v}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-
-            <div className="filterBtnMain">
-              <div className="filterBtnFirst">
-                <p>其他</p>
+                <p>排列</p>
               </div>
               <ul>
                 {order.map((v, i) => {
@@ -433,6 +576,7 @@ function GamesMainPage() {
                       }
                       onClick={() => {
                         myGamesOrder(v)
+                        setGamesOrderStata(i)
                       }}
                     >
                       {v}
@@ -444,13 +588,10 @@ function GamesMainPage() {
           </div>
         </section>
       </div>
+
       {showGamesHome ? <GamesHome /> : null}
       {showGamesFilter ? (
-        <GamesFilters
-          datas={datas}
-          keyword={keyword}
-          gamesDifficulty={gamesDifficulty}
-        />
+        <GamesFilters usersDisplay={usersDisplay} isLoading={isLoading} />
       ) : null}
     </div>
   )

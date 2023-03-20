@@ -6,7 +6,9 @@ import Footer from '../common/Footer'
 import { BiSearch } from 'react-icons/bi'
 import ThemeContext from './ThemeContext'
 import axios from 'axios'
+
 localStorage.setItem('usersid', '5')
+localStorage.setItem('usersid2', '15')
 
 function CommentMain() {
   const navigate = useNavigate()
@@ -26,18 +28,18 @@ function CommentMain() {
 
   const getgamesdata = async () => {
     const r = await axios.get('http://localhost:3005/api_displaygames')
+    // console.log(r.data)
     setDisplaygames(r.data)
   }
-
   const getnewsdata = async () => {
     const r = await axios.get('http://localhost:3005/api_news')
-    // console.log(r.data, 99999999999999)
+    // console.log(r.data)
     setNews(r.data)
   }
 
   const getkeyname = async () => {
     const r = await axios.get('http://localhost:3005/api_random')
-    console.log(r.data, 5555)
+    // console.log(r.data)
     setKeyname(r.data)
   }
 
@@ -56,12 +58,13 @@ function CommentMain() {
     getnewsdata()
     getkeyname()
   }, [])
-  useEffect(() => {
-    ;(async () => {
-      const r = await axios.get(`http://localhost:3005/try/等一個人盜墓`)
-      console.log(r.data, 555)
-    })()
-  }, [inputvalue])
+  // useEffect(()=>{
+  //   (async()=>{
+  //     const r = await axios.get(`http://localhost:3005/try/等一個人盜墓`);
+  //     console.log(r.data,555)
+
+  //   })()
+  // },[inputvalue])
 
   return (
     <>
@@ -101,7 +104,7 @@ function CommentMain() {
           </div>
 
           <div className="hotspotgames">
-            <div className="hotspotgamestitle">熱門遊戲討論</div>
+            <div className="hotspotgamestitle">遊戲推介</div>
             <div className="keywordssqure">
               {keyname.map((v, i) => {
                 if (i < 5) {

@@ -58,6 +58,11 @@
 .O_Reserve_GameInfo_Details {
   display: flex;
   align-items: center;
+  color: white
+}
+
+.O_Reserve_GameInfo_Details:hover {
+  color: white;
 }
 
 .O_Reserve_GameInfo_Bookmark {

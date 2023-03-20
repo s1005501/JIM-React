@@ -12,7 +12,7 @@
   color: white;
 }
 
-.O_Process_One_Margin h5 {
+.O_Process_One_Margin h4 {
   font-weight: bolder;
   text-align: start;
 }
@@ -20,6 +20,7 @@
 .O_Process_One_Margin p {
   text-align: start;
   margin-top: 10px;
+  font-size: 20px;
 }
 
 .O_Process_One_Sum {

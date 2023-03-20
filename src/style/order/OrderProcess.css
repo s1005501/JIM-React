@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-.O_Process_Three_Sort h5 {
+.O_Process_Three_Sort h3 {
   color: white;
 }
 
@@ -21,7 +21,7 @@
   background-color: #16AD2E;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 20px;
   color: white;
 }
 
@@ -42,14 +42,15 @@
   justify-content: center;
 }
 
-.O_Process_Four_Sort h5 {
+.O_Process_Four_Sort h3 {
   text-align: left;
   font-weight: bolder;
   margin-bottom: 20px;
 }
 
-.O_Process_Four_Sort p{
+.O_Process_Four_Sort p {
   margin-top: 10px;
+  font-size: 20px;
 }
 
 .O_Process_Four_HomeBtn {
@@ -58,10 +59,11 @@
   color: white;
   margin-top: 30px;
   margin-right: 100px;
-  font-size: 16px;
+  font-size: 18px;
+  height: auto;
 }
 
-.O_Process_Four_HomeBtn:hover{
+.O_Process_Four_HomeBtn:hover {
   background-color: #EF403F;
   color: white !important;
 }
@@ -70,10 +72,11 @@
   background-color: transparent;
   border-color: white;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
+  height: auto;
 }
 
-.O_Process_Four_MemberBtn:hover{
+.O_Process_Four_MemberBtn:hover {
   background-color: #EF403F;
   color: white !important;
 }
@@ -93,21 +96,23 @@
   justify-content: space-around;
 }
 
-.O_Process_PrevBtn{
+.O_Process_PrevBtn {
   margin: 0 8px;
-  font-size:16px;
+  font-size: 18px;
+  height: auto;
 }
 
-.O_Process_PrevBtn:hover{
+.O_Process_PrevBtn:hover {
   background-color: #EF403F;
   color: white !important;
 }
 
-.O_Process_NextBtn{
-  font-size:16px;
+.O_Process_NextBtn {
+  font-size: 18px;
+  height: auto;
 }
 
-.O_Process_NextBtn:hover{
+.O_Process_NextBtn:hover {
   background-color: #EF403F;
   color: white !important;
 }

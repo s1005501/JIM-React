@@ -12,10 +12,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-
 }
 
-.game-item {  
+.game-item {
   display: flex;
   width: 315px;
   height: 250px;
@@ -31,14 +30,21 @@
   margin: 0;
   overflow: hidden;
   position: relative;
-  
+}
+
+.gamesFilterSection section:hover{
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .games-imgs {
   object-fit: cover;
-  object-position: center center;
+  object-position: center -10px;
   width: 100%;
   height: auto;
+  border-radius: 20px;
 }
 
 .games-description {
@@ -62,19 +68,20 @@
   align-items: center;
   background-color: white;
   font-size: 16px;
+  border-radius: 0px 0px 20px 20px;;
 }
 
 .games-article-tagtop {
   margin-top: 5px;
   width: 250px;
   height: 53px;
-  border-bottom: 1px solid #ccc ;
+  border-bottom: 1px solid #ccc;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
-.cardgamesname{
+.cardgamesname {
   font-weight: bold;
 }
 
@@ -87,12 +94,9 @@
   width: 250px;
   height: 45px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
-
-
-
 
 .gamesFilterSection article {
   width: 100%;
@@ -169,13 +173,13 @@
   cursor: pointer;
   list-style-type: none;
   border: 1px solid rgba(208, 27, 27, 0.6);
-  color:  rgba(208, 27, 27, 0.6);
+  color: rgba(208, 27, 27, 0.6);
 }
 
 .filterBtn {
   cursor: pointer;
   list-style-type: none;
-    color: gray;
+  color: gray;
   border: 1px solid gray;
 }
 
@@ -212,7 +216,7 @@
   padding-bottom: 3px;
 }
 
-@media (max-width: 1480px) {
+@media (max-width: 1880px) {
   .gamesFilterSection {
     justify-content: center;
     padding: 10px 0px 0px 10px;
@@ -220,5 +224,95 @@
 
   .filterBlock {
     padding: 20px 0px 0px 120px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* ---loader--- */
+.lds-spinner {
+  color: official;
+  position: relative;
+  width: 100vh;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.lds-spinner div {
+  transform-origin: 60px 60px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #fff;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
