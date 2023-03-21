@@ -7,16 +7,16 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import { checkToken, useContextValue } from './../../ContextDashbard'
 import StroeEdit from './StroeEdit'
+import { swalAlert } from './StoreComponent'
 const StoreGameList = () => {
+  const { sid } = checkToken('token')
+
   const navigate = useNavigate()
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [gamelist, setGameList] = useState([])
   useEffect(() => {
-    getBackData(
-      `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
-      setGameList
-    )
+    getBackData(`http://localhost:3005/store/getstoredata/${sid}`, setGameList)
   }, [render])
   const delData = async (gameSid, gamesName) => {
     confirmAlert({
@@ -31,7 +31,7 @@ const StoreGameList = () => {
                 `http://localhost:3005/store/delstoredata/${gameSid}`
               )
               if (!!r.data.affectedRows) {
-                alert('刪除成功')
+                swalAlert('刪除成功', '刪除成功', 'success', '確認')
                 navigate('/store')
               }
             } catch (error) {}
@@ -39,7 +39,7 @@ const StoreGameList = () => {
         },
         {
           label: '否',
-          onClick: () => alert('已取消刪除'),
+          onClick: () =>  swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
         },
       ],
     })

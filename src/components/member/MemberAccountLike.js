@@ -7,6 +7,7 @@ import { FaRegBookmark } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import MemberAccountAside from './MemberAccountAside'
 
 function MemberAccountLike() {
   const navigate = useNavigate()
@@ -46,7 +47,7 @@ function MemberAccountLike() {
   return (
     <>
       <main className="m-memberAccountMain">
-        <aside className="memberAside">
+        {/* <aside className="memberAside">
           <div
             className="m-asideItem"
             onClick={() => {
@@ -92,7 +93,8 @@ function MemberAccountLike() {
             <p>會員等級</p>
             <FaArrowCircleRight className="m-rightArrowIcon" />
           </div>
-        </aside>
+        </aside> */}
+        <MemberAccountAside />
         <div className="container">
           <div className="row">
             <div className="m-memberAccountDiv">

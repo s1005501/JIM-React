@@ -3,6 +3,7 @@ import { FaArrowCircleRight } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
 import MemberAuthContext from './MemberAuthContext'
 import { useNavigate } from 'react-router-dom'
+import MemberAccountAside from './MemberAccountAside'
 
 function MemberAccountLevel() {
   const [levelData, setLevelData] = useState({})
@@ -14,10 +15,8 @@ function MemberAccountLevel() {
 
   return (
     <>
-      {/* <div className="m-bearBg"></div>
-      <div className="m-blackBg"></div> */}
       <main className="m-memberAccountMain">
-        <aside className="memberAside">
+        {/* <aside className="memberAside">
           <div
             className="m-asideItem"
             onClick={() => {
@@ -63,7 +62,8 @@ function MemberAccountLevel() {
             <p>會員等級</p>
             <FaArrowCircleRight className="m-rightArrowIcon" />
           </div>
-        </aside>
+        </aside> */}
+        <MemberAccountAside />
         <div className="container">
           <div className="row">
             <div className="m-memberAccountDiv">

@@ -4,6 +4,7 @@ import MemberAuthContext from './MemberAuthContext'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { ACCOUNT } from '../../config/api_config'
 import moment from 'moment'
+import MemberAccountAside from './MemberAccountAside'
 
 function MemberAccountOrder() {
   const { getOrderData } = useContext(MemberAuthContext)
@@ -15,10 +16,8 @@ function MemberAccountOrder() {
   }, [])
   return (
     <>
-      {/* <div className="m-bearBg"></div>
-      <div className="m-blackBg"></div> */}
       <main className="m-memberAccountMain ">
-        <aside className="memberAside">
+        {/* <aside className="memberAside">
           <div
             className="m-asideItem"
             onClick={() => {
@@ -64,7 +63,8 @@ function MemberAccountOrder() {
             <p>會員等級</p>
             <FaArrowCircleRight className="m-rightArrowIcon" />
           </div>
-        </aside>
+        </aside> */}
+        <MemberAccountAside />
         <div className="container">
           <div className="row">
             <div className="m-memberAccountDiv">

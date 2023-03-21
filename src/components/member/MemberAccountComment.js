@@ -5,6 +5,7 @@ import { FaRegCommentDots } from 'react-icons/fa'
 import MemberAuthContext from './MemberAuthContext'
 import { ACCOUNT } from '../../config/api_config'
 import moment from 'moment'
+import MemberAccountAside from './MemberAccountAside'
 
 function MemberAccountComment() {
   const navigate = useNavigate()
@@ -17,10 +18,8 @@ function MemberAccountComment() {
   }, [])
   return (
     <>
-      {/* <div className="m-bearBg"></div>
-      <div className="m-blackBg"></div> */}
       <main className="m-memberAccountMain">
-        <aside className="memberAside">
+        {/* <aside className="memberAside">
           <div
             className="m-asideItem"
             onClick={() => {
@@ -66,7 +65,8 @@ function MemberAccountComment() {
             <p>會員等級</p>
             <FaArrowCircleRight className="m-rightArrowIcon" />
           </div>
-        </aside>
+        </aside> */}
+        <MemberAccountAside />
         <div className="container">
           <div className="row">
             <div className="m-memberAccountDiv">

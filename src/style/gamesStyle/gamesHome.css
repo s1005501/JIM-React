@@ -1,10 +1,11 @@
 .gameshome {
   position: relative;
   height: 74vh;
-  width: 100%;
-  right: 180px;
+  width: 80%;
+  /* right: 180px; */
   top: 0;
-  
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .gameshometitle {
@@ -16,7 +17,6 @@
   top: -46px;
   left: 0;
 }
-
 
 .container01 {
   width: 100%; /* container 寬度 */
@@ -33,18 +33,19 @@
 }
 
 .gameshomecontent img {
-  width: 500px; /* 圖片寬度 */
-  height: auto; /* 根據寬度自適應高度 */
+  width: 400px; /* 圖片寬度 */
+  height: 400px; /* 根據寬度自適應高度 */
   position: relative; /* 相對位置，用於實現圖片切換 */
   opacity: 1; /* 圖片初始不透明度 */
   transition: opacity 0.5s ease-in-out; /* 轉換動畫效果 */
   object-fit: cover;
   margin: 0px 80px;
   border-radius: 10px;
-  box-shadow: 0 8px 24px  rgba(17,17,26,0.1), 0 16px 56px  rgba(17,17,26,0.1), 54px 64px 80px  rgba(17,17,26,0.1);
+  box-shadow: 0 8px 24px rgba(17, 17, 26, 0.1),
+    0 16px 56px rgba(17, 17, 26, 0.1), 54px 64px 80px rgba(17, 17, 26, 0.1);
 }
 
-.gameshomecontent img:hover{
+.gameshomecontent img:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -76,22 +77,16 @@
   opacity: 0; /* 最後一張圖片初始透明度為0，實現由右端淡出的效果 */
 }
 
-
 @media (max-width: 1880px) {
-.gameshometitle {
-  font-size: 42px;
-  margin: 50px 120px 96px;
-  position: sticky;
-  top: -32px;
-  left: 0;
+  .gameshometitle {
+    font-size: 42px;
+    margin: 50px 120px 96px;
+    position: sticky;
+    top: -32px;
+    left: 0;
+  }
+
+  .gameshomecontent img {
+    margin: 0px 0px 0 140px;
+  }
 }
-
-.gameshomecontent img{
-  margin: 0px 0px 0 140px ;
-}
-}
-
-
-
-
-

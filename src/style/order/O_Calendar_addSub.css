@@ -22,11 +22,19 @@
 .O_Calendar_addSub_add {
   width: 30px;
   height: 30px;
-  border-color: red;
+  border-color: white;
   border-radius: 50%;
   margin: auto 10px;
-  background-color: red;
+  background-color: transparent;
   color: white;
+}
+
+.O_Calendar_addSub_add:hover {
+  background-color: #d01b1b;
+}
+
+.O_Calendar_addSub_sub:hover {
+  background-color: #d01b1b;
 }
 
 .O_Calendar_addSub_PriceText {

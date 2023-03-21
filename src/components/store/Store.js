@@ -5,20 +5,21 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import { checkToken, useContextValue } from '../../ContextDashbard'
 import StoreOrder from './StoreOrder'
 const Store = () => {
+  const { sid } = checkToken('token')
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
-  // useEffect(() => {
-  //   getBackData(
-  //     `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
-  //     setStoreOrderList
-  //   )
-  // }, [render])
+  useEffect(() => {
+    getBackData(
+      `  http://localhost:3005/store/getStoreOrderData/${sid}`,
+      setStoreOrderList
+    )
+  }, [render])
   const storeSwitch = async (orderSid, state) => {
-    let str = !!state ? 0 : 1
+    // let str = !!state ? 0 : 1
     try {
       const r = await axios.put(
-        `http://localhost:3005/store/storeOredrSwitch/${orderSid}?state=${str}`
+        `http://localhost:3005/store/storeOredrSwitch/${orderSid}?state=${state}`
       )
       setRender(!render)
     } catch (error) {}
@@ -28,7 +29,7 @@ const Store = () => {
   const filterStateData = useMemo(() => {
     return storeOrderList
       .filter((v, i) => {
-        if (state == 2) return v
+        if (state == 3) return v
         return v.orderState == state
       })
       .filter((v, i) => {
@@ -55,8 +56,8 @@ const Store = () => {
           </div>
           <div>
             <label
-              htmlFor="2"
-              className={`${state == 2 ? 'store-search-target' : ''} px-2 mx-3`}
+              htmlFor="3"
+              className={`${state == 3 ? 'store-search-target' : ''} px-2 mx-3`}
               style={{ cursor: 'pointer' }}
             >
               全部顯示
@@ -65,9 +66,26 @@ const Store = () => {
               className="store-search"
               type="radio"
               name="state"
-              id="2"
-              value={2}
+              id="3"
+              value={3}
               defaultChecked={true}
+              onClick={(e) => {
+                setState(e.target.value)
+              }}
+            />
+            <label
+              htmlFor="0"
+              className={`${state == 0 ? 'store-search-target' : ''} px-2 mx-3`}
+              style={{ cursor: 'pointer' }}
+            >
+              未完成
+            </label>
+            <input
+              className="store-search"
+              type="radio"
+              name="state"
+              id="0"
+              value={0}
               onClick={(e) => {
                 setState(e.target.value)
               }}
@@ -89,19 +107,20 @@ const Store = () => {
                 setState(e.target.value)
               }}
             />
+
             <label
-              htmlFor="0"
-              className={`${state == 0 ? 'store-search-target' : ''} px-2 mx-3`}
+              htmlFor="2"
+              className={`${state == 2 ? 'store-search-target' : ''} px-2 mx-3`}
               style={{ cursor: 'pointer' }}
             >
-              未完成
+              訂單取消
             </label>
             <input
               className="store-search"
               type="radio"
               name="state"
-              id="0"
-              value={0}
+              id="2"
+              value={2}
               onClick={(e) => {
                 setState(e.target.value)
               }}
@@ -128,7 +147,7 @@ const Store = () => {
                   <td className="phonehidden">{v.orderSid}</td>
                   <td className="phonehidden">{v.gamesName}</td>
                   <td>
-                    <div className="form-check form-switch pb-1 d-flex justify-content-center">
+                    {/* <div className="form-check form-switch pb-1 d-flex justify-content-center">
                       <input
                         style={{ cursor: 'pointer' }}
                         className="form-check-input "
@@ -140,7 +159,20 @@ const Store = () => {
                         }}
                         checked={v.orderState == 1 ? true : false}
                       />
-                    </div>
+                    </div> */}
+                    <select
+                      name="state"
+                      id=""
+                      value={v.orderState}
+                      onChange={(e) => {
+                        console.log(e.target.value)
+                        storeSwitch(v.orderSid, e.target.value)
+                      }}
+                    >
+                      <option value="0">未完成</option>
+                      <option value="1">已完成</option>
+                      <option value="2">訂單取消</option>
+                    </select>
                   </td>
                   <td className="phonehidden">{v.orderUsername}</td>
                   <td>

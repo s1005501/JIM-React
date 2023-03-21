@@ -1,13 +1,9 @@
-import {
-  AiFillStar,
-  AiFillEnvironment,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
+import { AiFillStar, AiFillEnvironment, AiOutlineUserAdd } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 function GamesFilters(props) {
-  const {usersDisplay, isLoading} = props;
-
-
+  const { usersDisplay, isLoading } = props
+  const navigate = useNavigate()
   const loader = (
     <div className="lds-spinner">
       <div></div>
@@ -23,18 +19,28 @@ function GamesFilters(props) {
       <div></div>
       <div></div>
     </div>
-  );
+  )
 
   const gamescontent = (
     <div className="gamesFilterSection">
       {usersDisplay.map((v, i) => {
         return (
           <div key={v.gamesSid} className="game-item">
-            <section>
+            <section
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                console.log(v.gamesSid)
+                navigate(`/order/${v.gamesSid}`)
+              }}
+            >
               <figure>
                 <img
                   className="games-imgs"
-                  src={`/Images/gamesImages/${v.gamesImages}`}
+                  src={
+                    v.gamesImages.length > 20
+                      ? `/Images/uploads/${v.gamesImages}`
+                      : `/Images/gamesImages/${v.gamesImages}`
+                  }
                   alt={v.gamesName}
                 />
                 <div className="games-description">
@@ -69,16 +75,16 @@ function GamesFilters(props) {
               </article>
             </section>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 
   return (
     <>
       <div className="gamesFilterMain">{isLoading ? loader : gamescontent}</div>
     </>
-  );
+  )
 }
 
-export default GamesFilters;
+export default GamesFilters

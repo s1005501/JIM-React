@@ -208,7 +208,7 @@ const SigninStortIn = ({ name }) => {
         // })
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        navigate('/')
+        navigate('/firstPage')
       }
     }
   }
@@ -315,8 +315,8 @@ const SigninMemberIn = ({ name }) => {
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        alert('登入成功')
-        navigate('/')
+        swalAlert('登入成功', '登入成功', 'success', '確認')
+        navigate('/firstPage')
       }
     }
   }
@@ -420,8 +420,8 @@ const SigninStoreRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        alert('新增成功')
-        navigate('/')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
+        navigate('/firstPage')
       }
     }
   }
@@ -598,7 +598,8 @@ const SigninStoreRegister = ({ name }) => {
           message: '營業時間為必填',
         },
         pattern: {
-          value: /^\d{2}:\d{2}-\d{2}:\d{2}$/,
+          value:
+            /([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]/,
           message: '請輸入正確的營業時間格式',
         },
       },
@@ -838,8 +839,8 @@ const SigninMemberRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        alert('新增成功')
-        navigate('/')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
+        navigate('/firstPage')
       }
     }
   }

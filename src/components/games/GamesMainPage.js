@@ -66,9 +66,58 @@ function GamesMainPage() {
 
   //向伺服器用get獲取資料
   const getDatas = async () => {
-    const res = await axios.get('/data/games.json')
-    console.log(res.data)
-    setDatas(res.data)
+    const res = await axios.get('http://localhost:3005/games/games')
+    const gamesdata = res.data[0]
+
+    //資料數字轉換中文
+    const difficultyMap = {
+      1: '入門',
+      2: '簡單',
+      3: '普通',
+      4: '困難',
+      5: '挑戰',
+    }
+    const featureMap = {
+      1: '偵探推理',
+      2: '機關重重',
+      3: '劇情厲害',
+      4: '場景逼真',
+      5: '互動操作',
+      6: '謎題邏輯',
+      7: '輕鬆歡樂',
+      8: '刺激驚險',
+      9: '恐怖驚悚',
+      10: '勾心鬥角',
+      11: '團隊合作',
+      12: '親子同遊',
+      13: '玩法特別',
+      14: '角色扮演',
+    }
+    const timeMap = {
+      1: '30',
+      2: '60',
+      3: '90',
+      4: '120',
+    }
+    const sortMap = {
+      1: '密室逃脫',
+      2: '劇本殺',
+      3: '時境解謎',
+    }
+
+    const newdata = gamesdata.map((v) => {
+      return {
+        ...v,
+        difficulty: difficultyMap[v.gamesDifficulty],
+        feature01: featureMap[v.gamesFeature01],
+        feature02: featureMap[v.gamesFeature02],
+        Sort: sortMap[v.gamesSort],
+        Time: timeMap[v.gamesTime],
+      }
+    })
+
+    console.log(newdata)
+    setDatas(newdata)
   }
 
   // ----篩選列表功能區塊---
@@ -332,7 +381,7 @@ function GamesMainPage() {
     { label: '10人', value: 10 },
   ]
 
-  const difficulty = ['全部難度', '新手入門', '中度玩家', '重度解謎']
+  const difficulty = ['全部難度', '入門', '簡單', '普通', '困難', '挑戰']
   const feature = [
     '全部類型',
     '偵探推理',

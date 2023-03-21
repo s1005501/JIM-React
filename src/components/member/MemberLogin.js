@@ -31,7 +31,7 @@ function MemberLogin({ memberLoginOrNot }) {
       // 登入成功
       if (response.data.success) {
         console.log(response.data)
-        const { memAccount, membersid, memberToken, memVerified } =
+        const { memAccount, membersid, memberToken, memVerified, memHeadshot } =
           response.data
 
         // 驗證信成功
@@ -42,6 +42,7 @@ function MemberLogin({ memberLoginOrNot }) {
               memAccount,
               membersid,
               memberToken,
+              memHeadshot,
             })
           )
 

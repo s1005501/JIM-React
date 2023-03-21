@@ -11,7 +11,7 @@ import axios from 'axios'
 import moment from 'moment'
 import { now } from 'moment'
 
-const CalendarDate = () => {
+const CalendarDate = ({ sid, gameData }) => {
   // const [quantity, setQuantity] = useState(0);
 
   const navigate = useNavigate() // 點選傳到訂單流程頁面
@@ -25,7 +25,7 @@ const CalendarDate = () => {
 
   const GameOrderGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/gamesinfo/24')
+    const response = await axios.get(ORDER + `/gamesinfo/${sid}`)
 
     console.log('response:', response.data)
     setCalendarInfo(response.data)
@@ -133,6 +133,14 @@ const CalendarDate = () => {
     time: '',
     people: '',
     price: '',
+    gamesName: '',
+    gameTime: '',
+    gamesLogo: '',
+    storeName: '',
+    storeAddress: '',
+    orderName: '',
+    orderNumber: '',
+    memberSid: '',
   })
   console.log(calendarOrder)
   // -------------------
@@ -172,8 +180,19 @@ const CalendarDate = () => {
   //   setSelectedTime(time) // 更新選取的時間
   //   localStorage.setItem('selectedtime', JSON.stringify(time))
   // }
-
+  console.log(gameData)
+  useEffect(() => {
+    setCalendarOrder({
+      ...calendarOrder,
+      gamesName: gameData[0].gamesName,
+      gameTime: gameData[0].Time,
+      gamesLogo: gameData[0].gamesImages,
+      storeName: gameData[0].storeName,
+      storeAddress: gameData[0].storeAddress,
+    })
+  }, [gameData])
   const OrderProcessClick = () => {
+    localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
     navigate('/orderp')
   }
 
@@ -201,25 +220,29 @@ const CalendarDate = () => {
       </div>
 
       {/* 時間段button */}
-      {buttonData.map((item) => (
-        <Button
-          key={item.key}
-          // onClick={() => handleTimeClick(item.time)}
-          onClick={(time) => {
-            // let timeFormat = time
-            console.log(item.time)
-            setCalendarOrder({ ...calendarOrder, time: item.time })
-          }}
-          className={`px-4 col-2 O_Reserve_Calendar_DateBtn ${
-            item.selectable ? '' : 'disabled'
-          } ${item.disabled ? 'O_Reserve_Calendar_BtnDisabled' : ''} ${
-            selectedTime === item.key ? 'O_Reserve_Calendar_BtnActive' : ''
-          }`}
-          disabled={!item.selectable || item.disabled}
-        >
-          {item.time}
-        </Button>
-      ))}
+      <div>
+        {buttonData.map((item) => {
+          const { key, time, selectable, disabled } = item
+          return (
+            <Button
+              key={key}
+              className="m-2 col-3 fs-6 h-auto"
+              onClick={() => {
+                setSelectedTime(time)
+                setCalendarOrder({
+                  ...calendarOrder,
+                  date: moment(value).format('YYYY-MM-DD'),
+                  time: time,
+                })
+              }}
+              type={selectedTime === time ? 'danger' : 'default'}
+              disabled={disabled}
+            >
+              {time}
+            </Button>
+          )
+        })}
+      </div>
 
       {/* 金額計算 */}
       <AddSub

@@ -7,21 +7,21 @@ import axios from 'axios'
 import moment from 'moment'
 // import moment from 'moment';
 
-const GameComment = {
-  memNickName: '豆花30塊',
-  memHeadshot: 'Ahri.png',
-  rate: 2,
-  comment: '解謎謎題與整體情境有趣好玩，充分動腦且增進親子同樂的好選擇。',
-  creat_at: '2023年1月8日',
-}
+// const GameComment = {
+//   memNickName: '豆花30塊',
+//   memHeadshot: 'Ahri.png',
+//   rate: 2,
+//   comment: '解謎謎題與整體情境有趣好玩，充分動腦且增進親子同樂的好選擇。',
+//   creat_at: '2023年1月8日',
+// }
 
-const Comment = () => {
+const Comment = ({ sid }) => {
   // 抓kevin資料庫
   const [reserveComment, setReserveComment] = useState([])
 
   const commentGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/orderComment/1')
+    const response = await axios.get(ORDER + `/orderComment/${sid}`)
 
     console.log('response:', response.data)
     setReserveComment(response.data)
@@ -41,9 +41,9 @@ const Comment = () => {
             <div className="d-flex border-bottom">
               <div>
                 {/* 大頭照 */}
-                <Space direction="vertical" size={16}>
+                <Space direction="vertical" size={16} className=" me-3">
                   <Space wrap size={16}>
-                    <Avatar src={`Images/orders/${v.memHeadshot}`} size={60} />
+                    <Avatar src={`/Images/${v.memHeadshot}`} size={60} />
                     {/* 下列是大頭照icon的 */}
                     {/* <Avatar size={60} icon={<UserOutlined />} /> */}
                   </Space>

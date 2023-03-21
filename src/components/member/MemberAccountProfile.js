@@ -13,8 +13,12 @@ import MemberEmailModal from './MemberEmailModal'
 import MemberMobileModal from './MemberMobileModal'
 import MemberNickNameModal from './MemberNickNameModal'
 import moment from 'moment/moment'
+import { useContextValue } from '../../ContextDashbard'
+import MemberAccountAside from './MemberAccountAside'
+import Swal from 'sweetalert2'
 
 function MemberAccountProfile() {
+  const { render, setRender } = useContextValue()
   const { getProfileData, memberAuthState } = useContext(MemberAuthContext)
   const navigate = useNavigate()
   const [profileData, setProfileData] = useState({
@@ -48,6 +52,16 @@ function MemberAccountProfile() {
         }
       )
       console.log(response.data)
+      setRender(!render)
+      if (response.data.success) {
+        Swal.fire({
+          title: '大頭貼更換成功!',
+          text: `大頭貼更換成功`,
+          icon: 'success',
+          confirmButtonText: '確認',
+        })
+        getProfileData(ACCOUNT, setProfileData)
+      }
       getProfileData(ACCOUNT, setProfileData)
     } catch (ex) {}
   }
@@ -72,7 +86,7 @@ function MemberAccountProfile() {
   return (
     <>
       <main className="m-memberAccountMain">
-        <aside className="memberAside">
+        {/* <aside className="memberAside">
           <div
             className="m-asideItem"
             onClick={() => {
@@ -123,7 +137,8 @@ function MemberAccountProfile() {
               }}
             />
           </div>
-        </aside>
+        </aside> */}
+        <MemberAccountAside />
         <div className="container">
           <div className="row">
             <div className="m-memberAccountDiv">
@@ -134,7 +149,7 @@ function MemberAccountProfile() {
               <div>
                 <div className="m-profileHeadShot">
                   <img
-                    src={`/Images/uploads/${profileData.memHeadshot}`}
+                    src={`/Images/uploads/${profileData?.memHeadshot}`}
                     alt=""
                     className="m-profileImg"
                   />
@@ -167,12 +182,12 @@ function MemberAccountProfile() {
                   <div>
                     <div className="m-profileAccount">
                       <p>會員帳號 :</p>
-                      <div>{profileData.memAccount}</div>
+                      <div>{profileData?.memAccount}</div>
                     </div>
                     <div className="m-profilePassword">
                       <div>
                         <p>會員密碼 :</p>
-                        <div>{profileData.memPassword}</div>
+                        <div>{profileData?.memPassword}</div>
                       </div>
 
                       <FaRegEdit
@@ -202,7 +217,7 @@ function MemberAccountProfile() {
                     <div className="m-profileRealName">
                       <div>
                         <p>會員姓名 :</p>
-                        <div>{profileData.memName}</div>
+                        <div>{profileData?.memName}</div>
                       </div>
                       <FaRegEdit
                         className="m-profileEditIcon"
@@ -214,7 +229,7 @@ function MemberAccountProfile() {
                         }}
                       />
 
-                      {profileUpdate.memberName ? (
+                      {profileUpdate?.memberName ? (
                         <MemberNameModal
                           profileUpdate={profileUpdate}
                           setProfileUpdate={setProfileUpdate}
@@ -230,7 +245,7 @@ function MemberAccountProfile() {
                     <div className="m-profileEmail">
                       <div>
                         <p>會員信箱 :</p>
-                        <div>{profileData.memEmail}</div>
+                        <div>{profileData?.memEmail}</div>
                       </div>
                       <FaRegEdit
                         className="m-profileEditIcon"
@@ -242,7 +257,7 @@ function MemberAccountProfile() {
                         }}
                       />
 
-                      {profileUpdate.memberEmail ? (
+                      {profileUpdate?.memberEmail ? (
                         <MemberEmailModal
                           profileUpdate={profileUpdate}
                           setProfileUpdate={setProfileUpdate}
@@ -258,19 +273,19 @@ function MemberAccountProfile() {
                     <div className="m-profileMobile">
                       <div>
                         <p>會員手機 :</p>
-                        <div>{profileData.memMobile}</div>
+                        <div>{profileData?.memMobile}</div>
                       </div>
                       <FaRegEdit
                         className="m-profileEditIcon"
                         onClick={() => {
                           setProfileUpdate({
                             ...profileUpdate,
-                            memberMobile: !profileUpdate.memberMobile,
+                            memberMobile: !profileUpdate?.memberMobile,
                           })
                         }}
                       />
 
-                      {profileUpdate.memberMobile ? (
+                      {profileUpdate?.memberMobile ? (
                         <MemberMobileModal
                           profileUpdate={profileUpdate}
                           setProfileUpdate={setProfileUpdate}
@@ -286,7 +301,7 @@ function MemberAccountProfile() {
                     <div className="m-profileNickName">
                       <div>
                         <p>會員暱稱 :</p>
-                        <div>{profileData.memNickName}</div>
+                        <div>{profileData?.memNickName}</div>
                       </div>
                       <FaRegEdit
                         className="m-profileEditIcon"
@@ -313,21 +328,21 @@ function MemberAccountProfile() {
                     </div>
                     <div className="m-profileGender">
                       <p>會員性別 :</p>
-                      <div>{profileData.memGender}</div>
+                      <div>{profileData?.memGender}</div>
                     </div>
                     <div className="m-profileBirth">
                       <p>會員生日 :</p>
                       <div>
-                        {moment(profileData.memBirth).format('YYYY-MM-DD')}
+                        {moment(profileData?.memBirth).format('YYYY-MM-DD')}
                       </div>
                     </div>
                     <div className="m-profileIdentity">
                       <p>會員身分證字號 :</p>
-                      <div>{profileData.memIdentity}</div>
+                      <div>{profileData?.memIdentity}</div>
                     </div>
                     <div className="m-profileLevel">
                       <p>會員等級 :</p>
-                      <div>{profileData.memLevel}</div>
+                      <div>{profileData?.memLevel}</div>
                     </div>
                   </div>
                 </div>

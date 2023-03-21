@@ -10,7 +10,7 @@ import {
   FaRegBookmark,
   FaBookmark,
 } from 'react-icons/fa'
-
+import { checkToken } from './../../../ContextDashbard'
 // 預設假資料
 // const gameData = {
 //   gamesSid: 1,
@@ -26,9 +26,10 @@ import {
 //     '我們生錯了時代  不是我們的錯   是這世界的錯！  不求同日生   但求同日死⋯  若有來生  希望能再次成為彼此的摯友….',
 // }
 
-const GameInfo = () => {
+const GameInfo = ({ sid }) => {
+  console.log(checkToken())
   const [gameDataTest, setGameData] = useState([])
-
+  console.log(gameDataTest)
   // ! 以下是遊戲加入收藏部分----------------------------
   const [collectData, setCollectData] = useState({
     likeOrNot: false,
@@ -39,7 +40,7 @@ const GameInfo = () => {
   // ! 這個是記錄成功的primary key，刪除要透過這個
   const [deleteCollectSid, setDeleteCollectSid] = useState('')
   const memberLocalStorage = JSON.parse(localStorage.getItem('memberAuth'))
-
+  console.log(collectData)
   const like = () => {
     if (
       memberLocalStorage.membersid &&
@@ -100,7 +101,7 @@ const GameInfo = () => {
   // 抓kevin資料庫
   const gameGetData = async () => {
     axios.defaults.withCredentials = true
-    const response = await axios.get(ORDER + '/gamesinfo/25')
+    const response = await axios.get(ORDER + `/gamesinfo/${sid}`)
 
     // console.log(response);
     // console.log('response:', response.data)
@@ -194,26 +195,29 @@ const GameInfo = () => {
                   }
                 }}
               >
-                <h6>收藏</h6>
-
-                {collectData.likeOrNot ? (
-                  <div>
-                    <div
-                      className="O_Reserve_GameInfo_Details "
-                      style={{ justifyContent: 'center' }}
-                    >
-                      {<FaBookmark />}
+                {!!checkToken('memberAuth')?.memberToken ? <h6>收藏</h6> : ''}
+                {!!checkToken('memberAuth')?.memberToken ? (
+                  collectData.likeOrNot ? (
+                    <div>
+                      <div
+                        className="O_Reserve_GameInfo_Details "
+                        style={{ justifyContent: 'center' }}
+                      >
+                        {<FaBookmark />}
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div>
+                      <div
+                        className="O_Reserve_GameInfo_Details"
+                        style={{ justifyContent: 'center' }}
+                      >
+                        {<FaRegBookmark />}
+                      </div>
+                    </div>
+                  )
                 ) : (
-                  <div>
-                    <div
-                      className="O_Reserve_GameInfo_Details"
-                      style={{ justifyContent: 'center' }}
-                    >
-                      {<FaRegBookmark />}
-                    </div>
-                  </div>
+                  ''
                 )}
               </div>
             </div>

@@ -5,9 +5,9 @@ import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import { useContextValue, checkToken } from '../../ContextDashbard'
-import { Select, Input } from './StoreComponent'
-const StoreInformation = ({ name }) => {
-  const { sid } = checkToken()
+import { Select, Input, swalAlert } from './StoreComponent'
+const StoreInformation = () => {
+  const { sid } = checkToken('token')
   const { getBackData, setRender, render } = useContextValue()
   const {
     register,
@@ -37,7 +37,7 @@ const StoreInformation = ({ name }) => {
       )
       if (r.data.affectedRows) {
         setRender(!render)
-        alert('更新成功')
+        swalAlert('更新成功', '更新成功', 'success', '確認')
         navigate('/store')
       }
     }
@@ -47,7 +47,7 @@ const StoreInformation = ({ name }) => {
   const [storeInfo, setStoreInfo] = useState([])
   useEffect(() => {
     getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
-  }, [])
+  }, [render])
   useEffect(() => {
     setImgUrl(storeInfo[0]?.storeLogo)
     setValue('Logo', storeInfo[0]?.storeLogo)
@@ -100,15 +100,19 @@ const StoreInformation = ({ name }) => {
             {'工作室圖標'}
           </label>
           <div className="mb-3 mt-sm-0 store-add-img">
-            <img
-              className="store-add-img"
-              src={
-                imgUrl?.length > 20
-                  ? imgUrl
-                  : `/Images/storeimages/${storeInfo[0]?.storeLogo}`
-              }
-              alt=""
-            />
+            {!!imgUrl?.length ? (
+              <img
+                className="store-add-img"
+                src={
+                  imgUrl?.length > 20
+                    ? `/Images/uploads/${imgUrl}`
+                    : `/Images/storeimages/${imgUrl}`
+                }
+                alt=""
+              />
+            ) : (
+              ''
+            )}
           </div>
           <div>
             <div>
@@ -132,13 +136,15 @@ const StoreInformation = ({ name }) => {
                           formData
                         )
                         if (!!r.data.length) {
-                          const fileLoad = (e) => {
-                            setImgUrl(e.target.result)
-                          }
-                          const file = v[0]
-                          const fileReader = new FileReader()
-                          fileReader.addEventListener('load', fileLoad)
-                          fileReader.readAsDataURL(file)
+                          // const fileLoad = (e) => {
+                          //   console.log(e.target.result)
+                          //   setImgUrl(e.target.result)
+                          // }
+                          // const file = v[0]
+                          // const fileReader = new FileReader()
+                          // fileReader.addEventListener('load', fileLoad)
+                          // fileReader.readAsDataURL(file)
+                          setImgUrl(r.data[0].filename)
                           setValue('LogoImg', r.data[0].filename)
                         }
                       }

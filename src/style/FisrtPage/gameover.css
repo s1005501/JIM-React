@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Jost';
+  src: local('Jost'), url('../../fontstyle/Jost-Regular.ttf') format('truetype');
+}
+
+.box {
+  width: 150vh;
+  height: 100vh;
+  margin-top: 100px;
+  /* border: red 2px solid; */
+  font-family: 'Jost';
+  font-size: 30px;
+}

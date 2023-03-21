@@ -104,7 +104,7 @@ const MapPhone = ({ mapData }) => {
                         </p>
                         <p>
                           <FaFeatherAlt style={{ marginRight: '10px' }} />
-                          等敘述
+                          {k.feature01} {k.feature02}
                         </p>
                         <p>
                           <FaDollarSign style={{ marginRight: '10px' }} />
@@ -112,7 +112,10 @@ const MapPhone = ({ mapData }) => {
                           <FaStar
                             style={{ marginRight: '10px', marginLeft: '10px' }}
                           />
-                          5(565)
+                          {k?.commentAvg
+                            ? `${parseInt(k.commentAvg * 10) / 10}`
+                            : '暫無評價'}
+                          {k?.commentSum ? `(${k.commentSum})` : ''}
                         </p>
                         <button className="btn btn-outline-secondary">
                           立刻前往

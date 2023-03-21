@@ -16,7 +16,6 @@ const StoreMenuList = () => {
       currentPage = <StoreAdd />
       break
     }
-
     case 'information': {
       currentPage = <StoreInformation />
       break

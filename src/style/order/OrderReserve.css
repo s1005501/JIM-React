@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.O_Reserve_Cont{
+.O_Reserve_Cont {
   margin-top: 20px;
   /* margin-right: 300px; */
   min-height: 85vh;
@@ -12,16 +12,16 @@
 
 .O_Reserve_Container {
   /* min-height: 650px; */
+  margin-right: 200px;
   min-height: 85vh;
   display: flex;
 }
-
 
 .O_Reserve_GameImg {
   float: right;
   width: 75%;
   object-fit: contain;
-  object-position:top;
+  object-position: top;
 }
 
 .O_Reserve_Info {
@@ -40,8 +40,12 @@
 }
 
 .O_Reserve_Info a:hover {
-  color: #D01B1B;
+  color: #d01b1b;
   font-weight: bolder;
+}
+
+.O_Reserve_ColGame {
+  margin-left: 20px;
 }
 
 /* ---------下列都是套件預設裡修改-------- */
@@ -56,7 +60,7 @@
 }
 
 .ant-tabs-nav {
-  border-bottom: 1px solid #D01B1B;
+  border-bottom: 1px solid #d01b1b;
 }
 
 .ant-tabs-tabpane {
@@ -64,11 +68,11 @@
 }
 
 .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #D01B1B;
+  color: #d01b1b;
 }
 
 .ant-tabs .ant-tabs-ink-bar {
-  background-color: #D01B1B;
+  background-color: #d01b1b;
 }
 
 /* --------------RWD-------------- */
@@ -77,7 +81,7 @@
     margin-right: 0;
   } */
 
-  .O_Reserve_Cont{
+  .O_Reserve_Cont {
     margin-right: 0;
   }
 
@@ -99,6 +103,7 @@
 
   .O_Reserve_ColGame {
     width: 80%;
+    margin-right: 0px;
   }
 
   /* ---------下列都是套件預設裡修改-------- */

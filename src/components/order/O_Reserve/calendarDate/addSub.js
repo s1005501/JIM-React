@@ -13,16 +13,18 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
   const [quantity, setQuantity] = useState(2) // 遊玩人數
   const increment = () => {
     if (quantity < calendarInfo[0].gamesPeopleMax) setQuantity(quantity + 1) // 可以想成 quantity = quantity + 1
-    console.log(quantity)
+    // console.log(quantity)
   }
   const decrement = () => {
     if (quantity > calendarInfo[0].gamesPeopleMin) {
       setQuantity(quantity - 1) // quantity = quantity - 1
-      console.log(quantity)
+      // console.log(quantity)
     }
   }
   // console.log('1')
   console.log(calendarOrder)
+
+  // ! 有bug如果不按+-號、選日期、時間就送出會存到空值
   useEffect(() => {
     try {
       if (calendarInfo[0].gamesPrice) {
@@ -32,7 +34,7 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
           price: `${calendarInfo[0].gamesPrice * quantity}`,
         })
       }
-      console.log(quantity)
+      // console.log(quantity)
     } catch (ex) {}
   }, [quantity])
 
@@ -50,6 +52,7 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
             onClick={(e) => {
               decrement()
               console.log(quantity)
+
               // setCalendarOrder({
               //   ...calendarOrder,
               //   people: quantity,
@@ -73,6 +76,7 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
               //   people: quantity,
               //   price: `${calendarInfo[0].gamesPrice * quantity}`,
               // })
+
               // console.log('3')
             }}
             className="O_Calendar_addSub_add"

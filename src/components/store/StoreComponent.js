@@ -1,6 +1,7 @@
 import StoreAdd from './StoreAdd'
 import StoreGameList from './StoreGameList'
 import StoreInformation from './StoreInformation'
+import Swal from 'sweetalert2'
 const Select = ({
   register,
   errors,
@@ -61,5 +62,13 @@ const Input = ({
     </>
   )
 }
+const swalAlert = (title, text, icon, button) => {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: button,
+  })
+}
 
-export { StoreAdd, StoreGameList, StoreInformation, Select, Input }
+export { StoreAdd, StoreGameList, StoreInformation, Select, Input, swalAlert }

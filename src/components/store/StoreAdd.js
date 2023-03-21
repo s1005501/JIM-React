@@ -6,9 +6,11 @@ import axios from 'axios'
 import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
 import { checkToken } from '../../ContextDashbard'
-import { Select, Input } from './StoreComponent'
+import { Select, Input, swalAlert } from './StoreComponent'
 
 const StoreAdd = () => {
+  const { sid } = checkToken('token')
+
   const {
     register,
     handleSubmit,
@@ -33,7 +35,7 @@ const StoreAdd = () => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/store/putgame', data)
       if (r.data.affectedRows) {
-        alert('新增成功')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
         navigate('/store')
       }
     }
@@ -62,7 +64,7 @@ const StoreAdd = () => {
         return v.value !== +getValues().feature01
       })
     }
-  }, [getValues().feature01])
+  }, [watch().feature01])
   const [num, setNum] = useState(0)
   const otherSelect = useRef([
     { value: 1, name: '密室逃脫' },
@@ -76,20 +78,26 @@ const StoreAdd = () => {
         <p>新增遊戲</p>
       </div>
       <form onSubmit={handleSubmit(submit)}>
-        <input
-          type="text"
-          name="sid"
-          value={checkToken()?.sid}
-          {...register('sid')}
-          hidden
-        />
+        <input type="text" name="sid" value={sid} {...register('sid')} hidden />
         <div className="my-3">
           <div>
             <label htmlFor={'Logo'} className="form-label">
               {'Logo'}
             </label>
             <div className="my-3 mt-sm-0 ">
-              <img className="store-add-img" src={imgUrl} alt="" />
+              {!!imgUrl?.length ? (
+                <img
+                  className="store-add-img"
+                  src={
+                    imgUrl?.length > 20
+                      ? `/Images/uploads/${imgUrl}`
+                      : `/Images/storeimages/${imgUrl}`
+                  }
+                  alt=""
+                />
+              ) : (
+                <div className="store-add-img" alt="" />
+              )}
             </div>
             <div className="d-flex flex-column align-items-center">
               <div>
@@ -113,13 +121,14 @@ const StoreAdd = () => {
                             formData
                           )
                           if (!!r.data.length) {
-                            const fileLoad = (e) => {
-                              setImgUrl(e.target.result)
-                            }
-                            const file = v[0]
-                            const fileReader = new FileReader()
-                            fileReader.addEventListener('load', fileLoad)
-                            fileReader.readAsDataURL(file)
+                            // const fileLoad = (e) => {
+                            //   setImgUrl(e.target.result)
+                            // }
+                            // const file = v[0]
+                            // const fileReader = new FileReader()
+                            // fileReader.addEventListener('load', fileLoad)
+                            // fileReader.readAsDataURL(file)
+                            setImgUrl(r.data[0].filename)
                             setValue('LogoImg', r.data[0].filename)
                           }
                         }
@@ -331,7 +340,7 @@ const StoreAdd = () => {
             >
               <option value="">請選擇最多人數</option>
               {[...Array(12)].map((v, i) => {
-                if (i < 11 && getValues().min > i) return
+                if (i < 11 && watch().min > i) return
                 return (
                   <React.Fragment key={i}>
                     <option value={i + 1}>{i + 1}人</option>
