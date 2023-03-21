@@ -19,10 +19,9 @@ import { ImUsers } from 'react-icons/im'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 
-const usersid = localStorage.getItem('usersid2')
-console.log(usersid)
-
 function CommentinnerPage() {
+  const user = JSON.parse(localStorage.getItem('memberAuth'))
+  const usersid = user?.membersid
   const { gameName, setGameName } = useContext(ThemeContext)
   const [gamedetail, setGamedetail] = useState([])
   const [avrage, setAvrage] = useState([])
@@ -316,12 +315,15 @@ function CommentinnerPage() {
                               <img
                                 className="usericonimg"
                                 src={
-                                  '../Images/commentlocalImages/' +
-                                  v.memHeadshot
+                                  v.memHeadshot.length > 20
+                                    ? '../Images/uploads/' + v.memHeadshot
+                                    : '../Images/commentlocalImages/' +
+                                      v.memHeadshot
                                 }
                                 alt=""
                               />
                             </div>
+                            {console.log(v.memHeadshot.length > 20)}
                             <div className="usercommentdetail">
                               <p style={{ margin: '0' }}>{v.memNickName}</p>
                               <p className="datetime" style={{ margin: '0' }}>

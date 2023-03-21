@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
 import {
   AiFillEnvironment,
   AiOutlineComment,
@@ -114,11 +115,19 @@ function Header() {
               {!!checkToken('memberAuth')?.memberToken ||
               !!checkToken('token')?.token ? (
                 !!checkToken('memberAuth')?.memHeadshot ? (
-                  <img
-                    className="memberImg"
-                    src={`/Images/uploads/${signinData[0]?.memHeadshot}`}
-                    alt=""
-                  />
+                  signinData?.length > 0 ? (
+                    <img
+                      className="memberImg"
+                      src={`/Images/uploads/${signinData[0]?.memHeadshot}`}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      className="memberImg"
+                      src={`/Images/member.png`}
+                      alt=""
+                    />
+                  )
                 ) : (
                   <img
                     className="memberImg"
@@ -162,7 +171,23 @@ function Header() {
                   </NavLink>
                 </li>
                 <li className="menu_link">
-                  <NavLink to="/comment">
+                  {/* <NavLink to={!!checkToken('memberAuth') ? '/comment' : '/'}> */}
+                  {/* {!!checkToken('memberAuth') ? alert('請先登錄會員') : null} */}
+                  <NavLink
+                    to={!!checkToken('memberAuth') ? '/comment' : '/signin'}
+                    onClick={() => {
+                      if (!!checkToken('memberAuth')) {
+                      } else {
+                        Swal.fire({
+                          title: '請先登錄會員',
+
+                          icon: 'error',
+                          confirmButtonText: '確認',
+                        })
+                        // navigate('/')
+                      }
+                    }}
+                  >
                     <AiOutlineComment /> 討論
                   </NavLink>
                 </li>
