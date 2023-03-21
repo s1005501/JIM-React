@@ -447,7 +447,7 @@
 .menu_none {
   position: absolute;
   opacity: 0;
-  border: 1px white solid;
+  /* border: 1px white solid; */
   border-radius: 20px;
   background-color: #fff;
   width: 250px;

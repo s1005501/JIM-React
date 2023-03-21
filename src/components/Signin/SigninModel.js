@@ -208,7 +208,7 @@ const SigninStortIn = ({ name }) => {
         // })
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        navigate('/firstPage')
+        navigate('/store')
       }
     }
   }
@@ -421,7 +421,7 @@ const SigninStoreRegister = ({ name }) => {
       )
       if (r.data.affectedRows) {
         swalAlert('新增成功', '新增成功', 'success', '確認')
-        navigate('/firstPage')
+        navigate('/signin')
       }
     }
   }

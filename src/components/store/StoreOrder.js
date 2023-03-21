@@ -205,11 +205,11 @@ const StoreOrder = ({ orderSid }) => {
                       name={'orderState'}
                       disabled={true}
                       value={
-                        !!v.orderState
-                          ? v.orderState == 1
-                            ? '已完成'
-                            : '訂單取消'
-                          : '未完成'
+                        v.orderState == 0
+                          ? '未完成'
+                          : v.orderState == 1
+                          ? '已完成'
+                          : '訂單取消'
                       }
                     />
                   </div>

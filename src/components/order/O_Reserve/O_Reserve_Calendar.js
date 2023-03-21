@@ -10,6 +10,7 @@ import 'react-calendar/dist/Calendar.css'
 import axios from 'axios'
 import moment from 'moment'
 import { now } from 'moment'
+import { checkToken } from '../../../ContextDashbard'
 
 const CalendarDate = ({ sid, gameData }) => {
   // const [quantity, setQuantity] = useState(0);
@@ -189,13 +190,16 @@ const CalendarDate = ({ sid, gameData }) => {
       gamesLogo: gameData[0].gamesImages,
       storeName: gameData[0].storeName,
       storeAddress: gameData[0].storeAddress,
+      sid: gameData[0].gamesSid,
+      member: checkToken('memberAuth')?.membersid,
     })
   }, [gameData])
   const OrderProcessClick = () => {
+    if (!checkToken('memberAuth')?.memberToken) return alert('請登入會員')
     localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
     navigate('/orderp')
   }
-
+  // console.log(!checkToken('memberAuth').memberToken)
   return (
     <div>
       <h3>時段預約</h3>

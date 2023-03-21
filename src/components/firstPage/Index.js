@@ -10,10 +10,6 @@ const Index = () => {
   return (
     <>
       <Outlet context={{ sum, setSum }} />
-      {/* {currentPage} */}
-      {/* <Game /> */}
-      {/* <Page1 /> */}
-      {/* <Page2 /> */}
     </>
   )
 }

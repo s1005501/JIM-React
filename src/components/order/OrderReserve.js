@@ -84,7 +84,7 @@ function OrderReserve() {
     <>
       <div className="">
         <div className="leftContainer">
-          <Link to="/">
+          <Link to="/firstPage">
             <div className="leftContainer02">
               <div className="leftContainer0202"></div>
             </div>

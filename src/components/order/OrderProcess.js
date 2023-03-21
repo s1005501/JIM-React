@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import {
+  Link,
+  useNavigate,
+  useOutletContext,
+  useSearchParams,
+} from 'react-router-dom'
 import { Button, message, Steps, theme, Modal } from 'antd'
 import { ORDER } from '../../components/config/api_config'
 import axios from 'axios'
@@ -29,7 +34,7 @@ function OrderProcess() {
     setOrderData(response.data)
   }
   // console.log(orderData)
-
+  const orderInfoLocalStorage = JSON.parse(localStorage.getItem('orderInfo'))
   useEffect(() => {
     orderGetData()
   }, [])
@@ -57,7 +62,24 @@ function OrderProcess() {
         <div>
           <div className="O_Process_Three_Sort">
             <h3 className="text-center">總金額 : 1,650 尚未付款</h3>
-            <Button type="light" onClick={() => next()}>
+            {console.log(orderInfoLocalStorage)}
+            <Button
+              type="light"
+              onClick={async () => {
+                const { sid, member, people, price, gamesName, time, date } =
+                  orderInfoLocalStorage
+                const orderId = parseInt(new Date().getTime() / 1000)
+                console.log(orderId, 555)
+                console.log(sid, member, people, price, gamesName, time, date)
+                const r = await axios.post(
+                  `http://localhost:3005/linepay/createOrder/${orderId}?sid=${1}&member=${member}&gamesid=${sid}&people=${people}&cash=${price}&prod=${gamesName}&time=${time}&date=${date}`
+                )
+                console.log(r.data)
+                if (!!r.data.linePayUrl) {
+                  window.location.href = r.data.linePayUrl
+                }
+              }}
+            >
               Line Pay 付款
             </Button>
           </div>
@@ -86,7 +108,7 @@ function OrderProcess() {
               <Button
                 className="O_Process_Four_HomeBtn"
                 onClick={() => {
-                  navigate('/')
+                  navigate('/firstPage')
                 }}
               >
                 回首頁
@@ -121,6 +143,13 @@ function OrderProcess() {
     setCurrent(current - 1)
   }
 
+  const [search, setSearch] = useSearchParams()
+  useEffect(() => {
+    console.log(search?.get('order'))
+    if (!!search?.get('orderId')) {
+      setCurrent(3)
+    }
+  }, [])
   const items = steps.map((item) => ({ key: item.title, title: item.title }))
 
   // 流程下面的框框內容及CSS
@@ -141,7 +170,7 @@ function OrderProcess() {
     <>
       <div className="bodyContainer">
         <div className="leftContainer">
-          <Link to="/">
+          <Link to="/firstPage">
             <div className="leftContainer02">
               <div className="leftContainer0202"></div>
             </div>
@@ -167,7 +196,7 @@ function OrderProcess() {
                 <Button
                   className="O_Process_PrevBtn"
                   onClick={() => {
-                    navigate('/order')
+                    navigate(-1)
                   }}
                 >
                   回預約

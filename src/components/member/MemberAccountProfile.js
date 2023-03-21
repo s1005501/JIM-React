@@ -69,6 +69,7 @@ function MemberAccountProfile() {
   // 第一次讀取刷新頁面
   useEffect(() => {
     getProfileData(ACCOUNT, setProfileData)
+    setRender(!render)
   }, [])
 
   const [profileUpdate, setProfileUpdate] = useState({

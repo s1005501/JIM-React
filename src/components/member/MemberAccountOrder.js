@@ -88,8 +88,14 @@ function MemberAccountOrder() {
                     return (
                       <tr key={v.orderSid}>
                         <td>{moment(v.create_at).format('YYYY-MM-DD')}</td>
-                        <td>{v.orderNumber}</td>
-                        <td>{v.orderState}</td>
+                        <td>{v.orderSid}</td>
+                        <td>
+                          {v.orderState == 0
+                            ? '未完成'
+                            : v.orderState == 1
+                            ? '已完成'
+                            : '訂單取消'}
+                        </td>
                         <td>{v.orderDate}</td>
                         <td>{v.checkQuantity}</td>
                         <td>{v.checkPrice}</td>

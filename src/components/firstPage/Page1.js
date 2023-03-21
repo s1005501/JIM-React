@@ -6,13 +6,14 @@ import gameData from './game.json'
 import { useState } from 'react'
 import { Transition } from 'react-transition-group'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // import { CSSTransition } from "react-transition-group";
 
-function Page1({sum}) {
+function Page1({ sum }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [show, setShow] = useState(false)
-  console.log(sum,'得值')
+  const navigate = useNavigate()
   const clickNext = () => {
     const nextIndex = currentIndex + 1
     if (nextIndex >= gameData.length) {
@@ -58,34 +59,28 @@ function Page1({sum}) {
               <div className="col d-flex align-items-center">
                 <div className="gameName h-100 my-3 row">
                   {currentGameData.name}
+                  {console.log(currentGameData)}
                 </div>
               </div>
               <div id="blood" className=" align-items-center d-flex">
-                <img
-                  id="bloodRate"
-                  src={`/Images/first_page/bloodRateRed.svg`}
-                  alt=""
-                ></img>
-                <img
-                  id="bloodRate"
-                  src={`/Images/first_page/bloodRateRed.svg`}
-                  alt=""
-                ></img>
-                <img
-                  id="bloodRate"
-                  src={`/Images/first_page/bloodRateRed.svg`}
-                  alt=""
-                ></img>
-                <img
-                  id="bloodRate"
-                  src={`/Images/first_page/bloodRateRed.svg`}
-                  alt=""
-                ></img>
-                <img
-                  id="bloodRate"
-                  src={`/Images/first_page/bloodRateWhite.svg`}
-                  alt=""
-                ></img>
+                {[...Array(5)].map((v, i) => {
+                  console.log(i, currentGameData.level)
+                  return i <= currentGameData.level ? (
+                    <img
+                      key={i}
+                      id="bloodRate"
+                      src={`/Images/first_page/bloodRateRed.svg`}
+                      alt=""
+                    ></img>
+                  ) : (
+                    <img
+                      key={i}
+                      id="bloodRate"
+                      src={`/Images/first_page/bloodRateWhite.svg`}
+                      alt=""
+                    ></img>
+                  )
+                })}
               </div>
             </div>
 
@@ -152,7 +147,13 @@ function Page1({sum}) {
                 NEXT
               </button>
             </div>
-            <button id="btn-book" className="w-25">
+            <button
+              id="btn-book"
+              className="w-25"
+              onClick={() => {
+                navigate(`/order/${currentGameData.id}`)
+              }}
+            >
               馬上預約
             </button>
           </div>

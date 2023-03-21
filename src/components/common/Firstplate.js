@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 function Firstplate({ children }) {
   return (
@@ -16,7 +16,7 @@ function Firstplate({ children }) {
         <div className="mainContainer">{children}</div>
       </div>
     </>
-  );
+  )
 }
 
 export default Firstplate

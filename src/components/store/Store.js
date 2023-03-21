@@ -24,7 +24,7 @@ const Store = () => {
       setRender(!render)
     } catch (error) {}
   }
-  const [state, setState] = useState(2)
+  const [state, setState] = useState(3)
   const [keyWord, setKeyWord] = useState('')
   const filterStateData = useMemo(() => {
     return storeOrderList
