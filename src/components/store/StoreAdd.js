@@ -10,7 +10,6 @@ import { Select, Input, swalAlert } from './StoreComponent'
 
 const StoreAdd = () => {
   const { sid } = checkToken('token')
-
   const {
     register,
     handleSubmit,
