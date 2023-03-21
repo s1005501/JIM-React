@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Jost';
+  src: local('Jost'), url('../../fontstyle/Jost-Regular.ttf') format('truetype');
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #00000076;
+  /* background-image: url('./modal.png'); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 800px; /*最大值, 最小值, 中間值*/
+  height: 800px; /*最小值, 最大值*/
+  margin: auto;
+  padding-top: 5%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal_ctx{
+  width: 400px;
+  height: 800px;
+}
+.ctx {
+  /* border: 1px solid white; */
+  background-image:  url('../../../public/Images/first_page/modal.png');
+  top: 5%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.option {
+  font-family: 'Jost';
+  margin-left: 10px;
+  color: black;
+  margin-top: 20px;
+  background-color: #ffffff5e;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding: 5px;
+}
+.question {
+  text-align: center;
+  font-family: 'Jost';
+  margin-left: 10px;
+  color: black;
+  margin-top: 20px;
+}
+
+.cross{
+ background-color: transparent;
+ border: 1px solid transparent;
+ outline: none;
+ font-weight: bold;
+ font-size: 30px;
+ margin-left: -350px;
+ font-family: 'Jost';
+ color: black;
+}
+
+.cross:active{
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline: none;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: -350px;
+    font-family: 'Jost';
+   }

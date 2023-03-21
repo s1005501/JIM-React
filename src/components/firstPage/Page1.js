@@ -9,10 +9,10 @@ import { useRef } from 'react'
 
 // import { CSSTransition } from "react-transition-group";
 
-function Page1() {
+function Page1({sum}) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [show, setShow] = useState(false)
-
+  console.log(sum,'得值')
   const clickNext = () => {
     const nextIndex = currentIndex + 1
     if (nextIndex >= gameData.length) {

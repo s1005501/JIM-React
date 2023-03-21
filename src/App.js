@@ -27,6 +27,9 @@ import Signin from './components/Signin/Signin'
 import SigninTarget from './components/Signin/SigninTarget'
 import Index from './components/firstPage/Index'
 import OrderIndex from './components/order/OrderIndex'
+import Movement from './components/firstPage/Movement'
+import IndexManage from './components/firstPage/IndexManage'
+import Game from './components/firstPage/Game'
 
 function App() {
   return (
@@ -35,7 +38,10 @@ function App() {
         <Header />
         <Firstplate>
           <Routes>
-            <Route path="/" element={<Index />} />
+          <Route path="/" element={<Index />}>
+              <Route index element={<IndexManage />}></Route>
+              <Route path=":part" element={<IndexManage />}></Route>
+            </Route>
             <Route path="/games" element={<GamesMainPage />} />
             <Route path="/signin" element={<SigninIndex />}>
               <Route index element={<Signin />}></Route>
