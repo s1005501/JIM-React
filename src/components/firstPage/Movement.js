@@ -233,6 +233,7 @@ const Movement = ({ setIsOpen, setBoxTrigger, gameOver, setGameOver }) => {
   const [box3, setBox3] = useState(false)
   const [box4, setBox4] = useState(false)
 
+  const [a, setA] = useState(false)
   const navigate = useNavigate()
   useEffect(() => {
     window.addEventListener(
@@ -318,6 +319,7 @@ const Movement = ({ setIsOpen, setBoxTrigger, gameOver, setGameOver }) => {
       // requestAnimationFrame(animate)
     }
     // animate(0)
+    setA(true)
     window.addEventListener(
       'load',
       () => {

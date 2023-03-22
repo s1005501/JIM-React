@@ -34,6 +34,7 @@ function CommentinnerPage() {
   const [textareavalue, setTextareavalue] = useState('')
   const [replyinputvalue, setReplyinputvalue] = useState('')
   const [picname, setPicname] = useState('')
+  const [picname2, setPicname2] = useState('')
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
@@ -140,7 +141,7 @@ function CommentinnerPage() {
                     style={{ color: 'white', textDecoration: 'none' }}
                   >
                     <BsArrowReturnLeft />
-                    返回搜索頁
+                    <span>返回搜索頁</span>
                   </div>
                 </Link>
               </div>
@@ -323,7 +324,7 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             </div>
-                            {console.log(v.memHeadshot.length > 20)}
+                            {/* {console.log(v.memHeadshot.length > 20)} */}
                             <div className="usercommentdetail">
                               <p style={{ margin: '0' }}>{v.memNickName}</p>
                               <p className="datetime" style={{ margin: '0' }}>
@@ -507,10 +508,12 @@ function CommentinnerPage() {
                                 />
                               </div>
                               <div className="inputbtns">
-                                {picname ? (
+                                {picname2 ? (
                                   <img
-                                    className="replypics"
-                                    src={'../images/' + picname}
+                                    className="replypics2"
+                                    src={
+                                      '../images/commentlocalImages/' + picname2
+                                    }
                                     alt=""
                                   />
                                 ) : null}
@@ -520,7 +523,7 @@ function CommentinnerPage() {
                                     <input
                                       type="file"
                                       onChange={(e) => {
-                                        setPicname(e.target.files[0].name)
+                                        setPicname2(e.target.files[0].name)
                                       }}
                                       className="hiddenpicbtn"
                                     />
@@ -539,7 +542,7 @@ function CommentinnerPage() {
                                         {
                                           usersid: usersid,
                                           commentsid: v.sid,
-                                          repliedpics: picname || 'null',
+                                          repliedpics: picname2 || 'null',
                                           repliedcomment: replyinputvalue,
                                         }
                                       )
@@ -579,7 +582,7 @@ function CommentinnerPage() {
                                     {v3.replied_pics === 'null' ||
                                     null ? null : (
                                       <img
-                                        className="replypics"
+                                        className="replypics2"
                                         src={
                                           '../images/commentlocalImages/' +
                                           v3.replied_pics
@@ -601,9 +604,7 @@ function CommentinnerPage() {
                   {randomgame.map((v, i) => {
                     return (
                       <>
-                        <div className="recommandtitle" key={i}>
-                          其他遊戲推介
-                        </div>
+                        <div className="recommandtitle" key={i}></div>
                         <div className="gamesdetail">
                           <Link
                             to={'/comment/' + v.gamesSid}
@@ -617,10 +618,7 @@ function CommentinnerPage() {
                               />
                             </div>
 
-                            <p
-                              className="recommandgamename"
-                              style={{ color: 'black' }}
-                            >
+                            <p className="imgname" style={{ color: 'black' }}>
                               {v.gamesName}
                             </p>
                           </Link>
