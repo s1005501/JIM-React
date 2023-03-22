@@ -68,7 +68,7 @@ function CommentMain() {
 
   return (
     <>
-      <div className="" style={{ minHeight: '85vh' }}>
+      <div className="hihi" style={{ minHeight: '85vh' }}>
         <div className="leftContainer">
           <Link to="/">
             <div className="leftContainer02">
@@ -104,24 +104,8 @@ function CommentMain() {
           </div>
 
           <div className="hotspotgames">
-            <div className="hotspotgamestitle">遊戲推介</div>
-            <div className="keywordssqure">
-              {keyname.map((v, i) => {
-                if (i < 5) {
-                  return (
-                    <div className="gameskeywords">
-                      <Link
-                        to={'/comment/' + v.gamesSid}
-                        className="keywords_p"
-                        key={i}
-                      >
-                        <div className="gameskeywords_p">#{v.gamesName}</div>
-                      </Link>
-                    </div>
-                  )
-                }
-              })}
-            </div>
+            {/* <div className="hotspotgamestitle">遊戲推介</div> */}
+
             <div className="hotspotgamesfield">
               <div className="hotspotgamesqure">
                 {displaygames.map((v, i) => {
@@ -142,7 +126,7 @@ function CommentMain() {
 
                           <p
                             className="imgname"
-                            style={{ color: '#d01b1b', fontWeight: 'bolder' }}
+                            style={{ color: 'black', fontWeight: 'bolder' }}
                           >
                             {v.gamesName}
                           </p>
@@ -171,7 +155,7 @@ function CommentMain() {
 
                           <p
                             className="imgname"
-                            style={{ color: '#d01b1b', fontWeight: 'bolder' }}
+                            style={{ color: 'black', fontWeight: 'bolder' }}
                           >
                             {v.gamesName}
                           </p>
@@ -182,6 +166,25 @@ function CommentMain() {
                 })}
               </div>
               <div className="news">
+                <div className="keywordssqure">
+                  {keyname.map((v, i) => {
+                    if (i < 3) {
+                      return (
+                        <div className="gameskeywords">
+                          <Link
+                            to={'/comment/' + v.gamesSid}
+                            className="keywords_p"
+                            key={i}
+                          >
+                            <div className="gameskeywords_p">
+                              #{v.gamesName}
+                            </div>
+                          </Link>
+                        </div>
+                      )
+                    }
+                  })}
+                </div>
                 <div className="newscomment">
                   <div className="newscommenttitle">最新留言</div>
                   {news.map((v, i) => {
@@ -189,20 +192,36 @@ function CommentMain() {
                       return (
                         <div className="newscommentdetail" key={i}>
                           <div className="mentionuser">
-                            <p
-                              className="mentionusername"
-                              style={{ color: '#d01b1b' }}
-                            >
-                              {v.memNickName}
-                            </p>
-                            <p
+                            <img
+                              className="usericonimg-main"
+                              src={
+                                v.memHeadshot.length > 20
+                                  ? '../Images/uploads/' + v.memHeadshot
+                                  : '../Images/commentlocalImages/' +
+                                    v.memHeadshot
+                              }
+                              alt=""
+                            />
+                            {console.log(news)}
+                            <div>
+                              <p
+                                className="mentionusername"
+                                style={{ color: 'white' }}
+                              >
+                                {v.memNickName}
+                              </p>
+                              <div className="newscommentcontent">
+                                {v.comment}
+                              </div>
+                            </div>
+
+                            {/* <p
                               className="p1"
                               style={{ color: 'rgba(255,255,255,0.6)' }}
                             >
                               發表留言:
-                            </p>
+                            </p> */}
                           </div>
-                          <div className="newscommentcontent">{v.comment}</div>
                         </div>
                       )
                     }
