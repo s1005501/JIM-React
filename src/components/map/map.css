@@ -1,11 +1,12 @@
-.accordion.accordion-flush p,.map-basic-style p {
+.accordion.accordion-flush p,
+.map-basic-style p {
   color: #ffffff;
   padding: 5px 0;
 }
-.accordion.accordion-flush button,.map-basic-style {
+.accordion.accordion-flush button,
+.map-basic-style {
   background-color: black !important;
 }
-
 
 .accordion-body.d-flex.game-body p {
   color: red;
@@ -171,7 +172,21 @@
   }
 
   .sidebar {
-    display: none;
+    /* display: none; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 500px;
+    bottom: 0;
+    z-index: 9998;
+    margin-top: 300px;
+  }
+  .leaflet-container.leaflet-touch.leaflet-retina.leaflet-safari.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+    margin-bottom: 500px;
+  }
+  .game-body img {
+    width: 150px;
   }
   .phone-sidebar {
     display: block;
