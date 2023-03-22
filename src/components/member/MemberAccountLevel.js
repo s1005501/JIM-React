@@ -90,8 +90,23 @@ function MemberAccountLevel() {
                         尚差多少金額可升級<span>{levelData.difference}元</span>
                       </p>
                     )}
-                    {/* //! 要改成甚麼資訊哩 */}
-                    <p>消費滿5000元可升級金卡會員</p>
+                  
+                    {/* 等級可打多少折 */}
+                    {levelData.memCardLevel === '銅卡會員' ? (
+                      <p>銅卡會員每筆消費均可打九折</p>
+                    ) : (
+                      ''
+                    )}
+                    {levelData.memCardLevel === '銀卡會員' ? (
+                      <p>銀卡會員每筆消費均可打八折</p>
+                    ) : (
+                      ''
+                    )}
+                    {levelData.memCardLevel === '金卡會員' ? (
+                      <p>金卡會員每筆消費均可打八折</p>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
               </div>

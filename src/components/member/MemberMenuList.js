@@ -7,6 +7,7 @@ import MemberAccountComment from './MemberAccountComment'
 import MemberAccountLike from './MemberAccountLike'
 import MemberLogin from './MemberLogin'
 import MemberLoginRegister from './MemberLoginRegister'
+import MemberAccountDiscount from './MemberAccountDiscount'
 // import { StoreAdd, StoreGameList, StoreInformation } from './StoreComponent'
 
 const MemberMenuList = () => {
@@ -36,6 +37,10 @@ const MemberMenuList = () => {
     }
     case 'profile': {
       currentPage = <MemberAccountProfile />
+      break
+    }
+    case 'discount': {
+      currentPage = <MemberAccountDiscount />
       break
     }
     default: {

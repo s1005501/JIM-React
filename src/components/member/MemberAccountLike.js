@@ -20,7 +20,7 @@ function MemberAccountLike() {
     getLikeData(ACCOUNT, setLikeData)
   }, [])
 
-  // console.log(memberAuthState)
+  console.log(likeData)
   // 會員刪除收藏func
   const memberLikeDelete = async (collectSid) => {
     if (memberAuthState.authorized) {
@@ -47,53 +47,6 @@ function MemberAccountLike() {
   return (
     <>
       <main className="m-memberAccountMain">
-        {/* <aside className="memberAside">
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/order')
-            }}
-          >
-            <p>訂單紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/comment')
-            }}
-          >
-            <p>評論紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/like')
-            }}
-          >
-            <p>收藏</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member')
-            }}
-          >
-            <p>個人資料</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/level')
-            }}
-          >
-            <p>會員等級</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-        </aside> */}
         <MemberAccountAside />
         <div className="container">
           <div className="row">
@@ -114,6 +67,7 @@ function MemberAccountLike() {
                 </thead>
                 <tbody>
                   {likeData.map((v, i) => {
+                    console.log(v)
                     return (
                       <tr key={v.collectSid}>
                         <td>

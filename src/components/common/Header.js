@@ -19,8 +19,7 @@ function Header() {
 
   const [menuClick, setMenuClick] = useState(false)
   const [menuBtn, setMenuBtn] = useState(true)
-
-  const [signinData, setSigninData] = useState([])
+  const {signinData, setSigninData} = useContextValue()
   const handleToggleMenu = () => {
     setMemberClick(!memberClick)
   }
@@ -60,6 +59,7 @@ function Header() {
   return (
     <>
       <header className="headerId">
+        {console.log(signinData[0]?.memHeadshot,62)}
         {/* <!-- 電腦版 --> */}
         <nav>
           <div className="memberMain">
@@ -112,7 +112,39 @@ function Header() {
               </div>
             </ul>
             <span className="memberBtn" onClick={handleToggleMenu}>
-              {!!checkToken('memberAuth')?.memberToken ||
+              {!!checkToken('memberAuth')?.memberToken ?  signinData[0]?.memHeadshot?.length > 20 ?    <img
+                      className="memberImg"
+                      src={`/Images/uploads/${signinData[0]?.memHeadshot}`}
+                      alt=""
+                    />: <img
+                    className="memberImg"
+                    src={`/Images/${signinData[0]?.memHeadshot}`}
+                    alt=""
+                  />:''}
+                         {!!checkToken('token')?.token ?  signinData[0]?.storeLogo?.length > 20 ?    <img
+                      className="memberImg"
+                      src={`/Images/uploads/${signinData[0]?.storeLogo}`}
+                      alt=""
+                    />: <img
+                    className="memberImg"
+                    src={`/Images/storeimages/${signinData[0]?.storeLogo}`}
+                    alt=""
+                  />:''}
+                  {!checkToken('token')?.token && !checkToken('memberAuth')?.memberToken ? <img
+                    className="memberImg"
+                    src={`/Images/member.png`}
+                    alt=""
+                  />:""}
+                          {/* {!!checkToken('memberAuth')?.memberToken ?  signinData?.length > 0 ?    <img
+                      className="memberImg"
+                      src={`/Images/uploads/${signinData[0]?.memHeadshot}`}
+                      alt=""
+                    />: <img
+                    className="memberImg"
+                    src={`/Images/member.png`}
+                    alt=""
+                  />:''} */}
+              {/* {!!checkToken('memberAuth')?.memberToken ||
               !!checkToken('token')?.token ? (
                 !!checkToken('memberAuth')?.memHeadshot ? (
                   signinData?.length > 0 ? (
@@ -141,7 +173,7 @@ function Header() {
                 )
               ) : (
                 <img className="memberImg" src={'/Images/member.png'} alt="" />
-              )}
+              )} */}
               {/* <img className="memberImg" src={'/Images/member.png'} alt="" /> */}
             </span>
           </div>

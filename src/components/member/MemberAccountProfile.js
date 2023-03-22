@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from 'react'
 // import './../../style/JIM_Account_profile.css'
 // import './../../style/JIM_Account_profile_modal.css'
 import { ACCOUNT } from '../../config/api_config'
-import { FaArrowCircleRight } from 'react-icons/fa'
 import { FaRegEdit } from 'react-icons/fa'
 import MemberAuthContext from './MemberAuthContext'
 import axios from 'axios'
@@ -79,66 +78,12 @@ function MemberAccountProfile() {
     memberMobile: false,
     memberNickName: false,
   })
-  const [imgFiles, setImgFiles] = useState('')
-  // useEffect(() => {
-  //   // document.forms['imgUpload'].submit()
-  // }, [imgFiles])
+
   // TODO modal變不見的時候沒有fade的效果(出現有是套件預設的)
   return (
     <>
       <main className="m-memberAccountMain">
-        {/* <aside className="memberAside">
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/order')
-            }}
-          >
-            <p>訂單紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/comment')
-            }}
-          >
-            <p>評論紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/like')
-            }}
-          >
-            <p>收藏</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div className="m-asideItem">
-            <p>個人資料</p>
-            <FaArrowCircleRight
-              className="m-rightArrowIcon"
-              onClick={() => {
-                navigate('/member')
-              }}
-            />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/level')
-            }}
-          >
-            <p>會員等級</p>
-            <FaArrowCircleRight
-              className="m-rightArrowIcon"
-              onClick={() => {
-                navigate('/member/level')
-              }}
-            />
-          </div>
-        </aside> */}
+   
         <MemberAccountAside />
         <div className="container">
           <div className="row">

@@ -138,6 +138,23 @@ export const MemberAuthContextProvider = ({ children }) => {
       setState(response.data.row)
     }
   }
+  // 傳給discount render的func
+  const getDiscountData = async (url, setState) => {
+    if (memberAuthState.authorized) {
+      axios.defaults.withCredentials = true
+
+      const response = await axios.get(
+        url + '/discount/' + memberAuthState.membersid,
+        {
+          headers: {
+            Authorization: 'Bearer ' + memberAuthState.memberToken,
+          },
+        }
+      )
+      console.log(response.data.row)
+      setState(response.data.row)
+    }
+  }
 
   // 會員登出
   const memberLogout = () => {
@@ -163,6 +180,8 @@ export const MemberAuthContextProvider = ({ children }) => {
         memberLogout,
         memberAuthState,
         setMemberAuthState,
+        getDiscountData,
+
       }}
     >
       <div className="minh">

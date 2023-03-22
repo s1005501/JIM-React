@@ -116,6 +116,10 @@
   border-radius: 50%;
 }
 
+.map-card p {
+  color: #000000 !important;
+}
+
 .leaflet-container {
   width: 100vw;
   height: 100vh;

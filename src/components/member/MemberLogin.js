@@ -12,8 +12,9 @@ import Swal from 'sweetalert2'
 import { googleAuth, googleProvider } from './../../config/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { async } from '@firebase/util'
-
+import {  useContextValue } from '../../ContextDashbard'
 function MemberLogin({ memberLoginOrNot }) {
+  const {signinData, setSigninData} = useContextValue()
   const [memberLoginInput, setMemberLoginInput] = useState({
     account: '',
     password: '',
@@ -99,7 +100,6 @@ function MemberLogin({ memberLoginOrNot }) {
         'Content-Type': 'application/json',
       },
     })
-    console.log(response.data)
     if (response.data.success) {
       const { memAccount, membersid, memberToken, memVerified } = response.data
 
@@ -121,6 +121,7 @@ function MemberLogin({ memberLoginOrNot }) {
           memberToken: memberToken,
           memberVerified: true,
         })
+        setSigninData(response.data)
         Swal.fire({
           title: 'Success!',
           text: `登入成功`,

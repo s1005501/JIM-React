@@ -34,7 +34,6 @@ function CommentinnerPage() {
   const [textareavalue, setTextareavalue] = useState('')
   const [replyinputvalue, setReplyinputvalue] = useState('')
   const [picname, setPicname] = useState('')
-  const [picname2, setPicname2] = useState('')
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
@@ -141,7 +140,7 @@ function CommentinnerPage() {
                     style={{ color: 'white', textDecoration: 'none' }}
                   >
                     <BsArrowReturnLeft />
-                    <span>返回搜索頁</span>
+                    返回搜索頁
                   </div>
                 </Link>
               </div>
@@ -508,12 +507,10 @@ function CommentinnerPage() {
                                 />
                               </div>
                               <div className="inputbtns">
-                                {picname2 ? (
+                                {picname ? (
                                   <img
-                                    className="replypics2"
-                                    src={
-                                      '../images/commentlocalImages/' + picname2
-                                    }
+                                    className="replypics"
+                                    src={'../images/commentlocalImages/' + picname}
                                     alt=""
                                   />
                                 ) : null}
@@ -523,7 +520,7 @@ function CommentinnerPage() {
                                     <input
                                       type="file"
                                       onChange={(e) => {
-                                        setPicname2(e.target.files[0].name)
+                                        setPicname(e.target.files[0].name)
                                       }}
                                       className="hiddenpicbtn"
                                     />
@@ -542,7 +539,7 @@ function CommentinnerPage() {
                                         {
                                           usersid: usersid,
                                           commentsid: v.sid,
-                                          repliedpics: picname2 || 'null',
+                                          repliedpics: picname || 'null',
                                           repliedcomment: replyinputvalue,
                                         }
                                       )
@@ -582,7 +579,7 @@ function CommentinnerPage() {
                                     {v3.replied_pics === 'null' ||
                                     null ? null : (
                                       <img
-                                        className="replypics2"
+                                        className="replypics"
                                         src={
                                           '../images/commentlocalImages/' +
                                           v3.replied_pics
@@ -604,7 +601,9 @@ function CommentinnerPage() {
                   {randomgame.map((v, i) => {
                     return (
                       <>
-                        <div className="recommandtitle" key={i}></div>
+                        <div className="recommandtitle" key={i}>
+                          其他遊戲推介
+                        </div>
                         <div className="gamesdetail">
                           <Link
                             to={'/comment/' + v.gamesSid}
@@ -618,7 +617,10 @@ function CommentinnerPage() {
                               />
                             </div>
 
-                            <p className="imgname" style={{ color: 'black' }}>
+                            <p
+                              className="recommandgamename"
+                              style={{ color: 'black' }}
+                            >
                               {v.gamesName}
                             </p>
                           </Link>

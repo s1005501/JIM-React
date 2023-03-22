@@ -10,6 +10,7 @@ import {
   FaDollarSign,
   FaStar,
 } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 import { useContextValue } from './MapDashbard'
 const MapPhone = ({ mapData }) => {
@@ -44,7 +45,14 @@ const MapPhone = ({ mapData }) => {
                 id={`flush-heading${v.storeSid}`}
                 style={{ background: '#FFFFFFFF' }}
               >
-                <img src={`/Images/storeimages/${v.storeLogo}`} alt="" />
+    <img
+                        src={`${
+                          v.storeLogo.length < 20
+                            ? `Images/storeimages/${v.storeLogo}`
+                            : `Images/uploads/${v.storeLogo}`
+                        }`}
+                        alt=""
+                      />
                 <button
                   className="map-basic-style accordion-button collapsed d-block"
                   type="button"
@@ -92,10 +100,15 @@ const MapPhone = ({ mapData }) => {
                       style={{ background: '#FFFFFF' }}
                     >
                       <div className="left me-3">
-                        <img
-                          src={`Images/gamesImages/${k.gamesImages}`}
-                          alt=""
-                        />
+            
+                            <img
+                        src={`${
+                          k.gamesImages.length < 20
+                            ? `Images/gamesImages/${k.gamesImages}`
+                            : `Images/uploads/${k.gamesImages}`
+                        }`}
+                        alt=""
+                      />
                       </div>
                       <div className="right">
                         <p>
@@ -117,9 +130,12 @@ const MapPhone = ({ mapData }) => {
                             : '暫無評價'}
                           {k?.commentSum ? `(${k.commentSum})` : ''}
                         </p>
-                        <button className="btn btn-outline-secondary">
+                        <Link
+                          to={`/order/${k.gamesSid}`}
+                          className="btn btn-outline-secondary"
+                        >
                           立刻前往
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   )

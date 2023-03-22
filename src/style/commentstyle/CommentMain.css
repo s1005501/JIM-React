@@ -9,8 +9,6 @@
 .searchbar_p {
   color: white;
   font-size: 40px;
-  margin-left: 50px;
-  margin-right: 50px;
 }
 .searchinput {
   height: 60px;
@@ -27,7 +25,6 @@
   color: white;
   outline: 1px;
   padding: 1rem;
-  width: 450px;
 }
 .searchicon {
   width: 40px;
@@ -46,41 +43,27 @@
   flex-direction: column;
   align-items: center;
   font-size: 30px;
-  margin-top: 60px;
-  /* border: 2px salmon solid; */
 }
-
-.hotspotgamestitle {
-  width: 100%;
-}
-
 .hotspotgamesfield {
   width: 80%;
-  height: 60vh;
+  height: 56vh;
   /* border:1px red solid; */
   display: flex;
 }
-
 .hotspotgamesqure {
-  width: 35%;
+  width: 33%;
   height: 100%;
-  /* border: 1px solid red; */
+  /* border:1px solid red; */
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 .gamesdetail {
   width: 100%;
-  height: 35vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 20px;
-  margin-bottom: 20px;
-  padding: 40px;
-  background-color: #4e4e4e;
-  box-sizing: border-box;
+  margin-bottom: 10px;
   /* border: 3px solid #d01b1b; */
 }
 .images {
@@ -99,9 +82,8 @@
 .commentimg {
   width: 100%;
   height: 100%;
-  /* border-top-left-radius: 20px; */
-  /* border-top-right-radius: 20px; */
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   /* border: 3px solid rgb(235, 138, 29); */
   object-fit: cover;
 }
@@ -114,27 +96,22 @@
   font-size: 18px;
   background-color: white;
   margin: 0;
-  border-radius: 20px;
-  /* border-bottom-left-radius: 10px; */
-  /* border-bottom-right-radius: 10px; */
-  color: black;
-  margin-top: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #d01b1b;
 }
 .news {
-  width: 40%;
-  height: 104%;
+  width: 34%;
+  height: 100%;
   /* border:1px solid blue; */
   padding: 20px;
-  margin-top: -80px;
-  /* background-color: #4e4e4e; */
 }
 .newscomment {
   width: 100%;
-  height: 100%;
-  /* border: 1px solid white; */
+  height: 97%;
+  border: 1px solid white;
   border-radius: 15px;
   padding: 10px;
-  background-color: #4e4e4e;
 }
 .newscommenttitle {
   text-align: center;
@@ -146,43 +123,22 @@
   font-size: 18px;
   height: 20px;
   margin-top: 10px;
-  margin-bottom: 80px;
-}
-.usericonimg-main {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 30px;
-  margin-right: 20px;
 }
 .mentionusername {
-  width: 100px;
-  height: 25px;
-  /* margin-right: 10px; */
-  margin-bottom: 10px;
-  border-radius: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background: #3c3c3c;
+  margin-right: 10px;
 }
 .newscommentcontent {
   color: white;
   font-size: 18px;
-  background: #3c3c3c;
-  width: 300px;
-  height: 50px;
-  border-radius: 0 20px 20px 20px;
-  padding-left: 10px;
 }
 .keywordssqure {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-bottom: 40px;
 }
 .gameskeywords {
-  width: 33%;
+  width: 20%;
   /* height: 50px; */
   display: flex;
   flex-direction: row;
@@ -192,9 +148,7 @@
 }
 .gameskeywords_p {
   font-size: 18px;
-  /* border: 1px solid white; */
-  background-color: #4e4e4e;
-  /* color: white; */
+  border: 1px solid white;
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
@@ -212,21 +166,16 @@
 .keywords_p:hover {
   color: #d01b1b;
 }
-
 @media only screen and (max-width: 768px) {
   .searchbar {
     margin-top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 300px;
   }
   .searchbar_p {
     color: red;
     font-size: 16px;
-    width: 80px;
-    margin-left: 0px;
-    margin-right: 0px;
   }
   .searchinput {
     height: 30px;
@@ -242,13 +191,12 @@
     border-bottom-left-radius: 20px;
     color: white;
     outline: 1px;
-    width: 150px;
   }
   .searchicon {
     width: 24px;
     height: 32px;
     /* border:2px solid rgba(255, 255, 255, 0.3) ; */
-    outline: none;
+    outline:none;
     background-color: rgba(255, 255, 255, 0.3);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -263,12 +211,6 @@
     position: absolute;
     display: none;
   }
-  .hotspotgames {
-    height: 1600px;
-    justify-content: start;
-    /* margin-top: 100px; */
-    /* padding-top: 100px; */
-  }
   .hotspotgamestitle {
     font-size: 24px;
   }
@@ -278,9 +220,7 @@
 
   .hotspotgamesfield {
     width: 80%;
-    height: 100%;
-    padding-bottom: 100px;
-    margin-top: -80px;
+    height: 175vh;
     /* border:1px red solid; */
     display: flex;
     flex-direction: column;
@@ -289,16 +229,11 @@
   }
   .hotspotgamesqure {
     width: 100%;
-    height: 80%;
+    height: 100%;
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* margin-top: 100px; */
-  }
-  .gamesdetail {
-    height: 300px;
-    margin-top: 10px;
   }
   .news {
     width: 100%;
@@ -309,13 +244,9 @@
   }
   .newscomment {
     width: 100%;
-    height: 85%;
+    height: 90%;
     border: 1px solid white;
     border-radius: 15px;
-    margin-top: 80px;
-  }
-  .newscommentcontent {
-    width: 200px;
   }
   .keywordssqure {
     display: none;

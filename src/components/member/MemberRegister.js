@@ -32,7 +32,7 @@ function MemberRegister({ setLoginOrRegister }) {
 
   // ! EmailJS寄信
   const sendMemberVerifiedEmail = async (data) => {
-    const { mAccount } = data
+    const { mAccount, mEmail } = data
     console.log(data)
     console.log(mAccount)
     ;(function () {
@@ -40,6 +40,7 @@ function MemberRegister({ setLoginOrRegister }) {
     })()
     var templateParams = {
       to_name: `${mAccount}`,
+      user_email: `${mEmail}`,
       message: `
         請點擊以下連結來驗證來完成註冊程序\n
         http://localhost:3000/member/${mAccount}
