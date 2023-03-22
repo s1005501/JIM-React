@@ -9,6 +9,7 @@ import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import 'react-calendar/dist/Calendar.css'
 import axios from 'axios'
 import moment from 'moment'
+import Swal from 'sweetalert2'
 import { now } from 'moment'
 import { checkToken } from '../../../ContextDashbard'
 
@@ -130,18 +131,23 @@ const CalendarDate = ({ sid, gameData }) => {
   ]
 
   const [calendarOrder, setCalendarOrder] = useState({
-    date: '',
-    time: '',
-    people: '',
-    price: '',
-    gamesName: '',
-    gameTime: '',
-    gamesLogo: '',
-    storeName: '',
-    storeAddress: '',
-    orderName: '',
-    orderNumber: '',
-    memberSid: '',
+    member: '', //會員編號
+    sid: '', //遊戲編號
+    gamesName: '', //遊戲名
+    price: '', //訂單總金額
+    people: '', //訂單選取人數
+    orderState: '', //訂單狀態
+    time: '', //訂單時間
+    date: '', //訂單日期
+    orderUsername: '', //訂單填寫姓名
+    orderPhone: '', // 訂單填寫電話
+    orderAdress: '', // 訂單填寫地址
+    orderEmail: '', // 訂單填寫信箱
+    orderDiscount: '', // 訂單使用優惠券
+    gameTime: '', //遊戲時間
+    gamesLogo: '', //遊戲圖片
+    storeName: '', //商店名
+    storeAddress: '', //商店地址
   })
   console.log(calendarOrder)
   // -------------------
@@ -194,9 +200,16 @@ const CalendarDate = ({ sid, gameData }) => {
       member: checkToken('memberAuth')?.membersid,
     })
   }, [gameData])
+
   const OrderProcessClick = () => {
     if (!checkToken('memberAuth')?.memberToken) return alert('請登入會員')
     localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
+    Swal.fire({
+      title: '前往預約流程',
+      text: '',
+      icon: 'success',
+      confirmButtonText: '確認',
+    })
     navigate('/orderp')
   }
   // console.log(!checkToken('memberAuth').memberToken)
@@ -230,7 +243,7 @@ const CalendarDate = ({ sid, gameData }) => {
           return (
             <Button
               key={key}
-              className="m-2 col-3 fs-6 h-auto"
+              className="m-2 col-3 fs-6 h-auto O_Reserve_Calendar_DateBtn"
               onClick={() => {
                 setSelectedTime(time)
                 setCalendarOrder({

@@ -8,6 +8,7 @@ import {
 import { Button, message, Steps, theme, Modal } from 'antd'
 import { ORDER } from '../../components/config/api_config'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import OrderProcessOne from './O_Process/O_Process_One'
 import OrderProcessTwo from './O_Process/O_Process_Two'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -159,12 +160,21 @@ function OrderProcess() {
     textAlign: 'center',
     color: token.colorTextTertiary,
     backgroundColor: token.colorFillAlter,
-    marginTop: 50,
     // borderRadius: token.borderRadiusLG,
     // border: `1px dashed ${token.colorBorder}`,
   }
 
   // -------------------------------------------下列是整個畫面內容，有用套件，步驟條內容整個寫在Steps裡，如要修改步驟條內容，要找上面steps的內容修改
+
+  const OrderPaymentClick = () => {
+    Swal.fire({
+      title: '成功!',
+      text: `資料確認，請付款`,
+      icon: 'success',
+      confirmButtonText: '確認',
+    })
+    next()
+  }
 
   return (
     <>
@@ -185,10 +195,13 @@ function OrderProcess() {
               percent={60} // 標題的藍色框框進度條
               labelPlacement="vertical"
               items={items}
+              className="mb-5"
             />
 
             {/* 步驟條內容部分，如要修改要往上面找Steps，css修改找contentStyle */}
-            <div style={contentStyle}>{steps[current].content}</div>
+            <div style={contentStyle} className="mt-2">
+              {steps[current].content}
+            </div>
 
             {/* button部分，下一步及上一步按鈕，步驟4因為要把btn放在內容裡，所以下列只有1~3的， */}
             <div className="O_Process_button">
@@ -226,7 +239,10 @@ function OrderProcess() {
               )}
 
               {current === steps.length - 3 && (
-                <Button className="O_Process_NextBtn" onClick={() => next()}>
+                 <Button
+                 className="O_Process_NextBtn"
+                 onClick={OrderPaymentClick}
+               >
                   確認資料
                 </Button>
               )}

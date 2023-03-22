@@ -17,7 +17,13 @@
   font-size: 18px;
 }
 
-/* ---------------------- */
+/* 時間段 */
+.O_Reserve_Calendar_DateBtn:hover {
+  background-color: #D01B1B;
+  color: white !important;
+}
+
+/* -----------日曆----------- */
 
 /* 日曆 */
 .react-calendar {
@@ -97,13 +103,16 @@
   background-color: #d01b1b !important;
 }
 
-/* 測試用 */
+/* ------------時間段-------------- */
 
-/* .O_Reserve_Calendar_DateBtn:hover {
-  background-color: #D01B1B;
+/* 時間段選取變色 */
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-danger {
+  background-color: #d01b1b;
+  color: white;
 }
 
-.O_Reserve_Calendar_BtnActive {
+/* -------------------------- */
+/* .O_Reserve_Calendar_BtnActive {
   background-color: #D01B1B;
 }
 
@@ -115,9 +124,3 @@
 .ant-btn-default:disabled {
   color: white;
 } */
-
-/* 時間段選取變色 */
-:where(.css-dev-only-do-not-override-1me4733).ant-btn-danger {
-  background-color: #d01b1b;
-  color: white;
-}
