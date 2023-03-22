@@ -156,8 +156,9 @@ const updatePlayerPosition = (
     setBoxTrigger(3)
   }
 
+  //轉跳在這裡
   if (gameOver === true) {
-    navigate('gameover')
+    navigate('/result')
   }
   const OnGround = () => {
     return y >= gameHeight - height

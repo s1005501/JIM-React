@@ -59,7 +59,7 @@ function Header() {
   return (
     <>
       <header className="headerId">
-        {console.log(signinData[0]?.memHeadshot,62)}
+        {/* {console.log(signinData[0]?.memHeadshot,62)} */}
         {/* <!-- 電腦版 --> */}
         <nav>
           <div className="memberMain">

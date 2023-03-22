@@ -4,9 +4,11 @@ import '../../style/FisrtPage/firstPage.css'
 import { motion } from 'framer-motion'
 import Modal2 from './Modal2'
 import Movement from './Movement'
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
 function Game({ sum, setSum, gameOver, setGameOver }) {
+  // console.log(useNavigate);
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const [boxTrigger, setBoxTrigger] = useState(1)
   return (
@@ -16,14 +18,25 @@ function Game({ sum, setSum, gameOver, setGameOver }) {
         setBoxTrigger={setBoxTrigger}
         gameOver={gameOver}
       />
-      <div className="canvas" style={{ color: 'white', fontSize: '25px' }}>
+      <div
+        className="canvas"
+        style={{ position: 'relative', color: 'white', fontSize: '25px' }}
+      >
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="save-button"
           onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
         >
-          Launch modal{sum}
+          <button
+            style={{ position: 'fixed' }}
+            onClick={() => {
+              navigate('/firstPage')
+            }}
+          >
+            skip
+          </button>
+          {/* Launch modal{sum} */}
         </motion.button>
         {isOpen && (
           <Modal2

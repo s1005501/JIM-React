@@ -9,7 +9,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background: #00000076;
+  /* background: #00000076; */
   /* background-image: url('./modal.png'); */
   display: flex;
   align-items: center;
@@ -44,12 +44,19 @@
   margin-left: 10px;
   color: black;
   margin-top: 20px;
-  background-color: #ffffff5e;
+  background-color: #ffffff50;
   border-radius: 15px;
   padding-left: 20px;
   padding-right: 20px;
   padding: 5px;
+  cursor: pointer;
 }
+.option:hover {
+  background-color: #ffffff;
+}
+
+
+
 .question {
   text-align: center;
   font-family: 'Jost';

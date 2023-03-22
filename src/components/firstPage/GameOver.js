@@ -1,68 +1,52 @@
-import React from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import '../../style/FisrtPage/gameover.css'
+import { useEffect } from 'react'
+import axios from 'axios'
+import resultData from './data/result.json'
 
 function GameOver({ sum }) {
-  let str = ''
-  if (sum === 12) {
-    str = '初心者壞份子'
+  const dataNum = useRef(0)
+  // useEffect(() => {
+  //   ;(async () => {
+  //     const discountRand = Math.random().toString(36).substring(7).toUpperCase().slice(0, 5)
+  //     const r = await axios.get(
+  //       `http://localhost:3005/firstpage/gameover/${discountRand}`
+  //     )
+  //     console.log(discountRand)
+  //   })()
+  // }, [])
+
+  if (sum <= 4) {
+    // str = '麻瓜'
+    dataNum.current = 0
   }
   if (sum > 4 && sum <= 8) {
-    str = '中等壞份子'
+    // str = '氣氛製造者'
+    dataNum.current = 1
   }
   if (sum > 8 && sum <= 12) {
-    str = '你這個壞份子'
+    // str = '勇者'
+    dataNum.current = 2
   }
   if (sum > 12) {
-    str = '極品壞份子'
+    // str = '智者'
+    dataNum.current = 3
   }
+  const currentNum = useMemo(() => {
+    return resultData[dataNum.current]
+  }, [])
+  
+  console.log(currentNum.img1_id1)
   return (
     <>
-      {/* <div className="box">
+      <div className="box">
         <div style={{ color: 'white' }}>
-          總分:{sum}
+          總分:{sum}{' '}
+          {'' +
+            Math.random().toString(36).substring(7).toUpperCase().slice(0, 5)}
           <br />
-          {str}
+          <img src={`/images/gamesImages/${currentNum.img1_id1}`}/>
         </div>
-      </div> */}
-
-      <div id="loading_ani">
-        <div class="boxes">
-          <div class="box">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="box">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="box">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="box">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-
-        <a
-          class="dribbble"
-          href="https://dribbble.com/shots/5533600-Loading-boxes"
-          target="_blank"
-        >
-          <img
-            src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg"
-            alt=""
-          />
-        </a>
       </div>
     </>
   )

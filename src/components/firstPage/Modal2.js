@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Backdrop from './Backdrop'
 import '../../style/FisrtPage/modal.css'
-import question from './question.json'
+import question from './data/question.json'
 
 //animation state
 const dropIn = {
@@ -49,76 +49,109 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                 <div className="modal_ctx">
                   <div className="question">Question: {v.question}</div>
                   <div className="d-flex flex-column">
-                    <div className="d-flex flex-row option">
+                    <div
+                      className="d-flex flex-row option"
+                      onClick={(e) => {
+                        setTimeout(() => {
+                          onClose()
+                          if (boxTrigger == 3) {
+                            setGameOver(true)
+                          }
+                        }, 300)
+                        setSum(sum + 1)
+                      }}
+                    >
+                      <label
+                        style={{ cursor: 'pointer', marginLeft: '30px' }}
+                        htmlFor={i}
+                      >
+                        {v.option1}
+                      </label>
                       <input
+                        id={i}
                         type="radio"
-                        name="option1"
-                        value="1"
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            onClose()
-                            if (boxTrigger == 3) {
-                              setGameOver(true)
-                            }
-                          }, 300)
-                          setSum(sum + parseInt(e.target.value))
-                        }}
-                      />
-                      <div className="mx-3">{v.option1}</div>
-                    </div>
-
-                    <div className="d-flex flex-row option">
-                      <input
-                        type="radio"
-                        name="option1"
-                        value="2"
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            onClose()
-                            if (boxTrigger == 3) {
-                              setGameOver(true)
-                            }
-                          }, 300)
-                          setSum(sum + parseInt(e.target.value))
-                        }}
-                      />
-                      <div className="mx-3">{v.option2}</div>
-                    </div>
-
-                    <div className="d-flex flex-row option">
-                      <input
-                        type="radio"
-                        name="option1"
-                        value="3"
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            onClose()
-                            if (boxTrigger == 3) {
-                              setGameOver(true)
-                            }
-                          }, 300)
-                          setSum(sum + parseInt(e.target.value))
-                        }}
-                      />
-                      <div className="mx-3">{v.option3}</div>
-                    </div>
-
-                    <div className="d-flex flex-row option">
-                      <input
-                        type="radio"
+                        style={{ opacity: 0 }}
                         name="option1"
                         value="4"
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            onClose()
-                            if (boxTrigger == 3) {
-                              setGameOver(true)
-                            }
-                          }, 300)
-                          setSum(sum + parseInt(e.target.value))
-                        }}
                       />
-                      <div className="mx-3">{v.option4}</div>
+                    </div>
+                    <div
+                      className="d-flex flex-row option"
+                      onClick={(e) => {
+                        setTimeout(() => {
+                          onClose()
+                          if (boxTrigger == 3) {
+                            setGameOver(true)
+                          }
+                        }, 300)
+                        setSum(sum + 2)
+                      }}
+                    >
+                      <label
+                        style={{ cursor: 'pointer', marginLeft: '30px' }}
+                        htmlFor={i}
+                      >
+                        {v.option2}
+                      </label>
+                      <input
+                        id={i}
+                        type="radio"
+                        style={{ opacity: 0 }}
+                        name="option1"
+                        value="4"
+                      />
+                    </div>
+                    <div
+                      className="d-flex flex-row option"
+                      onClick={(e) => {
+                        setTimeout(() => {
+                          onClose()
+                          if (boxTrigger == 3) {
+                            setGameOver(true)
+                          }
+                        }, 300)
+                        setSum(sum + 3)
+                      }}
+                    >
+                      <label
+                        style={{ cursor: 'pointer', marginLeft: '30px' }}
+                        htmlFor={i}
+                      >
+                        {v.option3}
+                      </label>
+                      <input
+                        id={i}
+                        type="radio"
+                        style={{ opacity: 0 }}
+                        name="option1"
+                        value="4"
+                      />
+                    </div>{' '}
+                    <div
+                      className="d-flex flex-row option"
+                      onClick={(e) => {
+                        setTimeout(() => {
+                          onClose()
+                          if (boxTrigger == 3) {
+                            setGameOver(true)
+                          }
+                        }, 300)
+                        setSum(sum + 4)
+                      }}
+                    >
+                      <label
+                        style={{ cursor: 'pointer', marginLeft: '30px' }}
+                        htmlFor={i}
+                      >
+                        {v.option4}
+                      </label>
+                      <input
+                        id={i}
+                        type="radio"
+                        style={{ opacity: 0 }}
+                        name="option1"
+                        value="4"
+                      />
                     </div>
                   </div>
                 </div>

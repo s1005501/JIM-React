@@ -23,12 +23,23 @@ const IndexManage = () => {
     case 'gameover':
       currentPage = (
         <>
-        <GameOver sum={sum} />
+          <GameOver sum={sum} />
           <Page1 sum={sum} />
           <Page2 />
         </>
       )
       break
+
+    case 'result':
+      currentPage = (
+        <>
+          <GameOver sum={sum} />
+          {/* <Page1 sum={sum} /> */}
+          <Page2 />
+        </>
+      )
+      break
+
     default:
       currentPage = (
         <Game

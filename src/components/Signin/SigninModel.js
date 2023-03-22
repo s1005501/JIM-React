@@ -670,12 +670,13 @@ const SigninStoreRegister = ({ name }) => {
                       )
                       if (!!r.data.length) {
                         const fileLoad = (e) => {
-                          setImgUrl(e.target.result)
+                         setImgUrl(e.target.result)
                         }
                         const file = v[0]
                         const fileReader = new FileReader()
                         fileReader.addEventListener('load', fileLoad)
                         fileReader.readAsDataURL(file)
+                        
                         setValue('LogoImg', r.data[0].filename)
                       }
                     }
