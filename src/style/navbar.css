@@ -35,6 +35,7 @@ nav ul a {
 @media (max-width: 600px) {
   .m-mainLogo {
     letter-spacing: 0;
+    display: none;
   }
 }
 

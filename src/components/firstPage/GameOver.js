@@ -9,15 +9,19 @@ import { useNavigate } from 'react-router-dom'
 function GameOver({ sum }) {
   const navigate = useNavigate()
   const dataNum = useRef(0)
-  // useEffect(() => {
-  //   ;(async () => {
-  //     const discountRand = Math.random().toString(36).substring(7).toUpperCase().slice(0, 5)
-  //     const r = await axios.get(
-  //       `http://localhost:3005/firstpage/gameover/${discountRand}`
-  //     )
-  //     console.log(discountRand)
-  //   })()
-  // }, [])
+  useEffect(() => {
+    ;(async () => {
+      const discountRand = Math.random()
+        .toString(36)
+        .substring(7)
+        .toUpperCase()
+        .slice(0, 5)
+      const r = await axios.get(
+        `http://localhost:3005/firstpage/gameover/${discountRand}`
+      )
+      console.log(discountRand)
+    })()
+  }, [])
   if (sum <= 4) {
     dataNum.current = 0
   }

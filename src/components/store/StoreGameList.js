@@ -39,7 +39,8 @@ const StoreGameList = () => {
         },
         {
           label: '否',
-          onClick: () =>  swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
+          onClick: () =>
+            swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
         },
       ],
     })
@@ -55,7 +56,7 @@ const StoreGameList = () => {
   }
 
   return (
-    <div className="store-list-body text-center py-5 px-5">
+    <div className="store-list-body text-center py-5 px-2 px-sm-5">
       <p className="store-subtitle">遊戲管理</p>
       <table className="table mt-3 store-table">
         <thead>

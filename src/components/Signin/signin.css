@@ -1,3 +1,7 @@
+.Signins {
+  margin-top: 120px;
+}
+
 .signin-router-body form {
   color: #ffffff;
 }
@@ -116,9 +120,15 @@
     margin-bottom: 25px;
   }
   .signin-router-outbody {
-    width: 70vw;
+    width: 90vw;
   }
   .signin-router-botton {
-    width: 60vw;
+    width: 80vw;
+  }
+  .Signins {
+    margin: 0;
+  }
+  .Signinr {
+    padding: 0 10px;
   }
 }

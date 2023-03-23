@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink,useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   AiFillEnvironment,
@@ -8,10 +8,9 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiFillFacebook,
-  AiOutlinePoweroff
-  
+  AiOutlinePoweroff,
 } from 'react-icons/ai'
-import {FaSignOutAlt}from'react-icons/fa'
+import { FaSignOutAlt } from 'react-icons/fa'
 import { BsLine } from 'react-icons/bs'
 import { checkToken } from '../../ContextDashbard'
 import Swal from 'sweetalert2'
@@ -122,23 +121,25 @@ function Footer() {
               </NavLink>
             </li> */}
             {!!checkToken('memberAuth')?.memberToken ? (
-                  <li >
-                    <NavLink to="/member">
-                      <AiOutlineUser />   <p>會員</p>
-                    </NavLink>
-                  </li>
-                ) : (
-                  ''
-                )}
-                {!!checkToken('token')?.token ? (
-                  <li >
-                    <NavLink to="/store">
-                      <AiOutlineUser />   <p>工作室</p>
-                    </NavLink>
-                  </li>
-                ) : (
-                  ''
-                )}
+              <li>
+                <NavLink to="/member">
+                  <AiOutlineUser />
+                  <p>會員</p>
+                </NavLink>
+              </li>
+            ) : (
+              ''
+            )}
+            {!!checkToken('token')?.token ? (
+              <li>
+                <NavLink to="/store">
+                  <AiOutlineUser />
+                  <p>工作室</p>
+                </NavLink>
+              </li>
+            ) : (
+              ''
+            )}
             {/* <li>
               <NavLink to="/store">
                 <AiOutlineShop />
@@ -158,29 +159,33 @@ function Footer() {
               </NavLink>
             </li>
             {!!checkToken('memberAuth')?.memberToken ||
-                !!checkToken('token')?.token ? (
-                  <li
-                    onClick={() => {
-                      localStorage.removeItem('token')
-                      localStorage.removeItem('memberAuth')
-                      Swal.fire({
-                        title: '成功登出!',
-                        text: `成功登出`,
-                        icon: 'success',
-                        confirmButtonText: '確認',
-                      })
-                      navigate('/firstPage')
-                    }}
-                  >
-                   <FaSignOutAlt /> <p>登出</p>
-                  </li>
-                ) : (
-                  <li >
-                    <NavLink to="/signin">
-                      <AiOutlinePoweroff /> <p>登入</p>
-                    </NavLink>
-                  </li>
-                )}
+            !!checkToken('token')?.token ? (
+              <li
+                onClick={() => {
+                  localStorage.removeItem('token')
+                  localStorage.removeItem('memberAuth')
+                  Swal.fire({
+                    title: '成功登出!',
+                    text: `成功登出`,
+                    icon: 'success',
+                    confirmButtonText: '確認',
+                  })
+                  navigate('/firstPage')
+                }}
+              >
+                <NavLink to="/signin">
+                  <FaSignOutAlt />
+                  <p>登出</p>
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/signin">
+                  <AiOutlinePoweroff />
+                  <p>登入</p>
+                </NavLink>
+              </li>
+            )}
             {/* <li   onClick={() => {
                       localStorage.removeItem('token')
                       localStorage.removeItem('memberAuth')

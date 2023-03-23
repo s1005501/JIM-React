@@ -632,7 +632,7 @@ const SigninStoreRegister = ({ name }) => {
         onSubmit={handleSubmit(submit)}
         className="d-flex flex-column align-items-center"
       >
-        <div className="my-3 d-sm-flex flex-column justify-content-center align-items-center">
+        <div className="my-3 d-flex flex-column justify-content-center align-items-center">
           <div className="mt-3 w-75 h-50">
             <img
               src={imgUrl}
@@ -670,13 +670,13 @@ const SigninStoreRegister = ({ name }) => {
                       )
                       if (!!r.data.length) {
                         const fileLoad = (e) => {
-                         setImgUrl(e.target.result)
+                          setImgUrl(e.target.result)
                         }
                         const file = v[0]
                         const fileReader = new FileReader()
                         fileReader.addEventListener('load', fileLoad)
                         fileReader.readAsDataURL(file)
-                        
+
                         setValue('LogoImg', r.data[0].filename)
                       }
                     }
