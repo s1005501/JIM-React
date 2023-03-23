@@ -24,8 +24,8 @@ const IndexManage = () => {
       currentPage = (
         <>
           <GameOver sum={sum} />
-          <Page1 sum={sum} />
-          <Page2 />
+          {/* <Page1 sum={sum} /> */}
+          {/* <Page2 /> */}
         </>
       )
       break

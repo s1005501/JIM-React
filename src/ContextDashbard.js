@@ -16,7 +16,9 @@ const ContextDashbard = ({ children }) => {
   const [render, setRender] = useState(false)
   const [signinData, setSigninData] = useState([])
   return (
-    <Context.Provider value={{ getBackData, render, setRender,signinData,setSigninData}}>
+    <Context.Provider
+      value={{ getBackData, render, setRender, signinData, setSigninData }}
+    >
       <div>{children}</div>
     </Context.Provider>
   )
@@ -31,4 +33,3 @@ const checkToken = (key) => {
 }
 
 export { checkToken }
-

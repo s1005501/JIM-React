@@ -29,12 +29,13 @@ function Game({ sum, setSum, gameOver, setGameOver }) {
           onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
         >
           <button
+            id="skip_button"
             style={{ position: 'fixed' }}
             onClick={() => {
               navigate('/firstPage')
             }}
           >
-            skip
+            SKIP
           </button>
           {/* Launch modal{sum} */}
         </motion.button>

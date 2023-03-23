@@ -8,6 +8,24 @@
   padding: 0;
 }
 
+/* animation */
+body {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* animation */
+
 #background {
   background: url('../../../public/Images/first_page/JOINME_background.png');
   position: absolute;
@@ -32,6 +50,20 @@
   z-index: 1;
   /* margin-left: 18%; */
   /* border: 1px solid red; */
+}
+
+#skip_button {
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  font-family: 'Jost';
+  font-size: 20px;
+  /* padding: 5px; */
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
 }
 
 #leftBody {
@@ -389,8 +421,6 @@
   }
 }
 /*----------phone----------*/
-
-
 
 /* ---------fade-------------- */
 .fade-enter {

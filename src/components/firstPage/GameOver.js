@@ -3,8 +3,11 @@ import '../../style/FisrtPage/gameover.css'
 import { useEffect } from 'react'
 import axios from 'axios'
 import resultData from './data/result.json'
+import Box_spinning from './Box_spinning'
+import { useNavigate } from 'react-router-dom'
 
 function GameOver({ sum }) {
+  const navigate = useNavigate()
   const dataNum = useRef(0)
   // useEffect(() => {
   //   ;(async () => {
@@ -15,37 +18,92 @@ function GameOver({ sum }) {
   //     console.log(discountRand)
   //   })()
   // }, [])
-
   if (sum <= 4) {
-    // str = '麻瓜'
     dataNum.current = 0
   }
   if (sum > 4 && sum <= 8) {
-    // str = '氣氛製造者'
     dataNum.current = 1
   }
   if (sum > 8 && sum <= 12) {
-    // str = '勇者'
     dataNum.current = 2
   }
   if (sum > 12) {
-    // str = '智者'
     dataNum.current = 3
   }
   const currentNum = useMemo(() => {
     return resultData[dataNum.current]
   }, [])
-  
-  console.log(currentNum.img1_id1)
+
+  // console.log(currentNum.img1_id1)
   return (
     <>
-      <div className="box">
+      <div className="box ">
         <div style={{ color: 'white' }}>
-          總分:{sum}{' '}
-          {'' +
-            Math.random().toString(36).substring(7).toUpperCase().slice(0, 5)}
+          總分:{sum}
+          Math.random().toString(36).substring(7).toUpperCase().slice(0, 5){' '}
           <br />
-          <img src={`/images/gamesImages/${currentNum.img1_id1}`}/>
+          {/* <img src={`/images/gamesImages/${currentNum.img1_id1}`} alt="" /> */}
+        </div>
+        <div id="top_ctx" className="mx-auto">
+          <div className="gameover_title">我的測驗結果:</div>
+          <div className="gameover_name">{currentNum.name}</div>
+          <Box_spinning />
+          <div className="gameover_content">{currentNum.content}</div>
+        </div>
+
+        <div id="bottom_recommand" className="mx-auto">
+          <div className="gameover_subtitle">你可能會適合...</div>
+          <div className="recommand_cards">
+            <div
+              id="card1"
+              className="card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                navigate(`/order/${currentNum.img1}`)
+              }}
+            >
+              <div className="card_content">
+                <img
+                  className="box_img"
+                  src={`/images/gamesImages/${currentNum.img1_id1}`}
+                  alt=""
+                ></img>
+              </div>
+            </div>
+            <div
+              id="card2"
+              className="card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                navigate(`/order/${currentNum.img2}`)
+              }}
+            >
+              <div className="card_content">
+                <img
+                  className="box_img"
+                  src={`/images/gamesImages/${currentNum.img2_id2}`}
+                  alt=""
+                ></img>
+              </div>
+            </div>
+
+            <div
+              id="card3"
+              className="card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                navigate(`/order/${currentNum.img3}`)
+              }}
+            >
+              <div className="card_content">
+                <img
+                  className="box_img"
+                  src={`/images/gamesImages/${currentNum.img3_id3}`}
+                  alt=""
+                ></img>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
