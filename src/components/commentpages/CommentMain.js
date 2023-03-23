@@ -183,7 +183,7 @@ function CommentMain() {
                   {keyname.map((v, i) => {
                     if (i < 3) {
                       return (
-                        <div className="gameskeywords">
+                        <div className="gameskeywords" key={v.gamesSid}>
                           <Link
                             to={'/comment/' + v.gamesSid}
                             className="keywords_p"

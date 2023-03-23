@@ -126,6 +126,11 @@
   display: flex;
   width: 90%;
 }
+.m-profilePassword > div > input {
+  color: #fff;
+  background-color: transparent;
+  border: transparent;
+}
 
 .m-profileInfo div:last-child {
   margin-bottom: 0px;

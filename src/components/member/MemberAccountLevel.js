@@ -16,53 +16,6 @@ function MemberAccountLevel() {
   return (
     <>
       <main className="m-memberAccountMain">
-        {/* <aside className="memberAside">
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/order')
-            }}
-          >
-            <p>訂單紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/comment')
-            }}
-          >
-            <p>評論紀錄</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/like')
-            }}
-          >
-            <p>收藏</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member')
-            }}
-          >
-            <p>個人資料</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-          <div
-            className="m-asideItem"
-            onClick={() => {
-              navigate('/member/level')
-            }}
-          >
-            <p>會員等級</p>
-            <FaArrowCircleRight className="m-rightArrowIcon" />
-          </div>
-        </aside> */}
         <MemberAccountAside />
         <div className="container">
           <div className="row">
@@ -90,20 +43,20 @@ function MemberAccountLevel() {
                         尚差多少金額可升級<span>{levelData.difference}元</span>
                       </p>
                     )}
-                  
+
                     {/* 等級可打多少折 */}
                     {levelData.memCardLevel === '銅卡會員' ? (
-                      <p>銅卡會員每筆消費均可打九折</p>
+                      <p>銅卡會員每筆消費均可打9折</p>
                     ) : (
                       ''
                     )}
                     {levelData.memCardLevel === '銀卡會員' ? (
-                      <p>銀卡會員每筆消費均可打八折</p>
+                      <p>銀卡會員每筆消費均可打8折</p>
                     ) : (
                       ''
                     )}
                     {levelData.memCardLevel === '金卡會員' ? (
-                      <p>金卡會員每筆消費均可打八折</p>
+                      <p>金卡會員每筆消費均可打7折</p>
                     ) : (
                       ''
                     )}
@@ -112,24 +65,72 @@ function MemberAccountLevel() {
               </div>
               <div className="m-levelLevelUpInfo">
                 <p className="m-levelLevelUpInfoTitle">會員權益說明</p>
-                <p className="m-levelLevelUpInfoContext">
-                  <br />
-                  【免費申辦，效期無限】 <br />
-                  於本網站完成註冊會員後，即可成為銅卡會員
-                  <br />
-                  銅卡會員消費累計無效期限制，消費累計滿$500(含)元即可升等為銀卡會員
-                  <br />
-                  <br />
-                  【好禮優惠，聰明消費】 <br />
-                  銅卡會員於本網站預約密室逃脫遊戲即享每筆訂單9折優惠
-                  <br />
-                  <br />
-                  【生日禮讚，專屬祝福】
-                  <br />
-                  生日獲贈$50優惠券乙張，不限訂單金額均可抵用。(於前月25號依匯券當日卡別發放相應優惠券至會員帳戶；生日當月成為銅卡會員，系統將自動於註冊當日匯入。)
-                  <br />
-                  <br />
-                </p>
+                {levelData.memCardLevel === '銅卡會員' ? (
+                  <p className="m-levelLevelUpInfoContext">
+                    <br />
+                    【免費申辦，效期無限】 <br />
+                    於本網站完成註冊會員後，即可成為銅卡會員
+                    <br />
+                    銅卡會員消費累計無效期限制，消費累計滿$500(含)元即可升等為銀卡會員
+                    <br />
+                    <br />
+                    【好禮優惠，聰明消費】 <br />
+                    銅卡會員於本網站預約密室逃脫遊戲即享每筆訂單9折優惠
+                    <br />
+                    <br />
+                    【生日禮讚，專屬祝福】
+                    <br />
+                    生日獲贈$50優惠券乙張，不限訂單金額均可抵用。(於前月25號依匯券當日卡別發放相應優惠券至會員帳戶；生日當月成為銅卡會員，系統將自動於註冊當日匯入。)
+                    <br />
+                    <br />
+                  </p>
+                ) : (
+                  ''
+                )}
+                {levelData.memCardLevel === '銀卡會員' ? (
+                  <p className="m-levelLevelUpInfoContext">
+                    <br />
+                    【免費申辦，效期無限】 <br />
+                    於本網站完成註冊會員後，即可成為銅卡會員
+                    <br />
+                    銀卡會員消費累計無效期限制，消費累計滿$3000(含)元即可升等為金卡會員
+                    <br />
+                    <br />
+                    【好禮優惠，聰明消費】 <br />
+                    銀卡會員於本網站預約密室逃脫遊戲即享每筆訂單8折優惠
+                    <br />
+                    <br />
+                    【生日禮讚，專屬祝福】
+                    <br />
+                    生日獲贈$50優惠券乙張，不限訂單金額均可抵用。(於前月25號依匯券當日卡別發放相應優惠券至會員帳戶；生日當月成為銅卡會員，系統將自動於註冊當日匯入。)
+                    <br />
+                    <br />
+                  </p>
+                ) : (
+                  ''
+                )}
+                {levelData.memCardLevel === '金卡會員' ? (
+                  <p className="m-levelLevelUpInfoContext">
+                    <br />
+                    【免費申辦，效期無限】 <br />
+                    於本網站完成註冊會員後，即可成為銅卡會員
+                    <br />
+                    金卡會員消費累計無效期限制，恭喜您已升到最高等級會員
+                    <br />
+                    <br />
+                    【好禮優惠，聰明消費】 <br />
+                    金卡會員於本網站預約密室逃脫遊戲即享每筆訂單7折優惠
+                    <br />
+                    <br />
+                    【生日禮讚，專屬祝福】
+                    <br />
+                    生日獲贈$50優惠券乙張，不限訂單金額均可抵用。(於前月25號依匯券當日卡別發放相應優惠券至會員帳戶；生日當月成為銅卡會員，系統將自動於註冊當日匯入。)
+                    <br />
+                    <br />
+                  </p>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>

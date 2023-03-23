@@ -22,7 +22,7 @@ body {
 
 .leftContainer {
   /* min-height: 80vh; */
-  width: 12%;
+  /* width: 12%; */
   display: flex;
   position: relative;
 }
@@ -50,6 +50,8 @@ body {
   /* margin-top: 120px; */
   width: 100%;
   z-index: 10;
+
+
 }
 
 .mainContainer p {

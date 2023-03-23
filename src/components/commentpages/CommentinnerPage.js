@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect,Fragment } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../common/Header'
@@ -106,12 +106,13 @@ function CommentinnerPage() {
   useEffect(() => {
     getrandomdata()
     getgamedetail()
-    getavrage()
+    // getavrage()
     getcommentuser()
     getlikedata()
     getbelowcomment()
   }, [mygamesName])
   useEffect(() => {
+    getavrage()
     getreplydata()
     getbelowcomment()
     // gettotalliked();
@@ -149,8 +150,8 @@ function CommentinnerPage() {
               <>
                 {gamedetail.map((v, i) => {
                   return (
-                    <>
-                      <div className="gamedetail" key={i}>
+                    <Fragment key={i}>
+                      <div className="gamedetail">
                         <div className="img2">
                           <img
                             className="image"
@@ -165,13 +166,13 @@ function CommentinnerPage() {
                               {[...Array(5)].map((value, index) => {
                                 if (index + 1 <= avrage) {
                                   return (
-                                    <div>
+                                    <div key={index}>
                                       <AiTwotoneStar />
                                     </div>
                                   )
                                 } else {
                                   return (
-                                    <div>
+                                    <div key={index}>
                                       <AiOutlineStar />
                                     </div>
                                   )
@@ -218,7 +219,7 @@ function CommentinnerPage() {
                         {[...Array(5)].map((v, i) => {
                           if (i + 1 <= ratescore) {
                             return (
-                              <div
+                              <div key={i}
                                 onClick={() => {
                                   setRatescore(i + 1)
                                 }}
@@ -228,7 +229,7 @@ function CommentinnerPage() {
                             )
                           } else {
                             return (
-                              <div
+                              <div key={i}
                                 onClick={() => {
                                   setRatescore(i + 1)
                                 }}
@@ -254,7 +255,7 @@ function CommentinnerPage() {
                         {picname ? (
                           <img
                             className="replypics"
-                            src={'../images/commentlocalImages/' + picname}
+                            src={'../images/uploads/' + picname}
                             alt=""
                           />
                         ) : null}
@@ -264,8 +265,13 @@ function CommentinnerPage() {
                             <input
                               type="file"
                               className="hiddenpicbtn"
-                              onChange={(e) => {
-                                setPicname(e.target.files[0].name)
+                              onChange={async(e) => {
+                                console.log(e.target.files[0])
+                                const fd = new FormData()
+                                fd.append('photos',e.target.files[0])
+                                const r = await axios.post('http://localhost:3005/post/',fd)
+                                console.log(r.data[0].filename)
+                                setPicname(r.data[0].filename)
                               }}
                             />
                           </button>
@@ -287,11 +293,9 @@ function CommentinnerPage() {
                                   comment: textareavalue,
                                 }
                               )
-                              console.log(a)
                               setRatescore(0)
                               setTextareavalue('')
                               setPicname('')
-                              console.log(123)
                               setRender(!reader)
                               // window.location.reload();
                             }}
@@ -300,7 +304,7 @@ function CommentinnerPage() {
                           </button>
                         </div>
                       </div>
-                    </>
+                    </Fragment>
                   )
                 })}
               </>
@@ -324,7 +328,6 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             </div>
-                            {console.log(v.memHeadshot.length > 20)}
                             <div className="usercommentdetail">
                               <p style={{ margin: '0' }}>{v.memNickName}</p>
                               <p className="datetime" style={{ margin: '0' }}>
@@ -334,13 +337,13 @@ function CommentinnerPage() {
                                 {[...Array(5)].map((value, index) => {
                                   if (index + 1 <= v.rate) {
                                     return (
-                                      <div>
+                                      <div key={index}>
                                         <AiTwotoneStar />
                                       </div>
                                     )
                                   } else {
                                     return (
-                                      <div>
+                                      <div key={index}>
                                         <AiOutlineStar />
                                       </div>
                                     )
@@ -354,7 +357,12 @@ function CommentinnerPage() {
                             {v.pics === 'null' ? null : (
                               <img
                                 className="replypics"
-                                src={'../images/commentlocalImages/' + v.pics}
+                               src={
+                                  v.pics.length > 20
+                                    ? '../Images/uploads/' + v.pics
+                                    : '../Images/commentlocalImages/' +
+                                      v.pics
+                                }
                                 alt=""
                               />
                             )}
@@ -511,9 +519,7 @@ function CommentinnerPage() {
                                 {picname2 ? (
                                   <img
                                     className="replypics2"
-                                    src={
-                                      '../images/commentlocalImages/' + picname2
-                                    }
+                                    src={'../images/uploads/' + picname2}
                                     alt=""
                                   />
                                 ) : null}
@@ -522,8 +528,13 @@ function CommentinnerPage() {
                                     圖片
                                     <input
                                       type="file"
-                                      onChange={(e) => {
-                                        setPicname2(e.target.files[0].name)
+                                      onChange={async(e) => {
+                                        console.log(e.target.files[0])
+                                        const fd = new FormData()
+                                        fd.append('photos',e.target.files[0])
+                                        const r = await axios.post('http://localhost:3005/post/',fd)
+                                        // console.log(r.data[0].filename)
+                                        setPicname2(r.data[0].filename)
                                       }}
                                       className="hiddenpicbtn"
                                     />
@@ -547,7 +558,7 @@ function CommentinnerPage() {
                                         }
                                       )
                                       setReplyinputvalue('')
-                                      setPicname('')
+                                      setPicname2('')
                                       setRender(!reader)
                                     }}
                                   >
@@ -560,9 +571,9 @@ function CommentinnerPage() {
                           {replycomment.map((v3, i3) => {
                             if (v3.comment_id === v.sid) {
                               return (
-                                <>
+                                <Fragment  key={i3}>
                                   {' '}
-                                  <div className="replyid" key={i3}>
+                                  <div className="replyid">
                                     <p
                                       className="usernamereply"
                                       style={{ color: '#d01b1b' }}
@@ -584,14 +595,16 @@ function CommentinnerPage() {
                                       <img
                                         className="replypics2"
                                         src={
-                                          '../images/commentlocalImages/' +
-                                          v3.replied_pics
+                                          v3.replied_pics.length > 20
+                                            ? '../Images/uploads/' + v3.replied_pics
+                                            : '../Images/commentlocalImages/' +
+                                            v3.replied_pics
                                         }
                                         alt=""
                                       />
                                     )}
                                   </div>
-                                </>
+                                </Fragment>
                               )
                             }
                           })}
@@ -603,8 +616,8 @@ function CommentinnerPage() {
                 <div className="gamerecommend">
                   {randomgame.map((v, i) => {
                     return (
-                      <>
-                        <div className="recommandtitle" key={i}></div>
+                      <Fragment  key={i}>
+                        <div className="recommandtitle" ></div>
                         <div className="gamesdetail">
                           <Link
                             to={'/comment/' + v.gamesSid}
@@ -623,7 +636,7 @@ function CommentinnerPage() {
                             </p>
                           </Link>
                         </div>
-                      </>
+                      </Fragment >
                     )
                   })}
                 </div>

@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 90px;
+  margin-top: 40px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -59,8 +59,13 @@
   height: 60vh;
   /* border:1px red solid; */
   display: flex;
+  margin-left: 150px;
 }
-
+@media (max-width: 1880px) {
+  .hotspotgamesfield {
+    margin-left: 0 !important;
+  }
+}
 .hotspotgamesqure {
   width: 35%;
   height: 100%;
@@ -135,6 +140,7 @@
   border-radius: 15px;
   padding: 10px;
   background-color: #4e4e4e;
+  padding-bottom: 20px;
 }
 .newscommenttitle {
   text-align: center;
@@ -315,7 +321,8 @@
     margin-top: 80px;
   }
   .newscommentcontent {
-    width: 200px;
+    width: 150px;
+    /* display: none; */
   }
   .keywordssqure {
     display: none;

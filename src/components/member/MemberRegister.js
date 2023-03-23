@@ -79,6 +79,13 @@ function MemberRegister({ setLoginOrRegister }) {
           sendMemberVerifiedEmail(data)
           setLoginOrRegister('會員登入')
           navigate('/member/in')
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: `${response.data.error}`,
+            icon: 'error',
+            confirmButtonText: '確認',
+          })
         }
       })
     } catch (ex) {}
@@ -87,11 +94,11 @@ function MemberRegister({ setLoginOrRegister }) {
   // 錯誤樣式   formState: { errors }
   // console.log(' errors ', errors)
 
-  // ! 測試useForm的setValue
+    // ! 快速輸入(正確版)
   const fastInput = () => {
-    setValue('mAccount', 'kevin321', { shouldValidate: true })
-    setValue('mPassword', 'kevin321', { shouldValidate: true })
-    setValue('mPasswordVerify', 'kevin321', { shouldValidate: true })
+    setValue('mAccount', 'kevin54321', { shouldValidate: true })
+    setValue('mPassword', 'kevin54321', { shouldValidate: true })
+    setValue('mPasswordVerify', 'kevin54321', { shouldValidate: true })
     setValue('mName', 'Kevin', { shouldValidate: true })
     setValue('mEmail', 'kevintestlogin1@gmail.com', { shouldValidate: true })
     setValue('mMobile', '0987654321', { shouldValidate: true })
@@ -100,11 +107,30 @@ function MemberRegister({ setLoginOrRegister }) {
     setValue('mIdentity', 'F123456789', { shouldValidate: true })
     setValue('mGender', '男', { shouldValidate: true })
   }
+  // ! 快速輸入(demo欄位有樣式檢查)
+  const errorInput = () => {
+    setValue('mAccount', '', { shouldValidate: true })
+    setValue('mPassword', 'kevion', { shouldValidate: true })
+    setValue('mPasswordVerify', 'kevin32', { shouldValidate: true })
+    setValue('mName', '', { shouldValidate: true })
+    setValue('mEmail', 'kevintestlogin1gmail.com', { shouldValidate: true })
+    setValue('mMobile', '098765432', { shouldValidate: true })
+    setValue('mNickname', '', { shouldValidate: true })
+    setValue('mBirth', '', { shouldValidate: true })
+    setValue('mIdentity', 'F12345678', { shouldValidate: true })
+    setValue('mGender', '', { shouldValidate: true })
+  }
   return (
     <>
       <div className="m-registerSecondSection">
         <div className="m-mainText">
-          <h1>會員註冊</h1>
+        <h1
+            onClick={() => {
+              errorInput()
+            }}
+          >
+            會員註冊
+          </h1>
           <h4
             onClick={() => {
               fastInput()

@@ -29,6 +29,7 @@ function MemberPasswordModal({
     watch, // 監聽表單內容，是func
     control, // 給usewatch用的，讓他能夠知道要監聽哪一個表單
     clearError,
+    setValue,
   } = useForm({})
 
   const watchForm = useWatch({
@@ -51,6 +52,15 @@ function MemberPasswordModal({
         },
       }
     )
+    if (!response.data.success) {
+      Swal.fire({
+        title: '密碼修改失敗!',
+        text: `${response.data.error}`,
+        icon: 'error',
+        confirmButtonText: '確認',
+      })
+    }
+
     if (response.data.success) {
       console.log(response.data)
 
@@ -65,16 +75,58 @@ function MemberPasswordModal({
     }
   }
 
+  const fastInput = () => {
+    setValue('mOldPassword', 'kevin321', { shouldValidate: true })
+    setValue('mProfilePassword', 'kevin12345', { shouldValidate: true })
+    setValue('mProfilePasswordVerify', 'kevin12345', { shouldValidate: true })
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose} className="m-profileUpdate">
         <Modal.Header closeButton>
-          <Modal.Title>會員密碼更改</Modal.Title>
+          <Modal.Title
+            onClick={() => {
+              fastInput()
+            }}
+          >
+            會員密碼更改
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
-            <p>會員舊密碼：{profileData.memPassword}</p>
             <form onSubmit={handleSubmit(updateProfilePassword)}>
+              <div>
+                <label htmlFor="mOldPassword">會員舊密碼：</label>
+                <input
+                  type="text"
+                  placeholder="請輸入會員舊密碼"
+                  className={`${errors.mOldPassword && 'm-inputInvalid'}`}
+                  {...register('mOldPassword', {
+                    required: {
+                      value: true,
+                      message: '使用者密碼為必填',
+                    },
+                    minLength: {
+                      value: 6,
+                      message: '使用者密碼須大於6碼',
+                    },
+                    maxLength: {
+                      value: 10,
+                      message: '使用者密碼小於10碼',
+                    },
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-zA-Z]).{6,30}$/,
+                      message: '密碼格式不符',
+                    },
+                  })}
+                />
+                {errors.mOldPassword ? (
+                  <p>{errors?.mOldPassword.message}</p>
+                ) : (
+                  ''
+                )}
+              </div>
               <div>
                 <label htmlFor="mProfilePassword">會員新密碼：</label>
                 <input

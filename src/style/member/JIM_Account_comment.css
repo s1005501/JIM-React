@@ -80,6 +80,7 @@
 }
 .m-commentMainContext td,
 .m-commentMainContext th {
+  width: 25%;
   padding: 5px !important;
 }
 
@@ -112,4 +113,10 @@
 }
 .m-commentMainContext tr:hover .m-commentIcon {
   color: #fff;
+}
+.ordercommentrate {
+  color: black;
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
 }

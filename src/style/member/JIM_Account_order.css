@@ -18,6 +18,7 @@
 .container {
   width: 100% !important;
   height: 100%;
+  position: relative;
 }
 /* .m-bearBg {
   background: url('../../public/Images/熊熊背景.jpg');
@@ -104,4 +105,32 @@
 }
 .m-orderMainContext tr:hover .m-orderListIcon {
   color: #fff;
+}
+.already {
+  border-radius: 10px;
+  background-color: #999999;
+  color: white;
+  border: 0;
+  padding: 5px;
+  border: 1px solid white;
+}
+.notyet {
+  border-radius: 10px;
+  background-color: #ec4f4f;
+  color: white;
+  border: 0;
+  padding: 5px;
+  border: 1px solid white;
+}
+.modal {
+  width: 600px;
+  height: 100px;
+  border: 1px white solid;
+  border-radius: 20px;
+}
+.ordermodalrate {
+  display: flex;
+}
+.orderrate {
+  display: flex;
 }

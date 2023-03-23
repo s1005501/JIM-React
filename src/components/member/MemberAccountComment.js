@@ -6,16 +6,29 @@ import MemberAuthContext from './MemberAuthContext'
 import { ACCOUNT } from '../../config/api_config'
 import moment from 'moment'
 import MemberAccountAside from './MemberAccountAside'
+import axios from 'axios'
+import { AiTwotoneStar, AiOutlineStar } from 'react-icons/ai'
 
 function MemberAccountComment() {
   const navigate = useNavigate()
 
-  const { getCommentData } = useContext(MemberAuthContext)
-
-  const [commentData, setCommentData] = useState([])
-  useEffect(() => {
-    getCommentData(ACCOUNT, setCommentData)
-  }, [])
+  // const { getCommentData } = useContext(MemberAuthContext)
+  const user = JSON.parse(localStorage.getItem('memberAuth'))
+  const usersid = user?.membersid
+  // const [commentData, setCommentData] = useState([])
+  const [ordercomment, setOrdercomment] = useState([])
+const [commentData, setCommentData] = useState([])
+const getordercomment = async () => {
+  const r = await axios.get(
+    `http://localhost:3005/api_ordercomment/${usersid}`
+  )
+  // console.log(r.data)
+  setOrdercomment(r.data)
+}
+useEffect(() => {
+  // getCommentData(ACCOUNT, setCommentData)
+  getordercomment()
+}, [])
   return (
     <>
       <main className="m-memberAccountMain">
@@ -30,26 +43,49 @@ function MemberAccountComment() {
               <h1>評論紀錄</h1>
               <table>
                 <thead>
-                  <tr>
-                    <th>評論日期</th>
+                <tr>
+                    <th>訂單編號</th>
                     <th>遊戲名稱</th>
+                    <th>評論分數</th>
                     <th>評論內容</th>
-                    <th>前往評論</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {commentData.map((v, i) => {
+                  {ordercomment.map((v, i) => {
                     return (
                       <tr key={v.sid}>
-                        <td>{moment(v.create_at).format('YYYY-MM-DD')}</td>
-                        <td>{v.gamesName}</td>
-                        <td>{v.comment} </td>
-                        <td>
-                          <a href="#/">
-                            <FaRegCommentDots className="m-commentIcon" />
-                          </a>
-                        </td>
-                      </tr>
+                      <td>{v.order_sid}</td>
+                      <td
+                        onClick={() => {
+                          navigate(`/comment/${v.game_id}`)
+                        }}
+                      >
+                        {v.gamesName}
+                      </td>
+                      <td className="ordercommentrate">
+                        {[...Array(5)].map((value, index) => {
+                          if (index + 1 <= v.rate) {
+                            return (
+                              <div>
+                                <AiTwotoneStar />
+                              </div>
+                            )
+                          } else {
+                            return (
+                              <div>
+                                <AiOutlineStar />
+                              </div>
+                            )
+                          }
+                        })}
+                      </td>
+                      <td>{v.comment} </td>
+                      {/* <td>
+                        <a href="#/">
+                          <FaRegCommentDots className="m-commentIcon" />
+                        </a>
+                      </td> */}
+                    </tr>
                     )
                   })}
                 </tbody>

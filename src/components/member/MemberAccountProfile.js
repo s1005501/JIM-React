@@ -133,7 +133,11 @@ function MemberAccountProfile() {
                     <div className="m-profilePassword">
                       <div>
                         <p>會員密碼 :</p>
-                        <div>{profileData?.memPassword}</div>
+                        <input
+                          type="password"
+                          disabled
+                          value={profileData?.memPassword}
+                        />
                       </div>
 
                       <FaRegEdit

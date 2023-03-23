@@ -8,6 +8,7 @@ import { ACCOUNT } from '../../config/api_config'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import MemberAccountAside from './MemberAccountAside'
+import { Link } from 'react-router-dom'
 
 function MemberAccountLike() {
   const navigate = useNavigate()
@@ -84,9 +85,9 @@ function MemberAccountLike() {
                         <td>{v.gamesName}</td>
                         <td>{v.storeName}</td>
                         <td>
-                          <a href="#/">
+                          <Link to={`/order/${v.gamesSid}`}>
                             <FaRegBookmark className="m-bookingIcon" />
-                          </a>
+                          </Link>
                         </td>
                       </tr>
                     )

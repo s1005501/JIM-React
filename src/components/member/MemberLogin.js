@@ -12,9 +12,9 @@ import Swal from 'sweetalert2'
 import { googleAuth, googleProvider } from './../../config/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { async } from '@firebase/util'
-import {  useContextValue } from '../../ContextDashbard'
+import { useContextValue } from '../../ContextDashbard'
 function MemberLogin({ memberLoginOrNot }) {
-  const {signinData, setSigninData} = useContextValue()
+  const { signinData, setSigninData } = useContextValue()
   const [memberLoginInput, setMemberLoginInput] = useState({
     account: '',
     password: '',
