@@ -1,0 +1,41 @@
+.modal-header button:hover {
+  color: #fff;
+}
+.m-profileUpdate .modal-body p {
+  margin: 0;
+  margin-bottom: 24px;
+}
+.m-profileUpdate form {
+  display: flex;
+  flex-direction: column;
+}
+.m-profileUpdate input {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  padding: 5px;
+  width: 300px;
+}
+.m-profileUpdateButtonDiv {
+  text-align: center;
+}
+.m-profileUpdate button {
+  margin-right: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.m-profileUpdate button:hover {
+  background-color: #ef403f !important;
+  color: #fff;
+}
+.m-profileUpdate form > div {
+  position: relative;
+}
+.m-profileUpdate form > div p {
+  color: #fff;
+  position: absolute;
+  left: 22%;
+  top: 45px;
+  color: #ef403f !important;
+}

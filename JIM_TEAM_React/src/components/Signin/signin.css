@@ -1,0 +1,124 @@
+.signin-router-body form {
+  color: #ffffff;
+}
+
+.signin-outcard {
+  border-radius: 20px;
+  margin: 0px 15px;
+  background: rgba(255, 255, 255, 0.15);
+}
+.signin-outcard:hover {
+  background: red !important;
+}
+.signin-outcard a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.signin-card {
+  border: solid 1px #ffffff;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.signin-card .signin-card-ch {
+  font-size: 48px;
+  margin: 0;
+  padding-top: 100px;
+}
+
+.signin-card .signin-card-en {
+  font-size: 36px;
+  padding-bottom: 100px;
+}
+.signin-router-outbody {
+  width: 40vw;
+}
+.signin-router-botton {
+  width: 30vw;
+}
+.signin-router {
+  border: solid 1px transparent;
+  border-radius: 20px 20px 0 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-bottom: solid 1px #ffffff;
+}
+
+.signin-router p {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 20px;
+}
+
+.signin-router-right {
+  border-right: solid 1px #ffffff;
+  border-radius: 20px 0 0 0;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+.signin-router-left {
+  border-left: solid 1px #ffffff;
+  border-radius: 0 20px 0 0;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+.signin-router-right:hover,
+.signin-router-left:hover {
+  background: #dbdbdb;
+}
+
+.signin-router-body {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0 0 20px 20px;
+}
+
+.signin-router-body p {
+  font-size: 32px;
+  margin: 0;
+}
+
+.signin-router-botton {
+  font-size: 32px;
+  border-radius: 20px;
+  padding-left: 2rem;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.signin-botton {
+  font-size: 32px;
+  border-radius: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  background: red;
+  color: #ffffff;
+}
+
+@media (max-width: 1400px) {
+  .signin-outcard {
+    margin-bottom: 25px;
+  }
+
+  .signin-router-outbody {
+    width: 65vw;
+  }
+  .signin-router-botton {
+    width: 55vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .signin-outcard {
+    margin: 0;
+    margin-bottom: 25px;
+  }
+  .signin-router-outbody {
+    width: 70vw;
+  }
+  .signin-router-botton {
+    width: 60vw;
+  }
+}

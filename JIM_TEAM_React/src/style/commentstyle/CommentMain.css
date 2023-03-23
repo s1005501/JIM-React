@@ -1,0 +1,330 @@
+.searchbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.searchbar_p {
+  color: white;
+  font-size: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.searchinput {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  /* border:1px solid red */
+}
+.searchinput > input {
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: white;
+  outline: 1px;
+  padding: 1rem;
+  width: 450px;
+}
+.searchicon {
+  width: 40px;
+  height: 48px;
+  /* border:1px solid red; */
+  background-color: rgba(255, 255, 255, 0.3);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
+  font-size: 30px;
+}
+.hotspotgames {
+  width: 100%;
+  color: #d01b1b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 60px;
+  /* border: 2px salmon solid; */
+}
+
+.hotspotgamestitle {
+  width: 100%;
+}
+
+.hotspotgamesfield {
+  width: 80%;
+  height: 60vh;
+  /* border:1px red solid; */
+  display: flex;
+  margin-left: 150px;
+}
+@media (max-width: 1880px) {
+  .hotspotgamesfield {
+    margin-left: 0 !important;
+  }
+}
+.hotspotgamesqure {
+  width: 35%;
+  height: 100%;
+  /* border: 1px solid red; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.gamesdetail {
+  width: 100%;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding: 40px;
+  background-color: #4e4e4e;
+  box-sizing: border-box;
+  /* border: 3px solid #d01b1b; */
+}
+.images {
+  width: 100%;
+  height: 80%;
+  border-radius: 20px;
+
+  /* border: 1px solid red; */
+}
+.commentmain_link {
+  width: 100%;
+  height: 25vh;
+  text-decoration: none !important;
+}
+
+.commentimg {
+  width: 100%;
+  height: 100%;
+  /* border-top-left-radius: 20px; */
+  /* border-top-right-radius: 20px; */
+  border-radius: 20px;
+  /* border: 3px solid rgb(235, 138, 29); */
+  object-fit: cover;
+}
+.imgname {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-color: white;
+  margin: 0;
+  border-radius: 20px;
+  /* border-bottom-left-radius: 10px; */
+  /* border-bottom-right-radius: 10px; */
+  color: black;
+  margin-top: 20px;
+}
+.news {
+  width: 40%;
+  height: 104%;
+  /* border:1px solid blue; */
+  padding: 20px;
+  margin-top: -80px;
+  /* background-color: #4e4e4e; */
+}
+.newscomment {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid white; */
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #4e4e4e;
+  padding-bottom: 20px;
+}
+.newscommenttitle {
+  text-align: center;
+  font-size: 24px;
+}
+.mentionuser {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+.usericonimg-main {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+.mentionusername {
+  width: 100px;
+  height: 25px;
+  /* margin-right: 10px; */
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #3c3c3c;
+}
+.newscommentcontent {
+  color: white;
+  font-size: 18px;
+  background: #3c3c3c;
+  width: 300px;
+  height: 50px;
+  border-radius: 0 20px 20px 20px;
+  padding-left: 10px;
+}
+.keywordssqure {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+.gameskeywords {
+  width: 33%;
+  /* height: 50px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  /* border: 1px solid red; */
+}
+.gameskeywords_p {
+  font-size: 18px;
+  /* border: 1px solid white; */
+  background-color: #4e4e4e;
+  /* color: white; */
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 15px;
+}
+.keywords_p {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  text-decoration: none !important;
+  color: white;
+}
+.keywords_p:hover {
+  color: #d01b1b;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchbar {
+    margin-top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 300px;
+  }
+  .searchbar_p {
+    color: red;
+    font-size: 16px;
+    width: 80px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .searchinput {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    /* border:1px solid red */
+  }
+  .searchinput > input {
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: white;
+    outline: 1px;
+    width: 150px;
+  }
+  .searchicon {
+    width: 24px;
+    height: 32px;
+    /* border:2px solid rgba(255, 255, 255, 0.3) ; */
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .searchicon2 {
+    position: absolute;
+    display: none;
+  }
+  .hotspotgames {
+    height: 1600px;
+    justify-content: start;
+    /* margin-top: 100px; */
+    /* padding-top: 100px; */
+  }
+  .hotspotgamestitle {
+    font-size: 24px;
+  }
+  .gameskeywords_p {
+    font-size: 18px;
+  }
+
+  .hotspotgamesfield {
+    width: 80%;
+    height: 100%;
+    padding-bottom: 100px;
+    margin-top: -80px;
+    /* border:1px red solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hotspotgamesqure {
+    width: 100%;
+    height: 80%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* margin-top: 100px; */
+  }
+  .gamesdetail {
+    height: 300px;
+    margin-top: 10px;
+  }
+  .news {
+    width: 100%;
+    height: 90%;
+    /* border:1px solid blue; */
+    padding: 20px;
+    padding: 0;
+  }
+  .newscomment {
+    width: 100%;
+    height: 85%;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin-top: 80px;
+  }
+  .newscommentcontent {
+    width: 150px;
+    /* display: none; */
+  }
+  .keywordssqure {
+    display: none;
+  }
+}

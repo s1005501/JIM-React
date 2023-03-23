@@ -1,0 +1,111 @@
+.O_Reserve_GameInfo_Info {
+  font-size: 18px;
+}
+
+.O_Reserve_GameInfo_Info h6 {
+  font-size: 18px;
+}
+
+.O_Reserve_GameInfo_GameName {
+  display: flex;
+  align-items: center;
+
+}
+
+.O_Reserve_GameInfo_GameName h3 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.O_Reserve_GameInfo_difficulty {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.O_Reserve_GameInfo_difficultyRate {
+  color: red;
+  font-size: 24px;
+}
+
+.O_Reserve_GameInfo_Gamesort {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.O_Reserve_GameInfo_LineWhite {
+  padding-right: 10px;
+  border-right: 2px solid white;
+}
+
+.O_Reserve_GameInfo_GamePelpel {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+}
+
+.O_Reserve_GameInfo_Time {
+  width: 12%;
+}
+
+.O_Reserve_GameInfo_Address {
+  width: 52%;
+}
+
+.O_Reserve_GameInfo_Details {
+  display: flex;
+  align-items: center;
+  color: white
+}
+
+.O_Reserve_GameInfo_Details:hover {
+  color: white;
+}
+
+.O_Reserve_GameInfo_Bookmark {
+  width: 10%;
+}
+
+.O_Reserve_GameInfo_GameIntroduce {
+  text-align: start;
+  margin-top: 20px;
+  font-size: 18px;
+  min-height: 300px
+}
+
+.O_Reserve_GameInfo_gameData {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+/* ---------------------------- */
+
+.ant-rate .ant-rate-star-second {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------------------------- */
+@media (max-width: 1550px) {
+  .O_Reserve_GameInfo_Info {
+    font-size: 14px;
+  }
+
+  .O_Reserve_GameInfo_Info h3 {
+    font-size: 26px;
+  }
+
+  .O_Reserve_GameInfo_Info h6 {
+    font-size: 14px;
+  }
+
+  .O_Reserve_GameInfo_difficultyRate {
+    font-size: 18px;
+  }
+
+  .O_Reserve_GameInfo_gameData {
+    font-size: 14px;
+  }
+}

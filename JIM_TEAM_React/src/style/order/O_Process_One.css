@@ -1,0 +1,67 @@
+.O_Process_One_Sort {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 90px; */
+  padding: 70px;
+  background-color: rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+.O_Process_One_Margin {
+  margin-right: 70px;
+  color: white;
+}
+
+.O_Process_One_Margin h4 {
+  font-weight: bolder;
+  text-align: start;
+}
+
+.O_Process_One_Margin p {
+  text-align: start;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.O_Process_One_Sum {
+  color: red;
+}
+
+.O_Process_One_GameImg {
+  width: 100%;
+  /* width: 280px; */
+  /* min-height: 390px; */
+}
+
+.O_Process_One_Button {
+  display: flex;
+  justify-content: center;
+}
+
+.O_Process_One_Button button {
+  background-color: black;
+  border-radius: 10px;
+  border-color: white;
+  color: white;
+  padding: 5px 10px;
+  margin: 20px 70px;
+}
+
+/* ---------RWD------------ */
+@media (max-width: 1480px) {
+  .O_Process_One_Sort {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 30px;
+  }
+
+  .O_Process_One_Margin {
+    margin-right: 0px;
+  }
+
+  .O_Process_One_GameImg {
+    margin-bottom: 30px;
+    width: 80%;
+    min-height: auto;
+  }
+}

@@ -1,0 +1,207 @@
+.accordion.accordion-flush p,
+.map-basic-style p {
+  color: #ffffff;
+  padding: 5px 0;
+}
+.accordion.accordion-flush button,
+.map-basic-style {
+  background-color: black !important;
+}
+
+.accordion-body.d-flex.game-body p {
+  color: red;
+}
+
+.accordion-body.d-flex.game-body .right .btn {
+  margin-top: 25px;
+}
+
+.index-map {
+  width: 85vw;
+  margin-left: 200px;
+}
+.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+  height: 85vh;
+}
+.accordion-button:not(.collapsed) {
+  color: red;
+}
+.sidebar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 450px;
+  height: 85vh;
+  transform: translateX(0);
+  transition: 1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.sidebar .time span {
+  float: right;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.searchBar {
+  text-align: center;
+  position: relative;
+  height: 60px;
+}
+
+.search {
+  text-indent: 10px;
+  font-size: 24px;
+  width: 90%;
+  height: 48px;
+  border-radius: 25px;
+}
+
+.search-icon {
+  font-size: 24px;
+  height: 32px;
+  color: #bdbdbd;
+  text-decoration: none;
+  position: absolute;
+  top: 8px;
+  right: 40px;
+  cursor: pointer;
+}
+
+/* .game-card::before {
+  content: "";
+  display: block;
+  background-size: cover;
+  background-image: url('https://images.unsplash.com/photo-1676707695430-b63389a77216?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
+  width: 100%;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
+.map-icon {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.map-basic-style {
+  color: white;
+  background-color: #000000;
+}
+.map-title-font {
+  font-family: 'Jost';
+  font-style: normal;
+  color: #ffffff;
+  letter-spacing: 0.75em;
+  align-items: center;
+  text-align: center;
+}
+
+.game-title img {
+  width: 100%;
+  aspect-ratio: 2/1;
+}
+
+.game-body img {
+  width: 180px;
+  aspect-ratio: 1/1;
+}
+
+.map-card img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.map-card p {
+  color: #000000 !important;
+}
+
+.leaflet-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Group style
+  .cluster-icon{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: red;
+    text-align: center;
+    line-height: 3rem;
+  } */
+
+/* +- */
+/* .leaflet-control-zoom.leaflet-bar.leaflet-control{
+    position: fixed;
+    left: 25%;
+    transition: 5s;
+  } */
+
+.phone-sidebar {
+  display: none;
+}
+
+.phone-sidebar i {
+  cursor: pointer;
+}
+
+.phone-sidebar-body {
+  height: 30vh;
+  width: 100%;
+  margin-bottom: 10px;
+  overflow-x: hidden;
+}
+/* .index-map {
+  width: 85vw;
+} */
+@media (max-width: 1880px) {
+  .index-map {
+    width: auto;
+    margin-left: 0;
+  }
+}
+@media (max-width: 1480px) {
+  .index-map {
+    width: auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .index-map {
+    margin-top: 20px;
+  }
+
+  .sidebar {
+    /* display: none; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 500px;
+    bottom: 0;
+    z-index: 9998;
+    margin-top: 300px;
+  }
+  .leaflet-container.leaflet-touch.leaflet-retina.leaflet-safari.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+    margin-bottom: 500px;
+  }
+  .game-body img {
+    width: 150px;
+  }
+  .phone-sidebar {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    z-index: 9990;
+    color: black;
+  }
+}

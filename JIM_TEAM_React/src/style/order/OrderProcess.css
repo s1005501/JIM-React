@@ -1,0 +1,158 @@
+/* -------------Three.css-------------- */
+.O_Process_Three_Sort {
+  /* margin-top: 90px; */
+  /* padding: 50px 30px; */
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.O_Process_Three_Sort h3 {
+  color: white;
+}
+
+.O_Process_Three_Sort button {
+  width: 150px;
+  height: 60px;
+  margin-top: 30px;
+  background-color: #16AD2E;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+}
+
+.O_Process_Three_Sort button:hover {
+  Transform: translateY(-5px);
+}
+
+/* --------------Four.css------------- */
+.O_Process_Four_Sort {
+  /* margin-top: 90px; */
+  padding: 50px 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.O_Process_Four_Sort h3 {
+  text-align: left;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.O_Process_Four_Sort p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.O_Process_Four_HomeBtn {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+  margin-top: 30px;
+  margin-right: 100px;
+  font-size: 18px;
+  height: auto;
+}
+
+.O_Process_Four_HomeBtn:hover {
+  background-color: #EF403F;
+  color: white !important;
+}
+
+.O_Process_Four_MemberBtn {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+  font-size: 18px;
+  height: auto;
+}
+
+.O_Process_Four_MemberBtn:hover {
+  background-color: #EF403F;
+  color: white !important;
+}
+
+/* -------------O_Process-------------- */
+
+.O_Process_Cont {
+  /* min-height: 650px; */
+  min-height: 85vh;
+  margin-top: 50px;
+  margin-right: 370px;
+}
+
+.O_Process_button {
+  margin-Top: 24px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.O_Process_PrevBtn {
+  margin: 0 8px;
+  font-size: 18px;
+  height: auto;
+}
+
+.O_Process_PrevBtn:hover {
+  background-color: #EF403F;
+  color: white !important;
+}
+
+.O_Process_NextBtn {
+  font-size: 18px;
+  height: auto;
+}
+
+.O_Process_NextBtn:hover {
+  background-color: #EF403F;
+  color: white !important;
+}
+
+
+/* -------------------------------- */
+.ant-steps-icon {
+  color: white !important;
+}
+
+.ant-steps-item-icon {
+  background-color: #EF403F !important;
+
+}
+
+.ant-steps-item-title {
+  /* background-color: white; */
+  color: white !important;
+}
+
+
+
+/* ---------RWD------------ */
+@media (max-width: 1480px) {
+  .O_Process_Cont {
+    margin-right: 0px;
+  }
+
+  .O_Process_button {
+    margin-bottom: 50px;
+  }
+
+  .O_Process_Four_HomeBtn {
+    margin: 30px 100px 30px 0;
+  }
+}
+
+/* -----------max-width: 580px------------- */
+@media (max-width: 580px) {
+  .O_Process_Four_HomeBtn {
+    margin: 20px auto;
+  }
+}

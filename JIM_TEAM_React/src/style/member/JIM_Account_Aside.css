@@ -1,0 +1,37 @@
+.memberAside {
+  width: 15%;
+  height: fit-content;
+  margin-right: 70px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 15px;
+}
+.memberAside {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.m-asideItem {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  margin-top: 10px;
+}
+.memberAside p {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.memberAside .m-rightArrowIcon {
+  display: none !important;
+  margin-right: 5px !important;
+  font-size: 24px;
+  color: #ef403f !important;
+}
+.memberAside p:hover {
+  color: #ef403f !important;
+}
+.memberAside p:hover + .m-rightArrowIcon {
+  display: block !important;
+}

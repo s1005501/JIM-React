@@ -1,0 +1,16 @@
+/* 基本公版 */
+@import url(./firstPlate.css);
+@import url(./navbar.css);
+@import url(./footer.css);
+@import url(./fontstyle.css);
+
+@import url(./gamesStyle/gamemainpage.css);
+@import url(./gamesStyle/gamesfilter.css);
+@import url(./gamesStyle/gamesHome.css);
+
+@import url(./member//JIM_Account_All.css);
+
+@import url(./order/O_All.css);
+
+@import url(./commentstyle/CommentinnerPage.css);
+@import url(./commentstyle/CommentMain.css);

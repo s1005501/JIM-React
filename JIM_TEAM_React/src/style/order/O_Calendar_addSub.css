@@ -1,0 +1,42 @@
+.O_Calendar_addSub_calculate {
+  width: 400px;
+  margin: auto;
+  font-size: 16px;
+}
+
+.O_Calendar_addSub_TextP p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.O_Calendar_addSub_sub {
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  border-radius: 50%;
+  margin: auto 10px;
+  background-color: transparent;
+  color: white;
+}
+
+.O_Calendar_addSub_add {
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  border-radius: 50%;
+  margin: auto 10px;
+  background-color: transparent;
+  color: white;
+}
+
+.O_Calendar_addSub_add:hover {
+  background-color: #d01b1b;
+}
+
+.O_Calendar_addSub_sub:hover {
+  background-color: #d01b1b;
+}
+
+.O_Calendar_addSub_PriceText {
+  font-size: 20px;
+}
