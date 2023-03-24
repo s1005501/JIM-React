@@ -82,7 +82,7 @@ const MapSidebarBody = ({ mapData }) => {
                 {[...v.game].map((k, i) => {
                   return (
                     <div className="accordion-body d-flex game-body" key={i}>
-                      <div className="left me-3">
+                      <div className=" me-3">
                       <img
                         src={`${
                           k.gamesImages.length < 20
@@ -92,7 +92,7 @@ const MapSidebarBody = ({ mapData }) => {
                         alt=""
                       />
                       </div>
-                      <div className="right">
+                      <div className="">
                         <p>
                           <FaTrophy className="map-icon" />
                           {k.gamesName}

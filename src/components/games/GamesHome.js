@@ -1,82 +1,179 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function GamesHome() {
+  const navigate = useNavigate()
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const slideImages = [
+    {
+      id: 22,
+      src: '/Images/gamesHomeImages/imagebig1.png',
+      alt: 'placeholder',
+    },
+    {
+      id: 197,
+      src: '/Images/gamesHomeImages/imagebig2.png',
+      alt: 'placeholder',
+    },
+    {
+      id: 5,
+      src: '/Images/gamesHomeImages/imagebig3.png',
+      alt: 'placeholder',
+    },
+    {
+      id: 7,
+      src: '/Images/gamesHomeImages/imagebig4.png',
+      alt: 'placeholder',
+    },
+    {
+      id: 27,
+      src: '/Images/gamesHomeImages/imagebig5.png',
+      alt: 'placeholder',
+    },
+    {
+      id: 6,
+      src: '/Images/gamesHomeImages/imagebig6.png',
+      alt: 'placeholder',
+    },
+  ]
+
+  function handleNextBtnClick() {
+    setCurrentSlide((currentSlide + 1) % slideImages.length)
+  }
+
+  function handlePrevBtnClick() {
+    setCurrentSlide(
+      (currentSlide - 1 + slideImages.length) % slideImages.length
+    )
+  }
+
+  function handleImgClick(index) {
+    setCurrentSlide(index)
+  }
+
+  // 滾輪式遊戲列表
   const [scrollX, setScrollX] = useState(0)
-  const [transitioning, setTransitioning] = useState(false)
-
-  const imageList = useMemo(
-    () => [
-      { id: 1, src: '/Images/gamesHomeImages/image1.png' },
-      { id: 2, src: '/Images/gamesHomeImages/image2.png' },
-      { id: 3, src: '/Images/gamesHomeImages/image3.png' },
-      { id: 4, src: '/Images/gamesHomeImages/image4.png' },
-      { id: 5, src: '/Images/gamesHomeImages/image5.png' },
-      { id: 6, src: '/Images/gamesHomeImages/image6.png' },
-    ],
-    []
-  )
-
   const [lastScrollTime, setLastScrollTime] = useState(Date.now())
-
+  // 滾輪式遊戲列表
   useEffect(() => {
     const handleScroll = (event) => {
       const { deltaY } = event
-      const imageWidth = 430 // 每張圖片的寬度
-      const maxScrollX = (imageList.length - 1) * imageWidth // 最大的滾動位置
+      const imageWidth = 180 // 每張圖片的寬度
+      const maxScrollX = 6 * imageWidth // 最大的滾動位置
       const now = Date.now()
       let newScrollX
 
       // 計算滾動時間差，如果小於一定的值則不進行滾動
-      if (now - lastScrollTime < 430) {
+      if (now - lastScrollTime < 200) {
         return
       }
 
       if (deltaY > 0) {
-        // 向左滾動
-        newScrollX = scrollX - imageWidth
-        if (newScrollX < 0) {
-          newScrollX = maxScrollX
-        }
-      } else {
         // 向右滾動
         newScrollX = scrollX + imageWidth
         if (newScrollX > maxScrollX) {
           newScrollX = 0
         }
+      } else {
+        // 向左滾動
+        newScrollX = scrollX - imageWidth
+        if (newScrollX < 0) {
+          newScrollX = maxScrollX
+        }
       }
 
       setLastScrollTime(now)
       setScrollX(newScrollX)
-      setTransitioning(true)
+      // setTransitioning(true)
     }
 
     window.addEventListener('wheel', handleScroll)
     return () => window.removeEventListener('wheel', handleScroll)
-  }, [scrollX, imageList, lastScrollTime])
-
-  const handleTransitionEnd = () => {
-    setTransitioning(false)
-  }
+  }, [scrollX, lastScrollTime])
 
   return (
     <div className="gameshome">
-      <div className="container">
-        <div className="gameshometitle">本月最推薦</div>
-
+      <div className="gameshomeblank"></div>
+      <div className="gamesslider">
         <div
-          className={`gameshomecontent ${transitioning ? 'transitioning' : ''}`}
-          onTransitionEnd={handleTransitionEnd}
+          className="gamesslides"
+          style={{
+            transform: `translateX(-${
+              (currentSlide * 100) / slideImages.length
+            }%)`,
+          }}
+        >
+          {slideImages.map((image) => (
+            <img
+              key={image.id}
+              src={image.src}
+              alt={image.alt}
+              onClick={() => {
+                navigate(`/order/${image.id}`)
+              }}
+            />
+          ))}
+        </div>
+        <button
+          className="gamescarouselbutton gamescarouseprev"
+          onClick={handlePrevBtnClick}
+        >
+          &#10094;
+        </button>
+        <button
+          className="gamescarouselbutton gamescarousenext"
+          onClick={handleNextBtnClick}
+        >
+          &#10095;
+        </button>
+      </div>
+      <div className="container">
+        <div
+          className="gameshomecontent"
+          // onTransitionEnd={handleTransitionEnd}
           style={{ transform: `translateX(-${scrollX}px)` }}
         >
           <img
-            key={imageList[imageList.length - 1].id}
-            src={imageList[imageList.length - 1].src}
+            src="/Images/gamesHomeImages/image1.png"
             alt="placeholder"
+            onClick={() => handleImgClick(0)}
           />
-          {imageList.map((image) => (
-            <img key={image.id} src={image.src} alt="placeholder" />
-          ))}
-          <img key={imageList[0].id} src={imageList[0].src} alt="placeholder" />
+          <img
+            src="/Images/gamesHomeImages/image2.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(1)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image3.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(2)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image4.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(3)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image5.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(4)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image6.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(5)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image1.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(0)}
+          />
+          <img
+            src="/Images/gamesHomeImages/image2.png"
+            alt="placeholder"
+            onClick={() => handleImgClick(1)}
+          />
         </div>
       </div>
     </div>

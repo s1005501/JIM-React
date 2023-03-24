@@ -99,7 +99,7 @@ const MapPhone = ({ mapData }) => {
                       key={i}
                       style={{ background: '#FFFFFF' }}
                     >
-                      <div className="left me-3">
+                      <div className="me-3">
             
                             <img
                         src={`${
@@ -110,7 +110,7 @@ const MapPhone = ({ mapData }) => {
                         alt=""
                       />
                       </div>
-                      <div className="right">
+                      <div className="">
                         <p>
                           <FaTrophy style={{ marginRight: '10px' }} />
                           {k.gamesName}

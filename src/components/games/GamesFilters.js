@@ -1,4 +1,9 @@
-import { AiFillStar, AiFillEnvironment, AiOutlineUserAdd } from 'react-icons/ai'
+import {
+  AiFillStar,
+  AiFillEnvironment,
+  AiOutlineUserAdd,
+  AiOutlineDropbox,
+} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 
 function GamesFilters(props) {
@@ -29,7 +34,6 @@ function GamesFilters(props) {
             <section
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                console.log(v.gamesSid)
                 navigate(`/order/${v.gamesSid}`)
               }}
             >
@@ -56,8 +60,8 @@ function GamesFilters(props) {
                     <span className="gamestaricon">
                       <AiFillStar />
                     </span>
-                    <span>{v.ratelevel}</span>
-                    <span>({v.ratequantity})</span>
+                    <span>{v.level}</span>
+                    <span>({v.count})</span>
                   </span>
                 </div>
                 <div className="games-article-tagbottom">
@@ -80,9 +84,25 @@ function GamesFilters(props) {
     </div>
   )
 
+  const nogamesfilter = (
+    <div className="nogamesfilter">
+      <div>
+        <AiOutlineDropbox />
+      </div>
+      <div>沒有相關內容</div>
+    </div>
+  )
+
   return (
     <>
-      <div className="gamesFilterMain">{isLoading ? loader : gamescontent}</div>
+      {console.log(!!usersDisplay.length)}
+      <div className="gamesFilterMain">
+        {isLoading
+          ? loader
+          : !!usersDisplay.length
+          ? gamescontent
+          : nogamesfilter}
+      </div>
     </>
   )
 }

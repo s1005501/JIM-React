@@ -26,10 +26,18 @@ import { useContextValue } from '../../ContextDashbard'
 function OrderProcess() {
   console.log(useContextValue)
   const { getBackData } = useContextValue()
+  // -------------------------------------
+  const memberAuth = JSON.parse(localStorage.getItem('memberAuth')) //抓會員編號
+
   const [level, setLevel] = useState([])
+
   useEffect(() => {
     console.log('9999999999999999999999999999999999999999999999999999999')
-    getBackData('http://localhost:3005/order/ordermemLevel/1', setLevel)
+    getBackData(
+      `http://localhost:3005/order/ordermemLevel/${memberAuth.membersid}`,
+      // `http://localhost:3005/order/ordermemLevel/2`,
+      setLevel
+    )
   }, [])
   let n = 0
   switch (parseInt(level[0]?.memLevel)) {

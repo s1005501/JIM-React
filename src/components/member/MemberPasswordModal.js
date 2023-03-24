@@ -76,7 +76,7 @@ function MemberPasswordModal({
   }
 
   const fastInput = () => {
-    setValue('mOldPassword', 'kevin321', { shouldValidate: true })
+    setValue('mOldPassword', 'kevin54321', { shouldValidate: true })
     setValue('mProfilePassword', 'kevin12345', { shouldValidate: true })
     setValue('mProfilePasswordVerify', 'kevin12345', { shouldValidate: true })
   }

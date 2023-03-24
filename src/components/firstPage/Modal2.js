@@ -27,7 +27,7 @@ const dropIn = {
 }
 
 function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
-  console.log(sum, setSum, '寫值')
+  console.log(sum, '寫值',30)
   return (
     <>
       {[question[boxTrigger]].map((v, i) => {
@@ -43,11 +43,10 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                 animate="visable"
                 exit="exit"
               >
-                <button className="btn cross" onClick={onClose}>
-                  X
-                </button>
-                <div className="modal_ctx">
-                  <div className="question">Question: {v.question}</div>
+                <div className="modal_ctx flex-column">
+                  <div className="question">
+                    Question: {v.question}
+                  </div>
                   <div className="d-flex flex-column">
                     <div
                       className="d-flex flex-row option"
@@ -72,7 +71,7 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                        value="4"
+                       
                       />
                     </div>
                     <div
@@ -98,7 +97,7 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                        value="4"
+                       
                       />
                     </div>
                     <div
@@ -124,7 +123,7 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                        value="4"
+                       
                       />
                     </div>{' '}
                     <div
@@ -150,7 +149,7 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                        value="4"
+                       
                       />
                     </div>
                   </div>

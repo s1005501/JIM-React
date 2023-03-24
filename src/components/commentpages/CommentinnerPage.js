@@ -18,6 +18,10 @@ import {
 import { ImUsers } from 'react-icons/im'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
+import Swal from 'sweetalert2'
+import { swalAlert } from '../store/StoreComponent'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 function CommentinnerPage() {
   const user = JSON.parse(localStorage.getItem('memberAuth'))
@@ -38,6 +42,7 @@ function CommentinnerPage() {
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
+  
   let { mygamesName } = useParams()
   const navigate = useNavigate()
 
@@ -192,7 +197,7 @@ function CommentinnerPage() {
                                 </p>
                               </div>
                             </div>
-                            <div className="time">
+                            <div className="person">
                               <div>時間</div>
                               <div className="info">
                                 <p>
@@ -407,7 +412,32 @@ function CommentinnerPage() {
                               }}
                             >
                               回覆
-                            </button>
+                            </button>{v.commentuser_id===usersid?(<button  className="css1"  onClick={(e) => {
+                                      e.preventDefault()
+                                      confirmAlert({
+                                        
+                                        message: `是否刪除?`,
+                                        buttons: [
+                                          {
+                                            label: '是',
+                                            onClick: async () => {
+                                            await  axios.delete(
+                                                `http://localhost:3005/commentdelete/${v.sid}`
+                                              )
+                                              
+                                      setRender(!reader)
+                                            },
+                                          },
+                                          {
+                                            label: '否',
+                                            onClick: () =>
+                                              swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
+                                          },
+                                        ],
+                                      })
+                                    
+
+                                    }}>delete</button>):null}
                             {v.filter ? (
                               v.filter.liked ? (
                                 <>

@@ -60,7 +60,6 @@ const OrderOne = () => {
     //   })}
     // </div>
     <div>
-      return (
       <div className="O_Process_One_Sort">
         <div className="O_Process_One_Margin">
           <h4>{orderInfoLocalStorage.gamesName}</h4>
@@ -83,7 +82,6 @@ const OrderOne = () => {
           />
         </div>
       </div>
-      )
     </div>
   )
 }

@@ -55,13 +55,16 @@
   background-color: #dbdbdb;
   outline: 0 !important;
 }
+.m-discountForm input {
+  color: rgba(0, 0, 0, 0.5);
+}
 .m-discountForm input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 .m-discountForm button {
   width: 100px;
   position: absolute;
-  right: 175px;
+  right: 188px;
   top: 9px;
   background-color: #7a7a7a;
   color: #fff;
