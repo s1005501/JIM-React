@@ -3,24 +3,29 @@ import { ACCOUNT } from '../../config/api_config'
 import MemberAuthContext from './MemberAuthContext'
 import MemberAccountAside from './MemberAccountAside'
 import axios from 'axios'
-import { useContextValue,checkToken } from '../../ContextDashbard'
+import { useContextValue, checkToken } from '../../ContextDashbard'
 
 function MemberAccountDiscount() {
   const [discountData, setDiscountData] = useState([])
   const { getDiscountData, memberAuthState } = useContext(MemberAuthContext)
-  const [discountNum,setDiscountNum]=useState('')
+  const [discountNum, setDiscountNum] = useState('')
   const [discountRandInput, setDiscountRandInput] = useState('')
-  const {membersid}=checkToken('memberAuth')
-  useEffect(()=>{
-    (async()=>{
-      const r = await axios.get(`http://localhost:3005/member/setdiscount/${membersid}?discount=${discountRandInput}`)
-      console.log(r)
-      getDiscountData(ACCOUNT, setDiscountData) 
-    })()
-      },[discountRandInput])
-  // useEffect(() => {
-  //   getDiscountData(ACCOUNT, setDiscountData) 
-  // }, [discountRandInput])
+  const { membersid } = checkToken('memberAuth')
+  const insertRand = async (membersid, discountRandInput) => {
+    const r = await axios.get(
+      `http://localhost:3005/member/setdiscount/${membersid}?discount=${discountRandInput}`
+    )
+    console.log(r?.data.length > 1)
+    if (r?.data.length > 1) {
+      getDiscountData(ACCOUNT, setDiscountData)
+    }
+  }
+  useEffect(() => {
+    insertRand(membersid, discountRandInput)
+  }, [discountRandInput])
+  useEffect(() => {
+    getDiscountData(ACCOUNT, setDiscountData)
+  }, [])
 
   return (
     <>
@@ -67,7 +72,7 @@ function MemberAccountDiscount() {
                 <div className="m-discountImgDiv">
                   {discountData.map((v, i) => {
                     return (
-                      <div>
+                      <div key={v.discountSid}>
                         <img
                           src="/Images/uploads/coupon_empty.png"
                           alt=""

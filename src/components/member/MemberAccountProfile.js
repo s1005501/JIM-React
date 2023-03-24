@@ -292,7 +292,9 @@ function MemberAccountProfile() {
                     </div>
                     <div className="m-profileLevel">
                       <p>會員等級 :</p>
-                      <div>{profileData?.memLevel}</div>
+                      {profileData?.memLevel === '1' ? <div>銅卡會員</div> : ''}
+                      {profileData?.memLevel === '2' ? <div>銀卡會員</div> : ''}
+                      {profileData?.memLevel === '3' ? <div>金卡會員</div> : ''}
                     </div>
                   </div>
                 </div>

@@ -122,7 +122,7 @@ function MemberAccountOrder() {
                 className="m-profileUpdate"
               >
                 <Modal.Header closeButton>
-                  <Modal.Title>會員手機號碼更改</Modal.Title>
+                  <Modal.Title>訂單評論</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <div>
@@ -130,7 +130,7 @@ function MemberAccountOrder() {
                     <form>
                       <div className="ordermodalrate">
                         <span>評星：</span>
-                        <div className="orderrate">
+                        <div className="orderrate" style={{cursor:'pointer'}}>
                           {[...Array(5)].map((v, i) => {
                             if (i + 1 <= ratescore) {
                               return (

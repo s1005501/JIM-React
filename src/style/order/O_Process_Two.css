@@ -52,6 +52,10 @@
   font-size: 18px;
 }
 
+.O_Process_Two_Level {
+  color: #a5a5a5 !important;
+}
+
 /* ----------------如沒使用驗證就步用下列css------- */
 /* .O_Process_Two_NameInput::placeholder {
   color: rgba(255, 255, 255, 0.5);

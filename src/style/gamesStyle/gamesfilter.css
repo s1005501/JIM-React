@@ -1,18 +1,17 @@
 /* ---this start--- */
 .gamesFilterMain {
   display: flex;
-  justify-content: center;
 }
 
 /* ---遊戲清單--- */
 .gamesFilterSection {
-  width: 80%;
+  width: 100%;
   height: auto;
   background-color: black;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 70px 10px 0px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
 }
 
 .game-item {
@@ -23,7 +22,6 @@
   opacity: 0.8;
 }
 
-
 .gamesFilterSection figure {
   display: block;
   width: 100%;
@@ -33,7 +31,7 @@
   position: relative;
 }
 
-.gamesFilterSection section:hover{
+.gamesFilterSection section:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -69,7 +67,7 @@
   align-items: center;
   background-color: white;
   font-size: 16px;
-  border-radius: 0px 0px 20px 20px;;
+  border-radius: 0px 0px 20px 20px;
 }
 
 .games-article-tagtop {
@@ -123,6 +121,10 @@
 /* 進階篩選按鈕 */
 .filterBlockoff {
   display: none;
+}
+
+.gamessection {
+  width: 100%;
 }
 
 .filterBlock {
@@ -228,14 +230,6 @@
   }
 }
 
-
-
-
-
-
-
-
-
 /* ---loader--- */
 .lds-spinner {
   color: official;
@@ -244,14 +238,14 @@
   height: 50vh;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 .lds-spinner div {
   transform-origin: 60px 60px;
   animation: lds-spinner 1.2s linear infinite;
 }
 .lds-spinner div:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   top: 3px;
@@ -309,6 +303,29 @@
   transform: rotate(330deg);
   animation-delay: 0s;
 }
+
+.nogamesfilter div {
+  color: gray;
+  text-align: center;
+}
+
+.nogamesfilter div:first-child {
+  font-size: 120px;
+  position: fixed;
+  z-index: 999999999999999999999999999;
+  top: 50%;
+  right: 0;
+  left: 0;
+}
+.nogamesfilter div:last-child {
+  font-size: 28px;
+  position: fixed;
+  z-index: 999999999999999999999999999;
+  top: 72%;
+  right: 0;
+  left: 0;
+}
+
 @keyframes lds-spinner {
   0% {
     opacity: 1;

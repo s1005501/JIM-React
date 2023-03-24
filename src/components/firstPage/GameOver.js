@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 function GameOver({ sum }) {
   const navigate = useNavigate()
   const dataNum = useRef(0)
+  const [text, setText] = useState('')
   useEffect(() => {
     ;(async () => {
       const discountRand = Math.random()
@@ -16,13 +17,17 @@ function GameOver({ sum }) {
         .substring(7)
         .toUpperCase()
         .slice(0, 5)
+      setText(discountRand)
       const r = await axios.get(
         `http://localhost:3005/firstpage/gameover/${discountRand}`
       )
       console.log(discountRand)
     })()
   }, [])
-  if (sum <= 4) {
+  if (sum == 0) {
+    navigate('/firstPage')
+  }
+  if (sum == 4) {
     dataNum.current = 0
   }
   if (sum > 4 && sum <= 8) {
@@ -43,14 +48,13 @@ function GameOver({ sum }) {
     <>
       <div className="box ">
         <div style={{ color: 'white' }}>
-          {/* 總分:{sum}
-          Math.random().toString(36).substring(7).toUpperCase().slice(0, 5){' '} */}
+          {/* 總分:{sum} */}
           <br />
-          {/* <img src={`/images/gamesImages/${currentNum.img1_id1}`} alt="" /> */}
         </div>
         <div id="top_ctx" className="mx-auto">
           <div className="gameover_title">我的測驗結果:</div>
           <div className="gameover_name">{currentNum.name}</div>
+          <div className="gameover_subtitle">專屬折扣碼: {text}</div>
           <Box_spinning />
           <div className="gameover_content">{currentNum.content}</div>
         </div>
@@ -60,58 +64,75 @@ function GameOver({ sum }) {
 
           <div id="bottom_recommand" className="mx-auto">
             <div className="recommand_cards">
-              <div
-                id="card1"
-                className="card "
-                style={{ marginLeft: '30px', cursor: 'pointer' }}
-                onClick={() => {
-                  navigate(`/order/${currentNum.img1}`)
-                }}
+              <a
+                href={`http://localhost:3000/order/${currentNum.img1}`}
+                target="blank"
+                style={{ color: 'white', textDecoration: 'none' }}
               >
-                <div className="card_content">
-                  <img
-                    className="box_img"
-                    src={`/images/gamesImages/${currentNum.img1_id1}`}
-                    alt=""
-                  ></img>
+                <div
+                  id="card1"
+                  className="card "
+                  style={{ marginLeft: '30px', cursor: 'pointer' }}
+                  // onClick={() => {
+                  //   navigate(`/order/${currentNum.img1}`)
+                  // }}
+                >
+                  <div className="card_content">
+                    <img
+                      className="box_img"
+                      src={`/images/gamesImages/${currentNum.img1_id1}`}
+                      alt=""
+                    ></img>
+                  </div>
+                  <div className="mx-auto my-auto">{currentNum.img1_name1}</div>
                 </div>
-                <div className="mx-auto my-auto">{currentNum.img1}</div>
-              </div>
-              <div
-                id="card2"
-                className="card"
-                style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  navigate(`/order/${currentNum.img2}`)
-                }}
+              </a>
+              <a
+                href={`http://localhost:3000/order/${currentNum.img2}`}
+                target="blank"
+                style={{ color: 'white', textDecoration: 'none' }}
               >
-                <div className="card_content">
-                  <img
-                    className="box_img"
-                    src={`/images/gamesImages/${currentNum.img2_id2}`}
-                    alt=""
-                  ></img>
+                <div
+                  id="card2"
+                  className="card"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    navigate(`/order/${currentNum.img2}`)
+                  }}
+                >
+                  <div className="card_content">
+                    <img
+                      className="box_img"
+                      src={`/images/gamesImages/${currentNum.img2_id2}`}
+                      alt=""
+                    ></img>
+                  </div>
+                  <div className="mx-auto my-auto">{currentNum.img2_name2}</div>
                 </div>
-                <div className="mx-auto my-auto">{currentNum.img2}</div>
-              </div>
-
-              <div
-                id="card3"
-                className="card"
-                style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  navigate(`/order/${currentNum.img3}`)
-                }}
+              </a>
+              <a
+                href={`http://localhost:3000/order/${currentNum.img3}`}
+                target="blank"
+                style={{ color: 'white', textDecoration: 'none' }}
               >
-                <div className="card_content">
-                  <img
-                    className="box_img"
-                    src={`/images/gamesImages/${currentNum.img3_id3}`}
-                    alt=""
-                  ></img>
+                <div
+                  id="card3"
+                  className="card"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    navigate(`/order/${currentNum.img3}`)
+                  }}
+                >
+                  <div className="card_content">
+                    <img
+                      className="box_img"
+                      src={`/images/gamesImages/${currentNum.img3_id3}`}
+                      alt=""
+                    ></img>
+                  </div>
+                  <div className="mx-auto my-auto">{currentNum.img3_name3}</div>
                 </div>
-                <div className="mx-auto my-auto">{currentNum.img3}</div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

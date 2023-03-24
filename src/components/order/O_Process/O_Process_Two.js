@@ -5,6 +5,13 @@ import { ORDER } from './../../config/api_config'
 import axios from 'axios'
 // import "./O_Process_Two.css";
 
+// 先設假資料:等級優惠使用
+const Level = {
+  memberLevel_1: '銅卡會員，9折優惠',
+  memberLevel_2: '銀卡會員，8折優惠',
+  memberLevel_3: '金卡會員，7折優惠',
+}
+
 const OrderTwo = () => {
     // ---------------------------------------
 
@@ -59,16 +66,16 @@ const OrderTwo = () => {
   // 會出現bug，點選優惠券再點回不使用價格不回復並且前一頁也會變成打折後的價格
   // 優惠券點選
   const discountChange = (value) => {
-    const selectedDiscount = discountData.find((d) => d.discountName === value)
+    const selectDiscount = discountData.find((d) => d.discountName === value)
 
-    if (selectedDiscount) {
-      const newDiscount = selectedDiscount.discountPrice
+    if (selectDiscount) {
+      const newDiscount = selectDiscount.discountPrice
       const newPrice = formData.price - newDiscount
       setDiscount(newDiscount)
       setFormData((formData) => ({
         ...formData,
-        orderDiscountName: selectedDiscount.discountName,
-        orderDiscount: selectedDiscount.discountID,
+        orderDiscountName: selectDiscount.discountName,
+        orderDiscount: selectDiscount.discountID,
         price: newPrice,
       }))
     } else {
@@ -106,6 +113,20 @@ const OrderTwo = () => {
     })
   }, [])
 
+    // const [autoFillData, setAutoFillData] = useState({
+  //   orderUsername: '張三',
+  //   orderPhone: '0912345678',
+  //   orderEmail: 'example@gmail.com',
+  // })
+
+  // const handleAutoFill = () => {
+  //   setFormData({
+  //     orderUsername: autoFillData.orderUsername,
+  //     orderPhone: autoFillData.orderPhone,
+  //     orderEmail: autoFillData.orderEmail,
+  //   })
+  // }
+  
   useEffect(() => {
     // 每當formData變更時，更新localStorage
     localStorage.setItem('orderInfo', JSON.stringify(formData))
@@ -220,6 +241,10 @@ const OrderTwo = () => {
         <h5 className="text-danger text-center fs-3">
         總金額 : $ {formData.price}
         </h5>
+        <p className="O_Process_Two_Level">
+            {Level.memberLevel_1}
+            {/* 放假資料，需判定等級 */}
+          </p>
       </div>
       </div>
     </div>

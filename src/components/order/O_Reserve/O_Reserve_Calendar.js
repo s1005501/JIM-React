@@ -37,6 +37,25 @@ const CalendarDate = ({ sid, gameData }) => {
     GameOrderGetData()
   }, [])
 
+  // 抓kevin資料庫  這要抓玩家等級----------------------
+  const [memLevel, setMemLevel] = useState([])
+  const memberAuth = JSON.parse(localStorage.getItem('memberAuth')) //抓會員編號
+
+  const MemLevelGetData = async () => {
+    axios.defaults.withCredentials = true
+    const response = await axios.get(
+      ORDER + `/ordermemLevel/` + `${memberAuth.membersid}`
+    )
+
+    console.log('response:', response.data)
+    setMemLevel(response.data)
+  }
+
+  useEffect(() => {
+    MemLevelGetData()
+  }, [])
+  // ---------------------------------------
+
   // 抓kevin資料庫  資料還沒弄好  處理日曆時間不可選取 未完成
   // const [orderDate, setOrderDate] = useState([])
 
@@ -200,6 +219,7 @@ const CalendarDate = ({ sid, gameData }) => {
       storeAddress: gameData[0].storeAddress,
       sid: gameData[0].gamesSid,
       member: checkToken('memberAuth')?.membersid,
+         // memberLevel: memLevel[0].memLevel, //沒成功
     })
   }, [gameData])
 
@@ -231,6 +251,7 @@ const CalendarDate = ({ sid, gameData }) => {
             setCalendarOrder({ ...calendarOrder, date: dateFormat })
           }} // 綁定到日曆上
           minDate={new Date()}
+          maxDate={moment().add(3, 'months').toDate()} //設置最大日期範圍為三個月後的日期
           locale={'en'}
           value={value}
           className="mx-auto bg-transparent rounded-3 w-75"

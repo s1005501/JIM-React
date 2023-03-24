@@ -7,27 +7,27 @@ import axios from 'axios'
 
 function GamesMainPage() {
   //  -----------------生成參考資料--------------------
-  const [starlevel, setStarLevel] = useState([])
-  const [starquantity, setStarQuantity] = useState([])
-  useEffect(() => {
-    const generateData = () => {
-      const newStarLevel = []
-      const newStarQuantity = []
-      for (let i = 0; i < 200; i++) {
-        const randNum = Math.random() * (4.9 - 3.1) + 3.1
-        newStarLevel.push(Number(randNum.toFixed(1)))
-        newStarQuantity.push(Number(cardStarQuantity(i)))
-      }
-      setStarLevel(newStarLevel)
-      setStarQuantity(newStarQuantity)
-    }
+  // const [starlevel, setStarLevel] = useState([])
+  // const [starquantity, setStarQuantity] = useState([])
+  // useEffect(() => {
+  //   const generateData = () => {
+  //     const newStarLevel = []
+  //     const newStarQuantity = []
+  //     for (let i = 0; i < 200; i++) {
+  //       const randNum = Math.random() * (4.9 - 3.1) + 3.1
+  //       newStarLevel.push(Number(randNum.toFixed(1)))
+  //       newStarQuantity.push(Number(cardStarQuantity(i)))
+  //     }
+  //     setStarLevel(newStarLevel)
+  //     setStarQuantity(newStarQuantity)
+  //   }
 
-    const cardStarQuantity = (i) => {
-      return Math.floor(Math.random() * i * 10) + 1
-    }
+  //   const cardStarQuantity = (i) => {
+  //     return Math.floor(Math.random() * i * 10) + 1
+  //   }
 
-    generateData()
-  }, [])
+  //   generateData()
+  // }, [])
 
   // 從伺服器得到資料記錄用
   const [datas, setDatas] = useState([])
@@ -51,7 +51,11 @@ function GamesMainPage() {
   // 下拉式人數狀態
   const [selectedPeopleValue, setSlectedPeopleValue] = useState(0)
   // 進階按鈕狀態
-  const [isActiveFilterBlock, setActiveFilterBlock] = useState('false')
+  const [isActiveFilterBlockClick, setActiveFilterBlockClick] = useState(false)
+
+  // 評論數量及評星等級
+  // const [starlevel, setStarLevel] = useState([])
+  // const [starquantity, setStarQuantity] = useState([])
 
   //---篩選列表狀態區塊---
   const [gamesDifficulty, setGamesDifficultye] = useState('全部難度')
@@ -63,11 +67,14 @@ function GamesMainPage() {
   const [gamesOrderStata, setGamesOrderStata] = useState(1)
   // ---載入中---
   const [isLoading, setIsLoading] = useState(true)
-
   //向伺服器用get獲取資料
   const getDatas = async () => {
     const res = await axios.get('http://localhost:3005/games/games')
-    const gamesdata = res.data[0]
+
+    // 遊戲資料
+    const gamesdata = res.data.row.gameResult[0]
+    // 遊戲評分
+    const rankdata = res.data.row.rankResult[0]
 
     //資料數字轉換中文
     const difficultyMap = {
@@ -116,7 +123,23 @@ function GamesMainPage() {
       }
     })
 
-    console.log(newdata)
+    const Newrankdata = rankdata.map((v) => {
+      return {
+        ...v,
+        level: Number(v.level).toFixed(1),
+      }
+    })
+
+    newdata.forEach((a) => {
+      const bbb = Newrankdata.find((b) => {
+        return b.games_id === a.gamesSid
+      })
+
+      if (bbb) {
+        a.count = bbb.count
+        a.level = bbb.level
+      }
+    })
     setDatas(newdata)
   }
 
@@ -159,17 +182,17 @@ function GamesMainPage() {
   const sortByType = (datas, type) => {
     switch (type) {
       case 0:
-        return [...datas].sort((a, b) => b.ratequantity - a.ratequantity)
+        return [...datas].sort((a, b) => b.count - a.count)
 
       // 由大至小 => type=1 (預設)
       case 1:
-        return [...datas].sort((a, b) => b.ratelevel - a.ratelevel)
+        return [...datas].sort((a, b) => b.level - a.level)
 
       case 2:
         return [...datas].sort((a, b) => a.gamesPrice - b.gamesPrice)
 
       default:
-        return [...datas].sort((a, b) => b.ratelevel - a.ratelevel)
+        return [...datas].sort((a, b) => b.level - a.level)
     }
   }
 
@@ -232,10 +255,10 @@ function GamesMainPage() {
   }, [])
 
   // ---新增兩筆屬性資料---
-  datas.forEach((v, i) => {
-    v.ratelevel = starlevel[i]
-    v.ratequantity = starquantity[i]
-  })
+  // datas.forEach((v, i) => {
+  //   v.ratelevel = starlevel[i]
+  //   v.ratequantity = starquantity[i]
+  // })
 
   // 呈現用狀態管理
   useEffect(() => {
@@ -336,8 +359,23 @@ function GamesMainPage() {
 
   // 進階篩選按鈕功能
   const handleToggleFilterBlock = () => {
-    setActiveFilterBlock(!isActiveFilterBlock)
+    setActiveFilterBlockClick(!isActiveFilterBlockClick)
   }
+
+  useEffect(() => {
+    window.addEventListener(
+      'click',
+      (e) => {
+        if (e.target.innerHTML !== '進階篩選') {
+          const advancedFilter = document.querySelector('.gamessection')
+          if (!advancedFilter.contains(e.target)) {
+            setActiveFilterBlockClick(false)
+          }
+        }
+      },
+      false
+    )
+  }, [])
 
   //---篩選列表區塊---
   const myGamesDifficulty = (value) => {
@@ -402,7 +440,7 @@ function GamesMainPage() {
   const price = [800, 700, 600, 500, 400, 300]
   const time = ['全部時間', '30', '60', '90', '120']
   const sort = ['全部玩法', '密室逃脫', '劇本殺', '時境解謎']
-  const order = ['評價數量', '評價分數', '遊戲金額']
+  const order = ['評價數量↑', '評價分數↑', '遊戲金額↓']
 
   return (
     <div className="gamesMain">
@@ -484,7 +522,11 @@ function GamesMainPage() {
 
         {/* 進階篩選區塊 */}
         <section
-          className={isActiveFilterBlock ? 'filterBlockoff' : 'filterBlock'}
+          className={
+            isActiveFilterBlockClick
+              ? 'filterBlock gamessection'
+              : 'filterBlockoff gamessection'
+          }
         >
           <div
             className={

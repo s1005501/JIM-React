@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Rate } from 'antd'
 import { ORDER } from './../../config/api_config'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import {
   FaTint,
   FaUserFriends,
@@ -55,6 +56,11 @@ const GameInfo = ({ sid }) => {
         likeOrNot: true,
       })
     }
+    Swal.fire({
+      title: '加入收藏!',
+      icon: 'success',
+      confirmButtonText: '確認',
+    })
   }
 
   const collectAdd = async () => {
