@@ -84,9 +84,13 @@
   border-radius: 20px;
   margin-bottom: 20px;
   padding: 40px;
-  background-color: #4e4e4e;
+  background-color: rgba(255, 255, 255, 0.15);
   box-sizing: border-box;
-  /* border: 3px solid #d01b1b; */
+  border: 2px solid transparent;
+}
+
+.gamesdetail:hover {
+  border: 2px rgba(255, 255, 255, 0.603) solid;
 }
 .images {
   width: 100%;
@@ -117,7 +121,7 @@
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 1);
   margin: 0;
   border-radius: 20px;
   /* border-bottom-left-radius: 10px; */
@@ -141,10 +145,15 @@
   padding: 10px;
   background-color: #4e4e4e;
   padding-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .newscommenttitle {
   text-align: center;
   font-size: 24px;
+  color: white;
+  margin: 10px;
+  margin-bottom: 20px;
 }
 .mentionuser {
   display: flex;
@@ -153,6 +162,7 @@
   height: 20px;
   margin-top: 10px;
   margin-bottom: 80px;
+  justify-content: center;
 }
 .usericonimg-main {
   width: 80px;
@@ -162,20 +172,25 @@
   margin-right: 20px;
 }
 .mentionusername {
-  width: 100px;
-  height: 25px;
+  width: fit-content;
+  height: 30px;
   /* margin-right: 10px; */
   margin-bottom: 10px;
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
   background: #3c3c3c;
 }
 .newscommentcontent {
   color: white;
   font-size: 18px;
   background: #3c3c3c;
-  width: 300px;
+  display: flex;
+  align-items: center;
+  width: 320px;
   height: 50px;
   border-radius: 0 20px 20px 20px;
   padding-left: 10px;
@@ -198,10 +213,22 @@
 }
 .gameskeywords_p {
   font-size: 18px;
-  /* border: 1px solid white; */
   background-color: #4e4e4e;
+  /* border: 2px solid transparent; */
   /* color: white; */
   padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 15px;
+}
+
+.gameskeywords_p:hover {
+  font-size: 18px;
+  background-color: #292929;
+  /* border: 2px solid white; */
+  /* color: white; */
+  padding: 5px;
+  font-weight: bold;
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 15px;
@@ -216,7 +243,7 @@
   color: white;
 }
 .keywords_p:hover {
-  color: #d01b1b;
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {

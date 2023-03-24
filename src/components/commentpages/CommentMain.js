@@ -223,7 +223,7 @@ function CommentMain() {
                               >
                                 {v.memNickName}
                               </p>
-                              <div className="newscommentcontent">
+                              <div className="newscommentcontent ">
                                 {v.comment}
                               </div>
                             </div>
