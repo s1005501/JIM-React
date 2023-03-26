@@ -24,7 +24,7 @@ import { useContextValue } from '../../ContextDashbard'
 // }
 
 function OrderProcess() {
-  console.log(useContextValue)
+  // console.log(useContextValue)
   const { getBackData } = useContextValue()
   // -------------------------------------
   const memberAuth = JSON.parse(localStorage.getItem('memberAuth')) //抓會員編號
@@ -32,7 +32,6 @@ function OrderProcess() {
   const [level, setLevel] = useState([])
 
   useEffect(() => {
-    console.log('9999999999999999999999999999999999999999999999999999999')
     getBackData(
       `http://localhost:3005/order/ordermemLevel/${memberAuth.membersid}`,
       // `http://localhost:3005/order/ordermemLevel/2`,
@@ -54,7 +53,6 @@ function OrderProcess() {
       break
     }
   }
-  console.log(n, 41)
   const navigate = useNavigate() //回預約頁
 
   const orderInfoLocalStorage = JSON.parse(localStorage.getItem('orderInfo'))
@@ -62,7 +60,7 @@ function OrderProcess() {
   // 步驟4訂單資料呈現
   const [orderData, setOrderData] = useState([])
   const [orderResult, setOrderResult] = useSearchParams() //抓取按line後成立的訂單編號
-  console.log(orderResult.get('orderId'))
+  // console.log(orderResult.get('orderId'))
   // const [lineOrderSid, setLineOrderSid] = useState('')
   // console.log(lineOrderSid, 99999999999999999999999999)
   const lineOrderSid = useRef('')
@@ -72,7 +70,7 @@ function OrderProcess() {
     const response = await axios.get(
       ORDER + `/orderProcess/${orderResult.get('orderId')}`
     )
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setOrderData(response.data)
   }
   useEffect(() => {
@@ -101,10 +99,10 @@ function OrderProcess() {
       content: (
         <div>
           <div className="O_Process_Three_Sort">
-          <h3 className="text-center">
+            <h3 className="text-center">
               總金額 : {orderInfoLocalStorage.price} 尚未付款
             </h3>
-            {console.log(orderInfoLocalStorage)}
+            {/* {console.log(orderInfoLocalStorage)} */}
             <Button
               type="light"
               onClick={async () => {
@@ -123,13 +121,12 @@ function OrderProcess() {
                 } = orderInfoLocalStorage
                 const orderId = parseInt(new Date().getTime() / 1000)
                 const neworderId = orderId.toString()
-                console.log(orderId, 555)
                 lineOrderSid.current = neworderId
-                console.log(sid, member, people, price, gamesName, time, date)
+                // console.log(sid, member, people, price, gamesName, time, date)
                 const r = await axios.post(
                   `http://localhost:3005/linepay/createOrder/${orderId}?sid=${1}&member=${member}&gamesid=${sid}&people=${people}&cash=${price}&prod=${gamesName}&time=${time}&date=${date}&name=${orderUsername}&tel=${orderPhone}&email=${orderEmail}&discount=${orderDiscount}`
                 )
-                console.log(r.data)
+                // console.log(r.data)
                 if (!!r.data.linePayUrl) {
                   window.location.href = r.data.linePayUrl
                 }
@@ -186,22 +183,22 @@ function OrderProcess() {
   // -----------------------------------------
 
   const { token } = theme.useToken()
-    // 流程下面的框框內容及CSS
-    const contentStyle = {
-      // lineHeight: "260px",
-      // height:"600px",
-      textAlign: 'center',
-      color: token.colorTextTertiary,
-      backgroundColor: token.colorFillAlter,
-      // borderRadius: token.borderRadiusLG,
-      // border: `1px dashed ${token.colorBorder}`,
-    }
+  // 流程下面的框框內容及CSS
+  const contentStyle = {
+    // lineHeight: "260px",
+    // height:"600px",
+    textAlign: 'center',
+    color: token.colorTextTertiary,
+    backgroundColor: token.colorFillAlter,
+    // borderRadius: token.borderRadiusLG,
+    // border: `1px dashed ${token.colorBorder}`,
+  }
   // ------------------------------------如要修改步驟條內容，要找上面steps的內容修改---------------
   const items = steps.map((item) => ({ key: item.title, title: item.title }))
 
   // ----------下一頁上一頁的部分
   const [current, setCurrent] = useState(0)
-  console.log(current)
+  // console.log(current)
 
   const next = () => {
     setCurrent(current + 1)
@@ -212,7 +209,7 @@ function OrderProcess() {
   }
   const [search, setSearch] = useSearchParams()
   useEffect(() => {
-    console.log(search?.get('order'))
+    // console.log(search?.get('order'))
     if (!!search?.get('orderId')) {
       setCurrent(3)
     }
@@ -313,7 +310,7 @@ function OrderProcess() {
                     const data = JSON.parse(localStorage.getItem('orderInfo'))
                     const num = parseInt(data.price) * n
                     const newData = { ...data, price: num }
-                    console.log(newData)
+                    // console.log(newData)
                     localStorage.setItem('orderInfo', JSON.stringify(newData))
                     next()
                   }}
@@ -324,10 +321,10 @@ function OrderProcess() {
               )}
 
               {current === steps.length - 3 && (
-                 <Button
-                 className="O_Process_NextBtn"
-                 onClick={OrderPaymentClick}
-               >
+                <Button
+                  className="O_Process_NextBtn"
+                  onClick={OrderPaymentClick}
+                >
                   確認資料
                 </Button>
               )}

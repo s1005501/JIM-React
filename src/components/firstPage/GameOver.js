@@ -21,12 +21,12 @@ function GameOver({ sum }) {
       const r = await axios.get(
         `http://localhost:3005/firstpage/gameover/${discountRand}`
       )
-      console.log(discountRand)
+      // console.log(discountRand)
     })()
   }, [])
-  if (sum == 0) {
-    navigate('/firstPage')
-  }
+  // if (sum == 0) {
+  //   navigate('/firstPage')
+  // }
   if (sum == 4) {
     dataNum.current = 0
   }
@@ -63,7 +63,7 @@ function GameOver({ sum }) {
           <div className="gameover_subtitle mx-auto mt-5">你可能會適合...</div>
 
           <div id="bottom_recommand" className="mx-auto">
-            <div className="recommand_cards">
+            <div className="recommand_cards d-flex flex-column flex-xxl-row justify-content-center align-items-center">
               <a
                 href={`http://localhost:3000/order/${currentNum.img1}`}
                 target="blank"
@@ -71,8 +71,8 @@ function GameOver({ sum }) {
               >
                 <div
                   id="card1"
-                  className="card "
-                  style={{ marginLeft: '30px', cursor: 'pointer' }}
+                  className="card"
+                  style={{ cursor: 'pointer' }}
                   // onClick={() => {
                   //   navigate(`/order/${currentNum.img1}`)
                   // }}

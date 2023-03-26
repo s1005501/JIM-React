@@ -36,7 +36,7 @@ function MemberNameModal({
   })
 
   useEffect(() => {
-    console.log(watchForm)
+    // console.log(watchForm)
   }, [watchForm])
 
   const updateProfileName = async (data) => {
@@ -52,7 +52,7 @@ function MemberNameModal({
       }
     )
     if (response.data.success) {
-      console.log(response.data)
+      // console.log(response.data)
 
       Swal.fire({
         title: '姓名修改成功!',

@@ -42,7 +42,7 @@ function CommentinnerPage() {
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
-  
+
   let { mygamesName } = useParams()
   const navigate = useNavigate()
 
@@ -288,14 +288,14 @@ function CommentinnerPage() {
                               type="file"
                               className="hiddenpicbtn"
                               onChange={async (e) => {
-                                console.log(e.target.files[0])
+                                // console.log(e.target.files[0])
                                 const fd = new FormData()
                                 fd.append('photos', e.target.files[0])
                                 const r = await axios.post(
                                   'http://localhost:3005/post/',
                                   fd
                                 )
-                                console.log(r.data[0].filename)
+                                // console.log(r.data[0].filename)
                                 setPicname(r.data[0].filename)
                               }}
                             />
@@ -412,32 +412,42 @@ function CommentinnerPage() {
                               }}
                             >
                               回覆
-                            </button>{v.commentuser_id===usersid?(<button  className="css1"  onClick={(e) => {
-                                      e.preventDefault()
-                                      confirmAlert({
-                                        
-                                        message: `是否刪除?`,
-                                        buttons: [
-                                          {
-                                            label: '是',
-                                            onClick: async () => {
-                                            await  axios.delete(
-                                                `http://localhost:3005/commentdelete/${v.sid}`
-                                              )
-                                              
-                                      setRender(!reader)
-                                            },
-                                          },
-                                          {
-                                            label: '否',
-                                            onClick: () =>
-                                              swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
-                                          },
-                                        ],
-                                      })
-                                    
+                            </button>
+                            {v.commentuser_id === usersid ? (
+                              <button
+                                className="css1"
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  confirmAlert({
+                                    message: `是否刪除?`,
+                                    buttons: [
+                                      {
+                                        label: '是',
+                                        onClick: async () => {
+                                          await axios.delete(
+                                            `http://localhost:3005/commentdelete/${v.sid}`
+                                          )
 
-                                    }}>delete</button>):null}
+                                          setRender(!reader)
+                                        },
+                                      },
+                                      {
+                                        label: '否',
+                                        onClick: () =>
+                                          swalAlert(
+                                            '已取消刪除',
+                                            '已取消刪除',
+                                            'success',
+                                            '確認'
+                                          ),
+                                      },
+                                    ],
+                                  })
+                                }}
+                              >
+                                delete
+                              </button>
+                            ) : null}
                             {v.filter ? (
                               v.filter.liked ? (
                                 <>

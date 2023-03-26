@@ -28,9 +28,9 @@ import { checkToken } from './../../../ContextDashbard'
 // }
 
 const GameInfo = ({ sid }) => {
-  console.log(checkToken())
+  // console.log(checkToken())
   const [gameDataTest, setGameData] = useState([])
-  console.log(gameDataTest)
+  // console.log(gameDataTest)
   // ! 以下是遊戲加入收藏部分----------------------------
   const [collectData, setCollectData] = useState({
     likeOrNot: false,
@@ -41,7 +41,7 @@ const GameInfo = ({ sid }) => {
   // ! 這個是記錄成功的primary key，刪除要透過這個
   const [deleteCollectSid, setDeleteCollectSid] = useState('')
   const memberLocalStorage = JSON.parse(localStorage.getItem('memberAuth'))
-  console.log(collectData)
+  // console.log(collectData)
   const like = () => {
     if (
       memberLocalStorage.membersid &&
@@ -70,7 +70,7 @@ const GameInfo = ({ sid }) => {
           'Content-Type': 'application/json',
         },
       })
-      console.log(response.data)
+      // console.log(response.data)
       setDeleteCollectSid(response.data.row.insertId)
     }
   }
@@ -92,13 +92,13 @@ const GameInfo = ({ sid }) => {
       const response = await axios.delete(
         ORDER + '/collectDelete/' + deleteCollectSid
       )
-      console.log(response)
+      // console.log(response)
     }
   }
   // ! 透過uesEffect才能抓到對的已經被改過的狀態---------------
   useEffect(() => {
     if (collectData.likeOrNot) {
-      console.log(collectData)
+      // console.log(collectData)
       collectAdd()
     }
   }, [collectData.likeOrNot])

@@ -148,7 +148,7 @@ const updatePlayerPosition = (
     frameY = 0
   }
   y += volecity
-  console.log(!OnGround())
+  // console.log(!OnGround())
   if (!OnGround()) {
     volecity += gravity
     maxFrame = 0

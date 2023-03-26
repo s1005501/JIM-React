@@ -34,7 +34,7 @@ export const MemberAuthContextProvider = ({ children }) => {
         memberLocalStorage.memAccount &&
         memberLocalStorage.membersid
       ) {
-        console.log('in,9')
+        // console.log('in,9')
         initAuth = {
           authorized: true,
           membersid: memberLocalStorage.membersid,
@@ -48,7 +48,7 @@ export const MemberAuthContextProvider = ({ children }) => {
 
   const [memberAuthState, setMemberAuthState] = useState(initAuth)
 
-  console.log(memberAuthState)
+  // console.log(memberAuthState)
 
   // 傳給profile render的func
   const getProfileData = async (url, setState) => {
@@ -151,7 +151,7 @@ export const MemberAuthContextProvider = ({ children }) => {
           },
         }
       )
-      console.log(response.data.row)
+      // console.log(response.data.row)
       setState(response.data.row)
     }
   }
@@ -181,7 +181,6 @@ export const MemberAuthContextProvider = ({ children }) => {
         memberAuthState,
         setMemberAuthState,
         getDiscountData,
-
       }}
     >
       <div className="minh">

@@ -6,8 +6,10 @@ const MapSidebarTitle = () => {
   const { searchKeyword, setSearchKeyword } = useContextValue()
   return (
     <div>
-      <h3 className="p-2 ">{moment().format('dddd')}</h3>
-      <h3>{moment().format('YYYY-MM-DD')}</h3>
+      <h3 className="p-2 ">
+        {moment().format('dddd')}{' '}
+        <span className="float-end">{moment().format('YYYY-MM-DD')}</span>
+      </h3>
 
       <div className="searchBar">
         <input

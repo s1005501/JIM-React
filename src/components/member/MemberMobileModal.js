@@ -37,7 +37,7 @@ function MemberMobileModal({
   })
 
   useEffect(() => {
-    console.log(watchForm)
+    // console.log(watchForm)
   }, [watchForm])
 
   const updateProfileMobile = async (data) => {
@@ -53,7 +53,7 @@ function MemberMobileModal({
       }
     )
     if (response.data.success) {
-      console.log(response.data)
+      // console.log(response.data)
 
       Swal.fire({
         title: '手機號碼修改成功!',

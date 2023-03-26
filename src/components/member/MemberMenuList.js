@@ -12,7 +12,7 @@ import MemberAccountDiscount from './MemberAccountDiscount'
 
 const MemberMenuList = () => {
   const { action } = useParams()
-  console.log(action)
+  // console.log(action)
   let currentPage = ''
   switch (action) {
     case 'level': {

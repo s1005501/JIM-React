@@ -37,7 +37,7 @@ function MemberPasswordModal({
   })
 
   useEffect(() => {
-    console.log(watchForm)
+    // console.log(watchForm)
   }, [watchForm])
 
   const updateProfilePassword = async (data) => {
@@ -62,7 +62,7 @@ function MemberPasswordModal({
     }
 
     if (response.data.success) {
-      console.log(response.data)
+      // console.log(response.data)
 
       Swal.fire({
         title: '密碼修改成功!',

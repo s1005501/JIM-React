@@ -49,7 +49,9 @@ const StoreInformation = () => {
     getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
   }, [render])
   useEffect(() => {
+    console.log(storeInfo[0])
     setImgUrl(storeInfo[0]?.storeLogo)
+    setValue('LogoImg', storeInfo[0]?.storeLogo)
     setValue('Logo', storeInfo[0]?.storeLogo)
     setValue('account', storeInfo[0]?.storeAccount)
     setValue('password', storeInfo[0]?.storePassword)
@@ -61,7 +63,9 @@ const StoreInformation = () => {
     setValue('county', storeInfo[0]?.storeCity)
     setValue('address', storeInfo[0]?.storeAddress)
     setValue('email', storeInfo[0]?.storeEmail)
-    setValue('time', storeInfo[0]?.storeTime)
+    // setValue('time', storeInfo[0]?.storeTime)
+    setValue('timeStart', storeInfo[0]?.timeStart)
+    setValue('timeEnd', storeInfo[0]?.timeEnd)
     setValue('website', storeInfo[0]?.storeWebsite)
     setValue('remark', storeInfo[0]?.storeNews)
   }, [storeInfo])
@@ -334,7 +338,7 @@ const StoreInformation = () => {
             }}
           />
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -353,6 +357,38 @@ const StoreInformation = () => {
               },
             }}
           />
+        </div> */}
+        <div className="mb-3 d-flex justify-content-evenly w-100">
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeStart'}
+              idText={'開始時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業開始時間',
+                },
+              }}
+            ></Input>
+          </div>
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeEnd'}
+              idText={'結束時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業結束時間',
+                },
+              }}
+            />
+          </div>
         </div>
         <div className="mb-3">
           <Input

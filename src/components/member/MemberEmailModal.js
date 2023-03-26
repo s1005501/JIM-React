@@ -36,7 +36,7 @@ function MemberEmailModal({
   })
 
   useEffect(() => {
-    console.log(watchForm)
+    // console.log(watchForm)
   }, [watchForm])
 
   const updateProfileEmail = async (data) => {
@@ -52,7 +52,7 @@ function MemberEmailModal({
       }
     )
     if (response.data.success) {
-      console.log(response.data)
+      // console.log(response.data)
       Swal.fire({
         title: '信箱修改成功!',
         text: `信箱修改成功`,

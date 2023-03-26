@@ -12,10 +12,10 @@ function MemberLoginRegister() {
 
   // ! 會員透過驗證信點擊回來即作判斷並寫入資料庫
   let { action } = useParams()
-  console.log(useParams())
+  // console.log(useParams())
   const memberVerifiedFunction = async () => {
     const response = await axios.get(`${ACCOUNTVERIFIED}/${action}`)
-    console.log(response)
+    // console.log(response)
   }
   if (action) {
     memberVerifiedFunction()

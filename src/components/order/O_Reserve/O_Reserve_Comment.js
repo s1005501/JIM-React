@@ -23,7 +23,7 @@ const Comment = ({ sid }) => {
     axios.defaults.withCredentials = true
     const response = await axios.get(ORDER + `/orderComment/${sid}`)
 
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setReserveComment(response.data)
   }
 

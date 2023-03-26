@@ -32,7 +32,7 @@ const OrderOne = () => {
   // }, [])
 
   const orderInfoLocalStorage = JSON.parse(localStorage.getItem('orderInfo'))
-  console.log(orderInfoLocalStorage)
+  // console.log(orderInfoLocalStorage)
   return (
     // <div>
     //   {orderData.map((v, i) => {

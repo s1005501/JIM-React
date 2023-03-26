@@ -31,7 +31,7 @@ function MemberLogin({ memberLoginOrNot }) {
     await axios.post(ACCOUNTLOGIN, memberLoginInput).then((response) => {
       // 登入成功
       if (response.data.success) {
-        console.log(response.data)
+        // console.log(response.data)
         const { memAccount, membersid, memberToken, memVerified, memHeadshot } =
           response.data
 

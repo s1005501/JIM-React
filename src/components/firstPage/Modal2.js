@@ -27,11 +27,9 @@ const dropIn = {
 }
 
 function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
-  console.log(sum, '寫值',30)
   return (
     <>
       {[question[boxTrigger]].map((v, i) => {
-        console.log(boxTrigger, 3)
         return (
           <React.Fragment key={v.id}>
             <Backdrop onClick={onClose}>
@@ -44,9 +42,7 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                 exit="exit"
               >
                 <div className="modal_ctx flex-column">
-                  <div className="question">
-                    Question: {v.question}
-                  </div>
+                  <div className="question">Question: {v.question}</div>
                   <div className="d-flex flex-column">
                     <div
                       className="d-flex flex-row option"
@@ -71,7 +67,6 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                       
                       />
                     </div>
                     <div
@@ -97,7 +92,6 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                       
                       />
                     </div>
                     <div
@@ -123,7 +117,6 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                       
                       />
                     </div>{' '}
                     <div
@@ -149,7 +142,6 @@ function Modal2({ onClose, boxTrigger, sum, setSum, setGameOver }) {
                         type="radio"
                         style={{ opacity: 0 }}
                         name="option1"
-                       
                       />
                     </div>
                   </div>

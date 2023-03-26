@@ -13,12 +13,12 @@ const Level = {
 }
 
 const OrderTwo = () => {
-    // ---------------------------------------
+  // ---------------------------------------
 
-    const [render, setRender] = useState(false)
-    const [formData, setFormData] = useState({
-      member: '', //會員編號
-      memberLevel: '', //會員等級
+  const [render, setRender] = useState(false)
+  const [formData, setFormData] = useState({
+    member: '', //會員編號
+    memberLevel: '', //會員等級
     sid: '', //遊戲編號
     gamesName: '', //遊戲名
     price: '', //訂單總金額
@@ -38,7 +38,7 @@ const OrderTwo = () => {
     storeAddress: '', //商店地址
   })
 
-    const [discountData, setDiscountData] = useState([]) //優惠券資料庫
+  const [discountData, setDiscountData] = useState([]) //優惠券資料庫
 
   const memberAuth = JSON.parse(localStorage.getItem('memberAuth')) //抓會員編號
   // 抓kevin資料庫優惠券用:discount
@@ -48,7 +48,7 @@ const OrderTwo = () => {
       ORDER + '/discount/' + `${memberAuth.membersid}`
     )
 
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setDiscountData(response.data)
   }
 
@@ -95,7 +95,7 @@ const OrderTwo = () => {
   }
 
   const orderInfo = JSON.parse(localStorage.getItem('orderInfo'))
-  console.log(formData)
+  // console.log(formData)
   useEffect(() => {
     setFormData({
       ...formData,
@@ -113,7 +113,7 @@ const OrderTwo = () => {
     })
   }, [])
 
-    // const [autoFillData, setAutoFillData] = useState({
+  // const [autoFillData, setAutoFillData] = useState({
   //   orderUsername: '張三',
   //   orderPhone: '0912345678',
   //   orderEmail: 'example@gmail.com',
@@ -126,7 +126,7 @@ const OrderTwo = () => {
   //     orderEmail: autoFillData.orderEmail,
   //   })
   // }
-  
+
   useEffect(() => {
     // 每當formData變更時，更新localStorage
     localStorage.setItem('orderInfo', JSON.stringify(formData))
@@ -181,11 +181,11 @@ const OrderTwo = () => {
             付款方式
           </div>
 
-            <Select
-              defaultValue="---請選擇---"
-              style={{ width: 170 }}
-              size={'large'}
-              onChange={handlePaymentChange}
+          <Select
+            defaultValue="---請選擇---"
+            style={{ width: 170 }}
+            size={'large'}
+            onChange={handlePaymentChange}
           >
             <Select.Option value="Line Pay" className="text-center fs-6">
               Line Pay
@@ -212,40 +212,40 @@ const OrderTwo = () => {
             </Space>
           ) : (
             <Select
-            defaultValue="---請選擇---"
-            style={{ width: 170 }}
-            size={'large'}
-            onChange={discountChange}
-          >
-            <Select.Option value="" className="text-center fs-6">
-              不使用優惠券
-            </Select.Option>
-            {discountData.map((v, i) => {
-              return (
-                <Select.Option
-                  key={i}
-                  className="text-center fs-6"
-                  value={v.discountName}
-                >
-                  {v.discountName}
-                </Select.Option>
-              )
-            })}
-          </Select>
-        )}
-      </div>
+              defaultValue="---請選擇---"
+              style={{ width: 170 }}
+              size={'large'}
+              onChange={discountChange}
+            >
+              <Select.Option value="" className="text-center fs-6">
+                不使用優惠券
+              </Select.Option>
+              {discountData.map((v, i) => {
+                return (
+                  <Select.Option
+                    key={i}
+                    className="text-center fs-6"
+                    value={v.discountName}
+                  >
+                    {v.discountName}
+                  </Select.Option>
+                )
+              })}
+            </Select>
+          )}
+        </div>
 
-      {/* 總金額 */}
-      {/* 有選擇優惠券才打折，但這邊金額是抓資料庫的，所以要改 */}
-      <div className="mt-3">
-        <h5 className="text-danger text-center fs-3">
-        總金額 : $ {formData.price}
-        </h5>
-        <p className="O_Process_Two_Level">
+        {/* 總金額 */}
+        {/* 有選擇優惠券才打折，但這邊金額是抓資料庫的，所以要改 */}
+        <div className="mt-3">
+          <h5 className="text-danger text-center fs-3">
+            總金額 : $ {formData.price}
+          </h5>
+          <p className="O_Process_Two_Level">
             {Level.memberLevel_1}
             {/* 放假資料，需判定等級 */}
           </p>
-      </div>
+        </div>
       </div>
     </div>
   )

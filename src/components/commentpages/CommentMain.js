@@ -41,9 +41,9 @@ function CommentMain() {
   }
 
   const searchkeyword = async () => {
-    console.log(inputvalue)
+    // console.log(inputvalue)
     const r = await axios.get(`http://localhost:3005/try/${inputvalue}`)
-    console.log(r.data)
+    // console.log(r.data)
     // // console.log(r.data)
     // if(!r.data.length) return
     // // if(!r.data.length){return }
@@ -215,7 +215,7 @@ function CommentMain() {
                               }
                               alt=""
                             />
-                            {console.log(news)}
+                            {/* {console.log(news)} */}
                             <div>
                               <p
                                 className="mentionusername"

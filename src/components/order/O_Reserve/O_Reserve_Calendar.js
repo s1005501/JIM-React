@@ -29,7 +29,7 @@ const CalendarDate = ({ sid, gameData }) => {
     axios.defaults.withCredentials = true
     const response = await axios.get(ORDER + `/gamesinfo/${sid}`)
 
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setCalendarInfo(response.data)
   }
 
@@ -47,7 +47,7 @@ const CalendarDate = ({ sid, gameData }) => {
       ORDER + `/ordermemLevel/` + `${memberAuth.membersid}`
     )
 
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setMemLevel(response.data)
   }
 
@@ -170,7 +170,7 @@ const CalendarDate = ({ sid, gameData }) => {
     storeName: '', //商店名
     storeAddress: '', //商店地址
   })
-  console.log(calendarOrder)
+  // console.log(calendarOrder)
   // -------------------
 
   // const selectTime = (index, time) => {
@@ -208,7 +208,7 @@ const CalendarDate = ({ sid, gameData }) => {
   //   setSelectedTime(time) // 更新選取的時間
   //   localStorage.setItem('selectedtime', JSON.stringify(time))
   // }
-  console.log(gameData)
+  // console.log(gameData)
   useEffect(() => {
     setCalendarOrder({
       ...calendarOrder,
@@ -219,7 +219,7 @@ const CalendarDate = ({ sid, gameData }) => {
       storeAddress: gameData[0].storeAddress,
       sid: gameData[0].gamesSid,
       member: checkToken('memberAuth')?.membersid,
-         // memberLevel: memLevel[0].memLevel, //沒成功
+      // memberLevel: memLevel[0].memLevel, //沒成功
     })
   }, [gameData])
 
@@ -247,7 +247,7 @@ const CalendarDate = ({ sid, gameData }) => {
           // onClickDay={handleDateChange} // 綁定到日曆上
           onClickDay={(date) => {
             let dateFormat = moment(date).format('YYYY-MM-DD')
-            console.log(dateFormat)
+            // console.log(dateFormat)
             setCalendarOrder({ ...calendarOrder, date: dateFormat })
           }} // 綁定到日曆上
           minDate={new Date()}

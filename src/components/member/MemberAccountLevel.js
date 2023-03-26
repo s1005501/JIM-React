@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import MemberAccountAside from './MemberAccountAside'
 
 function MemberAccountLevel() {
-  const [levelData, setLevelData] = useState({})
+  const [levelData, setLevelData] = useState([])
   const { getLevelData, memberAuthState } = useContext(MemberAuthContext)
   const navigate = useNavigate()
   useEffect(() => {

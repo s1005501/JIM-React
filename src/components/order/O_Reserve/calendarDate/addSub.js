@@ -22,7 +22,7 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
     }
   }
   // console.log('1')
-  console.log(calendarOrder)
+  // console.log(calendarOrder)
 
   // ! 有bug如果不按+-號、選日期、時間就送出會存到空值
   useEffect(() => {
@@ -51,7 +51,7 @@ const Product = ({ calendarInfo, setCalendarOrder, calendarOrder }) => {
           <button
             onClick={(e) => {
               decrement()
-              console.log(quantity)
+              // console.log(quantity)
 
               // setCalendarOrder({
               //   ...calendarOrder,

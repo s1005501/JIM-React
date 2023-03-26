@@ -15,7 +15,7 @@ function MemberAccountDiscount() {
     const r = await axios.get(
       `http://localhost:3005/member/setdiscount/${membersid}?discount=${discountRandInput}`
     )
-    console.log(r?.data.length > 1)
+    // console.log(r?.data.length > 1)
     if (r?.data.length > 1) {
       getDiscountData(ACCOUNT, setDiscountData)
     }
@@ -39,7 +39,7 @@ function MemberAccountDiscount() {
             <div className="col m-discountMainContext">
               <h1>會員折價券</h1>
               <div className="m-discountForm">
-                <from>
+                <form>
                   <input
                     type="text"
                     placeholder="請輸入折價券代碼"
@@ -54,17 +54,15 @@ function MemberAccountDiscount() {
                     onClick={(e) => {
                       e.preventDefault()
                       // 有值才發ajax
-                      // console.log(123,e.target.value)
                       setDiscountRandInput(discountNum)
                       if (discountRandInput !== '') {
-                        console.log('aaa')
                         // 成功刷頁面+跳alert
                       }
                     }}
                   >
                     新增
                   </button>
-                </from>
+                </form>
               </div>
               <div className="m-discountImg">
                 <h2>已擁有折價券</h2>

@@ -29,7 +29,6 @@ function GamesFilters(props) {
   const gamescontent = (
     <div className="gamesFilterSection">
       {usersDisplay.map((v, i) => {
-        console.log(usersDisplay.length)
         return (
           <div key={v.gamesSid} className="game-item">
             <section
@@ -96,7 +95,6 @@ function GamesFilters(props) {
 
   return (
     <>
-      {console.log(!!usersDisplay.length)}
       <div className="gamesFilterMain">
         {isLoading
           ? loader

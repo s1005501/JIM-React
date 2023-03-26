@@ -36,7 +36,9 @@ const StroeEdit = ({ sid }) => {
   //   console.log('errors', errors)
   // }, [watchForm])
   useEffect(() => {
+    console.log(editData[0])
     setImgUrl(editData[0]?.gamesImages)
+    setValue('LogoImg', editData[0]?.gamesImages)
     setValue('name', editData[0]?.gamesName)
     setValue('remark', editData[0]?.gamesContent)
     setValue('difficulty', editData[0]?.gamesDifficulty)

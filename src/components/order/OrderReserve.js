@@ -19,7 +19,7 @@ function OrderReserve() {
     const response = await axios.get(ORDER + `/gamesinfo/${sid}`)
 
     // console.log(response);
-    console.log('response:', response.data)
+    // console.log('response:', response.data)
     setGameData(response.data)
   }
 
@@ -65,7 +65,7 @@ function OrderReserve() {
   ]
 
   const onChange = (key) => {
-    console.log(key)
+    // console.log(key)
   }
 
   // 按鈕切換
@@ -94,7 +94,9 @@ function OrderReserve() {
         <div className="mainContainer O_Reserve_Cont">
           {/* 遊戲宣傳圖 */}
           {gameData.map((v, i) => {
-            console.log(v)
+            {
+              /* console.log(v) */
+            }
             return (
               <div key={v.gamesSid} className="O_Reserve_Container">
                 <div className="col-xl-6 O_Reserve_ColImg">

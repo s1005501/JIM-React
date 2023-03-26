@@ -28,7 +28,7 @@ function Game({ sum, setSum, gameOver, setGameOver }) {
           className="save-button"
           onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
         >
-          <button
+          <div
             id="skip_button"
             style={{ position: 'fixed' }}
             onClick={() => {
@@ -36,7 +36,7 @@ function Game({ sum, setSum, gameOver, setGameOver }) {
             }}
           >
             SKIP
-          </button>
+          </div>
           {/* Launch modal{sum} */}
         </motion.button>
         {isOpen && (

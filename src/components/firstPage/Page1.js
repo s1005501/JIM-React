@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 // import { CSSTransition } from "react-transition-group";
 
-function Page1({ sum }) {
+function Page1() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [show, setShow] = useState(false)
   const navigate = useNavigate()
@@ -47,7 +47,7 @@ function Page1({ sum }) {
   const nodeRef = useRef(null)
   return (
     <>
-      <div className="body d-flex align-items-center justify-content-start">
+      <div className="body d-flex align-items-center justify-content-start ">
         <div id="leftBody">
           <div id="leftContent">
             <div>
@@ -55,16 +55,17 @@ function Page1({ sum }) {
                 熱門推薦
               </div>
             </div>
-            <div id="name_blood" className="row  align-items-center">
+            <div
+              id="name_blood"
+              className="row align-items-start align-items-lg-center flex-column flex-lg-row"
+            >
               <div className="col d-flex align-items-center">
                 <div className="gameName h-100 my-3 row">
                   {currentGameData.name}
-                  {console.log(currentGameData)}
                 </div>
               </div>
               <div id="blood" className=" align-items-center d-flex">
                 {[...Array(5)].map((v, i) => {
-                  console.log(i, currentGameData.level)
                   return i <= currentGameData.level ? (
                     <img
                       key={i}
@@ -106,9 +107,9 @@ function Page1({ sum }) {
           </div>
         </div>
 
-        <div id="rightBody" className="d-flex ">
-          <div className="d-flex flex-column  ">
-            <div className="right_box d-flex">
+        <div id="rightBody" className="d-flex">
+          <div className="d-flex flex-column align-items-center">
+            <div className="right_box d-flex justify-content-center">
               <button
                 id="next-arrow"
                 className="mx-1 align-self-center icc"
@@ -149,7 +150,7 @@ function Page1({ sum }) {
             </div>
             <button
               id="btn-book"
-              className="w-25"
+              className="w-50"
               onClick={() => {
                 navigate(`/order/${currentGameData.id}`)
               }}

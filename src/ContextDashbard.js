@@ -4,7 +4,7 @@ import axios from 'axios'
 const getBackData = async (url, medhod) => {
   try {
     const r = await axios.get(url)
-    console.log(r.data, r.data[0])
+    // console.log(r.data, r.data[0])
     medhod(r.data)
   } catch (error) {
     console.log(error)

@@ -421,8 +421,8 @@ const SigninStoreRegister = ({ name }) => {
     control,
   })
   useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
+    // console.log('state', watch())
+    // console.log('errors', errors)
   }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
@@ -689,14 +689,14 @@ const SigninStoreRegister = ({ name }) => {
               }}
             />
           </div>
-          <div>
+          <div className="d-flex flex-column align-items-center">
             <label htmlFor={'Logo'} className="form-label">
               {'Logo'}
             </label>
             <input
               id={'Logo'}
               type={'file'}
-              className={`form-control  ${errors['Logo'] && 'is-invalid'}`}
+              className={`form-control w-75  ${errors['Logo'] && 'is-invalid'}`}
               name={'Logo'}
               {...register('Logo', {
                 required: {
@@ -842,12 +842,7 @@ const SigninStoreRegister = ({ name }) => {
                   message: '請選擇營業開始時間',
                 },
               }}
-            >
-              <option value="">請選擇縣市</option>
-              {countyList.map((v, i) => {
-                return <option key={v}>{v}</option>
-              })}
-            </Input>
+            ></Input>
           </div>
           <div className="w-50">
             <Input

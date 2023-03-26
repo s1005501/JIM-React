@@ -18,7 +18,7 @@ import {
 } from 'react-icons/ai'
 
 function MemberAccountOrder() {
-    const user = JSON.parse(localStorage.getItem('memberAuth'))
+  const user = JSON.parse(localStorage.getItem('memberAuth'))
   const usersid = user?.membersid
   // const { getOrderData } = useContext(MemberAuthContext)
 
@@ -51,7 +51,6 @@ function MemberAccountOrder() {
   return (
     <>
       <main className="m-memberAccountMain ">
-    
         <MemberAccountAside />
         <div className="container">
           <div className="row">
@@ -63,7 +62,7 @@ function MemberAccountOrder() {
               <table>
                 <thead>
                   <tr>
-                                       <th>訂單編號</th>
+                    <th>訂單編號</th>
                     <th>訂單遊戲</th>
                     {/* <th>訂單狀態</th> */}
                     <th>預約日期</th>
@@ -116,7 +115,7 @@ function MemberAccountOrder() {
                   })}
                 </tbody>
               </table>
-               <Modal
+              <Modal
                 show={show}
                 onHide={handleClose}
                 className="m-profileUpdate"
@@ -130,11 +129,15 @@ function MemberAccountOrder() {
                     <form>
                       <div className="ordermodalrate">
                         <span>評星：</span>
-                        <div className="orderrate" style={{cursor:'pointer'}}>
+                        <div
+                          className="orderrate"
+                          style={{ cursor: 'pointer' }}
+                        >
                           {[...Array(5)].map((v, i) => {
                             if (i + 1 <= ratescore) {
                               return (
                                 <div
+                                  key={i}
                                   onClick={() => {
                                     setRatescore(i + 1)
                                   }}
@@ -145,6 +148,7 @@ function MemberAccountOrder() {
                             } else {
                               return (
                                 <div
+                                  key={i}
                                   onClick={() => {
                                     setRatescore(i + 1)
                                   }}
@@ -175,7 +179,7 @@ function MemberAccountOrder() {
                         >
                           取消
                         </button> */}
-                        {console.log(insertordersid)}
+                        {/* {console.log(insertordersid)} */}
                         <button
                           className="btn"
                           onClick={(e) => {

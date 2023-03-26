@@ -26,15 +26,15 @@ function MemberRegister({ setLoginOrRegister }) {
   })
 
   useEffect(() => {
-    console.log(watchForm)
+    // console.log(watchForm)
     // console.log(getValues('mAccount'))
   }, [watchForm])
 
   // ! EmailJS寄信
   const sendMemberVerifiedEmail = async (data) => {
     const { mAccount, mEmail } = data
-    console.log(data)
-    console.log(mAccount)
+    // console.log(data)
+    // console.log(mAccount)
     ;(function () {
       emailjs.init('c9JApo5Xiid4Ipkgo')
     })()
@@ -49,7 +49,7 @@ function MemberRegister({ setLoginOrRegister }) {
 
     emailjs.send('service_rjy5svh', 'template_ixq4hab', templateParams).then(
       function (response) {
-        console.log('SUCCESS!', response.status, response.text)
+        // console.log('SUCCESS!', response.status, response.text)
         setTimeout(() => {
           Swal.fire({
             title: '請查收驗證信',
@@ -94,7 +94,7 @@ function MemberRegister({ setLoginOrRegister }) {
   // 錯誤樣式   formState: { errors }
   // console.log(' errors ', errors)
 
-    // ! 快速輸入(正確版)
+  // ! 快速輸入(正確版)
   const fastInput = () => {
     setValue('mAccount', 'kevin54321', { shouldValidate: true })
     setValue('mPassword', 'kevin54321', { shouldValidate: true })
@@ -124,7 +124,7 @@ function MemberRegister({ setLoginOrRegister }) {
     <>
       <div className="m-registerSecondSection">
         <div className="m-mainText">
-        <h1
+          <h1
             onClick={() => {
               errorInput()
             }}

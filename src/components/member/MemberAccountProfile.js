@@ -50,7 +50,7 @@ function MemberAccountProfile() {
           },
         }
       )
-      console.log(response.data)
+      // console.log(response.data)
       setRender(!render)
       if (response.data.success) {
         Swal.fire({
@@ -83,7 +83,6 @@ function MemberAccountProfile() {
   return (
     <>
       <main className="m-memberAccountMain">
-   
         <MemberAccountAside />
         <div className="container">
           <div className="row">

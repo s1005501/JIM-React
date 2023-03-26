@@ -6,9 +6,9 @@ import { BsFillXCircleFill } from 'react-icons/bs'
 function Page2() {
   return (
     <>
-      <div className="P2_body d-flex">
+      <div className="P2_body d-flex justify-content-center">
         <div id="P2_left">
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column P2_body_A">
             <div className="gameName">購票須知</div>
             <ul className="my-3 P2_gameContent">
               <li className="my-2">
@@ -22,7 +22,7 @@ function Page2() {
               </li>
             </ul>
             <div className="sub-title">費用包含/不包含</div>
-            <div className="P2_gameContent d-flex flex-row align-items-center my-3 ">
+            <div className="P2_gameContent d-flex flex-row align-items-lg-center align-items-start my-3 flex-column flex-lg-row ">
               <div className="col">
                 <BsCheckCircleFill className="mx-2" color="#D01B1B" />
                 門票

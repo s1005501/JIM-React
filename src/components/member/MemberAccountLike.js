@@ -21,7 +21,7 @@ function MemberAccountLike() {
     getLikeData(ACCOUNT, setLikeData)
   }, [])
 
-  console.log(likeData)
+  // console.log(likeData)
   // 會員刪除收藏func
   const memberLikeDelete = async (collectSid) => {
     if (memberAuthState.authorized) {
@@ -34,7 +34,7 @@ function MemberAccountLike() {
           },
         }
       )
-      console.log(response.data)
+      // console.log(response.data)
       Swal.fire({
         title: '評論刪除成功!',
         text: `評論刪除成功`,
@@ -68,7 +68,9 @@ function MemberAccountLike() {
                 </thead>
                 <tbody>
                   {likeData.map((v, i) => {
-                    console.log(v)
+                    {
+                      /* console.log(v) */
+                    }
                     return (
                       <tr key={v.collectSid}>
                         <td>

@@ -165,7 +165,7 @@ const Store = () => {
                       id=""
                       value={v.orderState}
                       onChange={(e) => {
-                        console.log(e.target.value)
+                        // console.log(e.target.value)
                         storeSwitch(v.orderSid, e.target.value)
                       }}
                     >

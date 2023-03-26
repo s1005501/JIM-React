@@ -270,7 +270,6 @@ function GamesMainPage() {
     newdatas = filterByPrice(newdatas, gamesPrice)
     newdatas = filterByTime(newdatas, gamesTime)
     newdatas = filterBySort(newdatas, gamesSort)
-    console.log(newdatas, 274)
     setUsersDisplay(newdatas)
   }, [
     datas,
