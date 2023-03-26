@@ -228,7 +228,7 @@ const SigninStortIn = ({ name }) => {
         >
           {name}登入
         </p>
-        <span>SIGN IN</span>
+        <span style={{ color: '#FFFFFF' }}>SIGN IN</span>
       </div>
       <form onSubmit={handleSubmit(submit)}>
         <div className="mb-3">
@@ -668,7 +668,7 @@ const SigninStoreRegister = ({ name }) => {
         }}
       >
         <p>{name}註冊</p>
-        <span>SIGN UP</span>
+        <span style={{ color: '#FFFFFF' }}>SIGN UP</span>
       </div>
       <form
         onSubmit={handleSubmit(submit)}
