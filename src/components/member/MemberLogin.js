@@ -37,6 +37,7 @@ function MemberLogin({ memberLoginOrNot }) {
 
         // 驗證信成功
         if (memVerified === '1') {
+          localStorage.removeItem('token')
           localStorage.setItem(
             'memberAuth',
             JSON.stringify({
@@ -105,6 +106,7 @@ function MemberLogin({ memberLoginOrNot }) {
 
       // 驗證成功
       if (memVerified === '1') {
+        localStorage.removeItem('token')
         localStorage.setItem(
           'memberAuth',
           JSON.stringify({

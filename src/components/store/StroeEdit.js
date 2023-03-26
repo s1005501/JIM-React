@@ -109,17 +109,17 @@ const StroeEdit = ({ sid }) => {
         aria-labelledby={sid}
         style={{ padding: '0' }}
       >
-        <Modal.Header className="bg-danger">
+        <Modal.Header className="">
           <Modal.Title id={sid} style={{ color: '#000000' }}>
             遊戲編號：{editData[0]?.gamesSid}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           <div
-            className="d-flex justify-content-center bg-secondary"
+            className="d-flex justify-content-center"
             style={{ color: '#ffffff' }}
           >
-            <form onSubmit={handleSubmit(submit)}>
+            <form onSubmit={handleSubmit(submit)} className="stores">
               <input
                 type="text"
                 name="sid"
@@ -132,14 +132,14 @@ const StroeEdit = ({ sid }) => {
                   <label htmlFor={'Logo'} className="form-label">
                     {'Logo'}
                   </label>
-                  <div className="my-3 mt-sm-0">
+                  <div className="my-3 mt-sm-0 d-flex justify-content-center">
                     {!!imgUrl?.length ? (
                       <img
                         className="store-edit-img"
                         src={
                           imgUrl?.length > 20
                             ? `/Images/uploads/${imgUrl}`
-                            : `/Images/storeimages/${imgUrl}`
+                            : `/Images/gamesImages/${imgUrl}`
                         }
                         alt=""
                       />
@@ -242,7 +242,7 @@ const StroeEdit = ({ sid }) => {
                   <div className="mb-3">
                     <label className="form-label">難度</label>
                   </div>
-                  <div className="diff">
+                  <div className="diff d-flex justify-content-center">
                     {[...Array(5)].map((v, i) => {
                       return (
                         <React.Fragment key={i}>
@@ -474,7 +474,7 @@ const StroeEdit = ({ sid }) => {
                       }}
                     >
                       <FaRegWindowClose
-                        fill={colse == 0 ? 'red' : '#FFFFFF'}
+                        fill={colse == 0 ? 'red' : '#000000'}
                         style={{ cursor: 'pointer' }}
                       />
                     </label>
@@ -501,7 +501,7 @@ const StroeEdit = ({ sid }) => {
                       }}
                     >
                       <FaCheckSquare
-                        fill={colse == 1 ? 'red' : '#FFFFFF'}
+                        fill={colse == 1 ? 'red' : '#000000'}
                         style={{ cursor: 'pointer' }}
                       />
                     </label>

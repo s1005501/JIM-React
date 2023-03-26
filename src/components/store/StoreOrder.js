@@ -27,7 +27,7 @@ const StoreOrder = ({ orderSid }) => {
         aria-labelledby={orderSid}
         style={{ padding: '0' }}
       >
-        <Modal.Header className="bg-danger">
+        <Modal.Header className="">
           <Modal.Title id={orderSid} style={{ color: '#000000' }}>
             訂單編號：{orderSid}
           </Modal.Title>
@@ -35,13 +35,9 @@ const StoreOrder = ({ orderSid }) => {
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           {orderData.map((v, i) => {
             return (
-              <div
-                key={v.orderSid}
-                className="bg-secondary"
-                style={{ color: '#ffffff' }}
-              >
+              <div key={v.orderSid} className="stores">
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'memberSid'} className="form-label">
                       會員編號：
                     </label>
@@ -54,7 +50,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.memberSid}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'gamesName'} className="form-label">
                       遊戲名稱：
                     </label>
@@ -69,7 +65,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderDate'} className="form-label">
                       日期：
                     </label>
@@ -82,7 +78,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.orderDate}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderTime'} className="form-label">
                       時間：
                     </label>
@@ -97,7 +93,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderUsername'} className="form-label">
                       訂購者名稱：
                     </label>
@@ -110,7 +106,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.orderUsername}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderPhone'} className="form-label">
                       訂購者手機：
                     </label>
@@ -125,7 +121,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderAdress'} className="form-label">
                       訂購者地址：
                     </label>
@@ -138,7 +134,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.orderAdress}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderEmail'} className="form-label">
                       訂購者email：
                     </label>
@@ -153,7 +149,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'checkQuantity'} className="form-label">
                       人數：
                     </label>
@@ -166,7 +162,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.checkQuantity}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'discountPrice'} className="form-label">
                       優惠券折扣：
                     </label>
@@ -181,7 +177,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 d-flex justify-content-center">
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'checkPrice'} className="form-label">
                       金額：
                     </label>
@@ -194,7 +190,7 @@ const StoreOrder = ({ orderSid }) => {
                       value={v.checkPrice}
                     />
                   </div>
-                  <div className="w-50">
+                  <div className="w-50 px-3">
                     <label htmlFor={'orderState'} className="form-label">
                       狀態：
                     </label>
@@ -215,7 +211,7 @@ const StoreOrder = ({ orderSid }) => {
                   </div>
                 </div>
                 <div className="mb-3 pb-3">
-                  <div className="d-flex">
+                  <div className="d-flex px-3">
                     <label htmlFor={'orderState'} className="form-label">
                       訂購者備註：
                     </label>

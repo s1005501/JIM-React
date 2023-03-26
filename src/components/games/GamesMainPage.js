@@ -62,7 +62,7 @@ function GamesMainPage() {
   const [gamesFeature, setGamesFeature] = useState('全部類型')
   const [gamesPrice, setGamesPrice] = useState(800)
   const [gamesTime, setGamesTime] = useState('全部時間')
-  const [gamesSort, setGamesSort] = useState('密室逃脫')
+  const [gamesSort, setGamesSort] = useState('全部玩法')
   const [gamesOrder, setGamesOrder] = useState('評價分數')
   const [gamesOrderStata, setGamesOrderStata] = useState(1)
   // ---載入中---
@@ -155,7 +155,6 @@ function GamesMainPage() {
       return newDatas
     }
   }
-
   const filterByCity = (newDatas, selectedCityValue) => {
     if (selectedCityValue !== '請選擇城市') {
       return newDatas.filter((v, i) => {
@@ -271,6 +270,7 @@ function GamesMainPage() {
     newdatas = filterByPrice(newdatas, gamesPrice)
     newdatas = filterByTime(newdatas, gamesTime)
     newdatas = filterBySort(newdatas, gamesSort)
+    console.log(newdatas, 274)
     setUsersDisplay(newdatas)
   }, [
     datas,
@@ -368,7 +368,7 @@ function GamesMainPage() {
       (e) => {
         if (e.target.innerHTML !== '進階篩選') {
           const advancedFilter = document.querySelector('.gamessection')
-          if (!advancedFilter.contains(e.target)) {
+          if (!advancedFilter?.contains(e.target)) {
             setActiveFilterBlockClick(false)
           }
         }

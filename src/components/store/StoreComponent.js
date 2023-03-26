@@ -65,7 +65,7 @@ const Input = ({
 const swalAlert = (title, text, icon, button) => {
   Swal.fire({
     title: title,
-    text: text,
+    text: '',
     icon: icon,
     confirmButtonText: button,
   })

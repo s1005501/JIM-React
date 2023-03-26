@@ -206,6 +206,7 @@ const SigninStortIn = ({ name }) => {
         //   icon: 'success',
         //   confirmButtonText: '確認',
         // })
+        localStorage.removeItem('memberAuth')
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
         navigate('/store')
@@ -213,10 +214,20 @@ const SigninStortIn = ({ name }) => {
     }
   }
   const [eyeIcon, setEyeIcon] = useState(true)
+  const ql = () => {
+    setValue('account', 'jimjim6666')
+    setValue('password', '12345678')
+  }
   return (
     <div className="d-flex flex-column align-items-center signin-router-body text-center py-5">
       <div>
-        <p>{name}登入</p>
+        <p
+          onClick={() => {
+            ql()
+          }}
+        >
+          {name}登入
+        </p>
         <span>SIGN IN</span>
       </div>
       <form onSubmit={handleSubmit(submit)}>
@@ -406,13 +417,13 @@ const SigninStoreRegister = ({ name }) => {
     mode: 'onTouched',
   })
   const navigate = useNavigate()
-  // const watchForm = useWatch({
-  //   control,
-  // })
-  // useEffect(() => {
-  //   console.log('state', watch())
-  //   console.log('errors', errors)
-  // }, [watchForm])
+  const watchForm = useWatch({
+    control,
+  })
+  useEffect(() => {
+    console.log('state', watch())
+    console.log('errors', errors)
+  }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
       const r = await axios.post(
@@ -587,23 +598,23 @@ const SigninStoreRegister = ({ name }) => {
         },
       },
     },
-    {
-      id: 'time',
-      idText: '營業時間',
-      type: 'text',
-      placeholder: 'ex：10:00-21:00',
-      rules: {
-        required: {
-          value: true,
-          message: '營業時間為必填',
-        },
-        pattern: {
-          value:
-            /([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]/,
-          message: '請輸入正確的營業時間格式',
-        },
-      },
-    },
+    // {
+    //   id: 'time',
+    //   idText: '營業時間',
+    //   type: 'text',
+    //   placeholder: 'ex：10:00-21:00',
+    //   rules: {
+    //     required: {
+    //       value: true,
+    //       message: '營業時間為必填',
+    //     },
+    //     pattern: {
+    //       value:
+    //         /([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]/,
+    //       message: '請輸入正確的營業時間格式',
+    //     },
+    //   },
+    // },
     {
       id: 'website',
       idText: '官網',
@@ -622,9 +633,40 @@ const SigninStoreRegister = ({ name }) => {
       },
     },
   ]
+
+  const quickRegistration = () => {
+    setValue('account', 'jimjim6666', { shouldValidate: true })
+    setValue('password', '12345678', { shouldValidate: true })
+    setValue('store', '笨蛋工作室密室逃脫澎湖店', { shouldValidate: true })
+    setValue('mobile', '06-12345678', { shouldValidate: true })
+    setValue('leader', '店長', { shouldValidate: true })
+    setValue('identity', 'A123456789', { shouldValidate: true })
+    setValue('email', 'hahaha999@gmail.com', { shouldValidate: true })
+    setValue(
+      'website',
+      'https://www.stupidparticle.com/?utm_source=EscapeBar&utm_medium=referral&utm_campaign=EscapeBarFirmPage',
+      { shouldValidate: true }
+    )
+    setValue('email', 'hahaha999@gmail.com', { shouldValidate: true })
+    setValue('county', '澎湖縣', { shouldValidate: true })
+    setValue('address', '澎湖縣西嶼鄉98號', { shouldValidate: true })
+    setValue('timeStart', '07:00', { shouldValidate: true })
+    setValue('timeEnd', '15:00', { shouldValidate: true })
+    setValue('lat', '23.564590', { shouldValidate: true })
+    setValue('lon', '119.482186', { shouldValidate: true })
+    setValue(
+      'remark',
+      '我們致力於將腦中的故事情境，無論是歡樂、溫馨或是驚悚、刺激，還是糾結、痛心的劇情，都能夠以電影般的特效呈現，在設計中不斷挑戰自己，期待能夠在每一款遊戲中創造出更多種不同的可能性。也期望每一位玩家不僅是因為遊戲體驗能夠笑著離開，更會因為智慧獵人每一位獨特的說書者「透明人」感到記憶深刻。',
+      { shouldValidate: true }
+    )
+  }
   return (
     <div className="signin-router-body text-center py-5">
-      <div>
+      <div
+        onClick={() => {
+          quickRegistration()
+        }}
+      >
         <p>{name}註冊</p>
         <span>SIGN UP</span>
       </div>
@@ -632,6 +674,8 @@ const SigninStoreRegister = ({ name }) => {
         onSubmit={handleSubmit(submit)}
         className="d-flex flex-column align-items-center"
       >
+        <input type="text" name="" id="" hidden {...register('lat')} />
+        <input type="text" name="" id="" hidden {...register('lon')} />
         <div className="my-3 d-flex flex-column justify-content-center align-items-center">
           <div className="mt-3 w-75 h-50">
             <img
@@ -779,6 +823,43 @@ const SigninStoreRegister = ({ name }) => {
                 required: {
                   value: true,
                   message: '地址為必填',
+                },
+              }}
+            />
+          </div>
+        </div>
+        <div className="mb-3 d-flex justify-content-evenly w-75">
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeStart'}
+              idText={'開始時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業開始時間',
+                },
+              }}
+            >
+              <option value="">請選擇縣市</option>
+              {countyList.map((v, i) => {
+                return <option key={v}>{v}</option>
+              })}
+            </Input>
+          </div>
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeEnd'}
+              idText={'結束時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業結束時間',
                 },
               }}
             />

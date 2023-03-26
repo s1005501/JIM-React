@@ -1,12 +1,16 @@
-.minh{
+.stores {
+  color: #000000;
+}
+
+.minh {
   min-height: 85vh;
 }
 
-.storeAndMap{
+.storeAndMap {
   margin-top: 120px;
 }
 
-.singinAndMap{
+.singinAndMap {
   margin-bottom: 120px;
 }
 
@@ -120,10 +124,10 @@
   .store {
     margin-top: 10px;
   }
-  .storeAndMap{
+  .storeAndMap {
     margin-top: 60px;
   }
-  .Menu-horizontal{
+  .Menu-horizontal {
     margin-top: 60px;
   }
   .store-title {
@@ -144,7 +148,7 @@
     overflow: hidden;
   }
 
-  .storeAndMap{
+  .storeAndMap {
     margin-top: 0px;
   }
   .store-add-body {
@@ -159,5 +163,11 @@
     aspect-ratio: 2/1;
     object-fit: cover;
     object-position: center center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stores {
+    margin-bottom: 150px;
   }
 }
