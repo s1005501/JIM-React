@@ -362,6 +362,7 @@ function CommentinnerPage() {
                                   )
                                   setRatescore(0)
                                   setTextareavalue('')
+                                  myClean()
                                   setPicname('')
                                   setRender(!reader)
                                   // window.location.reload();
@@ -385,7 +386,7 @@ function CommentinnerPage() {
                       // console.log(belowcomment)
                       return (
                         <div className="mydiv" key={i}>
-                          {hidecomment?( <> <div className="userinfo">
+                          {/* ( <> <div className="userinfo">
                             <div className="usericon">
                               <img
                                 className="usericonimg"
@@ -435,8 +436,8 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             )}
-                          </div></>):(<div style={{disply:'flex',textAlign:'center',color:'white',fontSize:'20px'}}>已隱藏該評論</div>)}
-                          {/* <div className="userinfo">
+                          </div></>):(<div style={{disply:'flex',textAlign:'center',color:'white',fontSize:'20px'}}>已隱藏該評論</div>)} */}
+                          <div className="userinfo">
                             <div className="usericon">
                               <img
                                 className="usericonimg"
@@ -472,8 +473,8 @@ function CommentinnerPage() {
                                 })}
                               </div>
                             </div>
-                          </div> */}
-                          {/* <div className="commenttext">
+                          </div>
+                          <div className="commenttext">
                             <BsArrowReturnRight /> &nbsp;&nbsp;
                             {v.comment}
                             {v.pics === 'null' ? null : (
@@ -487,7 +488,7 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             )}
-                          </div> */}
+                          </div>
                           <div className="myBtnssss">
                             <div className="reply">
                               <button
