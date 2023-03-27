@@ -63,8 +63,29 @@ function GamesMainPage() {
   const [gamesPrice, setGamesPrice] = useState(800)
   const [gamesTime, setGamesTime] = useState('全部時間')
   const [gamesSort, setGamesSort] = useState('全部玩法')
-  const [gamesOrder, setGamesOrder] = useState('評價分數')
+  const [gamesOrder, setGamesOrder] = useState('評價分數↑')
   const [gamesOrderStata, setGamesOrderStata] = useState(1)
+  // back-to-top
+  const [showButton, setShowButton] = useState(false)
+
+  const handleScroll = () => {
+    if (window.pageYOffset > 300) {
+      setShowButton(true)
+    } else {
+      setShowButton(false)
+    }
+  }
+
+  const handleButtonClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   // ---載入中---
   const [isLoading, setIsLoading] = useState(true)
   //向伺服器用get獲取資料
@@ -155,6 +176,7 @@ function GamesMainPage() {
       return newDatas
     }
   }
+
   const filterByCity = (newDatas, selectedCityValue) => {
     if (selectedCityValue !== '請選擇城市') {
       return newDatas.filter((v, i) => {
@@ -367,7 +389,7 @@ function GamesMainPage() {
       (e) => {
         if (e.target.innerHTML !== '進階篩選') {
           const advancedFilter = document.querySelector('.gamessection')
-          if (!advancedFilter?.contains(e.target)) {
+          if (!advancedFilter.contains(e.target)) {
             setActiveFilterBlockClick(false)
           }
         }
@@ -667,6 +689,7 @@ function GamesMainPage() {
                       onClick={() => {
                         myGamesOrder(v)
                         setGamesOrderStata(i)
+                        handleButtonClick()
                       }}
                     >
                       {v}
@@ -679,9 +702,14 @@ function GamesMainPage() {
         </section>
       </div>
 
-      {showGamesHome ? <GamesHome /> : null}
+      {showGamesHome ? <GamesHome usersDisplay={usersDisplay} /> : null}
       {showGamesFilter ? (
-        <GamesFilters usersDisplay={usersDisplay} isLoading={isLoading} />
+        <GamesFilters
+          usersDisplay={usersDisplay}
+          isLoading={isLoading}
+          handleButtonClick={handleButtonClick}
+          showButton={showButton}
+        />
       ) : null}
     </div>
   )

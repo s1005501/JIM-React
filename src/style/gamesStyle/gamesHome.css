@@ -6,15 +6,10 @@
   overflow-y: hidden;
 }
 
-.gameshomeblank {
-  width: 100%;
-  height: calc(100% - 96px);
-}
-
 .gameshomecontent {
   display: flex; /* 將圖片包含在 flex 容器中 */
   position: fixed; /* 用於實現圖片切換 */
-  top: 520px;
+  top: 505px;
   left: 0;
   z-index: 9999999999999999999999999999;
   transition: transform 0.5s ease-in-out; /* 轉換動畫效果 */
@@ -42,11 +37,9 @@
 }
 
 /* 圖片切換效果 */
-.container.show-last .gameshomecontent {
+.gameshomecontent {
   /* 絕對定位後的容器向左移動，實現圖片切換效果 */
-  transform: translateX(
-    -400px
-  ); 
+  transform: translateX(-400px);
 }
 
 /* @media (max-width: 1880px) {

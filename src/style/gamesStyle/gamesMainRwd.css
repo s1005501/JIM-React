@@ -1,0 +1,43 @@
+/* gamesfilter */
+.gamesFilterSection {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 1880px) {
+
+}
+
+
+
+/* gamemainpage */
+/* 手機版 */
+@media (max-width: 420px) {
+  .gamesNavbar {
+    position: relative;
+    height: 0px;
+  }
+
+  .gamesNavbarColor {
+    display: none;
+  }
+
+  .gamesSearch {
+    position: sticky;
+    top: 20px;
+    left: 68px;
+    margin-bottom: 20px;
+  }
+
+  .selectedCity {
+    display: none;
+  }
+
+  .selectedPeople {
+    display: none;
+  }
+
+  .buttonFilterMore {
+    display: none;
+  }
+}

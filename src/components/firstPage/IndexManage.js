@@ -30,11 +30,6 @@ const IndexManage = () => {
       )
       break
     case 'result':
-      console.log(sum)
-      if (sum == 0 || window.origin == 'http://localhost:3000') {
-        console.log('out')
-        navigate('/firstPage')
-      }
       currentPage = (
         <>
           <GameOver sum={sum} />

@@ -85,6 +85,11 @@ const GameInfo = ({ sid }) => {
       storeSid: '',
       likeOrNot: false,
     })
+    Swal.fire({
+      title: '取消收藏!',
+      icon: 'error',
+      confirmButtonText: '確認',
+    })
   }
 
   const collectDelete = async () => {
@@ -127,7 +132,7 @@ const GameInfo = ({ sid }) => {
         <Rate
           key={i}
           character={<FaTint />}
-          style={{ color: 'red', fontSize: '24px' }}
+          style={{ color: 'red' }}
           disabled
           defaultValue={v.gamesDifficulty}
         />
@@ -182,7 +187,7 @@ const GameInfo = ({ sid }) => {
               {/* 地址 */}
               <div className="O_Reserve_GameInfo_Address O_Reserve_GameInfo_LineWhite">
                 <h6>地址</h6>
-                <div className="O_Reserve_GameInfo_Details align-items-start">
+                <div className="O_Reserve_GameInfo_Details O_Reserve_GameInfo_Details_Address align-items-start">
                   <FaMapMarked className=" mt-1" />
                   <p className="m-0 text-break">{v.storeAddress}</p>
                 </div>
@@ -191,6 +196,7 @@ const GameInfo = ({ sid }) => {
               {/* 收藏 */}
               <div
                 className="O_Reserve_GameInfo_Bookmark"
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
                   if (!collectData.likeOrNot) {
                     like()
@@ -206,7 +212,7 @@ const GameInfo = ({ sid }) => {
                   collectData.likeOrNot ? (
                     <div>
                       <div
-                        className="O_Reserve_GameInfo_Details "
+                        className="O_Reserve_GameInfo_Details O_Reserve_GameInfo_BookmarkIcon"
                         style={{ justifyContent: 'center' }}
                       >
                         {<FaBookmark />}
@@ -215,7 +221,7 @@ const GameInfo = ({ sid }) => {
                   ) : (
                     <div>
                       <div
-                        className="O_Reserve_GameInfo_Details"
+                          className="O_Reserve_GameInfo_Details O_Reserve_GameInfo_BookmarkIcon"
                         style={{ justifyContent: 'center' }}
                       >
                         {<FaRegBookmark />}

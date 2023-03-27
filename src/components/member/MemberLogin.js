@@ -20,7 +20,14 @@ function MemberLogin({ memberLoginOrNot }) {
     password: '',
     memCaptcha: '',
   })
-
+  // login快速輸入
+  const loginFastInput = () => {
+    setMemberLoginInput({
+      ...memberLoginInput,
+      account: 'kevin54321',
+      password: 'kevin54321',
+    })
+  }
   const navigate = useNavigate()
 
   const { setMemberAuthState, memberAuthState } = useContext(MemberAuthContext)
@@ -174,7 +181,13 @@ function MemberLogin({ memberLoginOrNot }) {
     <>
       <div className="m-loginSecondSection">
         <div className="m-mainText">
-          <h1>會員登入</h1>
+          <h1
+            onClick={() => {
+              loginFastInput()
+            }}
+          >
+            會員登入
+          </h1>
           <h4>LOGIN IN</h4>
         </div>
         <div>

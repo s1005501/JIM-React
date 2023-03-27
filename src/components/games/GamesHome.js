@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 function GamesHome() {
   const navigate = useNavigate()
+  // const { usersDisplay } = props
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slideImages = [
@@ -94,7 +95,6 @@ function GamesHome() {
 
   return (
     <div className="gameshome">
-      <div className="gameshomeblank"></div>
       <div className="gamesslider">
         <div
           className="gamesslides"
@@ -104,15 +104,19 @@ function GamesHome() {
             }%)`,
           }}
         >
-          {slideImages.map((image) => (
-            <img
-              key={image.id}
-              src={image.src}
-              alt={image.alt}
-              onClick={() => {
-                navigate(`/order/${image.id}`)
-              }}
-            />
+          {slideImages.map((image, i) => (
+            <div className="slideImagesMain">
+              <div className={`slidebackgroundimage${i}`}>
+                <img
+                  key={i}
+                  src={image.src}
+                  alt={image.alt}
+                  onClick={() => {
+                    navigate(`/order/${image.id}`)
+                  }}
+                />
+              </div>
+            </div>
           ))}
         </div>
         <button
@@ -127,11 +131,11 @@ function GamesHome() {
         >
           &#10095;
         </button>
+        // <div className="gameslidertextcontent"></div>
       </div>
       <div className="container">
         <div
           className="gameshomecontent"
-          // onTransitionEnd={handleTransitionEnd}
           style={{ transform: `translateX(-${scrollX}px)` }}
         >
           <img

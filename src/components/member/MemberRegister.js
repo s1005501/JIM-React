@@ -26,7 +26,7 @@ function MemberRegister({ setLoginOrRegister }) {
   })
 
   useEffect(() => {
-    // console.log(watchForm)
+    console.log(watchForm)
     // console.log(getValues('mAccount'))
   }, [watchForm])
 
@@ -57,7 +57,7 @@ function MemberRegister({ setLoginOrRegister }) {
             icon: 'info',
             confirmButtonText: '確認',
           })
-        }, 1000)
+        }, 500)
       },
       function (error) {
         console.log('FAILED...', error)

@@ -20,6 +20,7 @@
     "react-confirm": "^0.3.0-2",
     "react-confirm-alert": "^3.0.6",
     "react-dom": "^18.2.0",
+    "react-emotor": "^1.2.0",
     "react-hook-form": "^7.43.5",
     "react-icons": "^4.8.0",
     "react-leaflet": "^4.2.1",

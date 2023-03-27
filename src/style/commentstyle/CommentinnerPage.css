@@ -1,5 +1,5 @@
 .fullpage {
-  width: 105%;
+  /* width: 105%; */
   height: 1000vh;
   display: flex;
   background-size: cover;
@@ -150,30 +150,58 @@ p {
   padding: 0;
 }
 .rate {
-  width: 75%;
   height: 5vh;
   /* border: 1px solid white; */
-  margin-top: 3%;
+  width: 50%;
+  padding-left: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: #ffffff;
+  font-size: 25px;
+}
+.inputAndBtn {
+  display: flex;
+  flex-direction: row;
+}
+.score {
+  background-color: rgba(255, 255, 255, 0.15);
+  height: 80px;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 20px 20px 0 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #d01b1b;
-  font-size: 25px;
 }
 .input2 {
+  width: 100%;
+  height: 25vh;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 0px 0px 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: transparent;
+}
+.type {
   width: 75%;
-  height: 15vh;
-  background-color: black;
-  margin-top: 3%;
-  border-radius: 10px;
+  margin-top: 30px;
+  /* border: 2px white solid; */
+  border-radius: 20px;
+  /* background-color:  rgba(255, 255, 255, 0.15); */
 }
 .commentinput {
-  width: 100%;
+  width: 70%;
   height: 15vh;
-  /* border: 2px solid white; */
+  border: 1px dashed white;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.15);
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .commentinput::placeholder {
@@ -181,15 +209,38 @@ p {
   font-size: 20px;
 }
 .inputbtns {
-  width: 75%;
-  height: 3vh;
+  margin-left: 5px;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
+  width: 30%;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  margin-top: 1%;
+  /* background-color:  rgba(255, 255, 255, 0.15); */
+  border-radius: 0px 0px 20px 0px;
+}
+.picAndBtn {
+  background-color: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 18vh;
+}
+.sub {
+  background-color: rgba(255, 255, 255, 0.15);
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  border-radius: 0px 0px 20px 0px;
 }
 .pics {
-  margin-right: 10px;
 }
 .commentandgames {
   width: 75%;
@@ -210,9 +261,9 @@ p {
 
 .userinfo {
   width: 100%;
-
   margin-top: 3%;
   display: flex;
+  margin-left: 20px;
 }
 .usericon {
   width: 10%;
@@ -231,20 +282,21 @@ p {
   flex-direction: column;
   justify-content: center;
   color: white;
+  font-size: 18px;
 }
 .datetime {
-  font-size: 10px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
 }
 .ratestar {
   display: flex;
-  color: #d01b1b;
+  color: #ffffff;
 }
 .commenttext {
   color: white;
   margin-top: 20px;
-  margin-left: 20px;
-  text-align: center;
+  margin-left: 50px;
+  text-align: start;
   font-size: 20px;
 }
 .reply {
@@ -265,32 +317,97 @@ p {
   align-items: center;
 }
 .liked {
-  height: 30px;
-  margin-right: 10px;
-  margin-left: 10px;
+  cursor: pointer;
+  position: relative;
+  width: 60px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  height: fit-content;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-left: 10px;
 }
 .disliked {
-  height: 30px;
+  cursor: pointer;
+  position: relative;
+  width: 60px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  height: fit-content;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-left: 10px;
 }
+
+.disliked:hover {
+  border: 1px white solid;
+}
+
+.liked:hover {
+  border: 1px white solid;
+}
+
+.css1:hover {
+  border: 1px white solid;
+}
+
 .replyid {
+  width: 40%;
   margin-top: 2%;
   margin-left: 10px;
   color: white;
   display: flex;
+  background-color: rgb(255, 255, 255, 0.15);
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  border-radius: 10px;
 }
 .replytext {
+  margin-top: 2%;
+  margin-left: 10px;
   color: white;
   font-size: 16px;
-  margin-left: 20px;
+  background-color: rgb(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: start;
+  padding: 10px;
+  border-radius: 15px;
+  width: 80%;
+}
+.myReply{
+  background-color: rgb(27, 27, 27);
+  padding: 10px;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  margin: 20px;
+}
+#myEmotor {
+  background-color: rgb(255, 255, 255, 0.15);
+  width: 800px;
+  border: 1px transparent solid;
+  color: #ffffff;
 }
 .usernamereply {
   color: #d01b1b;
+  margin: 0;
   margin-right: 10px;
   margin-left: 10px;
+  padding: 5px;
 }
 .gamerecommend {
   width: 35%;
@@ -342,7 +459,9 @@ p {
 }
 .callinput {
   width: 100%;
+  /* min-height: 50px; */
   border-radius: 10px;
+  margin-top: 30px;
 }
 .upupup {
   display: none;
@@ -353,9 +472,24 @@ p {
 }
 
 .css1 {
-  color: black;
-  width: 50px;
-  height: 30px;
+  cursor: pointer;
+  position: relative;
+  width: 80px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  height: fit-content;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+
+.myBtnssss {
+  /* background-color: rgb(255, 255, 255, 0.15); */
+  width: 100%;
+  /* border: 1px salmon solid; */
 }
 .css2 {
   color: #d01b1b;
@@ -364,24 +498,46 @@ p {
   text-decoration: none;
   color: white;
 }
-.rec_img {
-}
+
 .picbtn {
-  width: 40px;
+  cursor: pointer;
   position: relative;
+  width: 80px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  height: fit-content;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
 }
 .hiddenpicbtn {
   opacity: 0;
   position: absolute;
   right: 0;
   top: 0;
+  width: fit-content;
 }
+
 .submit {
-  width: 40px;
+  cursor: pointer;
+  position: relative;
+  width: 80px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  height: fit-content;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
 }
 .replypics {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -391,6 +547,15 @@ p {
   margin-left: 10px;
   margin-right: 10px;
 }
+.mydiv {
+  /* border:1px solid white; */
+  width: 95%;
+  background-color: rgb(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   .fullpage {
     width: 100%;
@@ -500,7 +665,7 @@ p {
     width: 75%;
     height: 10vh;
     /* border: 1px solid white; */
-    margin-top: 3%;
+    /* margin-top: 3%; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -553,5 +718,18 @@ p {
     margin-left: 20px;
     text-align: center;
     font-size: 16px;
+  }
+  .mydiv {
+    /* border:1px solid white; */
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0.15);
+    border-radius: 20px;
+    /* padding:5px */
+  }
+  #myEmotor {
+    background-color: gray;
+    width: 200px;
+    border: 1px transparent solid;
+    color: #ffffff;
   }
 }

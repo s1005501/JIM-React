@@ -17,10 +17,22 @@
   display: flex;
 }
 
+.O_Reserve_ColImg{
+  display: flex;
+  justify-content: center;
+  width: 620px;
+  height: 700px;
+  margin-left: 320px;
+  margin-top: 60px;
+}
+
 .O_Reserve_GameImg {
-  float: right;
-  width: 75%;
-  object-fit: contain;
+  /* float: right; */
+  width: 100%;
+  /* max-height: 850px; */
+  height: 100%;
+  /* object-fit: contain; */
+  object-fit: cover;
   object-position: top;
 }
 
@@ -45,6 +57,8 @@
 }
 
 .O_Reserve_ColGame {
+  width: 710px;
+  min-height: 830px;
   margin-left: 20px;
 }
 
@@ -75,6 +89,10 @@
   background-color: #d01b1b;
 }
 
+.ant-tabs .ant-tabs-tab+.ant-tabs-tab {
+  margin: 0 0 0 100px;
+}
+
 /* --------------RWD-------------- */
 @media (max-width: 1550px) {
   /* .mainContainer {
@@ -96,19 +114,33 @@
   }
 
   .O_Reserve_ColImg {
+    margin:0;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    height: 100%;
   }
 
   .O_Reserve_ColGame {
     width: 80%;
-    margin-right: 0px;
+    min-height: 0px;
+     margin: 0;
+    font-size: 16px;
+  }
+
+  .O_Reserve_Tabs_Date {
+    padding: 15px;
   }
 
   /* ---------下列都是套件預設裡修改-------- */
   .ant-tabs {
     width: 100%;
     margin: 0;
+  }
+
+  .ant-tabs-tab-btn {
+    font-size: 25px;
+  }
+
+  .ant-tabs .ant-tabs-tab+.ant-tabs-tab {
+    margin: 0 0 0 20px;
   }
 }

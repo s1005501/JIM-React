@@ -40,3 +40,19 @@
 .O_Calendar_addSub_PriceText {
   font-size: 20px;
 }
+
+/* -------------------- */
+
+@media (max-width: 1550px) {
+  .O_Calendar_addSub_calculate {
+    width: 100%;
+  }
+
+  .O_Calendar_addSub_TextP p {
+    font-size: 16px;
+  }
+
+  .O_Calendar_addSub_PriceText {
+    font-size: 16px;
+  }
+}

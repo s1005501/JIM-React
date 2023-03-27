@@ -146,12 +146,12 @@ function OrderProcess() {
             {orderData.map((v, i) => {
               return (
                 <div key={i}>
-                  <h3>預約編號 :{v.orderSid}</h3>
+                 <h3>訂單編號 :{v.orderSid}</h3>
                   <p>付款方式 : Line Pay</p>
                   <p>預約日期 : {v.orderDate}</p>
                   <p>預約時間 : {v.orderTime}</p>
                   <p>預約人數 : {v.checkQuantity}</p>
-                  <p>訂單總額 : ${v.checkPrice}</p>
+                  <p>總金額 : ${v.checkPrice}</p>
                 </div>
               )
             })}
@@ -243,12 +243,20 @@ function OrderProcess() {
 
   const OrderPaymentClick = () => {
     Swal.fire({
-      title: '成功!',
-      text: `資料確認，請付款`,
-      icon: 'success',
-      confirmButtonText: '確認',
+      title: '資料確定嗎？',
+      text: `按確定，前往付款`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '確定',
+      cancelButtonText: '取消',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('成功!', '資料確認，請付款', 'success')
+        next()
+      }
     })
-    next()
   }
 
   return (
@@ -270,7 +278,7 @@ function OrderProcess() {
               percent={60} // 標題的藍色框框進度條
               labelPlacement="vertical"
               items={items}
-              className="mb-5"
+              className="O_Process_MarignCont"
             />
 
             {/* 步驟條內容部分，如要修改要往上面找Steps，css修改找contentStyle */}

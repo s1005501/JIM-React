@@ -1,17 +1,17 @@
 /* ---this start--- */
 .gamesFilterMain {
   display: flex;
+  width: 100%;
 }
 
 /* ---遊戲清單--- */
 .gamesFilterSection {
   width: 100%;
   height: auto;
-  background-color: black;
-  padding: 10px 70px 10px 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
+  padding:10px 170px 0px 200px; 
 }
 
 .game-item {
@@ -134,7 +134,7 @@
   top: 0px;
   left: 0px;
   z-index: 11;
-  padding: 20px 0px 0px 0px;
+  padding: 20px 0px 0px 120px;
   background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -217,17 +217,6 @@
 .rolBack div {
   font-size: 18px;
   padding-bottom: 3px;
-}
-
-@media (max-width: 1880px) {
-  .gamesFilterSection {
-    justify-content: center;
-    padding: 10px 0px 0px 10px;
-  }
-
-  .filterBlock {
-    padding: 20px 0px 0px 120px;
-  }
 }
 
 /* ---loader--- */

@@ -4,28 +4,35 @@ import MemberAuthContext from './MemberAuthContext'
 import MemberAccountAside from './MemberAccountAside'
 import axios from 'axios'
 import { useContextValue, checkToken } from '../../ContextDashbard'
-
+import Swal from 'sweetalert2'
 function MemberAccountDiscount() {
   const [discountData, setDiscountData] = useState([])
   const { getDiscountData, memberAuthState } = useContext(MemberAuthContext)
   const [discountNum, setDiscountNum] = useState('')
   const [discountRandInput, setDiscountRandInput] = useState('')
   const { membersid } = checkToken('memberAuth')
+
   const insertRand = async (membersid, discountRandInput) => {
     const r = await axios.get(
       `http://localhost:3005/member/setdiscount/${membersid}?discount=${discountRandInput}`
     )
-    // console.log(r?.data.length > 1)
+    console.log(3)
+    console.log(r.data)
     if (r?.data.length > 1) {
+      Swal.fire({
+        title: '折價券新增成功!',
+        text: `折價券新增成功`,
+        icon: 'success',
+        confirmButtonText: '確認',
+      })
       getDiscountData(ACCOUNT, setDiscountData)
     }
   }
+
   useEffect(() => {
-    insertRand(membersid, discountRandInput)
-  }, [discountRandInput])
-  useEffect(() => {
+    console.log(1)
     getDiscountData(ACCOUNT, setDiscountData)
-  }, [])
+  }, [discountRandInput])
 
   return (
     <>
@@ -39,7 +46,12 @@ function MemberAccountDiscount() {
             <div className="col m-discountMainContext">
               <h1>會員折價券</h1>
               <div className="m-discountForm">
-                <form>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    insertRand(membersid, discountRandInput)
+                  }}
+                >
                   <input
                     type="text"
                     placeholder="請輸入折價券代碼"
@@ -51,13 +63,8 @@ function MemberAccountDiscount() {
                   />
                   <button
                     className="btn"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      // 有值才發ajax
+                    onClick={() => {
                       setDiscountRandInput(discountNum)
-                      if (discountRandInput !== '') {
-                        // 成功刷頁面+跳alert
-                      }
                     }}
                   >
                     新增

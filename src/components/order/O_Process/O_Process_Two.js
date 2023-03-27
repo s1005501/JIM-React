@@ -56,30 +56,37 @@ const OrderTwo = () => {
     discountGetData()
   }, [])
 
-  // 付款方式點選
+   // --------付款方式點選Line Pay--------
   const handlePaymentChange = (value) => {
     // setFormData((prevData) => ({ ...prevData, oPayment: value }))
   }
 
-  const [discount, setDiscount] = useState(0) // 追蹤選定的折扣
+  const [discountPrice, setDiscountPrice] = useState(0) // 追蹤選定的折扣
 
   // 會出現bug，點選優惠券再點回不使用價格不回復並且前一頁也會變成打折後的價格
-  // 優惠券點選
+   // ---------優惠券點選------------
   const discountChange = (value) => {
     const selectDiscount = discountData.find((d) => d.discountName === value)
 
     if (selectDiscount) {
-      const newDiscount = selectDiscount.discountPrice
-      const newPrice = formData.price - newDiscount
-      setDiscount(newDiscount)
-      setFormData((formData) => ({
-        ...formData,
-        orderDiscountName: selectDiscount.discountName,
-        orderDiscount: selectDiscount.discountID,
-        price: newPrice,
-      }))
-    } else {
-      setDiscount(0) // 如果未選擇優惠券，則重置折扣
+      // if (selectDiscount?.lenght !== 0) {
+        const newDiscount = selectDiscount.discountPrice
+        setDiscountPrice(newDiscount)
+        // setFormData(() => ({
+        //   ...formData,
+        //   price: formData.price - discountPrice,
+        // }))
+        const newPrice = formData.price - newDiscount
+  
+        setFormData((formData) => ({
+          ...formData,
+          orderDiscountName: selectDiscount.discountName,
+          orderDiscount: selectDiscount.discountID,
+          price: newPrice,
+        }))
+      } else {
+        // } else if (selectDiscount?.lenght === 0) {
+      setDiscountPrice(0) // 如果未選擇優惠券，則重置折扣
       setFormData((formData) => ({
         ...formData,
         orderDiscountName: '',
@@ -88,10 +95,53 @@ const OrderTwo = () => {
     }
   }
 
+    // const discountFalse = () => {
+  //   setDiscountPrice(0) // 如果未選擇優惠券，則重置折扣
+  //   setFormData((formData) => ({
+  //     ...formData,
+  //     orderDiscountName: '',
+  //     orderDiscount: '',
+  //   }))
+  // }
+
+  // const discountTrue = (value) => {
+  //   const selectDiscount = discountData.find((d) => d.discountName === value)
+  //   const newDiscount = selectDiscount.discountPrice
+  //   setDiscountPrice(newDiscount)
+  //   console.log('55550', selectDiscount)
+  //   // setFormData(() => ({
+  //   //   ...formData,
+  //   //   price: formData.price - discountPrice,
+  //   // }))
+  //   const newPrice = formData.price - newDiscount
+
+  //   setFormData((formData) => ({
+  //     ...formData,
+  //     orderDiscountName: selectDiscount.discountName,
+  //     orderDiscount: selectDiscount.discountID,
+  //     price: newPrice,
+  //   }))
+  // }
+
   // 輸入框輸入
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((formData) => ({ ...formData, [name]: value }))
+  }
+
+  const [autoFillData, setAutoFillData] = useState({
+    orderUsername: '張三',
+    orderPhone: '0912345678',
+    orderEmail: 'example@gmail.com',
+  })
+
+  const handleAutoFill = () => {
+    setFormData({
+      ...formData,
+      orderUsername: autoFillData.orderUsername,
+      orderPhone: autoFillData.orderPhone,
+      orderEmail: autoFillData.orderEmail,
+    })
   }
 
   const orderInfo = JSON.parse(localStorage.getItem('orderInfo'))
@@ -113,20 +163,6 @@ const OrderTwo = () => {
     })
   }, [])
 
-  // const [autoFillData, setAutoFillData] = useState({
-  //   orderUsername: '張三',
-  //   orderPhone: '0912345678',
-  //   orderEmail: 'example@gmail.com',
-  // })
-
-  // const handleAutoFill = () => {
-  //   setFormData({
-  //     orderUsername: autoFillData.orderUsername,
-  //     orderPhone: autoFillData.orderPhone,
-  //     orderEmail: autoFillData.orderEmail,
-  //   })
-  // }
-
   useEffect(() => {
     // 每當formData變更時，更新localStorage
     localStorage.setItem('orderInfo', JSON.stringify(formData))
@@ -135,7 +171,9 @@ const OrderTwo = () => {
   return (
     <div>
       <div className="O_Process_Two_Sort">
-        <h3 className="O_Process_Two_line">填寫資料</h3>
+      <h3 className="O_Process_Two_line" onClick={handleAutoFill}>
+          填寫資料
+        </h3>
         <form>
           <div>
             <div className="d-flex justify-content-center">
@@ -196,7 +234,7 @@ const OrderTwo = () => {
         {/* 優惠券 */}
         <div className="d-flex justify-content-center">
           <div className="text-white col-2 my-auto text-center O_Process_Two_text">
-            優惠券
+          折價券
           </div>
 
           {/* 判斷是否有優惠券 */}
@@ -207,7 +245,8 @@ const OrderTwo = () => {
                 style={{ width: 170 }}
                 size={'large'}
                 onChange={discountChange}
-                options={[{ value: '沒有優惠券', label: '沒有優惠券' }]}
+            // onChange={discountFalse}
+            options={[{ value: '沒有折價券', label: '沒有折價券' }]}
               />
             </Space>
           ) : (
@@ -216,9 +255,10 @@ const OrderTwo = () => {
               style={{ width: 170 }}
               size={'large'}
               onChange={discountChange}
+                  // onChange={discountTrue}
             >
               <Select.Option value="" className="text-center fs-6">
-                不使用優惠券
+              不使用折價券
               </Select.Option>
               {discountData.map((v, i) => {
                 return (
@@ -238,13 +278,13 @@ const OrderTwo = () => {
         {/* 總金額 */}
         {/* 有選擇優惠券才打折，但這邊金額是抓資料庫的，所以要改 */}
         <div className="mt-3">
-          <h5 className="text-danger text-center fs-3">
-            總金額 : $ {formData.price}
-          </h5>
           <p className="O_Process_Two_Level">
             {Level.memberLevel_1}
             {/* 放假資料，需判定等級 */}
           </p>
+          <h5 className="text-danger text-center fs-3">
+            總金額 : $ {formData.price}
+          </h5>
         </div>
       </div>
     </div>

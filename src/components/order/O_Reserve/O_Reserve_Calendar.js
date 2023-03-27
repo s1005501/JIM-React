@@ -224,15 +224,21 @@ const CalendarDate = ({ sid, gameData }) => {
   }, [gameData])
 
   const OrderProcessClick = () => {
-    if (!checkToken('memberAuth')?.memberToken) return alert('請登入會員')
-    localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
-    Swal.fire({
-      title: '前往預約流程',
-      text: '',
-      icon: 'success',
+    if (!checkToken('memberAuth')?.memberToken)
+    return Swal.fire({
+      title: '請登入會員!',
+      icon: 'error',
       confirmButtonText: '確認',
     })
-    navigate('/orderp')
+    localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
+    Swal.fire({
+    title: '預約確認',
+    text: '前往結帳流程',
+      icon: 'success',
+      confirmButtonText: '確認',
+    }).then((result) => {
+      navigate('/orderp')
+    })
   }
   // console.log(!checkToken('memberAuth').memberToken)
   return (
@@ -254,19 +260,19 @@ const CalendarDate = ({ sid, gameData }) => {
           maxDate={moment().add(3, 'months').toDate()} //設置最大日期範圍為三個月後的日期
           locale={'en'}
           value={value}
-          className="mx-auto bg-transparent rounded-3 w-75"
+          className="mx-auto bg-transparent rounded-3 O_Reserve_Calendar_Date"
           // tileDisabled
         />
       </div>
 
       {/* 時間段button */}
-      <div>
+      <div className="O_Reserve_Calendar_TimeBtn">
         {buttonData.map((item) => {
           const { key, time, selectable, disabled } = item
           return (
             <Button
               key={key}
-              className="m-2 col-3 fs-6 h-auto O_Reserve_Calendar_DateBtn"
+              className="my-1 mx-2 col-3 fs-6 h-auto O_Reserve_Calendar_DateBtn"
               onClick={() => {
                 setSelectedTime(time)
                 setCalendarOrder({

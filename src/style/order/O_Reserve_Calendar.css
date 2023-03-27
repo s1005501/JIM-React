@@ -1,3 +1,13 @@
+/* 日歷 */
+.O_Reserve_Calendar_Date {
+  width: 75% !important;
+  margin: 20px 0;
+}
+
+/* 時間段button */
+.O_Reserve_Calendar_TimeBtn {
+  margin: 0 20px;
+}
 .O_Reserve_Calendar_DateBtn {
   /* width: 20%; */
   margin: 5px 10px;
@@ -8,6 +18,13 @@
   text-align: center;
 }
 
+/* 時間段觸發 */
+.O_Reserve_Calendar_DateBtn:hover {
+  background-color: #D01B1B;
+  color: white !important;
+}
+
+/* 預約btn */
 .O_Reserve_Calendar_ReserveBtn {
   padding: 8px 30px;
   border-style: none;
@@ -15,12 +32,6 @@
   background-color: #d01b1b;
   color: white;
   font-size: 18px;
-}
-
-/* 時間段 */
-.O_Reserve_Calendar_DateBtn:hover {
-  background-color: #D01B1B;
-  color: white !important;
 }
 
 /* -----------日曆----------- */
@@ -124,3 +135,22 @@
 .ant-btn-default:disabled {
   color: white;
 } */
+
+@media (max-width: 1550px) {
+  .O_Reserve_Calendar_Date {
+    width: 90% !important;
+    margin: 20px 0;
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    font-size: 12px;
+  }
+
+  .react-calendar__navigation button {
+    min-width: 12px !important;
+  }
+
+  .O_Reserve_Calendar_TimeBtn {
+    margin: 0px;
+  }
+}

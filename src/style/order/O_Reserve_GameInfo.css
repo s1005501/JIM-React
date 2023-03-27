@@ -66,16 +66,25 @@
   color: white;
 }
 
+.O_Reserve_GameInfo_Details_Address{
+  max-width: 300px;
+  margin: 0 auto;
+  }
+  
 .O_Reserve_GameInfo_Bookmark {
   width: 10%;
 }
 
-.O_Reserve_GameInfo_GameIntroduce {
+.O_Reserve_GameInfo_BookmarkIcon {
+  font-size: 25px;
+}
+
+/* .O_Reserve_GameInfo_GameIntroduce {
   text-align: start;
   margin-top: 20px;
   font-size: 18px;
   min-height: 300px
-}
+} */
 
 .O_Reserve_GameInfo_gameData {
   margin-top: 20px;
@@ -83,6 +92,10 @@
 }
 
 /* ---------------------------- */
+
+.ant-rate {
+  font-size: 24px;
+}
 
 .ant-rate .ant-rate-star-second {
   color: rgba(255, 255, 255, 0.8);
@@ -94,19 +107,52 @@
     font-size: 14px;
   }
 
+  /* 詳細標題跟線的間距 */
+  .O_Reserve_GameInfo_LineWhite {
+    padding-right: 0px;
+  }
+
+  /* 遊戲名 */
   .O_Reserve_GameInfo_Info h3 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
+  /* 遊戲詳細標題 */
   .O_Reserve_GameInfo_Info h6 {
-    font-size: 14px;
+    font-size: 12px;
   }
 
+  /* 水滴難度 */
   .O_Reserve_GameInfo_difficultyRate {
     font-size: 18px;
   }
 
   .O_Reserve_GameInfo_gameData {
     font-size: 14px;
+  }
+   
+  .O_Reserve_GameInfo_Details {
+    display: inline-block;
+  }
+
+  .O_Reserve_GameInfo_GamePelpel {
+    width: 20%;
+  }
+
+  .O_Reserve_GameInfo_Address {
+    width: 52%;
+  }
+
+  .O_Reserve_GameInfo_BookmarkIcon {
+    font-size: 18px;
+  }
+
+  /* ------------------------ */
+  .ant-rate {
+    font-size: 16px;
+  }
+
+  .ant-rate .ant-rate-star:not(:last-child) {
+    margin-inline-end: 0px;
   }
 }

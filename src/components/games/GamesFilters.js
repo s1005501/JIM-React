@@ -5,10 +5,12 @@ import {
   AiOutlineDropbox,
 } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+// import { useState, useEffect } from 'react'
 
 function GamesFilters(props) {
-  const { usersDisplay, isLoading } = props
+  const { usersDisplay, isLoading, handleButtonClick, showButton } = props
   const navigate = useNavigate()
+
   const loader = (
     <div className="lds-spinner">
       <div></div>
@@ -30,7 +32,7 @@ function GamesFilters(props) {
     <div className="gamesFilterSection">
       {usersDisplay.map((v, i) => {
         return (
-          <div key={v.gamesSid} className="game-item">
+          <div key={i} className="game-item">
             <section
               style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -101,6 +103,14 @@ function GamesFilters(props) {
           : !!usersDisplay.length
           ? gamescontent
           : nogamesfilter}
+        {showButton && (
+          <button className="gamesgototop" onClick={handleButtonClick}>
+            <img
+              src="/Images/gamesHomeImages/back-to-top.jpg"
+              alt="placeholder"
+            />
+          </button>
+        )}
       </div>
     </>
   )

@@ -7,6 +7,7 @@ import moment from 'moment'
 import MemberAccountAside from './MemberAccountAside'
 import axios from 'axios'
 import Modal from 'react-bootstrap/Modal'
+import Swal from 'sweetalert2'
 import '../../style/member/JIM_Account_profile_modal.css'
 import {
   AiTwotoneStar,
@@ -101,9 +102,21 @@ function MemberAccountOrder() {
                             <button
                               className="notyet"
                               onClick={() => {
-                                setShow(true)
-                                setInsertordersid(v.orderSid)
-                                setOrdergameid(v.gameSid)
+                                const nowtime = moment().unix()
+                                console.log(nowtime)
+                                const reservation = moment(v.orderDate).unix()
+                                if (nowtime < reservation) {
+                                  Swal.fire({
+                                    title: '請於完成遊戲之後再評論!',
+                                    // text: `大頭貼更換成功`,
+                                    icon: 'error',
+                                    confirmButtonText: '確認',
+                                  })
+                                } else {
+                                  setShow(true)
+                                  setInsertordersid(v.orderSid)
+                                  setOrdergameid(v.gameSid)
+                                }
                               }}
                             >
                               未評價

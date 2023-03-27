@@ -30,6 +30,7 @@ function MemberNickNameModal({
     watch, // 監聽表單內容，是func
     control, // 給usewatch用的，讓他能夠知道要監聽哪一個表單
     clearError,
+    setValue,
   } = useForm({})
 
   const watchForm = useWatch({
@@ -66,11 +67,20 @@ function MemberNickNameModal({
     }
   }
 
+  const fastInput = () => {
+    setValue('mProfileNickName', 'Mike', { shouldValidate: true })
+  }
   return (
     <>
       <Modal show={show} onHide={handleClose} className="m-profileUpdate">
         <Modal.Header closeButton>
-          <Modal.Title>會員暱稱更改</Modal.Title>
+        <Modal.Title
+            onClick={() => {
+              fastInput()
+            }}
+          >
+            會員暱稱更改
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>

@@ -53,7 +53,10 @@
 }
 
 .O_Process_Two_Level {
-  color: #a5a5a5 !important;
+  /* color: #a5a5a5 !important; */
+  color: #fc6500 !important;
+  margin: 30px 0 5px 0;
+  font-size: 16px;
 }
 
 /* ----------------如沒使用驗證就步用下列css------- */

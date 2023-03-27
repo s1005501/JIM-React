@@ -72,7 +72,7 @@ function OrderReserve() {
   const ReserveTabs = () => (
     <Tabs
       defaultActiveKey="1"
-      tabBarGutter={100}
+      // tabBarGutter={100}
       centered
       items={items}
       onChange={onChange}
@@ -99,7 +99,7 @@ function OrderReserve() {
             }
             return (
               <div key={v.gamesSid} className="O_Reserve_Container">
-                <div className="col-xl-6 O_Reserve_ColImg">
+                  <div className="O_Reserve_ColImg">
                   <img
                     src={
                       v.gamesImages.length > 20
@@ -113,7 +113,7 @@ function OrderReserve() {
                 </div>
 
                 {/* 說明/預約/評論切換*/}
-                <div className="col-xl-5 O_Reserve_ColGame">
+                <div className="O_Reserve_ColGame">
                   <ReserveTabs />
                 </div>
               </div>

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import resultData from './data/result.json'
 import Box_spinning from './Box_spinning'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function GameOver({ sum }) {
   const navigate = useNavigate()
@@ -64,8 +64,8 @@ function GameOver({ sum }) {
 
           <div id="bottom_recommand" className="mx-auto">
             <div className="recommand_cards d-flex flex-column flex-xxl-row justify-content-center align-items-center">
-              <a
-                href={`http://localhost:3000/order/${currentNum.img1}`}
+              <Link
+                to={`http://localhost:3000/order/${currentNum.img1}`}
                 target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
@@ -86,9 +86,9 @@ function GameOver({ sum }) {
                   </div>
                   <div className="mx-auto my-auto">{currentNum.img1_name1}</div>
                 </div>
-              </a>
-              <a
-                href={`http://localhost:3000/order/${currentNum.img2}`}
+              </Link>
+              <Link
+                to={`http://localhost:3000/order/${currentNum.img2}`}
                 target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
@@ -109,9 +109,9 @@ function GameOver({ sum }) {
                   </div>
                   <div className="mx-auto my-auto">{currentNum.img2_name2}</div>
                 </div>
-              </a>
-              <a
-                href={`http://localhost:3000/order/${currentNum.img3}`}
+              </Link>
+              <Link
+                to={`http://localhost:3000/order/${currentNum.img3}`}
                 target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
@@ -132,7 +132,7 @@ function GameOver({ sum }) {
                   </div>
                   <div className="mx-auto my-auto">{currentNum.img3_name3}</div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -41,12 +41,12 @@ const Comment = ({ sid }) => {
             <div className="d-flex border-bottom">
               <div>
                 {/* 大頭照 */}
-                <Space direction="vertical" size={16} className=" me-3">
-                  <Space wrap size={16}>
-                    <Avatar src={`/Images/${v.memHeadshot}`} size={60} />
-                    {/* 下列是大頭照icon的 */}
-                    {/* <Avatar size={60} icon={<UserOutlined />} /> */}
-                  </Space>
+                <Space direction="vertical" size={16} className=" m-3">
+                  {/* <Space wrap size={16}> */}
+                  <Avatar src={`/Images/${v.memHeadshot}`} size={60} />
+                  {/* 下列是大頭照icon的 */}
+                  {/* <Avatar size={60} icon={<UserOutlined />} /> */}
+                  {/* </Space> */}
                 </Space>
               </div>
 
