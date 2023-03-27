@@ -264,10 +264,10 @@ const StroeEdit = ({ sid }) => {
                             className="form-check-label px-2 px-sm-3"
                             htmlFor={i}
                             onClick={() => {
-                              setNum(i)
+                              setNum(i + 1)
                             }}
                           >
-                            {num >= i ? <BloodSvg /> : <UnfillBlood />}
+                            {num - 1 >= i ? <BloodSvg /> : <UnfillBlood />}
                           </label>
                           {errors['difficulty'] && (
                             <div className="invalid-feedback">
