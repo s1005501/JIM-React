@@ -389,7 +389,7 @@ function GamesMainPage() {
       (e) => {
         if (e.target.innerHTML !== '進階篩選') {
           const advancedFilter = document.querySelector('.gamessection')
-          if (!advancedFilter.contains(e.target)) {
+          if (!advancedFilter?.contains(e.target)) {
             setActiveFilterBlockClick(false)
           }
         }

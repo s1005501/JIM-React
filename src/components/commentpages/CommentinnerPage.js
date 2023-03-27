@@ -45,6 +45,21 @@ function CommentinnerPage() {
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
+  const [hidecomment,setHidecomment]=useState(true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   let { mygamesName } = useParams()
   const navigate = useNavigate()
@@ -117,7 +132,7 @@ function CommentinnerPage() {
     )
     const result = r.data
     const newresult = result.map((v, i) => {
-      return { ...v, toggle: false }
+      return { ...v, toggle: false, hidecomment:true }
     })
 
     setBelowcomment(newresult)
@@ -367,9 +382,10 @@ function CommentinnerPage() {
                 <div className="commentandreplyfiled">
                   <div className="commentandreply">
                     {belowcomment.map((v, i) => {
+                      // console.log(belowcomment)
                       return (
                         <div className="mydiv" key={i}>
-                          <div className="userinfo">
+                          {hidecomment?( <> <div className="userinfo">
                             <div className="usericon">
                               <img
                                 className="usericonimg"
@@ -405,8 +421,7 @@ function CommentinnerPage() {
                                 })}
                               </div>
                             </div>
-                          </div>
-                          <div className="commenttext">
+                          </div>  <div className="commenttext">
                             <BsArrowReturnRight /> &nbsp;&nbsp;
                             {v.comment}
                             {v.pics === 'null' ? null : (
@@ -420,7 +435,59 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             )}
-                          </div>
+                          </div></>):(<div style={{disply:'flex',textAlign:'center',color:'white',fontSize:'20px'}}>已隱藏該評論</div>)}
+                          {/* <div className="userinfo">
+                            <div className="usericon">
+                              <img
+                                className="usericonimg"
+                                src={
+                                  v.memHeadshot.length > 20
+                                    ? '../Images/uploads/' + v.memHeadshot
+                                    : '../Images/commentlocalImages/' +
+                                      v.memHeadshot
+                                }
+                                alt=""
+                              />
+                            </div>
+                            <div className="usercommentdetail">
+                              <p style={{ margin: '0' }}>{v.memNickName}</p>
+                              <p className="datetime" style={{ margin: '0' }}>
+                                {moment(v.create_at).format('YYYY-MM-DD')}
+                              </p>
+                              <div className="ratestar">
+                                {[...Array(5)].map((value, index) => {
+                                  if (index + 1 <= v.rate) {
+                                    return (
+                                      <div key={index}>
+                                        <AiTwotoneStar />
+                                      </div>
+                                    )
+                                  } else {
+                                    return (
+                                      <div key={index}>
+                                        <AiOutlineStar />
+                                      </div>
+                                    )
+                                  }
+                                })}
+                              </div>
+                            </div>
+                          </div> */}
+                          {/* <div className="commenttext">
+                            <BsArrowReturnRight /> &nbsp;&nbsp;
+                            {v.comment}
+                            {v.pics === 'null' ? null : (
+                              <img
+                                className="replypics"
+                                src={
+                                  v.pics.length > 20
+                                    ? '../Images/uploads/' + v.pics
+                                    : '../Images/commentlocalImages/' + v.pics
+                                }
+                                alt=""
+                              />
+                            )}
+                          </div> */}
                           <div className="myBtnssss">
                             <div className="reply">
                               <button
@@ -534,10 +601,19 @@ function CommentinnerPage() {
                                       className="disliked"
                                       onClick={(e) => {
                                         e.preventDefault()
+                                       belowcomment.map((vi,ii)=>{
+                                          if(vi.sid===v.sid){
+                                            setHidecomment(false)
+                                          }else{setHidecomment(true)}
+                                        })
+
+                                       
 
                                         axios.put(
                                           `http://localhost:3005/update/${v.sid}/${usersid}`
                                         )
+                                        // setHidecomment(false)
+                                        // setBelowcomment(newincomment)
                                         setRender(!reader)
                                       }}
                                     >
@@ -566,9 +642,20 @@ function CommentinnerPage() {
                                       onClick={(e) => {
                                         e.preventDefault()
 
+                                        belowcomment.map((vi,ii)=>{
+                                          if(vi.sid===v.sid){
+                                            setHidecomment(true)
+                                          }else{setHidecomment(true)}
+                                        })
+
+
+                                      
+
                                         axios.delete(
                                           `http://localhost:3005/insertdelete/${v.sid}/${usersid}`
                                         )
+                                        // setHidecomment(true)
+                                        // setBelowcomment(newincomment)
                                         setRender(!reader)
                                       }}
                                     >
@@ -603,6 +690,15 @@ function CommentinnerPage() {
                                     onClick={(e) => {
                                       e.preventDefault()
 
+                                      belowcomment.map((vi,ii)=>{
+                                        if(vi.sid===v.sid){
+                                          setHidecomment(false)
+                                        }else{setHidecomment(true)}
+                                      })
+
+
+                                      // setBelowcomment(newincomment)
+
                                       axios.post(
                                         'http://localhost:3005/insertliked',
                                         {
@@ -612,7 +708,10 @@ function CommentinnerPage() {
                                           liked: 0,
                                         }
                                       )
+                                      // setHidecomment(false)
+                                     
                                       setRender(!reader)
+                                    
                                     }}
                                   >
                                     <AiOutlineDislike />
