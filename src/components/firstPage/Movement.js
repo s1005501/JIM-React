@@ -319,13 +319,13 @@ const Movement = ({ setIsOpen, setBoxTrigger, gameOver, setGameOver }) => {
       // requestAnimationFrame(animate)
     }
     // animate(0)
-    window.addEventListener(
-      'load',
-      () => {
-        animate(0)
-      },
-      false
-    )
+    // window.addEventListener(
+    //   'load',
+    //   () => {
+    //     animate(0)
+    //   },
+    //   false
+    // )
     const id = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(id)
     // return () => window.removeEventListener('load', animate)

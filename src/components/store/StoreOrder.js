@@ -227,7 +227,7 @@ const StoreOrder = ({ orderSid }) => {
                   <div>
                     <button
                       type="button"
-                      className="btn btn-dark ms-3 float-end mt-5"
+                      className="btn btn-dark ms-3 float-end mt-5 stores"
                       onClick={() => {
                         setLgShow(false)
                       }}
