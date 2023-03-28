@@ -45,21 +45,7 @@ function CommentinnerPage() {
   const [belowcomment, setBelowcomment] = useState([])
   const [reader, setRender] = useState(false)
   const [totalliked, setTotalliked] = useState([])
-  const [hidecomment,setHidecomment]=useState(true)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // const [hidecomment,setHidecomment]=useState(true)
 
   let { mygamesName } = useParams()
   const navigate = useNavigate()
@@ -132,7 +118,7 @@ function CommentinnerPage() {
     )
     const result = r.data
     const newresult = result.map((v, i) => {
-      return { ...v, toggle: false, hidecomment:true }
+      return { ...v, toggle: false, hidecomment: true }
     })
 
     setBelowcomment(newresult)
@@ -437,7 +423,141 @@ function CommentinnerPage() {
                               />
                             )}
                           </div></>):(<div style={{disply:'flex',textAlign:'center',color:'white',fontSize:'20px'}}>已隱藏該評論</div>)} */}
-                          <div className="userinfo">
+                          {v.filter ? (
+                            v.filter.liked ? (
+                              <>
+                                <div className="userinfo">
+                                  <div className="usericon">
+                                    <img
+                                      className="usericonimg"
+                                      src={
+                                        v.memHeadshot.length > 20
+                                          ? '../Images/uploads/' + v.memHeadshot
+                                          : '../Images/commentlocalImages/' +
+                                            v.memHeadshot
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div className="usercommentdetail">
+                                    <p style={{ margin: '0' }}>
+                                      {v.memNickName}
+                                    </p>
+                                    <p
+                                      className="datetime"
+                                      style={{ margin: '0' }}
+                                    >
+                                      {moment(v.create_at).format('YYYY-MM-DD')}
+                                    </p>
+                                    <div className="ratestar">
+                                      {[...Array(5)].map((value, index) => {
+                                        if (index + 1 <= v.rate) {
+                                          return (
+                                            <div key={index}>
+                                              <AiTwotoneStar />
+                                            </div>
+                                          )
+                                        } else {
+                                          return (
+                                            <div key={index}>
+                                              <AiOutlineStar />
+                                            </div>
+                                          )
+                                        }
+                                      })}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="commenttext">
+                                  <BsArrowReturnRight /> &nbsp;&nbsp;
+                                  {v.comment}
+                                  {v.pics === 'null' ? null : (
+                                    <img
+                                      className="replypics"
+                                      src={
+                                        v.pics.length > 20
+                                          ? '../Images/uploads/' + v.pics
+                                          : '../Images/commentlocalImages/' +
+                                            v.pics
+                                      }
+                                      alt=""
+                                    />
+                                  )}
+                                </div>{' '}
+                              </>
+                            ) : (
+                              <div
+                                style={{
+                                  disply: 'flex',
+                                  textAlign: 'center',
+                                  color: 'white',
+                                  fontSize: '20px',
+                                }}
+                              >
+                                已隱藏該評論
+                              </div>
+                            )
+                          ) : (
+                            <>
+                              <div className="userinfo">
+                                <div className="usericon">
+                                  <img
+                                    className="usericonimg"
+                                    src={
+                                      v.memHeadshot.length > 20
+                                        ? '../Images/uploads/' + v.memHeadshot
+                                        : '../Images/commentlocalImages/' +
+                                          v.memHeadshot
+                                    }
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="usercommentdetail">
+                                  <p style={{ margin: '0' }}>{v.memNickName}</p>
+                                  <p
+                                    className="datetime"
+                                    style={{ margin: '0' }}
+                                  >
+                                    {moment(v.create_at).format('YYYY-MM-DD')}
+                                  </p>
+                                  <div className="ratestar">
+                                    {[...Array(5)].map((value, index) => {
+                                      if (index + 1 <= v.rate) {
+                                        return (
+                                          <div key={index}>
+                                            <AiTwotoneStar />
+                                          </div>
+                                        )
+                                      } else {
+                                        return (
+                                          <div key={index}>
+                                            <AiOutlineStar />
+                                          </div>
+                                        )
+                                      }
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="commenttext">
+                                <BsArrowReturnRight /> &nbsp;&nbsp;
+                                {v.comment}
+                                {v.pics === 'null' ? null : (
+                                  <img
+                                    className="replypics"
+                                    src={
+                                      v.pics.length > 20
+                                        ? '../Images/uploads/' + v.pics
+                                        : '../Images/commentlocalImages/' +
+                                          v.pics
+                                    }
+                                    alt=""
+                                  />
+                                )}
+                              </div>{' '}
+                            </>
+                          )}
+                          {/* <div className="userinfo">
                             <div className="usericon">
                               <img
                                 className="usericonimg"
@@ -488,7 +608,7 @@ function CommentinnerPage() {
                                 alt=""
                               />
                             )}
-                          </div>
+                          </div> */}
                           <div className="myBtnssss">
                             <div className="reply">
                               <button
@@ -602,13 +722,6 @@ function CommentinnerPage() {
                                       className="disliked"
                                       onClick={(e) => {
                                         e.preventDefault()
-                                       belowcomment.map((vi,ii)=>{
-                                          if(vi.sid===v.sid){
-                                            setHidecomment(false)
-                                          }else{setHidecomment(true)}
-                                        })
-
-                                       
 
                                         axios.put(
                                           `http://localhost:3005/update/${v.sid}/${usersid}`
@@ -642,15 +755,6 @@ function CommentinnerPage() {
                                       className="disliked"
                                       onClick={(e) => {
                                         e.preventDefault()
-
-                                        belowcomment.map((vi,ii)=>{
-                                          if(vi.sid===v.sid){
-                                            setHidecomment(true)
-                                          }else{setHidecomment(true)}
-                                        })
-
-
-                                      
 
                                         axios.delete(
                                           `http://localhost:3005/insertdelete/${v.sid}/${usersid}`
@@ -691,13 +795,6 @@ function CommentinnerPage() {
                                     onClick={(e) => {
                                       e.preventDefault()
 
-                                      belowcomment.map((vi,ii)=>{
-                                        if(vi.sid===v.sid){
-                                          setHidecomment(false)
-                                        }else{setHidecomment(true)}
-                                      })
-
-
                                       // setBelowcomment(newincomment)
 
                                       axios.post(
@@ -710,9 +807,8 @@ function CommentinnerPage() {
                                         }
                                       )
                                       // setHidecomment(false)
-                                     
+
                                       setRender(!reader)
-                                    
                                     }}
                                   >
                                     <AiOutlineDislike />
@@ -741,53 +837,59 @@ function CommentinnerPage() {
                                       alt=""
                                     />
                                   ) : null}
-                                  <div style={{display:'flex'}}>
-                                  <div className="pics">
-                                    <button className="picbtn" style={{margin:'0'}}>
-                                      圖片
-                                      <input
-                                        type="file"
-                                        onChange={async (e) => {
-                                          console.log(e.target.files[0])
-                                          const fd = new FormData()
-                                          fd.append('photos', e.target.files[0])
-                                          const r = await axios.post(
-                                            'http://localhost:3005/post/',
-                                            fd
+                                  <div style={{ display: 'flex' }}>
+                                    <div className="pics">
+                                      <button
+                                        className="picbtn"
+                                        style={{ margin: '0' }}
+                                      >
+                                        圖片
+                                        <input
+                                          type="file"
+                                          onChange={async (e) => {
+                                            console.log(e.target.files[0])
+                                            const fd = new FormData()
+                                            fd.append(
+                                              'photos',
+                                              e.target.files[0]
+                                            )
+                                            const r = await axios.post(
+                                              'http://localhost:3005/post/',
+                                              fd
+                                            )
+                                            // console.log(r.data[0].filename)
+                                            setPicname2(r.data[0].filename)
+                                          }}
+                                          className="hiddenpicbtn"
+                                        />
+                                      </button>
+                                    </div>
+
+                                    <div>
+                                      <button
+                                        type="submit"
+                                        className="submit"
+                                        style={{ margin: '0' }}
+                                        onClick={(e) => {
+                                          e.preventDefault()
+
+                                          axios.post(
+                                            'http://localhost:3005/insertreplycomment',
+                                            {
+                                              usersid: usersid,
+                                              commentsid: v.sid,
+                                              repliedpics: picname2 || 'null',
+                                              repliedcomment: replyinputvalue,
+                                            }
                                           )
-                                          // console.log(r.data[0].filename)
-                                          setPicname2(r.data[0].filename)
+                                          setReplyinputvalue('')
+                                          setPicname2('')
+                                          setRender(!reader)
                                         }}
-                                        className="hiddenpicbtn"
-                                      />
-                                    </button>
-                                  </div>
-
-                                  <div>
-                                    <button
-                                      type="submit"
-                                      className="submit"
-                                      style={{margin:'0'}}
-                                      onClick={(e) => {
-                                        e.preventDefault()
-
-                                        axios.post(
-                                          'http://localhost:3005/insertreplycomment',
-                                          {
-                                            usersid: usersid,
-                                            commentsid: v.sid,
-                                            repliedpics: picname2 || 'null',
-                                            repliedcomment: replyinputvalue,
-                                          }
-                                        )
-                                        setReplyinputvalue('')
-                                        setPicname2('')
-                                        setRender(!reader)
-                                      }}
-                                    >
-                                      提交
-                                    </button>
-                                  </div>
+                                      >
+                                        提交
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>

@@ -36,8 +36,8 @@ function MemberAccountLike() {
       )
       // console.log(response.data)
       Swal.fire({
-        title: '評論刪除成功!',
-        text: `評論刪除成功`,
+        title: '已取消收藏!',
+        text: `已取消收藏!`,
         icon: 'success',
         confirmButtonText: '確認',
       })
