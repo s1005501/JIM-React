@@ -94,7 +94,7 @@ const StoreInformation = () => {
     '連江縣',
   ])
   return (
-    <div className="store-add-body text-center py-5">
+    <div className="store-add-body text-center py-5 stores">
       <div>
         <p>工作室資料</p>
       </div>

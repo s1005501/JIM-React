@@ -72,7 +72,7 @@ const StoreAdd = () => {
   ])
   const [colse, setColse] = useState(-1)
   return (
-    <div className="store-add-body text-center py-5">
+    <div className="store-add-body text-center py-5 stores">
       <div>
         <p>新增遊戲</p>
       </div>

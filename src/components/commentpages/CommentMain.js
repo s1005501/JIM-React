@@ -100,7 +100,7 @@ function CommentMain() {
             <p className="searchbar_p">的討論吧!</p>
           </div>
 
-          <div className="hotspotgames">
+          <div className="hotspotgames stores">
             {/* <div className="hotspotgamestitle">遊戲推介</div> */}
             {/* <div className="keywordssqure">
               {keyname.map((v, i) => {

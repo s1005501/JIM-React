@@ -46,7 +46,7 @@ function GameOver({ sum }) {
   // console.log(currentNum.img1_id1)
   return (
     <>
-      <div className="box ">
+      <div className="box stores">
         <div style={{ color: 'white' }}>
           {/* 總分:{sum} */}
           <br />
@@ -66,7 +66,6 @@ function GameOver({ sum }) {
             <div className="recommand_cards d-flex flex-column flex-xxl-row justify-content-center align-items-center">
               <Link
                 to={`http://localhost:3000/order/${currentNum.img1}`}
-                target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
                 <div
@@ -89,7 +88,6 @@ function GameOver({ sum }) {
               </Link>
               <Link
                 to={`http://localhost:3000/order/${currentNum.img2}`}
-                target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
                 <div
@@ -112,7 +110,6 @@ function GameOver({ sum }) {
               </Link>
               <Link
                 to={`http://localhost:3000/order/${currentNum.img3}`}
-                target="blank"
                 style={{ color: 'white', textDecoration: 'none' }}
               >
                 <div

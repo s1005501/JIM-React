@@ -381,13 +381,16 @@ function GamesMainPage() {
   // 進階篩選按鈕功能
   const handleToggleFilterBlock = () => {
     setActiveFilterBlockClick(!isActiveFilterBlockClick)
+    if (isActiveFilterBlockClick === false) {
+      return handleButtonClick()
+    }
   }
 
   useEffect(() => {
     window.addEventListener(
       'click',
       (e) => {
-        if (e.target.innerHTML !== '進階篩選') {
+        if (e.target?.innerHTML !== '進階篩選') {
           const advancedFilter = document.querySelector('.gamessection')
           if (!advancedFilter?.contains(e.target)) {
             setActiveFilterBlockClick(false)
@@ -689,7 +692,6 @@ function GamesMainPage() {
                       onClick={() => {
                         myGamesOrder(v)
                         setGamesOrderStata(i)
-                        handleButtonClick()
                       }}
                     >
                       {v}
@@ -702,7 +704,7 @@ function GamesMainPage() {
         </section>
       </div>
 
-      {showGamesHome ? <GamesHome usersDisplay={usersDisplay} /> : null}
+      {showGamesHome ? <GamesHome /> : null}
       {showGamesFilter ? (
         <GamesFilters
           usersDisplay={usersDisplay}

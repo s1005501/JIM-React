@@ -39,6 +39,43 @@ function GamesHome() {
     },
   ]
 
+  // const newdusersDisplay =
+  // usersDisplay.filter((v) => {
+  //   const a = slideImages.filter((k) => {
+  //     if (v.gamesSid == k.id) {
+  //       return { v }
+  //     }
+  //   })
+  //   if (!!a[0]?.id) {
+  //     return { a }
+  //   }
+  // })
+
+  // const newdusersDisplay = useMemo(() => {
+  //   return usersDisplay
+  //     .filter((v) => {
+  //       const a = slideImages.filter((k) => {
+  //         if (v.gamesSid == k.id) {
+  //           return { v }
+  //         }
+  //       })
+  //       if (!!a[0]?.id) {
+  //         return { a }
+  //       }
+  //     })
+  //     .filter((v) => {
+  //       if (v.gamesSid == 197) {
+  //         return v
+  //       }
+  //     })
+  // }, [])
+
+  // newdusersDisplay.forEach((a) => {
+  //   const ccc = slideImages.find((b) => {
+  //     return b.id === a.gamesSid
+  //   })
+  // })
+
   function handleNextBtnClick() {
     setCurrentSlide((currentSlide + 1) % slideImages.length)
   }
@@ -105,10 +142,9 @@ function GamesHome() {
           }}
         >
           {slideImages.map((image, i) => (
-            <div className="slideImagesMain">
+            <div className="slideImagesMain" key={image.id}>
               <div className={`slidebackgroundimage${i}`}>
                 <img
-                  key={i}
                   src={image.src}
                   alt={image.alt}
                   onClick={() => {
@@ -131,7 +167,6 @@ function GamesHome() {
         >
           &#10095;
         </button>
-        // <div className="gameslidertextcontent"></div>
       </div>
       <div className="container">
         <div

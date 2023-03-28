@@ -78,7 +78,7 @@ const StoreGameList = () => {
   }
 
   return (
-    <div className="store-list-body text-center py-5 px-2 px-sm-5">
+    <div className="store-list-body text-center py-5 px-2 px-sm-5 stores">
       <p className="store-subtitle">遊戲管理</p>
       <table className="table mt-3 store-table">
         <thead>

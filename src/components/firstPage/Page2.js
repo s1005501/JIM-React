@@ -7,7 +7,7 @@ function Page2() {
   return (
     <>
       <div className="P2_body d-flex justify-content-center">
-        <div id="P2_left">
+        <div id="P2_left" className="stores">
           <div className="d-flex flex-column P2_body_A">
             <div className="gameName">購票須知</div>
             <ul className="my-3 P2_gameContent">

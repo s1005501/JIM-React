@@ -39,7 +39,7 @@ const Store = () => {
 
   return (
     <>
-      <div className="store-list-body text-center py-5 px-5">
+      <div className="store-list-body text-center py-5 px-5 stores">
         <p className="store-subtitle">訂單紀錄</p>
         <div className="my-3 float-end">
           <div>

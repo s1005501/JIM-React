@@ -5,7 +5,6 @@ import {
   AiOutlineDropbox,
 } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
-// import { useState, useEffect } from 'react'
 
 function GamesFilters(props) {
   const { usersDisplay, isLoading, handleButtonClick, showButton } = props
@@ -97,6 +96,7 @@ function GamesFilters(props) {
 
   return (
     <>
+      <div className="gamesFilterMainblank"></div>
       <div className="gamesFilterMain">
         {isLoading
           ? loader

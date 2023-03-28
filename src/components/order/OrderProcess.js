@@ -146,7 +146,7 @@ function OrderProcess() {
             {orderData.map((v, i) => {
               return (
                 <div key={i}>
-                 <h3>訂單編號 :{v.orderSid}</h3>
+                  <h3>訂單編號 :{v.orderSid}</h3>
                   <p>付款方式 : Line Pay</p>
                   <p>預約日期 : {v.orderDate}</p>
                   <p>預約時間 : {v.orderTime}</p>
@@ -261,7 +261,7 @@ function OrderProcess() {
 
   return (
     <>
-      <div className="bodyContainer">
+      <div className="bodyContainer stores">
         <div className="leftContainer">
           <Link to="/firstPage">
             <div className="leftContainer02">

@@ -122,7 +122,7 @@ function Footer() {
             </li> */}
             {!!checkToken('memberAuth')?.memberToken ? (
               <li>
-                <NavLink to="/member">
+                <NavLink to="/firstPage">
                   <AiOutlineUser />
                   <p>會員</p>
                 </NavLink>
@@ -153,7 +153,21 @@ function Footer() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/comment">
+              <NavLink
+                to={!!checkToken('memberAuth') ? '/comment' : '/signin'}
+                onClick={() => {
+                  if (!!checkToken('memberAuth')) {
+                  } else {
+                    Swal.fire({
+                      title: '請先登錄會員',
+
+                      icon: 'error',
+                      confirmButtonText: '確認',
+                    })
+                    // navigate('/')
+                  }
+                }}
+              >
                 <AiOutlineComment />
                 <p>討論</p>
               </NavLink>
