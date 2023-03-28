@@ -195,10 +195,10 @@ const SigninStortIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/store', data)
       if (!!r.data.error) {
-        swalAlert(r.data.error, r.data.error, 'error', '確認')
+        swalAlert(r.data.error, '', 'error', '確認')
       }
       if (r.data.code === 200) {
-        swalAlert('成功登入', '成功登入', 'success', '確認')
+        swalAlert('成功登入', '', 'success', '確認')
 
         // Swal.fire({
         //   title: '成功登入',
@@ -326,7 +326,7 @@ const SigninMemberIn = ({ name }) => {
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        swalAlert('登入成功', '登入成功', 'success', '確認')
+        swalAlert('登入成功', '', 'success', '確認')
         navigate('/firstPage')
       }
     }
@@ -431,7 +431,7 @@ const SigninStoreRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
+        swalAlert('註冊成功', '', 'success', '確認')
         navigate('/signin')
       }
     }
@@ -916,7 +916,7 @@ const SigninMemberRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
+        swalAlert('新增成功', '', 'success', '確認')
         navigate('/firstPage')
       }
     }

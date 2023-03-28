@@ -60,7 +60,7 @@ const StroeEdit = ({ sid }) => {
         data
       )
       if (r.data.affectedRows) {
-        swalAlert('修改成功', '修改成功', 'success', '確認')
+        swalAlert('修改成功', '', 'success', '確認')
         navigate('/store')
       }
     }

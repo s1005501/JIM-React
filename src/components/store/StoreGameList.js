@@ -33,7 +33,7 @@ const StoreGameList = () => {
             `http://localhost:3005/store/delstoredata/${gameSid}`
           )
           if (!!r.data.affectedRows) {
-            swalAlert('刪除成功', '刪除成功', 'success', '確認')
+            swalAlert('刪除成功', '', 'success', '確認')
             navigate('/store')
           }
         } catch (error) {}
@@ -53,7 +53,7 @@ const StoreGameList = () => {
     //             `http://localhost:3005/store/delstoredata/${gameSid}`
     //           )
     //           if (!!r.data.affectedRows) {
-    //             swalAlert('刪除成功', '刪除成功', 'success', '確認')
+    //             swalAlert('刪除成功', '', 'success', '確認')
     //             navigate('/store')
     //           }
     //         } catch (error) {}
@@ -62,7 +62,7 @@ const StoreGameList = () => {
     //     {
     //       label: '否',
     //       onClick: () =>
-    //         swalAlert('已取消刪除', '已取消刪除', 'success', '確認'),
+    //         swalAlert('已取消刪除', '', 'success', '確認'),
     //     },
     //   ],
     // })

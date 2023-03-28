@@ -44,7 +44,7 @@ const CalendarDate = ({ sid, gameData }) => {
   const MemLevelGetData = async () => {
     axios.defaults.withCredentials = true
     const response = await axios.get(
-      ORDER + `/ordermemLevel/` + `${memberAuth.membersid}`
+      ORDER + `/ordermemLevel/` + `${memberAuth?.membersid}`
     )
 
     // console.log('response:', response.data)
@@ -225,15 +225,15 @@ const CalendarDate = ({ sid, gameData }) => {
 
   const OrderProcessClick = () => {
     if (!checkToken('memberAuth')?.memberToken)
-    return Swal.fire({
-      title: '請登入會員!',
-      icon: 'error',
-      confirmButtonText: '確認',
-    })
+      return Swal.fire({
+        title: '請登入會員!',
+        icon: 'error',
+        confirmButtonText: '確認',
+      })
     localStorage.setItem('orderInfo', JSON.stringify(calendarOrder))
     Swal.fire({
-    title: '預約確認',
-    text: '前往結帳流程',
+      title: '預約確認',
+      text: '前往結帳流程',
       icon: 'success',
       confirmButtonText: '確認',
     }).then((result) => {

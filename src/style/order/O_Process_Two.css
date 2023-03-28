@@ -80,3 +80,13 @@
 .ant-select .ant-select-arrow {
   color: white;
 }
+
+@media (max-width: 1550px) {
+  .O_Process_Two_line {
+    width: 100%;
+  }
+
+  .O_Process_Two_NameInput {
+    width: 100% !important;
+  }
+}

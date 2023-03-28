@@ -37,7 +37,7 @@ const StoreInformation = () => {
       )
       if (r.data.affectedRows) {
         setRender(!render)
-        swalAlert('更新成功', '更新成功', 'success', '確認')
+        swalAlert('更新成功', '', 'success', '確認')
         navigate('/store')
       }
     }

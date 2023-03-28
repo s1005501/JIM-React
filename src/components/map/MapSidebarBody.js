@@ -34,14 +34,14 @@ const MapSidebarBody = ({ mapData }) => {
                 className="accordion-header game-title"
                 id={`flush-heading${v.storeSid}`}
               >
-         <img
-                        src={`${
-                          v.storeLogo.length < 20
-                            ? `Images/storeimages/${v.storeLogo}`
-                            : `Images/uploads/${v.storeLogo}`
-                        }`}
-                        alt=""
-                      />
+                <img
+                  src={`${
+                    v.storeLogo.length < 20
+                      ? `Images/storeimages/${v.storeLogo}`
+                      : `Images/uploads/${v.storeLogo}`
+                  }`}
+                  alt=""
+                />
                 <button
                   className="map-basic-style accordion-button collapsed d-block"
                   type="button"
@@ -83,14 +83,14 @@ const MapSidebarBody = ({ mapData }) => {
                   return (
                     <div className="accordion-body d-flex game-body" key={i}>
                       <div className=" me-3">
-                      <img
-                        src={`${
-                          k.gamesImages.length < 20
-                            ? `Images/gamesImages/${k.gamesImages}`
-                            : `Images/uploads/${k.gamesImages}`
-                        }`}
-                        alt=""
-                      />
+                        <img
+                          src={`${
+                            k.gamesImages.length < 20
+                              ? `Images/gamesImages/${k.gamesImages}`
+                              : `Images/uploads/${k.gamesImages}`
+                          }`}
+                          alt=""
+                        />
                       </div>
                       <div className="">
                         <p>
@@ -115,7 +115,7 @@ const MapSidebarBody = ({ mapData }) => {
                         </p>
                         <Link
                           to={`/order/${k.gamesSid}`}
-                          className="btn btn-outline-secondary"
+                          className="btn btn-outline-danger"
                         >
                           立刻前往
                         </Link>

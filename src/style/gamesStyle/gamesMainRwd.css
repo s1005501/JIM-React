@@ -8,7 +8,6 @@
     width: 100%;
     justify-content: center;
     margin-bottom: 370px;
-
   }
 }
 
@@ -131,10 +130,16 @@
     z-index: 120;
   }
 
-  .nogamesfilter div:first-child{
-    z-index:111;
+  .nogamesfilter div:first-child {
+    z-index: 111;
   }
   .nogamesfilter div:last-child {
-    z-index:111;
+    z-index: 111;
+  }
+  .gamesgototop img {
+    position: fixed;
+    bottom: 20vh;
+    right: 10px;
+    z-index: 99999999999999999;
   }
 }

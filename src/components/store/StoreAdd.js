@@ -34,7 +34,7 @@ const StoreAdd = () => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/store/putgame', data)
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
+        swalAlert('新增成功', '', 'success', '確認')
         navigate('/store')
       }
     }
