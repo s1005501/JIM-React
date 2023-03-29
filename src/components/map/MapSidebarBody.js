@@ -26,7 +26,10 @@ const MapSidebarBody = ({ mapData }) => {
   }, [searchKeyword, mapData])
   return (
     <div>
-      <div className="accordion accordion-flush" id="accordionFlushExample">
+      <div
+        className="accordion accordion-flush stores"
+        id="accordionFlushExample"
+      >
         {[...searchData].map((v, i) => {
           return (
             <div className="accordion-item" key={v.storeSid}>
