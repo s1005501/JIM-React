@@ -4,10 +4,13 @@
 
 部分功能無法使用(因為 API 需要金鑰才能運作，但推上來有風險，所以這部分請見諒)
 
+前後端 terminal 啟動方式：
+React terminal 啟動：yarn start
+Node.js terminal 啟動：nodemon
+
 會員中心、登入功能可用以下組別的帳密完成登入功能
 會員帳號：kevin54321
 會員密碼：kevin54321
-
 
 個人專題負責部分
 
@@ -20,5 +23,3 @@
 4.透過 JSON-web-token 完成會員登入功能、FireBase 完成第三方 Google 登入、email.js 完成驗證信的發送等 API 的串接使用
 
 5.透過 node.js 完成驗證碼驗證(API：svgchaptcha)、會員登入、註冊、會員中心、部分商品、預約流程的後端建置
-
-
