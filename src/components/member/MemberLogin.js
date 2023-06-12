@@ -9,9 +9,9 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import MemberAuthContext from './MemberAuthContext'
 import Swal from 'sweetalert2'
-import { googleAuth, googleProvider } from './../../config/firebase'
-import { signInWithPopup } from 'firebase/auth'
-import { async } from '@firebase/util'
+// import { googleAuth, googleProvider } from './../../config/firebase'
+// import { signInWithPopup } from 'firebase/auth'
+// import { async } from '@firebase/util'
 import { useContextValue } from '../../ContextDashbard'
 function MemberLogin({ memberLoginOrNot }) {
   const { signinData, setSigninData } = useContextValue()
@@ -95,12 +95,12 @@ function MemberLogin({ memberLoginOrNot }) {
   // google登入測試func
   const memberGoogleLogin = async () => {
     // 帶入兩個參數第一個是auth、第二個是provider
-    const googleResult = await signInWithPopup(googleAuth, googleProvider)
+    // const googleResult = await signInWithPopup(googleAuth, googleProvider)
 
     const googleForm = new FormData()
 
     // 把資料塞進剛建立的new FormData
-    googleForm.append('googleEmail', `${googleResult.user.email}`)
+    // googleForm.append('googleEmail', `${googleResult.user.email}`)
 
     const response = await axios.post(ACCOUNTGOOGLELOGIN, googleForm, {
       headers: {
